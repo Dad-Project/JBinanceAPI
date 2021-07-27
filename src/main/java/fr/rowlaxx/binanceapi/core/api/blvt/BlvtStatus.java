@@ -1,6 +1,6 @@
-package fr.rowlaxx.binanceapi.enums.blvt;
+package fr.rowlaxx.binanceapi.core.api.blvt;
 
-public enum Status {
+public enum BlvtStatus {
 
 	//La liste
 	success("S"),
@@ -11,7 +11,7 @@ public enum Status {
 	private final String toString;
 	
 	//Constructeurs
-	private Status(String toString) {
+	private BlvtStatus(String toString) {
 		this.toString = toString;
 	}
 	

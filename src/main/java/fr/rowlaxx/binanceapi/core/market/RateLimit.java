@@ -2,8 +2,6 @@ package fr.rowlaxx.binanceapi.core.market;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.enums.RateLimitIntervals;
-import fr.rowlaxx.binanceapi.enums.RateLimitTypes;
 import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 

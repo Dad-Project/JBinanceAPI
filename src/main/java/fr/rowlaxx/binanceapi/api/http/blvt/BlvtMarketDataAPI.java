@@ -8,7 +8,7 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.core.api.blvt.BlvtCandlestick;
 import fr.rowlaxx.binanceapi.core.api.blvt.BlvtInfo;
-import fr.rowlaxx.binanceapi.enums.Intervals;
+import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 
 public interface BlvtMarketDataAPI {

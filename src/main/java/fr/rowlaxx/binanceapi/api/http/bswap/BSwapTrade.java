@@ -4,9 +4,9 @@ import java.util.Objects;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
-import fr.rowlaxx.binanceapi.enums.bswap.RemoveLiquidityOperationType;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
 
 public interface BSwapTrade {
 

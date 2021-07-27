@@ -2,14 +2,13 @@ package fr.rowlaxx.binanceapi.core.api.blvt;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.enums.blvt.Status;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public abstract class BlvtTradeResult extends BlvtTrade {
 	private static final long serialVersionUID = 86566812977969584L;
 
 	//Variables
-	@JsonValue private Status status;
+	@JsonValue private BlvtStatus status;
 	
 	//Constructeurs
 	public BlvtTradeResult(JSONObject response) {
@@ -17,7 +16,7 @@ public abstract class BlvtTradeResult extends BlvtTrade {
 	}
 	
 	//Getter
-	public Status getStatus() {
+	public BlvtStatus getStatus() {
 		return status;
 	}
 }

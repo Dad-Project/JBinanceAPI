@@ -8,13 +8,15 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.enums.Filters;
-import fr.rowlaxx.binanceapi.enums.Filters.Type;
+import fr.rowlaxx.binanceapi.core.market.filter.ExchangeFilter;
+import fr.rowlaxx.binanceapi.core.market.filter.Filter;
+import fr.rowlaxx.binanceapi.core.market.filter.Filters;
+import fr.rowlaxx.binanceapi.core.market.filter.Filters.Type;
 import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;
 import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
-public abstract class ExchangeInformation<T extends Symbol> extends BinanceResponseJSON {
+public abstract class ExchangeInformation<T extends Symbol<?>> extends BinanceResponseJSON {
 	private static final long serialVersionUID = 8865485419600969411L;
 
 	//Variables
@@ -26,29 +28,29 @@ public abstract class ExchangeInformation<T extends Symbol> extends BinanceRespo
 	@JsonMap(key = "symbol")
 	private Map<String, T> symbols;
 	
-	private Map<Filters, Filter> exchangeFilters;
+	private Map<Filters, ExchangeFilter> exchangeFilters;
 	
 	//Constructeurs
 	public ExchangeInformation(JSONObject response) {
 		super(response);
-		final HashMap<Filters, Filter> filters = new HashMap<>();
+		final HashMap<Filters, ExchangeFilter> filters = new HashMap<>();
 		final JSONArray array = response.getJSONArray("exchangeFilters");
 		JSONObject json;
 		Filter exchangeFilter;
 		for (int i = 0 ; i < array.length() ; i++) {
 			json = array.getJSONObject(i);
 			exchangeFilter = Filter.fromJson(json);
-			filters.put(exchangeFilter.getFilterType(), exchangeFilter);
+			filters.put(exchangeFilter.getFilterType(), (ExchangeFilter) exchangeFilter);
 		}
 		this.exchangeFilters = Collections.unmodifiableMap(filters);
 	}
 	
 	//Getters
-	public Map<Filters, Filter> getExchangeFilters() {
+	public Map<Filters, ExchangeFilter> getExchangeFilters() {
 		return exchangeFilters;
 	}
 	
-	public Filter getExchangeFilter(Filters filter) {
+	public ExchangeFilter getExchangeFilter(Filters filter) {
 		if (filter == null)
 			return null;
 		if (filter.getType() == Type.EXCHANGE)

@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.enums;
+package fr.rowlaxx.binanceapi.core.market;
 
 public enum RateLimitTypes {
 

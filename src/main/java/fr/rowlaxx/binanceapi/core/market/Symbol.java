@@ -8,13 +8,14 @@ import java.util.Set;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.enums.Filters;
-import fr.rowlaxx.binanceapi.enums.Filters.Type;
-import fr.rowlaxx.binanceapi.enums.OrderTypes;
+import fr.rowlaxx.binanceapi.core.market.filter.Filter;
+import fr.rowlaxx.binanceapi.core.market.filter.Filters;
+import fr.rowlaxx.binanceapi.core.market.filter.Filters.Type;
+import fr.rowlaxx.binanceapi.core.market.filter.SymbolFilter;
 import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
-public abstract class Symbol extends BinanceResponseJSON {
+public abstract class Symbol<T> extends BinanceResponseJSON {
 	private static final long serialVersionUID = -6654992662838138776L;
 
 	//Variables
@@ -23,21 +24,21 @@ public abstract class Symbol extends BinanceResponseJSON {
 	@JsonValue private String quoteAsset;
 	@JsonValue private int baseAssetPrecision;
 	@JsonValue private int quotePrecision;
-	@JsonValue private Set<OrderTypes> orderTypes;
+	@JsonValue private Set<T> orderTypes;
 	
-	private Map<Filters, Filter> filters;
+	private Map<Filters, SymbolFilter> filters;
 	
 	//Constructeurs
 	public Symbol(JSONObject response) {
 		super(response);
-		final HashMap<Filters, Filter> filters = new HashMap<>();
+		final HashMap<Filters, SymbolFilter> filters = new HashMap<>();
 		final JSONArray array = response.getJSONArray("filters");
 		Filter filter;
 		JSONObject json;
 		for (int i = 0 ; i < array.length() ; i++) {
 			json = array.getJSONObject(i);
 			filter = Filter.fromJson(json);
-			filters.put(filter.getFilterType(), filter);
+			filters.put(filter.getFilterType(), (SymbolFilter) filter);
 		}
 		this.filters = Collections.unmodifiableMap(filters);
 	}
@@ -51,11 +52,11 @@ public abstract class Symbol extends BinanceResponseJSON {
 		return baseAssetPrecision;
 	}
 	
-	public Map<Filters, Filter> getFilters() {
+	public Map<Filters, SymbolFilter> getFilters() {
 		return filters;
 	}
 	
-	public Filter getFilter(Filters filter) {
+	public SymbolFilter getFilter(Filters filter) {
 		if (filter == null)
 			return null;
 		if (filter.getType() == Type.SYMBOL)
@@ -63,8 +64,12 @@ public abstract class Symbol extends BinanceResponseJSON {
 		throw new IllegalArgumentException("filter may be a SYMBOL filter.");
 	}
 	
-	public Set<OrderTypes> getOrderTypes() {
+	public Set<T> getOrderTypes() {
 		return orderTypes;
+	}
+	
+	public boolean hasOrderType(T orderType) {
+		return orderTypes.contains(orderType);
 	}
 	
 	public String getQuoteAsset() {

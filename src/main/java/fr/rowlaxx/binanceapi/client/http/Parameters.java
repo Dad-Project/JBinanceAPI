@@ -1,9 +1,9 @@
 package fr.rowlaxx.binanceapi.client.http;
 
-import fr.rowlaxx.binanceapi.enums.Intervals;
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperation;
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperationStatus;
-import fr.rowlaxx.binanceapi.enums.bswap.RemoveLiquidityOperationType;
+import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
+import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
+import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
+import fr.rowlaxx.binanceapi.core.market.Intervals;
 
 public enum Parameters {
 

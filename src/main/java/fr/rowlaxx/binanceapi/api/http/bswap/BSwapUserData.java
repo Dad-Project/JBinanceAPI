@@ -7,11 +7,11 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.core.api.bswap.DetailledSwapPool;
+import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
+import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.api.bswap.SwapPoolOperationRecord;
 import fr.rowlaxx.binanceapi.core.api.bswap.SwapQuote;
 import fr.rowlaxx.binanceapi.core.api.bswap.SwapRecord;
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperation;
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 
 public interface BSwapUserData {

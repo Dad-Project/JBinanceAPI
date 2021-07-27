@@ -2,8 +2,6 @@ package fr.rowlaxx.binanceapi.core.api.bswap;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperation;
-import fr.rowlaxx.binanceapi.enums.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public class SwapPoolOperationRecord extends SwapPool {
