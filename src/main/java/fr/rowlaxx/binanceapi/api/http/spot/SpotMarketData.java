@@ -1,13 +1,17 @@
 package fr.rowlaxx.binanceapi.api.http.spot;
 
 import java.util.Collection;
+
 import java.util.List;
+import java.util.Map;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.core.api.spot.SpotCandlestick;
 import fr.rowlaxx.binanceapi.core.api.spot.SpotExchangeInformation;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.market.TickerPriceChangeStatistics;
+import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public interface SpotMarketData {
@@ -79,4 +83,20 @@ public interface SpotMarketData {
 				mandatory = {true, false, false, false, false}
 		)
 		public List<SpotCandlestick> getCandlesticks(String symbol, Intervals interval, Long startTime, Long endTime, Integer limit);
+		
+		//24hr Ticker Price Change Statistics
+		@ApiEndpoint(
+				endpoint = "/api/v3/ticker/24hr",
+				needSignature = false,
+				parameters = Parameters.symbol,
+				mandatory = true
+		)
+		public TickerPriceChangeStatistics get24hrTickerPriceChangeStatistics(String symbol);
+		
+		@ApiEndpoint(
+				endpoint = "/api/v3/ticker/24hr",
+				needSignature = false
+		)
+		@JsonMap(key = "symbol")
+		public Map<String, TickerPriceChangeStatistics> get24hrTickersPriceChangeStatistics();
 }
