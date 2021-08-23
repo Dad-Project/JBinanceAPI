@@ -19,6 +19,7 @@ public abstract class Filter extends BinanceResponseJSON {
 			final Constructor<T> constructor = clazz.getConstructor(JSONObject.class);
 			return constructor.newInstance(json);
 		}catch(Exception e) {
+			e.printStackTrace();
 			throw new BinanceException("Unable to parse the filter." + e);
 		} 
 	}

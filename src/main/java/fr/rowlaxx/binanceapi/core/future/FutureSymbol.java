@@ -8,14 +8,14 @@ import fr.rowlaxx.binanceapi.core.market.Symbol;
 import fr.rowlaxx.binanceapi.core.trade.TimeInForce;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
-public class FutureSymbol extends Symbol<FutureOrderTypes> {
+public class FutureSymbol extends Symbol {
 	private static final long serialVersionUID = -1913309959483097265L;
 
 	//Variables
 	@JsonValue private int quantityPrecision;
 	@JsonValue private int pricePrecision;
 	@JsonValue private double requiredMarginPercent;
-	@JsonValue private ContractTypes contractType;
+	@JsonValue(mandatory = false) private ContractTypes contractType;
 	@JsonValue private long onboardDate;
 	@JsonValue private String pair;
 	@JsonValue private double triggerProtect;
@@ -27,6 +27,7 @@ public class FutureSymbol extends Symbol<FutureOrderTypes> {
 	@JsonValue private double marketTakeBound;
 	@JsonValue private long deliveryDate;
 	@JsonValue private Set<TimeInForce> timeInForce;
+	@JsonValue private Set<FutureOrderTypes> orderTypes;
 	
 	//Constructeurs
 	public FutureSymbol(JSONObject response) {
@@ -54,7 +55,15 @@ public class FutureSymbol extends Symbol<FutureOrderTypes> {
 	public long getOnboardDate() {
 		return onboardDate;
 	}
-
+	
+	public Set<FutureOrderTypes> getOrderTypes() {
+		return orderTypes;
+	}
+	
+	public boolean hasOrderType(FutureOrderTypes orderType) {
+		return orderTypes.contains(orderType);
+	}
+	
 	public String getPair() {
 		return pair;
 	}

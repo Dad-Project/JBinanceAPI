@@ -9,4 +9,8 @@ public interface Candlestick {
 	public double getLow();
 	public double getHigh();
 	
+	default double getChange() {
+		return getClose() - getOpen();
+	}
+	
 }

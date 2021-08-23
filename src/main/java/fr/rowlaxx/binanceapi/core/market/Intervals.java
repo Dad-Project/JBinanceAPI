@@ -47,7 +47,7 @@ public enum Intervals {
 	}
 	
 	public int getMonth() {
-		return getDay()/7;
+		return getDay()/30;
 	}
 	
 	@Override

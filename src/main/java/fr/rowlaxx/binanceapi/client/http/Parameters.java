@@ -1,5 +1,7 @@
 package fr.rowlaxx.binanceapi.client.http;
 
+import java.util.Collection;
+
 import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
 import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
@@ -90,7 +92,7 @@ public enum Parameters {
 	subAccountString,
 	swapId(Long.class),
 	symbol(String.class),
-	symbols,
+	symbols(String[].class, Collection.class),
 	timeInForce,
 	timestamp(Long.class),
 	toAccountType,

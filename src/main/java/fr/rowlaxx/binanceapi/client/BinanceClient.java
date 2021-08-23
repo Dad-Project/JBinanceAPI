@@ -28,7 +28,7 @@ public class BinanceClient {
 		return new BinanceClient();
 	}
 	
-	public static BinanceClient create(final String apiKey, final String apiSecret) throws IOException {
+	public static BinanceClient create(final String apiKey, final String apiSecret) {
 		return new BinanceClient(apiKey, apiSecret);
 	}
 	

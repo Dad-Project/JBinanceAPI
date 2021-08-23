@@ -5,25 +5,26 @@ import java.util.Set;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.market.Symbol;
+import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
-public class SpotSymbol extends Symbol<SpotOrderTypes> {
+public class SpotSymbol extends Symbol {
 	private static final long serialVersionUID = 5107341988411255864L;
 
 	//Permissions
-	public static enum Permissions{SPOT, MARGIN}
+	public static enum Permissions{SPOT, MARGIN, LEVERAGED}
 	
 	//Variables
-	private boolean quoteOrderQtyMarketAllowed;
-	private boolean isSpotTradingAllowed;
-	private int quoteAssetPrecision;
-	private int quoteCommissionPrecision;
-	private boolean ocoAllowed;
-	private boolean icebergAllowed;
-	private boolean isMarginTradingAllowed;
-	private int baseCommissionPrecision;
-	private SpotSymbolStatus status;
-
-	private Set<Permissions> permissions;
+	@JsonValue private Set<SpotOrderTypes> orderTypes;
+	@JsonValue private boolean quoteOrderQtyMarketAllowed;
+	@JsonValue private boolean isSpotTradingAllowed;
+	@JsonValue private int quoteAssetPrecision;
+	@JsonValue private int quoteCommissionPrecision;
+	@JsonValue private boolean ocoAllowed;
+	@JsonValue private boolean icebergAllowed;
+	@JsonValue private boolean isMarginTradingAllowed;
+	@JsonValue private int baseCommissionPrecision;
+	@JsonValue private SpotSymbolStatus status;
+	@JsonValue private Set<Permissions> permissions;
 	
 	//Constructeurs
 	public SpotSymbol(JSONObject response) {
@@ -45,6 +46,14 @@ public class SpotSymbol extends Symbol<SpotOrderTypes> {
 
 	public int getQuoteCommissionPrecision() {
 		return quoteCommissionPrecision;
+	}
+	
+	public Set<SpotOrderTypes> getOrderTypes() {
+		return orderTypes;
+	}
+	
+	public boolean hasOrderType(SpotOrderTypes spotOrderTypes) {
+		return orderTypes.contains(spotOrderTypes);
 	}
 
 	public boolean isOcoAllowed() {

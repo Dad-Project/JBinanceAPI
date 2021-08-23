@@ -4,10 +4,11 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import fr.rowlaxx.binanceapi.core.market.ExchangeInformation;
 import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
-public class UsdmExchangeInformation extends UsdmSymbol {
+public class UsdmExchangeInformation extends ExchangeInformation<UsdmSymbol> {
 	private static final long serialVersionUID = -5298506133872695636L;
 
 	//Variables

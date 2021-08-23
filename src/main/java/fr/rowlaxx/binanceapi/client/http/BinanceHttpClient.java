@@ -5,11 +5,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import javax.crypto.Mac;
@@ -61,16 +58,11 @@ public class BinanceHttpClient {
 		for (int i = 0 ; i < params.length ; i++) {
 			value = params[i];
 			parameter = endpoint.parameters()[i];
-			if (value instanceof Object[])
-				builder.setParameters(parameter, (Object[]) value);
-			else if (value instanceof Collection<?>)
-				builder.setParameters(parameter, (Collection<?>) value);
-			else
-				builder.setParameter(parameter, value);
+			builder.setParameter(parameter, value);
 		}
 
 		final BinanceHttpRequest request = builder.build();
-		return execute(request);
+		return executeWithRetry(request, 5);
 	}
 
 	private final static void verifyEndpoint(ApiEndpoint endpoint, Object[] params) {
@@ -96,6 +88,17 @@ public class BinanceHttpClient {
 		for (int i = 0 ; i < params.length ; i++)
 			if (params[i] == null && endpoint.mandatory()[i])
 				throw new ApiEndpointException("The parameters " + endpoint.parameters()[i] + " is mandatory.");
+	}
+	
+	public final <T> T executeWithRetry(BinanceHttpRequest request, int retry) throws IOException {
+		for (int i = 0 ; i < retry ; i++)
+			try {
+				return execute(request);
+			}catch(IOException | NullPointerException e) {
+				if (i+1 == retry)
+					throw e;
+			}
+		throw new IllegalStateException();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -164,8 +167,6 @@ public class BinanceHttpClient {
 			final URL url = getRequestURL(request);
 			final HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
-			System.out.println(request.getMethod().name() + " " + url);
-
 			//Set params
 			con.setRequestMethod(request.getMethod().name());
 			con.setReadTimeout( (int) (request.hasRecvWindow() ? request.getRecvWindow() : this.defaultRecvWindow) );
@@ -208,17 +209,13 @@ public class BinanceHttpClient {
 
 
 		final StringBuilder queryBuilder = new StringBuilder(100);
-		final Map<Parameters, Set<String>> parameters = request.getParameters();
 
 		//Parametre normaux
-		for (Parameters param : parameters.keySet() )
-			for (String value : parameters.get(param)) {
-				if (queryBuilder.length() != 0)
-					queryBuilder.append('&');
-				queryBuilder.append(param.toString());
-				queryBuilder.append('=');
-				queryBuilder.append(value);
-			}
+		for (Parameters param : request.getParameters().keySet() ) {
+			if (queryBuilder.length() != 0)
+				queryBuilder.append('&');
+			queryBuilder.append(request.getTextParameters(param));
+		}
 
 		//Timestamp & recvWindow & Signature
 		if ( request.addSignature() ) {

@@ -38,20 +38,14 @@ public class BinanceHttpRequest {
 			this.request = new BinanceHttpRequest();
 		}
 
-		//Methodes statiques
-		private static String check(String s) {
-			if ( s == null)
-				throw new NullPointerException("null string.");
-			if (s.isEmpty())
-				throw new IllegalArgumentException("empty string.");
-			if ( !s.matches("[\\w]*") )
-				throw new IllegalArgumentException("Invalid string : " + s);
-			return s;
-		}
-		
 		//Setters
 		public Builder removeParameters(Parameters param) {
 			request.parameters.remove(param);
+			return this;
+		}
+		
+		public Builder removeParameter(Parameters param, Object value) {
+			request.parameters.remove(param, value);
 			return this;
 		}
 		
@@ -64,42 +58,21 @@ public class BinanceHttpRequest {
 			if (!param.canBeAssignedWith(value))
 				throw new IllegalArgumentException("param \"" + param + "\" cannot be assigned with " + value.getClass() );
 			
-			request.parameters.putIfAbsent(param, new HashSet<>());
-			final Set<String> values = request.parameters.get(param);
-			
-			if (value instanceof Number)
-				values.add(ConvertUtils.convertToString((Number) value));
+			Set<Object> set;
+			if (!request.parameters.containsKey(param)) {
+				set = new HashSet<>();
+				request.parameters.put(param, set);
+			}
 			else
-				values.add( check(value.toString()) );
-					
+				set = request.parameters.get(param);
+			
+			set.add(value);
 			return this;
 		}
 		
 		public Builder setParameter(Parameters param, Object value) {
 			removeParameters(param);
 			return addParameter(param, value);
-		}
-		
-		public Builder addParameters(Parameters param, Object[] values) {
-			for (Object value : values)
-				addParameter(param, value);
-			return this;
-		}
-		
-		public Builder setParameters(Parameters param, Object[] values) {
-			removeParameters(param);
-			return addParameters(param, values);
-		}
-		
-		public Builder addParameters(Parameters param, Collection<?> values) {
-			for (Object value : values)
-				addParameter(param, value);
-			return this;
-		}
-		
-		public Builder setParameters(Parameters param, Collection<?> values) {
-			removeParameters(param);
-			return addParameters(param, values);
 		}
 		
 		public Builder setBaseEndpoint(String baseEndpoint) {
@@ -109,6 +82,7 @@ public class BinanceHttpRequest {
 		
 		public Builder setEndpoint(String endpoint) { 
 			request.endpoint = Objects.requireNonNull(endpoint, "endpoint may not be null.");;
+			
 			return this;
 		}
 		
@@ -155,7 +129,7 @@ public class BinanceHttpRequest {
 	private boolean addSignature = true;
 	private Method method = null;
 
-	private final HashMap<Parameters, Set<String>> parameters = new HashMap<>();
+	private final HashMap<Parameters, Set<Object>> parameters = new HashMap<>();
 
 	//Getters
 	public final String getEndpoint() {
@@ -181,22 +155,58 @@ public class BinanceHttpRequest {
 	public final Method getMethod() {
 		return method;
 	}
-
-	public final String getParameter(Parameters param) {
-		final Set<String> values = parameters.get(param);
+	
+	public final String getTextParameters(Parameters name) {
+		final Set<Object> values = parameters.get(name);
 		if (values == null)
 			return null;
-		if (values.size() != 1)
-			throw new BinanceHttpRequestException("There are multiple value with this parameter. Please use getParameters method.");
-		return (String) values.toArray()[0];
+		
+		final StringBuilder sb = new StringBuilder();
+		for (Object value : values) {
+			if (sb.length() != 0)
+				sb.append('&');
+			
+			sb.append(name.name());
+			sb.append('=');
+			
+			if (value instanceof Collection<?>) {
+				sb.append('[');
+				for (Object obj : (Collection<?>)value ) {
+					append(sb, obj);
+					sb.append(',');
+				}
+				sb.setCharAt(sb.length()-1, ']');
+			}
+			else if (value.getClass().isArray()) {
+				sb.append('[');
+				for (Object obj : (Object[])value ) {
+					sb.append('"');
+					append(sb, obj);
+					sb.append('"');
+					sb.append(',');
+				}
+				sb.setCharAt(sb.length()-1, ']');
+			}
+			else
+				append(sb, value);
+		}
+		
+		return sb.toString();
 	}
 	
-	public final Set<String> getParameters(Parameters name){
+	private final static void append(StringBuilder sb, Object value) {
+		if (value instanceof Number)
+			sb.append( ConvertUtils.convertToString( (Number) value) );
+		else
+			sb.append(value.toString());
+	}
+	
+	public final Set<Object> getParameters(Parameters name){
 		return Collections.unmodifiableSet(parameters.get(name));
 	}
 	
-	public final Map<Parameters, Set<String>> getParameters() {
-		final Map<Parameters, Set<String>> parameters = new HashMap<Parameters, Set<String>>();
+	public final Map<Parameters, Set<Object>> getParameters() {
+		final Map<Parameters, Set<Object>> parameters = new HashMap<Parameters, Set<Object>>();
 		for (Parameters param : this.parameters.keySet() )
 			parameters.put(param, getParameters(param));
 		return Collections.unmodifiableMap(parameters);

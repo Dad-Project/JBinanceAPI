@@ -22,7 +22,7 @@ public class BinanceResponseJSON implements Serializable {
 	
 	//Variables
 	@ExcludeAll
-	private final Object response;
+	private transient final Object response;
 
 	//Constructeurs
 	public BinanceResponseJSON(JSONObject response) {
@@ -110,9 +110,7 @@ public class BinanceResponseJSON implements Serializable {
 				continue;
 			if (field1.isAnnotationPresent(ExcludeEquals.class))
 				continue;
-			
-			System.out.println(field1.getName());
-			
+						
 			try {
 				field2 = obj.getClass().getDeclaredField( field1.getName() );
 				if (!field1.canAccess(this)) {
@@ -176,7 +174,7 @@ public class BinanceResponseJSON implements Serializable {
 				continue;
 			if (!field.isAnnotationPresent(JsonValue.class))
 				continue;
-			
+						
 			annotation = field.getDeclaredAnnotation(JsonValue.class);
 			
 			json = getRawJsonObjectResponse();

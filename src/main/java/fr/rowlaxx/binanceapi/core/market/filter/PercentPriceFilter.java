@@ -10,8 +10,9 @@ public class PercentPriceFilter extends SymbolFilter {
 	//Variables
 	@JsonValue private double multiplierUp;
 	@JsonValue private double multiplierDown;
-	@JsonValue private int avgPriceMins;
-
+	@JsonValue(mandatory = false) private int avgPriceMins;
+	@JsonValue(mandatory = false) private int multiplierDecimal;
+	
 	//Constructeurs
 	public PercentPriceFilter(JSONObject response) {
 		super(response);
@@ -24,6 +25,10 @@ public class PercentPriceFilter extends SymbolFilter {
 
 	public double getMultiplierUp() {
 		return multiplierUp;
+	}
+	
+	public int getMultiplierDecimal() {
+		return multiplierDecimal;
 	}
 
 	public int getAvgPriceMins() {

@@ -62,12 +62,6 @@ public class BinanceClientImplementer {
 				if (method.isAnnotationPresent(ApiEndpoint.class)) {
 					final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
 					final Object response = client.getHttpClient().execute(endpoint, args);
-					if (response instanceof JSONArray)
-						System.out.println( ((JSONArray)response).toString(2));
-					else if (response instanceof JSONObject)
-						System.out.println( ((JSONObject)response).toString(2));
-					else
-						System.out.println(response.toString());
 					if (method.getReturnType() == void.class)
 						return null;
 
@@ -110,6 +104,8 @@ public class BinanceClientImplementer {
 		
 		//Les types disponibles
 		if (destination.isEnum()) {
+			if (object.toString().isEmpty())
+				return null;
 			for (Object obj : destination.getEnumConstants())
 				if (obj.toString().equals( object.toString() ))
 					return obj;
