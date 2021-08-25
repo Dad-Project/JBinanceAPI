@@ -6,7 +6,8 @@ import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public class TickerPriceChangeStatistics extends BinanceResponseJSON{
-
+	private static final long serialVersionUID = 1990601309389936711L;
+	
 	@JsonValue private String symbol;
 	@JsonValue private double
 				priceChange,
