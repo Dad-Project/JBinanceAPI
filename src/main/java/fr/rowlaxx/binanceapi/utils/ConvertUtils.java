@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.utils;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ConvertUtils {
 
@@ -9,9 +10,9 @@ public class ConvertUtils {
 			return null;
 
 		if (value instanceof Double || value instanceof Float) {
-			final NumberFormat nf = NumberFormat.getInstance();
+			final NumberFormat nf = NumberFormat.getInstance(Locale.US);
 			nf.setMaximumFractionDigits(Integer.MAX_VALUE);
-			return nf.format( (double)value ).replaceAll(",", ".");
+			return nf.format( (double)value );
 		}
 		return value.toString();
 	}
