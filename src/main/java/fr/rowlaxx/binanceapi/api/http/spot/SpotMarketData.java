@@ -10,6 +10,7 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.core.api.spot.SpotCandlestick;
 import fr.rowlaxx.binanceapi.core.api.spot.SpotExchangeInformation;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.market.SymbolPriceTicker;
 import fr.rowlaxx.binanceapi.core.market.TickerPriceChangeStatistics;
 import fr.rowlaxx.binanceapi.utils.json.JsonMap;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
@@ -99,4 +100,13 @@ public interface SpotMarketData {
 		)
 		@JsonMap(key = "symbol")
 		public Map<String, TickerPriceChangeStatistics> get24hrTickersPriceChangeStatistics();
+		
+		//Symbol Price Ticker
+		@ApiEndpoint(
+				endpoint = "/api/v3/ticker/price",
+				needSignature = false,
+				parameters = Parameters.symbol,
+				mandatory = true
+		)
+		public SymbolPriceTicker getSymbolPriceTicker();
 }

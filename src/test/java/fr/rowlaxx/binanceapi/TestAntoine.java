@@ -25,9 +25,10 @@ public class TestAntoine {
 
 		BinanceClient client = BinanceClient.create(Test.API_KEY, Test.API_SECRET);
 		client.login();
-		Map<String, TickerPriceChangeStatistics> s = client.spot().get24hrTickersPriceChangeStatistics();
+		
+		/*Map<String, TickerPriceChangeStatistics> s = client.spot().get24hrTickersPriceChangeStatistics();
 		TickerPriceChangeStatistics kk = s.get("BTCUSDT");
-		System.out.println(kk);
+		System.out.println(kk);*/
 		
 		/*BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/api/v3/ticker/price", Method.GET)
 				.addSignature(false)
