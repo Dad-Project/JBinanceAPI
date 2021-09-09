@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import fr.rowlaxx.binanceapi.utils.ConvertUtils;
+import fr.rowlaxx.jsavon.utils.ConvertUtils;
 
 public class BinanceHttpRequest {
 
@@ -196,7 +196,7 @@ public class BinanceHttpRequest {
 	
 	private final static void append(StringBuilder sb, Object value) {
 		if (value instanceof Number)
-			sb.append( ConvertUtils.convertToString( (Number) value) );
+			sb.append( ConvertUtils.convertToString(value) );
 		else
 			sb.append(value.toString());
 	}

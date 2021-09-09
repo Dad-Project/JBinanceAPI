@@ -5,16 +5,6 @@ import java.util.Objects;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.client.account.BinanceBSwapClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceBlvtClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceCoinmClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceMarginClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceMasterAccount;
-import fr.rowlaxx.binanceapi.client.account.BinanceMiningClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceOptionsClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceSavingsClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceSpotClient;
-import fr.rowlaxx.binanceapi.client.account.BinanceUsdmClient;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClientException;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
@@ -32,18 +22,7 @@ public class BinanceClient {
 		return new BinanceClient(apiKey, apiSecret);
 	}
 	
-	//Variables
-	private final BinanceBlvtClient blvt;
-	private final BinanceBSwapClient bswap;
-	private final BinanceCoinmClient futurecoinm;
-	private final BinanceMarginClient margin;
-	private final BinanceMiningClient mining;
-	private final BinanceOptionsClient options;
-	private final BinanceSavingsClient savings;
-	private final BinanceSpotClient spot;
-	private final BinanceUsdmClient futureusdm;
-	private final BinanceMasterAccount masterAccount;
-	
+	//Variables	
 	private final String apiKey, apiSecret;
 	private Boolean logged = null;
 	private final BinanceHttpClient httpClient;
@@ -72,17 +51,6 @@ public class BinanceClient {
 		}
 		
 		this.httpClient = new BinanceHttpClient(this);
-		
-		this.blvt = BinanceClientImplementer.implementz(BinanceBlvtClient.class, this);
-		this.bswap = BinanceClientImplementer.implementz(BinanceBSwapClient.class, this);
-		this.futurecoinm = BinanceClientImplementer.implementz(BinanceCoinmClient.class, this);
-		this.margin = BinanceClientImplementer.implementz(BinanceMarginClient.class, this);
-		this.masterAccount = BinanceClientImplementer.implementz(BinanceMasterAccount.class, this);
-		this.mining = BinanceClientImplementer.implementz(BinanceMiningClient.class, this);
-		this.options = BinanceClientImplementer.implementz(BinanceOptionsClient.class, this);
-		this.savings = BinanceClientImplementer.implementz(BinanceSavingsClient.class, this);
-		this.spot = BinanceClientImplementer.implementz(BinanceSpotClient.class, this);
-		this.futureusdm = BinanceClientImplementer.implementz(BinanceUsdmClient.class, this);
 	}
 	
 	private BinanceClient() {
@@ -137,47 +105,6 @@ public class BinanceClient {
 		}catch(IOException e) {
 			return false;
 		}
-	}
-	
-	//Account
-	public BinanceBlvtClient blvt() {
-		return this.blvt;
-	}
-	
-	public BinanceBSwapClient bswap() {
-		return bswap;
-	}
-	
-	public BinanceCoinmClient futureCoinM() {
-		return futurecoinm;
-	}
-	
-	public BinanceUsdmClient futureUsdM() {
-		return futureusdm;
-	}
-	
-	public BinanceMarginClient margin() {
-		return margin;
-	}
-	
-	public BinanceMiningClient mining() {
-		return mining;
-	}
-	
-	public BinanceOptionsClient options() {
-		return options;
-	}
-	
-	public BinanceSavingsClient savings() {
-		return savings;
-	}
-	
-	public BinanceSpotClient spot() {
-		return spot;
-	}
-	
-	public BinanceMasterAccount masterAccount() {
-		return masterAccount;
 	}
 	
 	//Getter

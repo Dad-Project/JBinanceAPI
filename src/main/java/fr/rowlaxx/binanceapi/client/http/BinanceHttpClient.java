@@ -23,15 +23,11 @@ public class BinanceHttpClient {
 
 	//Variables statiques
 	public static final String APIKEY_HEADER = "X-MBX-APIKEY";
-	public static final String SPOT_BASE_ENDPOINT = "https://api.binance.com";
-	public static final String FUTURE_USD_BASE_ENDPOINT = "https://fapi.binance.com";
-	public static final String FUTURE_COIN_BASE_ENDPOINT = "https://dapi.binance.com";
-	public static final String VANILLA_BASE_ENDPOINT = "https://vapi.binance.com";
 
 	//Variables
 	private final BinanceClient api;	
 	private long defaultRecvWindow = 5_000;
-	private String defaultBaseEndpoint = SPOT_BASE_ENDPOINT;
+	private String defaultBaseEndpoint = ApiEndpoint.SPOT_BASE_ENDPOINT;
 
 	//Constructeurs
 	public BinanceHttpClient(BinanceClient api) {
