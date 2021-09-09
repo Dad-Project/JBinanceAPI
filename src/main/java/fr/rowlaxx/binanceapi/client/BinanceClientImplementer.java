@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
+import fr.rowlaxx.binanceapi.exceptions.BinanceClientImplementerException;
 import fr.rowlaxx.binanceapi.utils.ConvertUtils;
 import fr.rowlaxx.binanceapi.utils.ReflectionUtils;
 import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;

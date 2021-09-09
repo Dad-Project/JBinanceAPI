@@ -4,6 +4,7 @@ import java.io.IOException;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.exceptions.BinanceAPIException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.interfaces.api.coinm.CoinmAPI;

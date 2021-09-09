@@ -1,8 +1,11 @@
 package fr.rowlaxx.binanceapi.client.http;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
 
 public class BinanceHttpClient extends SimpleBinanceHttpClient {
 
@@ -15,6 +18,10 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 	}
 
 	//Methodes
+	public final <T> T execute(ApiEndpoint endpoint, BinanceAutoHttpRequest request) throws IOException {
+		return execute(endpoint, new Object[] {request} );
+	}
+	
 	public final <T> T execute(ApiEndpoint endpoint, Object... params) throws IOException {
 		//Verifying
 		Objects.requireNonNull(endpoint, "endpoint may not be null.");
@@ -22,7 +29,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 
 		if (params == null)
 			params = new Object[] {};
-
+		
 		//Building request
 		final BinanceHttpRequest.Builder builder = BinanceHttpRequest.newBuilder();
 		builder.addSignature(endpoint.needSignature());
@@ -36,18 +43,52 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 			builder.setBaseEndpoint( baseEndpointResolver.get(endpoint.baseEndpoint()));
 		
 		//Parameters
-		Object value;
+		final boolean isAutoRequest = (params.length == 1) ? params[0] instanceof BinanceAutoHttpRequest : false;
+		
+		//Il s'agit d'une requete automatique
 		Parameters parameter;
-		for (int i = 0 ; i < params.length ; i++) {
-			value = params[i];
-			parameter = endpoint.parameters()[i];
+		Object value;
+		
+		if (isAutoRequest) {
+			final Map<Parameters, Object> map = ((BinanceAutoHttpRequest)params[0]).getParametersValue();
+			int index;
 			
-			if (endpoint.mandatory()[i] && value == null)
-				throw new NullPointerException("Parameters " + parameter + " is mandatory but null.");
-			
-			builder.setParameter(parameter, value);
+			//Pour chaque valeur dans l'objet
+			for (Entry<Parameters, Object> entry : map.entrySet()) {
+				parameter = entry.getKey();
+				value = entry.getValue();
+				
+				//On cherche l'index du parametre
+				index = -1;
+				for (int i = 0 ; i < endpoint.parameters().length ; i++)
+					if (endpoint.parameters()[i] == parameter) {
+						index = i;
+						break;
+					}
+				
+				//Il s'agit d'un paramètre en trop
+				if (index == -1)
+					throw new BinanceAutoHttpRequestException("Unable to find the parameters " + parameter + " is the endpoint.");
+				
+				//Le paramètre est obligatoire
+				if (endpoint.mandatory()[index] && value == null)
+					throw new NullPointerException("Parameters " + parameter + " is mandatory but null.");
+				
+				builder.setParameter(parameter, value);
+			}
 		}
-
+		else {
+			for (int i = 0 ; i < params.length ; i++) {
+				value = params[i];
+				parameter = endpoint.parameters()[i];
+				
+				if (endpoint.mandatory()[i] && value == null)
+					throw new NullPointerException("Parameters " + parameter + " is mandatory but null.");
+				
+				builder.setParameter(parameter, value);
+			}
+		}
+		
 		//Execution
 		final BinanceHttpRequest request = builder.build();
 		return executeWithRetry(request, 5);
