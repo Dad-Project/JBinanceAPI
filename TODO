@@ -1,8 +1,0 @@
-1 -	le package fr.rowlaxx.binanceapi.core.market.filter contient des classes dont la méthode d'acquisition des données est bancales. Revoir et corriger
-	
-2 - améliorer la méthode convert
-	prendre en compte les données génériques afin de les implementer dans la méthode convert
-
-3 - Ecrire une librairie de conversion JSON <-> objet plus complète
-
-4 - 
