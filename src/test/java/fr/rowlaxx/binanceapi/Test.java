@@ -21,13 +21,7 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/vapi/v1/optionInfo", Method.GET)
-				.addSignature(false)
-				.setBaseEndpoint(ApiEndpoint.VANILLA_BASE_ENDPOINT)
-				.build();
-
-		final JSONObject response = client.getHttpClient().execute(request);
+		client.spot().checkServerTime();
 		
-		System.out.println(response.toString(2));
 	}	
 }
