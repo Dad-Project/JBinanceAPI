@@ -29,8 +29,8 @@ public final class BinanceCredenticals {
 		if (!apiSecret.matches("[\\w]*"))
 			throw new IllegalArgumentException("apiSecret is in an incorect format.");
 		
-		this.apiKey = null;
-		this.apiSecret = null;
+		this.apiKey = apiKey;
+		this.apiSecret = apiSecret;
 	}
 	
 	//Methodes

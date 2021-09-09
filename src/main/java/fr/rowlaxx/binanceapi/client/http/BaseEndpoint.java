@@ -21,7 +21,7 @@ public class BaseEndpoint {
 			addMirror(s);
 	}
 	
-	public BaseEndpoint(Collection<String> baseEndpoint) {
+	public BaseEndpoint(Collection<String> baseEndpoints) {
 		Objects.requireNonNull(baseEndpoints);
 		if (baseEndpoints.size() == 0)
 			throw new IllegalArgumentException("baseEndpoints cannot have a size of 0.");

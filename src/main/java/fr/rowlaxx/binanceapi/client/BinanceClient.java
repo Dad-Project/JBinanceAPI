@@ -1,6 +1,8 @@
 package fr.rowlaxx.binanceapi.client;
 
 import java.io.IOException;
+
+import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
@@ -25,9 +27,9 @@ public class BinanceClient {
 	
 	//Variables	
 	private final SpotAPI spot;
-	private final UsdmAPI usdm;
+	/*private final UsdmAPI usdm;
 	private final CoinmAPI coinm;
-	private final OptionsAPI options;
+	private final OptionsAPI options;*/
 	
 	private Boolean logged = null;
 	private final BinanceCredenticals credenticals;
@@ -43,9 +45,9 @@ public class BinanceClient {
 		this.httpClient = new BinanceHttpClient(this);
 		
 		this.spot = BinanceClientImplementer.implementz(SpotAPI.class, this);
-		this.usdm = BinanceClientImplementer.implementz(UsdmAPI.class, this);
+		/*this.usdm = BinanceClientImplementer.implementz(UsdmAPI.class, this);
 		this.coinm = BinanceClientImplementer.implementz(CoinmAPI.class, this);
-		this.options = BinanceClientImplementer.implementz(OptionsAPI.class, this);
+		this.options = BinanceClientImplementer.implementz(OptionsAPI.class, this);*/
 	}
 	
 	//Méthodes
@@ -57,6 +59,7 @@ public class BinanceClient {
 		
 		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/sapi/v1/capital/deposit/address", Method.GET)
 				.setParameter(Parameters.coin, "BTC")
+				.setBaseEndpoint(BaseEndpoints.SPOT.getUrls().get(0))
 				.build();
 		
 		synchronized (this) {
@@ -101,7 +104,7 @@ public class BinanceClient {
 		return spot;
 	}
 	
-	public UsdmAPI usdM() {
+	/*public UsdmAPI usdM() {
 		return usdm;
 	}
 	
@@ -111,5 +114,5 @@ public class BinanceClient {
 	
 	public OptionsAPI options() {
 		return options;
-	}
+	}*/
 }

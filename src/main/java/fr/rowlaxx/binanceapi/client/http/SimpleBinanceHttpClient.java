@@ -85,9 +85,15 @@ class SimpleBinanceHttpClient {
 	}
 	
 	public final <T> T executeWithRetry(BinanceHttpRequest request, int retry) throws IOException {
+		T object;
 		for (int i = 0 ; i < retry ; i++)
 			try {
-				return execute(request);
+				object = execute(request);
+				if (object instanceof JSONObject)
+					System.out.println(((JSONObject) object).toString(2));
+				if (object instanceof JSONArray)
+					System.out.println(((JSONArray) object).toString(2));
+				return object;
 			}catch(IOException e) {
 				if (i+1 == retry)
 					throw e;
@@ -119,7 +125,9 @@ class SimpleBinanceHttpClient {
 		try {
 			final URL url = getRequestURL(request);
 			final HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
+			
+			System.out.println(request.getMethod() + "\t" + url);
+			
 			//Set params
 			con.setRequestMethod(request.getMethod().name());
 			con.setReadTimeout( (int) (request.hasRecvWindow() ? request.getRecvWindow() : this.defaultRecvWindow) );

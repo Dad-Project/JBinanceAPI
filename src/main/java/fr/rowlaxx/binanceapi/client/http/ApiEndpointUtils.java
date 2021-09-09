@@ -14,6 +14,8 @@ public class ApiEndpointUtils {
 		//On vérifie les endpoints
 		if (endpoint.baseEndpoint() == BaseEndpoints.CUSTOM && endpoint.customBaseEndpoint().length == 0)
 			throw new ApiEndpointException("you must precise at least one custom base endpoint.");
+		if (endpoint.baseEndpoint() != BaseEndpoints.CUSTOM && endpoint.customBaseEndpoint().length != 0)
+			throw new ApiEndpointException("you cannot precise a custom endpoint if you use a defined endpoint.");
 		
 		//On vérifie la taille des tableaux
 		if (endpoint.parameters().length != endpoint.mandatory().length)
