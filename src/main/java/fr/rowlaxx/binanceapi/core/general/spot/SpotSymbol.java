@@ -12,16 +12,16 @@ public class SpotSymbol extends SimpleSymbol<SpotOrderTypes> {
 	private static final long serialVersionUID = 1381142129152963029L;
 
 	//Variables
-	@JOValue Set<SpotPermissions> permissions;
-	@JOValue SpotSymbolStatus status;
-	@JOValue int baseCommissionPrecision;
-	@JOValue boolean isMarginTradingAllowed;
-	@JOValue boolean icebergAllowed;
-	@JOValue boolean ocoAllowed;
-	@JOValue boolean isSpotTradingAllowed;
-	@JOValue boolean quoteOrderQtyMarketAllowed;
-	@JOValue int quoteAssetPrecision;
-	@JOValue int quoteCommissionPrecision;
+	@JOValue private Set<SpotPermissions> permissions;
+	@JOValue private SpotSymbolStatus status;
+	@JOValue private int baseCommissionPrecision;
+	@JOValue private boolean isMarginTradingAllowed;
+	@JOValue private boolean icebergAllowed;
+	@JOValue private boolean ocoAllowed;
+	@JOValue private boolean isSpotTradingAllowed;
+	@JOValue private boolean quoteOrderQtyMarketAllowed;
+	@JOValue private int quoteAssetPrecision;
+	@JOValue private int quoteCommissionPrecision;
 	
 	//Constructeurs
 	public SpotSymbol(JSONObject response) {

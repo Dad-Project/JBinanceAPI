@@ -9,7 +9,7 @@ public class MinNotionalFilter extends Filter {
 	private static final long serialVersionUID = -1311500546629219225L;
 	
 	//Variables
-	@JOValue(key = {"minNotional", "notional"}) double minNotional;
+	@JOValue(key = {"minNotional", "notional"}) private double minNotional;
 	@JOValue(mandatory = false) private boolean applyToMarket;
 	@JOValue(mandatory = false) private int avgPriceMins;
 

@@ -9,7 +9,7 @@ public class MaxNumOrdersFilter extends Filter {
 	private static final long serialVersionUID = 850292844039211819L;
 
 	//Variables
-	@JOValue(key = {"maxNumOrders", "limit"}) int maxNumOrders;
+	@JOValue(key = {"maxNumOrders", "limit"}) private int maxNumOrders;
 
 	//Constructeurs
 	public MaxNumOrdersFilter(JSONObject response) {
