@@ -76,10 +76,15 @@ public class BinanceHttpRequest {
 		}
 		
 		public Builder setBaseEndpoint(String baseEndpoint) {
-			request.baseEndpoint = baseEndpoint;
+			request.baseEndpoint = new BaseEndpoint(baseEndpoint);
 			return this;
 		}
 		
+		public Builder setBaseEndpoint(BaseEndpoint baseEndpoint) {
+			request.baseEndpoint = baseEndpoint;
+			return this;
+		}
+				
 		public Builder setEndpoint(String endpoint) { 
 			request.endpoint = Objects.requireNonNull(endpoint, "endpoint may not be null.");;
 			
@@ -109,9 +114,11 @@ public class BinanceHttpRequest {
 		public BinanceHttpRequest build() {
 			try{
 				if (request.method == null)
-					throw new IllegalStateException("method is null.");
+					throw new NullPointerException("method is null.");
 				if (request.endpoint == null)
-					throw new IllegalStateException("endpoint is null.");
+					throw new NullPointerException("endpoint is null.");
+				if (request.baseEndpoint == null)
+					throw new NullPointerException("baseEndpoint is null.");
 				return request;
 			}finally {
 				this.request = null;
@@ -124,7 +131,7 @@ public class BinanceHttpRequest {
 
 	//Variables
 	private Long recvWindow = null;
-	private String baseEndpoint = null;
+	private BaseEndpoint baseEndpoint = null;
 	private String endpoint = null;
 	private boolean addSignature = true;
 	private Method method = null;
@@ -136,7 +143,7 @@ public class BinanceHttpRequest {
 		return endpoint;
 	}
 
-	public final String getBaseEndpoint() {
+	public final BaseEndpoint getBaseEndpoint() {
 		return baseEndpoint;
 	}
 	

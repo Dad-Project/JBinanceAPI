@@ -1,6 +1,4 @@
-package fr.rowlaxx.binanceapi.client.http;
-
-import fr.rowlaxx.binanceapi.exceptions.BinanceException;
+package fr.rowlaxx.binanceapi.exceptions;
 
 public class BinanceHttpRequestException extends BinanceException {
 	private static final long serialVersionUID = -7383415533103681805L;

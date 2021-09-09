@@ -1,21 +1,21 @@
 package fr.rowlaxx.binanceapi.client;
 
 import java.io.IOException;
-import java.util.Objects;
-
-import org.json.JSONObject;
-
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpClientException;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.interfaces.api.coinm.CoinmAPI;
+import fr.rowlaxx.binanceapi.interfaces.api.options.OptionsAPI;
+import fr.rowlaxx.binanceapi.interfaces.api.spot.SpotAPI;
+import fr.rowlaxx.binanceapi.interfaces.api.usdm.UsdmAPI;
 
 public class BinanceClient {
 	
 	//Methodes statiques
 	public static BinanceClient createGuest() {
-		return new BinanceClient();
+		return new BinanceClient(null);
 	}
 	
 	public static BinanceClient create(final String apiKey, final String apiSecret) {
@@ -23,38 +23,28 @@ public class BinanceClient {
 	}
 	
 	//Variables	
-	private final String apiKey, apiSecret;
+	private final SpotAPI spot;
+	private final UsdmAPI usdm;
+	private final CoinmAPI coinm;
+	private final OptionsAPI options;
+	
 	private Boolean logged = null;
+	private final BinanceCredenticals credenticals;
 	private final BinanceHttpClient httpClient;
 			
 	//Constructeurs
 	private BinanceClient(String apiKey, String apiSecret) {
-		if (apiKey == null && apiSecret == null) {
-			this.apiKey = null;
-			this.apiSecret = null;
-			this.logged = false;
-		}
-		else {
-			Objects.requireNonNull(apiKey, "apiKey may not be null.");
-			Objects.requireNonNull(apiSecret, "apiSecret may not be null.");
-			if (apiKey.length() != 64)
-				throw new IllegalArgumentException("apiKey must be 64 characters long.");
-			if (apiSecret.length() != 64)
-				throw new IllegalArgumentException("apiSecret must be 64 characters long.");
-			if (!apiKey.matches("[\\w]*") )
-				throw new IllegalArgumentException("apiKey is in an incorect format.");
-			if (!apiSecret.matches("[\\w]*"))
-				throw new IllegalArgumentException("apiSecret is in an incorect format.");
-				
-			this.apiKey = apiKey;
-			this.apiSecret = apiSecret;
-		}
-		
-		this.httpClient = new BinanceHttpClient(this);
+		this(new BinanceCredenticals(apiKey, apiSecret));
 	}
 	
-	private BinanceClient() {
-		this(null, null);
+	private BinanceClient(BinanceCredenticals credenticals) {
+		this.credenticals = credenticals;
+		this.httpClient = new BinanceHttpClient(this);
+		
+		this.spot = BinanceClientImplementer.implementz(SpotAPI.class, this);
+		this.usdm = BinanceClientImplementer.implementz(UsdmAPI.class, this);
+		this.coinm = BinanceClientImplementer.implementz(CoinmAPI.class, this);
+		this.options = BinanceClientImplementer.implementz(OptionsAPI.class, this);
 	}
 	
 	//Méthodes
@@ -80,55 +70,45 @@ public class BinanceClient {
 				}
 				this.logged = null;
 				throw e;
-			}catch(Exception e) {
-				this.logged = null;
-				throw e;
 			}
 		}
 	}
 	
-	public long getServerTime() throws IOException {
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/api/v3/time", Method.GET)
-				.addSignature(false)
-				.build();
-		final JSONObject response = httpClient.execute(request);
-		return response.getLong("serverTime");
-	}
-	
-	public boolean ping() {
-		try {
-			final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/api/v3/ping", Method.GET)
-					.addSignature(false)
-					.build();
-			httpClient.execute(request);
-			return true;
-		}catch(IOException e) {
-			return false;
-		}
-	}
-	
 	//Getter
-	public String getApiKey() {
-		return apiKey;
+	public BinanceCredenticals getCredenticals() {
+		return credenticals;
 	}
 	
 	public BinanceHttpClient getHttpClient() {
 		return httpClient;
 	}
 	
-	public String getApiSecret() {
-		return apiSecret;
-	}
-	
 	public boolean isGuest() {
-		return this.apiKey == null || this.apiSecret == null;
+		return credenticals == null;
 	}
 	
 	public boolean isLogged() {
 		if (isGuest())
 			throw new BinanceAPIException("You cannot use this method on a guest client.");
 		if (logged == null)
-			throw new BinanceAPIException("Please use the method BinanceAPI.login() before calling this method.");
+			throw new BinanceAPIException("Please use the method BinanceClient.login() before calling this method.");
 		return logged;
+	}
+	
+	//Methodes
+	public SpotAPI spot() {
+		return spot;
+	}
+	
+	public UsdmAPI usdM() {
+		return usdm;
+	}
+	
+	public CoinmAPI coinM() {
+		return coinm;
+	}
+	
+	public OptionsAPI options() {
+		return options;
 	}
 }
