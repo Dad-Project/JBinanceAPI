@@ -1,7 +1,7 @@
 package fr.rowlaxx.binanceapi.api.http.usdm;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
-import fr.rowlaxx.binanceapi.core.api.usdm.UsdmExchangeInformation;
+import fr.rowlaxx.binanceapi.core.general.usdm.UsdmExchangeInformation;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public interface UsdMMarketData {

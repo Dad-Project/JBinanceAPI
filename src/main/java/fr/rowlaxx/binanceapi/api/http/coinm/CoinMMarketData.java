@@ -1,7 +1,7 @@
 package fr.rowlaxx.binanceapi.api.http.coinm;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
-import fr.rowlaxx.binanceapi.core.api.coinm.CoinmExchangeInformation;
+import fr.rowlaxx.binanceapi.core.general.coinm.CoinmExchangeInformation;
 import fr.rowlaxx.binanceapi.utils.json.JsonValue;
 
 public interface CoinMMarketData {
