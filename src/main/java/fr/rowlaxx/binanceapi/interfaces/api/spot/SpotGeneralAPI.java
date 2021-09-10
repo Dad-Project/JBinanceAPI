@@ -5,6 +5,7 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.general.spot.SpotExchangeInformation;
 
 public interface SpotGeneralAPI {
@@ -27,6 +28,7 @@ public interface SpotGeneralAPI {
 			parameters = {},
 			mandatory = {}
 	)
+	@RedirectResponse(path = "/serverTime")
 	public long checkServerTime();
 	
 	@ApiEndpoint(

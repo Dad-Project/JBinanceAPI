@@ -5,8 +5,14 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
+
+import org.json.JSONObject;
+
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
+import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.exceptions.BinanceClientImplementerException;
 import fr.rowlaxx.jsavon.utils.ConvertUtils;
 
 public class BinanceClientImplementer {
@@ -47,11 +53,21 @@ public class BinanceClientImplementer {
 	
 	private static Object invokeEndpoint(BinanceClient client, Object proxy, Method method, Object[] args) throws IOException {
 		final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
-		final Object response = client.getHttpClient().execute(endpoint, args);
+		Object response = client.getHttpClient().execute(endpoint, args);
 
 		if (method.getReturnType() == void.class)
 			return null;
 
-		return ConvertUtils.convert(response, method.getReturnType());
+		if (method.isAnnotationPresent(RedirectResponse.class)) {
+			final String paths[] = method.getAnnotation(RedirectResponse.class).path().split("/");
+			if ( !(response instanceof JSONObject) )
+				throw new BinanceClientImplementerException("Redirecting the response only works for JSONObject.");
+			
+			for (String path : paths)
+				if (!path.isBlank())
+					response = ((JSONObject)response).get(path);
+		}
+		
+		return ConvertUtils.convert(response, method.getGenericReturnType(), method);
 	}
 }

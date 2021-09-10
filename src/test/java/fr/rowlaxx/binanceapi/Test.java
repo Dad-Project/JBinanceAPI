@@ -4,12 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutionException;
-import org.json.JSONObject;
-
 import fr.rowlaxx.binanceapi.client.BinanceClient;
-import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 
 public class Test {
 
@@ -21,7 +16,7 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		client.spot().checkServerTime();
+		System.out.println(client.spot().getExchangeInformation());
 		
 	}	
 }
