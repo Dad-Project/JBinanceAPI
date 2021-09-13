@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import fr.rowlaxx.jsavon.utils.ConvertUtils;
-
 public class BinanceHttpRequest {
 
 	//Methodes statiques
@@ -203,7 +201,7 @@ public class BinanceHttpRequest {
 	
 	private final static void append(StringBuilder sb, Object value) {
 		if (value instanceof Number)
-			sb.append( ConvertUtils.convertToString(value) );
+			sb.append( String.format("%.8f", value) );
 		else
 			sb.append(value.toString());
 	}

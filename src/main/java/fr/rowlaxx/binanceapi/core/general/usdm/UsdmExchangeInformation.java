@@ -5,7 +5,7 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.SimpleExchangeInformation;
-import fr.rowlaxx.jsavon.annotations.object.JOMapKey;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class UsdmExchangeInformation extends SimpleExchangeInformation<UsdmSymbol> {
@@ -15,7 +15,7 @@ public class UsdmExchangeInformation extends SimpleExchangeInformation<UsdmSymbo
 	@JOValue private UsdmFuturesType futuresType;
 	
 	@JOValue 
-	@JOMapKey(fieldName = "asset")
+	@MapKey(fieldName = "asset")
 	private Map<String, Asset> assets;
 	
 	//Constructeurs

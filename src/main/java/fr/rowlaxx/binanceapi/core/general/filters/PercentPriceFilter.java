@@ -13,9 +13,9 @@ public class PercentPriceFilter extends Filter {
 	@JOValue private double multiplierDown;
 	
 	@JOValue(mandatory = false) 
-	private int avgPriceMins;
+	private Integer avgPriceMins;
 	@JOValue(mandatory = false) 
-	private int multiplierDecimal;
+	private Integer multiplierDecimal;
 	
 	//Constructeurs
 	public PercentPriceFilter(JSONObject response) {

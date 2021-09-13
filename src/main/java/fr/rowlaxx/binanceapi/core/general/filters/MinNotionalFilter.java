@@ -10,8 +10,8 @@ public class MinNotionalFilter extends Filter {
 	
 	//Variables
 	@JOValue(key = {"minNotional", "notional"}) private double minNotional;
-	@JOValue(mandatory = false) private boolean applyToMarket;
-	@JOValue(mandatory = false) private int avgPriceMins;
+	@JOValue(mandatory = false) private Boolean applyToMarket;
+	@JOValue(mandatory = false) private Integer avgPriceMins;
 
 	//Constructeurs
 	public MinNotionalFilter(JSONObject response) {

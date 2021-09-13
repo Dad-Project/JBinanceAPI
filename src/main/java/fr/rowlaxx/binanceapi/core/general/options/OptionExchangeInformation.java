@@ -6,7 +6,7 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.ExchangeInformation;
-import fr.rowlaxx.jsavon.annotations.object.JOMapKey;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class OptionExchangeInformation extends ExchangeInformation<OptionSymbol> {
@@ -14,7 +14,7 @@ public class OptionExchangeInformation extends ExchangeInformation<OptionSymbol>
 
 	//Variables
 	@JOValue(key = "optionSymbols", path = "/data/")
-	@JOMapKey(fieldName = "symbol")
+	@MapKey(fieldName = "symbol")
 	private Map<String, OptionSymbol> symbols;
 	
 	@JOValue (path = "/data/")

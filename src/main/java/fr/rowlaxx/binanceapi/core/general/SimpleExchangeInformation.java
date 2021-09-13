@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filters.Type;
-import fr.rowlaxx.jsavon.annotations.object.JOMapKey;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public abstract class SimpleExchangeInformation<T extends Symbol> extends ExchangeInformation<T> {
@@ -18,7 +18,7 @@ public abstract class SimpleExchangeInformation<T extends Symbol> extends Exchan
 	//Variables
 	@JOValue private List<RateLimit> rateLimits;
 	@JOValue
-	@JOMapKey(fieldName = "symbol")
+	@MapKey(fieldName = "symbol")
 	private Map<String, T> symbols;
 	
 	private Map<Filters, Filter> exchangeFilters;

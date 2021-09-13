@@ -5,7 +5,6 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
 
 import org.json.JSONObject;
@@ -13,7 +12,9 @@ import org.json.JSONObject;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.exceptions.BinanceClientImplementerException;
-import fr.rowlaxx.jsavon.utils.ConvertUtils;
+import fr.rowlaxx.jsavon.convert.ConvertRequest;
+import fr.rowlaxx.jsavon.convert.Destination;
+import fr.rowlaxx.jsavon.convert.DestinationResolver;
 
 public class BinanceClientImplementer {
 
@@ -68,6 +69,8 @@ public class BinanceClientImplementer {
 					response = ((JSONObject)response).get(path);
 		}
 		
-		return ConvertUtils.convert(response, method.getGenericReturnType(), method);
+		final Destination<?> destination = DestinationResolver.resolve(method);
+		final ConvertRequest<?> request = new ConvertRequest<>(response, destination);
+		return request.execute();
 	}
 }

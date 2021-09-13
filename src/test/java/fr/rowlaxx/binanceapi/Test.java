@@ -3,8 +3,11 @@ package fr.rowlaxx.binanceapi;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
+import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.general.spot.SpotExchangeInformation;
+import fr.rowlaxx.binanceapi.core.general.spot.SpotSymbol;
 
 public class Test {
 
@@ -16,7 +19,9 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		System.out.println(client.spot().getExchangeInformation());
+		final SpotExchangeInformation e = client.spot().getExchangeInformation();
+		for (Entry<String, SpotSymbol> a : e.getSymbols().entrySet())
+			System.out.println(a.getKey() + "\t" + a.getValue());
 		
 	}	
 }
