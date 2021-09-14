@@ -6,8 +6,12 @@ import java.net.UnknownHostException;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.general.ExchangeInformation;
 import fr.rowlaxx.binanceapi.core.general.spot.SpotExchangeInformation;
 import fr.rowlaxx.binanceapi.core.general.spot.SpotSymbol;
+import fr.rowlaxx.binanceapi.core.wallet.AllCoinsInformation;
+import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
+import fr.rowlaxx.binanceapi.core.wallet.spot.SpotDailyAccountSnapshot;
 
 public class Test {
 
@@ -19,9 +23,7 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		final SpotExchangeInformation e = client.spot().getExchangeInformation();
-		for (Entry<String, SpotSymbol> a : e.getSymbols().entrySet())
-			System.out.println(a.getKey() + "\t" + a.getValue());
-		
+		for (SpotDailyAccountSnapshot snapshot : client.spot().getDailyAccountSnapshot())
+			System.out.println(snapshot);
 	}	
 }

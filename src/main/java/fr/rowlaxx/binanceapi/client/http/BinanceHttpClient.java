@@ -6,6 +6,9 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
+import fr.rowlaxx.binanceapi.exceptions.BinanceHttpRequestException;
+import fr.rowlaxx.jsavon.convert.ConvertRequest;
+import fr.rowlaxx.jsavon.exceptions.JSavONException;
 
 public class BinanceHttpClient extends SimpleBinanceHttpClient {
 
@@ -78,10 +81,33 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 			}
 		}
 		else {
-			for (int i = 0 ; i < params.length ; i++) {
-				value = params[i];
+			int done = 0;
+			boolean converted;
+			for (int i = 0 ; i < endpoint.parameters().length ; i++) {
 				parameter = endpoint.parameters()[i];
 				
+				if (endpoint.defaultValues().length != 0) {
+					value = endpoint.defaultValues()[i];
+					if (!((String)value).isBlank() ) {
+						
+						converted = false;
+						for (Class<?> clazz : parameter.getTypes())
+							try{
+								value = new ConvertRequest<>(value, clazz).execute();
+								converted = true;
+								break;
+							}catch(JSavONException | IllegalArgumentException ignored) {}
+						
+						if (!converted)
+							throw new BinanceHttpRequestException("unable to convert \"" + value + "\" for the parameter " + parameter);
+						
+						builder.setParameter(parameter, value);
+						done++;
+						continue;
+					}
+				}
+				
+				value = params[i-done];
 				if (endpoint.mandatory()[i] && value == null)
 					throw new NullPointerException("Parameters " + parameter + " is mandatory but null.");
 				

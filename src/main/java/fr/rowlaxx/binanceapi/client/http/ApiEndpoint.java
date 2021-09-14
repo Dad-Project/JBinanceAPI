@@ -17,5 +17,6 @@ public @interface ApiEndpoint {
 	public boolean needSignature();
 	public Parameters[] parameters();
 	public boolean[] mandatory();
+	public String[] defaultValues() default {};
 	
 }

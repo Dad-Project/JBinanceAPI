@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.client.http;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,10 @@ public class BinanceAutoHttpRequest {
 		
 		Parameters parameter;
 		ParameterValue parameterValue;
+		
 		for (Field field : ReflectionUtils.getAllFields(getClass()) ) {
+			if (Modifier.isStatic(field.getModifiers()))
+				continue;
 			if (field.isAnnotationPresent(DontSend.class))
 				continue;
 			

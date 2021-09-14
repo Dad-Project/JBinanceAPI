@@ -6,6 +6,7 @@ import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
 import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 
 public enum Parameters {
 
@@ -103,7 +104,7 @@ public enum Parameters {
 	transFrom,
 	transTo,
 	txId,
-	type(RemoveLiquidityOperationType.class, Integer.class),
+	type(RemoveLiquidityOperationType.class, Integer.class, DailyAccountSnapshotTypes.class),
 	userName,
 	vipLevel,
 	withdrawOrderId,

@@ -20,7 +20,9 @@ public class ApiEndpointUtils {
 		//On vérifie la taille des tableaux
 		if (endpoint.parameters().length != endpoint.mandatory().length)
 			throw new ApiEndpointException("parameters and mandatory do not have the same size.");
-
+		if (endpoint.defaultValues().length != 0 && endpoint.defaultValues().length != endpoint.parameters().length)
+			throw new ApiEndpointException("defaultValues must have the same length as parameters.");
+		
 		//On vérifie qu'il n'y a pas de doublon.
 		final HashSet<Parameters> set = new HashSet<>();
 		for (Parameters parameter : endpoint.parameters()) {
