@@ -1,4 +1,4 @@
-package fr.rowlaxx.temp.marketdataendpoints;
+package fr.rowlaxx.binanceapi.core.market.spot;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 

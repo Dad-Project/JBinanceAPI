@@ -5,7 +5,7 @@
 	needSignature = true,
 	parameters = {Parameters.subAccountString},
 	mandatory = {false}
-}
+)
 public CreateaVirtualSubaccount postCreateaVirtualSubaccount(String subAccountString);
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public CreateaVirtualSubaccount postCreateaVirtualSubaccount(String subAccountSt
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.isFreeze, Parameters.page, Parameters.limit},
 	mandatory = {false, false, false, false}
-}
+)
 public QuerySubaccountList getQuerySubaccountList(String email, String isFreeze, int page, int limit);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public QuerySubaccountList getQuerySubaccountList(String email, String isFreeze,
 	needSignature = true,
 	parameters = {Parameters.fromEmail, Parameters.toEmail, Parameters.startTime, Parameters.endTime, Parameters.page, Parameters.limit},
 	mandatory = {false, false, false, false, false, false}
-}
+)
 public List<QuerySubaccountSpotAssetTransferHistory> getQuerySubaccountSpotAssetTransferHistory(String fromEmail, String toEmail, long startTime, long endTime, int page, int limit);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public List<QuerySubaccountSpotAssetTransferHistory> getQuerySubaccountSpotAsset
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.futuresType, Parameters.startTime, Parameters.endTime, Parameters.page, Parameters.limit},
 	mandatory = {true, true, false, false, false, false}
-}
+)
 public QuerySubaccountFuturesAssetTransferHistory getQuerySubaccountFuturesAssetTransferHistory(String email, long futuresType, long startTime, long endTime, int page, int limit);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public QuerySubaccountFuturesAssetTransferHistory getQuerySubaccountFuturesAsset
 	needSignature = true,
 	parameters = {Parameters.fromEmail, Parameters.toEmail, Parameters.futuresType, Parameters.asset, Parameters.amount},
 	mandatory = {true, true, true, true, true}
-}
+)
 public SubaccountFuturesAssetTransfer postSubaccountFuturesAssetTransfer(String fromEmail, String toEmail, long futuresType, String asset, double amount);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public SubaccountFuturesAssetTransfer postSubaccountFuturesAssetTransfer(String 
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public QuerySubaccountAssets getQuerySubaccountAssets(String email);
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public QuerySubaccountAssets getQuerySubaccountAssets(String email);
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.page, Parameters.size},
 	mandatory = {false, false, false}
-}
+)
 public QuerySubaccountSpotAssetsSummary getQuerySubaccountSpotAssetsSummary(String email, long page, long size);
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public QuerySubaccountSpotAssetsSummary getQuerySubaccountSpotAssetsSummary(Stri
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.coin, Parameters.network},
 	mandatory = {true, true, false}
-}
+)
 public GetSubaccountDepositAddress getGetSubaccountDepositAddress(String email, String coin, String network);
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public GetSubaccountDepositAddress getGetSubaccountDepositAddress(String email, 
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.coin, Parameters.status, Parameters.startTime, Parameters.endTime, Parameters.limit, Parameters.offset},
 	mandatory = {true, false, false, false, false, false, false}
-}
+)
 public List<GetSubaccountDepositHistory> getGetSubaccountDepositHistory(String email, String coin, int status, long startTime, long endTime, int limit, int offset);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public List<GetSubaccountDepositHistory> getGetSubaccountDepositHistory(String e
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {false}
-}
+)
 public List<GetSubaccountsStatusonMarginFutures> getGetSubaccountsStatusonMarginFutures(String email);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public List<GetSubaccountsStatusonMarginFutures> getGetSubaccountsStatusonMargin
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public EnableMarginforSubaccount postEnableMarginforSubaccount(String email);
 
 @ApiEndpoint (
@@ -115,7 +115,7 @@ public EnableMarginforSubaccount postEnableMarginforSubaccount(String email);
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public GetDetailonSubaccountsMarginAccount getGetDetailonSubaccountsMarginAccount(String email);
 
 @ApiEndpoint (
@@ -125,7 +125,7 @@ public GetDetailonSubaccountsMarginAccount getGetDetailonSubaccountsMarginAccoun
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public GetSummaryofSubaccountsMarginAccount getGetSummaryofSubaccountsMarginAccount();
 
 @ApiEndpoint (
@@ -135,7 +135,7 @@ public GetSummaryofSubaccountsMarginAccount getGetSummaryofSubaccountsMarginAcco
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public EnableFuturesforSubaccount postEnableFuturesforSubaccount(String email);
 
 @ApiEndpoint (
@@ -145,7 +145,7 @@ public EnableFuturesforSubaccount postEnableFuturesforSubaccount(String email);
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public GetDetailonSubaccountsFuturesAccount getGetDetailonSubaccountsFuturesAccount(String email);
 
 @ApiEndpoint (
@@ -155,7 +155,7 @@ public GetDetailonSubaccountsFuturesAccount getGetDetailonSubaccountsFuturesAcco
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public GetSummaryofSubaccountsFuturesAccount getGetSummaryofSubaccountsFuturesAccount();
 
 @ApiEndpoint (
@@ -165,7 +165,7 @@ public GetSummaryofSubaccountsFuturesAccount getGetSummaryofSubaccountsFuturesAc
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public List<GetFuturesPositionRiskofSubaccount> getGetFuturesPositionRiskofSubaccount(String email);
 
 @ApiEndpoint (
@@ -175,7 +175,7 @@ public List<GetFuturesPositionRiskofSubaccount> getGetFuturesPositionRiskofSubac
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.asset, Parameters.amount, Parameters.type},
 	mandatory = {true, true, true, true}
-}
+)
 public FuturesTransferforSubaccount postFuturesTransferforSubaccount(String email, String asset, double amount, int type);
 
 @ApiEndpoint (
@@ -185,7 +185,7 @@ public FuturesTransferforSubaccount postFuturesTransferforSubaccount(String emai
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.asset, Parameters.amount, Parameters.type},
 	mandatory = {true, true, true, true}
-}
+)
 public MarginTransferforSubaccount postMarginTransferforSubaccount(String email, String asset, double amount, int type);
 
 @ApiEndpoint (
@@ -195,7 +195,7 @@ public MarginTransferforSubaccount postMarginTransferforSubaccount(String email,
 	needSignature = true,
 	parameters = {Parameters.toEmail, Parameters.asset, Parameters.amount},
 	mandatory = {true, true, true}
-}
+)
 public TransfertoSubaccountofSameMaster postTransfertoSubaccountofSameMaster(String toEmail, String asset, double amount);
 
 @ApiEndpoint (
@@ -205,7 +205,7 @@ public TransfertoSubaccountofSameMaster postTransfertoSubaccountofSameMaster(Str
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.amount},
 	mandatory = {true, true}
-}
+)
 public TransfertoMaster postTransfertoMaster(String asset, double amount);
 
 @ApiEndpoint (
@@ -215,7 +215,7 @@ public TransfertoMaster postTransfertoMaster(String asset, double amount);
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public List<SubaccountTransferHistory> getSubaccountTransferHistory(String asset, int type, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -225,7 +225,7 @@ public List<SubaccountTransferHistory> getSubaccountTransferHistory(String asset
 	needSignature = true,
 	parameters = {Parameters.fromEmail, Parameters.toEmail, Parameters.fromAccountType, Parameters.toAccountType, Parameters.asset, Parameters.amount},
 	mandatory = {false, false, true, true, true, true}
-}
+)
 public UniversalTransfer postUniversalTransfer(String fromEmail, String toEmail, String fromAccountType, String toAccountType, String asset, double amount);
 
 @ApiEndpoint (
@@ -235,7 +235,7 @@ public UniversalTransfer postUniversalTransfer(String fromEmail, String toEmail,
 	needSignature = true,
 	parameters = {Parameters.fromEmail, Parameters.toEmail, Parameters.startTime, Parameters.endTime, Parameters.page, Parameters.limit},
 	mandatory = {false, false, false, false, false, false}
-}
+)
 public List<QueryUniversalTransferHistory> getQueryUniversalTransferHistory(String fromEmail, String toEmail, long startTime, long endTime, int page, int limit);
 
 @ApiEndpoint (
@@ -245,7 +245,7 @@ public List<QueryUniversalTransferHistory> getQueryUniversalTransferHistory(Stri
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.futuresType},
 	mandatory = {true, true}
-}
+)
 public GetDetailonSubaccountsFuturesAccountV2 getGetDetailonSubaccountsFuturesAccountV2(String email, int futuresType);
 
 @ApiEndpoint (
@@ -255,7 +255,7 @@ public GetDetailonSubaccountsFuturesAccountV2 getGetDetailonSubaccountsFuturesAc
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.futuresType},
 	mandatory = {true, true}
-}
+)
 public GetDetailonSubaccountsFuturesAccountV21 getGetDetailonSubaccountsFuturesAccountV21(String email, int futuresType);
 
 @ApiEndpoint (
@@ -265,7 +265,7 @@ public GetDetailonSubaccountsFuturesAccountV21 getGetDetailonSubaccountsFuturesA
 	needSignature = true,
 	parameters = {Parameters.futuresType, Parameters.page, Parameters.limit},
 	mandatory = {true, false, false}
-}
+)
 public GetSummaryofSubaccountsFuturesAccountV2 getGetSummaryofSubaccountsFuturesAccountV2(int futuresType, int page, int limit);
 
 @ApiEndpoint (
@@ -275,7 +275,7 @@ public GetSummaryofSubaccountsFuturesAccountV2 getGetSummaryofSubaccountsFutures
 	needSignature = true,
 	parameters = {Parameters.futuresType, Parameters.page, Parameters.limit},
 	mandatory = {true, false, false}
-}
+)
 public GetSummaryofSubaccountsFuturesAccountV21 getGetSummaryofSubaccountsFuturesAccountV21(int futuresType, int page, int limit);
 
 @ApiEndpoint (
@@ -285,7 +285,7 @@ public GetSummaryofSubaccountsFuturesAccountV21 getGetSummaryofSubaccountsFuture
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.futuresType},
 	mandatory = {true, true}
-}
+)
 public GetFuturesPositionRiskofSubaccountV2 getGetFuturesPositionRiskofSubaccountV2(String email, int futuresType);
 
 @ApiEndpoint (
@@ -295,7 +295,7 @@ public GetFuturesPositionRiskofSubaccountV2 getGetFuturesPositionRiskofSubaccoun
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.futuresType},
 	mandatory = {true, true}
-}
+)
 public GetFuturesPositionRiskofSubaccountV21 getGetFuturesPositionRiskofSubaccountV21(String email, int futuresType);
 
 @ApiEndpoint (
@@ -305,7 +305,7 @@ public GetFuturesPositionRiskofSubaccountV21 getGetFuturesPositionRiskofSubaccou
 	needSignature = true,
 	parameters = {Parameters.email, Parameters.enableBlvt},
 	mandatory = {true, true}
-}
+)
 public EnableLeverageTokenforSubaccount postEnableLeverageTokenforSubaccount(String email, boolean enableBlvt);
 
 @ApiEndpoint (
@@ -315,7 +315,7 @@ public EnableLeverageTokenforSubaccount postEnableLeverageTokenforSubaccount(Str
 	needSignature = true,
 	parameters = {Parameters.toEmail, Parameters.asset, Parameters.amount},
 	mandatory = {true, true, true}
-}
+)
 public DepositassetsintothemanagedsubaccountForInvestorMasterAccount postDepositassetsintothemanagedsubaccountForInvestorMasterAccount(String toEmail, String asset, double amount);
 
 @ApiEndpoint (
@@ -325,7 +325,7 @@ public DepositassetsintothemanagedsubaccountForInvestorMasterAccount postDeposit
 	needSignature = true,
 	parameters = {Parameters.email},
 	mandatory = {true}
-}
+)
 public List<QuerymanagedsubaccountassetdetailsForInvestorMasterAccount> getQuerymanagedsubaccountassetdetailsForInvestorMasterAccount(String email);
 
 @ApiEndpoint (
@@ -335,6 +335,6 @@ public List<QuerymanagedsubaccountassetdetailsForInvestorMasterAccount> getQuery
 	needSignature = true,
 	parameters = {Parameters.fromEmail, Parameters.asset, Parameters.amount, Parameters.transferDate},
 	mandatory = {true, true, true, false}
-}
+)
 public WithdrawlassetsfromthemanagedsubaccountForInvestorMasterAccount postWithdrawlassetsfromthemanagedsubaccountForInvestorMasterAccount(String fromEmail, String asset, double amount, long transferDate);
 

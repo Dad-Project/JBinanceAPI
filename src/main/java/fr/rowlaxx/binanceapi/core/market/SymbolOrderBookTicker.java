@@ -1,11 +1,11 @@
-package fr.rowlaxx.temp.marketdataendpoints;
+package fr.rowlaxx.binanceapi.core.market;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class SymbolOrderBookTicker1 extends JSavONObject {
-	private static final long serialVersionUID = 2388144113954430431L;
+public class SymbolOrderBookTicker extends JSavONObject {
+	private static final long serialVersionUID = 6781128770211592070L;
 	
 	//Variables
 	private double askPrice;
@@ -15,7 +15,7 @@ public class SymbolOrderBookTicker1 extends JSavONObject {
 	private String symbol;
 	
 	//Constructeurs
-	public SymbolOrderBookTicker1(JSONObject json) {
+	public SymbolOrderBookTicker(JSONObject json) {
 		super(json);
 	}
 	

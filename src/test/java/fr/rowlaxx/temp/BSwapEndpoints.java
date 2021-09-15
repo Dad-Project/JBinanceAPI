@@ -5,7 +5,7 @@
 	needSignature = false,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<ListAllSwapPools> getListAllSwapPools();
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public List<ListAllSwapPools> getListAllSwapPools();
 	needSignature = true,
 	parameters = {Parameters.poolId},
 	mandatory = {false}
-}
+)
 public List<Getliquidityinformationofapool> getGetliquidityinformationofapool(long poolId);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public List<Getliquidityinformationofapool> getGetliquidityinformationofapool(lo
 	needSignature = true,
 	parameters = {Parameters.poolId, Parameters.asset, Parameters.quantity},
 	mandatory = {true, true, true}
-}
+)
 public AddLiquidity postAddLiquidity(long poolId, String asset, double quantity);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public AddLiquidity postAddLiquidity(long poolId, String asset, double quantity)
 	needSignature = true,
 	parameters = {Parameters.poolId, Parameters.type, Parameters.asset, Parameters.shareAmount},
 	mandatory = {true, true, false, true}
-}
+)
 public RemoveLiquidity postRemoveLiquidity(long poolId, String type, List<Object> asset, double shareAmount);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public RemoveLiquidity postRemoveLiquidity(long poolId, String type, List<Object
 	needSignature = true,
 	parameters = {Parameters.operationId, Parameters.poolId, Parameters.operation, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false, false}
-}
+)
 public List<GetLiquidityOperationRecord> getGetLiquidityOperationRecord(long operationId, long poolId, Enum operation, long startTime, long endTime, long limit);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public List<GetLiquidityOperationRecord> getGetLiquidityOperationRecord(long ope
 	needSignature = true,
 	parameters = {Parameters.quoteAsset, Parameters.baseAsset, Parameters.quoteQty},
 	mandatory = {true, true, true}
-}
+)
 public RequestQuote getRequestQuote(String quoteAsset, String baseAsset, double quoteQty);
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public RequestQuote getRequestQuote(String quoteAsset, String baseAsset, double 
 	needSignature = true,
 	parameters = {Parameters.quoteAsset, Parameters.baseAsset, Parameters.quoteQty},
 	mandatory = {true, true, true}
-}
+)
 public Swap postSwap(String quoteAsset, String baseAsset, double quoteQty);
 
 @ApiEndpoint (
@@ -75,6 +75,6 @@ public Swap postSwap(String quoteAsset, String baseAsset, double quoteQty);
 	needSignature = true,
 	parameters = {Parameters.swapId, Parameters.startTime, Parameters.endTime, Parameters.status, Parameters.quoteAsset, Parameters.baseAsset, Parameters.limit},
 	mandatory = {false, false, false, false, false, false, false}
-}
+)
 public List<GetSwapHistory> getGetSwapHistory(long swapId, long startTime, long endTime, int status, String quoteAsset, String baseAsset, long limit);
 

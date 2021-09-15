@@ -5,7 +5,7 @@
 	needSignature = false,
 	parameters = {},
 	mandatory = {}
-}
+)
 public SystemStatus getSystemStatus();
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public SystemStatus getSystemStatus();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<AllCoinsInformation> getAllCoinsInformation();
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public List<AllCoinsInformation> getAllCoinsInformation();
 	needSignature = true,
 	parameters = {Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false}
-}
+)
 public DailyAccountSnapshot getDailyAccountSnapshot(String type, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public DailyAccountSnapshot getDailyAccountSnapshot(String type, long startTime,
 	needSignature = true,
 	parameters = {Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false}
-}
+)
 public DailyAccountSnapshot1 getDailyAccountSnapshot1(String type, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public DailyAccountSnapshot1 getDailyAccountSnapshot1(String type, long startTim
 	needSignature = true,
 	parameters = {Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false}
-}
+)
 public DailyAccountSnapshot2 getDailyAccountSnapshot2(String type, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public DailyAccountSnapshot2 getDailyAccountSnapshot2(String type, long startTim
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public void postDisableFastWithdrawSwitch();
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public void postDisableFastWithdrawSwitch();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public void postEnableFastWithdrawSwitch();
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public void postEnableFastWithdrawSwitch();
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.withdrawOrderId, Parameters.network, Parameters.address, Parameters.addressTag, Parameters.amount, Parameters.transactionFeeFlag, Parameters.name},
 	mandatory = {true, false, false, true, false, true, false, false}
-}
+)
 public Withdraw postWithdraw(String coin, String withdrawOrderId, String network, String address, String addressTag, double amount, boolean transactionFeeFlag, String name);
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public Withdraw postWithdraw(String coin, String withdrawOrderId, String network
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.status, Parameters.startTime, Parameters.endTime, Parameters.offset, Parameters.limit},
 	mandatory = {false, false, false, false, false, false}
-}
+)
 public List<DepositHistory> getDepositHistory(String coin, int status, long startTime, long endTime, int offset, int limit);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public List<DepositHistory> getDepositHistory(String coin, int status, long star
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.withdrawOrderId, Parameters.status, Parameters.offset, Parameters.limit, Parameters.startTime, Parameters.endTime},
 	mandatory = {false, false, false, false, false, false, false}
-}
+)
 public List<WithdrawHistory> getWithdrawHistory(String coin, String withdrawOrderId, int status, int offset, int limit, long startTime, long endTime);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public List<WithdrawHistory> getWithdrawHistory(String coin, String withdrawOrde
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.network},
 	mandatory = {true, false}
-}
+)
 public DepositAddress getDepositAddress(String coin, String network);
 
 @ApiEndpoint (
@@ -115,7 +115,7 @@ public DepositAddress getDepositAddress(String coin, String network);
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public AccountStatus getAccountStatus();
 
 @ApiEndpoint (
@@ -125,7 +125,7 @@ public AccountStatus getAccountStatus();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public AccountAPITradingStatus getAccountAPITradingStatus();
 
 @ApiEndpoint (
@@ -135,7 +135,7 @@ public AccountAPITradingStatus getAccountAPITradingStatus();
 	needSignature = true,
 	parameters = {Parameters.startTime, Parameters.endTime},
 	mandatory = {false, false}
-}
+)
 public DustLog getDustLog(long startTime, long endTime);
 
 @ApiEndpoint (
@@ -145,7 +145,7 @@ public DustLog getDustLog(long startTime, long endTime);
 	needSignature = true,
 	parameters = {Parameters.asset},
 	mandatory = {true}
-}
+)
 public DustTransfer postDustTransfer(Object[] asset);
 
 @ApiEndpoint (
@@ -155,7 +155,7 @@ public DustTransfer postDustTransfer(Object[] asset);
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false}
-}
+)
 public AssetDividendRecord getAssetDividendRecord(String asset, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -165,7 +165,7 @@ public AssetDividendRecord getAssetDividendRecord(String asset, long startTime, 
 	needSignature = true,
 	parameters = {Parameters.asset},
 	mandatory = {false}
-}
+)
 public AssetDetail getAssetDetail(String asset);
 
 @ApiEndpoint (
@@ -175,7 +175,7 @@ public AssetDetail getAssetDetail(String asset);
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {false}
-}
+)
 public List<TradeFee> getTradeFee(String symbol);
 
 @ApiEndpoint (
@@ -185,7 +185,7 @@ public List<TradeFee> getTradeFee(String symbol);
 	needSignature = true,
 	parameters = {Parameters.type, Parameters.asset, Parameters.amount, Parameters.fromSymbol, Parameters.toSymbol},
 	mandatory = {true, true, true, false, false}
-}
+)
 public UserUniversalTransfer postUserUniversalTransfer(Enum type, String asset, double amount, String fromSymbol, String toSymbol);
 
 @ApiEndpoint (
@@ -195,7 +195,7 @@ public UserUniversalTransfer postUserUniversalTransfer(Enum type, String asset, 
 	needSignature = true,
 	parameters = {Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.fromSymbol, Parameters.toSymbol},
 	mandatory = {true, false, false, false, false, false, false}
-}
+)
 public QueryUserUniversalTransferHistory getQueryUserUniversalTransferHistory(Enum type, long startTime, long endTime, int current, int size, String fromSymbol, String toSymbol);
 
 @ApiEndpoint (
@@ -205,7 +205,7 @@ public QueryUserUniversalTransferHistory getQueryUserUniversalTransferHistory(En
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.needBtcValuation},
 	mandatory = {false, false}
-}
+)
 public List<FundingWallet> postFundingWallet(String asset, String needBtcValuation);
 
 @ApiEndpoint (
@@ -215,6 +215,6 @@ public List<FundingWallet> postFundingWallet(String asset, String needBtcValuati
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public GetAPIKeyPermission getGetAPIKeyPermission();
 

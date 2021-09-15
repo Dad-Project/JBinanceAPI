@@ -3,15 +3,8 @@ package fr.rowlaxx.binanceapi;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
-import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
-import fr.rowlaxx.binanceapi.core.general.ExchangeInformation;
-import fr.rowlaxx.binanceapi.core.general.spot.SpotExchangeInformation;
-import fr.rowlaxx.binanceapi.core.general.spot.SpotSymbol;
-import fr.rowlaxx.binanceapi.core.wallet.AllCoinsInformation;
-import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
-import fr.rowlaxx.binanceapi.core.wallet.spot.SpotDailyAccountSnapshot;
 
 public class Test {
 
@@ -23,7 +16,6 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		for (SpotDailyAccountSnapshot snapshot : client.spot().getDailyAccountSnapshot())
-			System.out.println(snapshot);
+		client.spot().getSymbolOrderBookTickers().get("BTCUSDT").print();
 	}	
 }

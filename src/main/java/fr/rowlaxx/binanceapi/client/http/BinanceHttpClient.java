@@ -8,6 +8,7 @@ import fr.rowlaxx.binanceapi.client.BinanceClient;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpRequestException;
 import fr.rowlaxx.jsavon.convert.ConvertRequest;
+import fr.rowlaxx.jsavon.convert.Destination;
 import fr.rowlaxx.jsavon.exceptions.JSavONException;
 
 public class BinanceHttpClient extends SimpleBinanceHttpClient {
@@ -93,7 +94,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 						converted = false;
 						for (Class<?> clazz : parameter.getTypes())
 							try{
-								value = new ConvertRequest<>(value, clazz).execute();
+								value = new ConvertRequest<>(value, Destination.from(clazz)).execute();
 								converted = true;
 								break;
 							}catch(JSavONException | IllegalArgumentException ignored) {}

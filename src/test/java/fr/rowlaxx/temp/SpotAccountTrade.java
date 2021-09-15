@@ -5,7 +5,7 @@
 	needSignature = false,
 	parameters = {},
 	mandatory = {}
-}
+)
 public void postTestNewOrder();
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public void postTestNewOrder();
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.side, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.icebergQty, Parameters.newOrderRespType},
 	mandatory = {true, true, true, false, false, false, false, false, false, false, false}
-}
+)
 public NewOrder postNewOrder(String symbol, Enum side, Enum type, Enum timeInForce, double quantity, double quoteOrderQty, double price, String newClientOrderId, double stopPrice, double icebergQty, Enum newOrderRespType);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public NewOrder postNewOrder(String symbol, Enum side, Enum type, Enum timeInFor
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.side, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.icebergQty, Parameters.newOrderRespType},
 	mandatory = {true, true, true, false, false, false, false, false, false, false, false}
-}
+)
 public NewOrder1 postNewOrder1(String symbol, Enum side, Enum type, Enum timeInForce, double quantity, double quoteOrderQty, double price, String newClientOrderId, double stopPrice, double icebergQty, Enum newOrderRespType);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public NewOrder1 postNewOrder1(String symbol, Enum side, Enum type, Enum timeInF
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.side, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.icebergQty, Parameters.newOrderRespType},
 	mandatory = {true, true, true, false, false, false, false, false, false, false, false}
-}
+)
 public NewOrder2 postNewOrder2(String symbol, Enum side, Enum type, Enum timeInForce, double quantity, double quoteOrderQty, double price, String newClientOrderId, double stopPrice, double icebergQty, Enum newOrderRespType);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public NewOrder2 postNewOrder2(String symbol, Enum side, Enum type, Enum timeInF
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId, Parameters.newClientOrderId},
 	mandatory = {true, false, false, false}
-}
+)
 public CancelOrder deleteCancelOrder(String symbol, long orderId, String origClientOrderId, String newClientOrderId);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public CancelOrder deleteCancelOrder(String symbol, long orderId, String origCli
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public List<CancelallOpenOrdersonaSymbol> deleteCancelallOpenOrdersonaSymbol(String symbol);
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public List<CancelallOpenOrdersonaSymbol> deleteCancelallOpenOrdersonaSymbol(Str
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId},
 	mandatory = {true, false, false}
-}
+)
 public QueryOrder getQueryOrder(String symbol, long orderId, String origClientOrderId);
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public QueryOrder getQueryOrder(String symbol, long orderId, String origClientOr
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {false}
-}
+)
 public List<CurrentOpenOrders> getCurrentOpenOrders(String symbol);
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public List<CurrentOpenOrders> getCurrentOpenOrders(String symbol);
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false, false}
-}
+)
 public List<AllOrders> getAllOrders(String symbol, long orderId, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public List<AllOrders> getAllOrders(String symbol, long orderId, long startTime,
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType},
 	mandatory = {true, false, true, true, false, true, false, false, true, false, false, false, false}
-}
+)
 public NewOCO postNewOCO(String symbol, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public NewOCO postNewOCO(String symbol, String listClientOrderId, Enum side, dou
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.orderListId, Parameters.listClientOrderId, Parameters.newClientOrderId},
 	mandatory = {true, false, false, false}
-}
+)
 public CancelOCO deleteCancelOCO(String symbol, long orderListId, String listClientOrderId, String newClientOrderId);
 
 @ApiEndpoint (
@@ -115,7 +115,7 @@ public CancelOCO deleteCancelOCO(String symbol, long orderListId, String listCli
 	needSignature = true,
 	parameters = {Parameters.orderListId, Parameters.origClientOrderId},
 	mandatory = {false, false}
-}
+)
 public QueryOCO getQueryOCO(long orderListId, String origClientOrderId);
 
 @ApiEndpoint (
@@ -125,7 +125,7 @@ public QueryOCO getQueryOCO(long orderListId, String origClientOrderId);
 	needSignature = true,
 	parameters = {Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false}
-}
+)
 public List<QueryallOCO> getQueryallOCO(long fromId, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -135,7 +135,7 @@ public List<QueryallOCO> getQueryallOCO(long fromId, long startTime, long endTim
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<QueryOpenOCO> getQueryOpenOCO();
 
 @ApiEndpoint (
@@ -145,7 +145,7 @@ public List<QueryOpenOCO> getQueryOpenOCO();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public AccountInformation getAccountInformation();
 
 @ApiEndpoint (
@@ -155,6 +155,6 @@ public AccountInformation getAccountInformation();
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 	mandatory = {true, false, false, false, false, false}
-}
+)
 public List<AccountTradeList> getAccountTradeList(String symbol, long orderId, long startTime, long endTime, long fromId, int limit);
 

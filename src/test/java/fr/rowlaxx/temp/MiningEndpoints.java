@@ -5,7 +5,7 @@
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public AcquiringAlgorithm getAcquiringAlgorithm();
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public AcquiringAlgorithm getAcquiringAlgorithm();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public AcquiringCoinName getAcquiringCoinName();
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public AcquiringCoinName getAcquiringCoinName();
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName, Parameters.workerName},
 	mandatory = {true, true, true}
-}
+)
 public RequestforDetailMinerList getRequestforDetailMinerList(String algo, String userName, String workerName);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public RequestforDetailMinerList getRequestforDetailMinerList(String algo, Strin
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName, Parameters.pageIndex, Parameters.sort, Parameters.sortColumn, Parameters.workerStatus},
 	mandatory = {true, true, false, false, false, false}
-}
+)
 public RequestforMinerList getRequestforMinerList(String algo, String userName, int pageIndex, int sort, int sortColumn, int workerStatus);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public RequestforMinerList getRequestforMinerList(String algo, String userName, 
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName, Parameters.coin, Parameters.startDate, Parameters.endDate, Parameters.pageIndex, Parameters.pageSize},
 	mandatory = {true, true, false, false, false, false, false}
-}
+)
 public EarningsList getEarningsList(String algo, String userName, String coin, long startDate, long endDate, int pageIndex, int pageSize);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public EarningsList getEarningsList(String algo, String userName, String coin, l
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName, Parameters.coin, Parameters.startDate, Parameters.endDate, Parameters.pageIndex, Parameters.pageSize},
 	mandatory = {true, true, false, false, false, false, false}
-}
+)
 public ExtraBonusList getExtraBonusList(String algo, String userName, String coin, long startDate, long endDate, int pageIndex, int pageSize);
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public ExtraBonusList getExtraBonusList(String algo, String userName, String coi
 	needSignature = true,
 	parameters = {Parameters.pageIndex, Parameters.pageSize},
 	mandatory = {false, false}
-}
+)
 public HashrateResaleList getHashrateResaleList(int pageIndex, int pageSize);
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public HashrateResaleList getHashrateResaleList(int pageIndex, int pageSize);
 	needSignature = true,
 	parameters = {Parameters.configId, Parameters.userName, Parameters.pageIndex, Parameters.pageSize},
 	mandatory = {true, true, false, false}
-}
+)
 public HashrateResaleDetail getHashrateResaleDetail(int configId, String userName, int pageIndex, int pageSize);
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public HashrateResaleDetail getHashrateResaleDetail(int configId, String userNam
 	needSignature = true,
 	parameters = {Parameters.userName, Parameters.algo, Parameters.endDate, Parameters.startDate, Parameters.toPoolUser, Parameters.hashRate},
 	mandatory = {true, true, true, true, true, true}
-}
+)
 public HashrateResaleRequest postHashrateResaleRequest(String userName, String algo, long endDate, long startDate, String toPoolUser, long hashRate);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public HashrateResaleRequest postHashrateResaleRequest(String userName, String a
 	needSignature = true,
 	parameters = {Parameters.configId, Parameters.userName},
 	mandatory = {true, true}
-}
+)
 public Cancelhashrateresaleconfiguration postCancelhashrateresaleconfiguration(int configId, String userName);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public Cancelhashrateresaleconfiguration postCancelhashrateresaleconfiguration(i
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName},
 	mandatory = {true, true}
-}
+)
 public StatisticList getStatisticList(String algo, String userName);
 
 @ApiEndpoint (
@@ -115,6 +115,6 @@ public StatisticList getStatisticList(String algo, String userName);
 	needSignature = true,
 	parameters = {Parameters.algo, Parameters.userName},
 	mandatory = {true, true}
-}
+)
 public AccountList getAccountList(String algo, String userName);
 

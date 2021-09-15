@@ -5,7 +5,7 @@
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.amount, Parameters.type},
 	mandatory = {true, true, true}
-}
+)
 public CrossMarginAccountTransfer postCrossMarginAccountTransfer(String asset, double amount, int type);
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public CrossMarginAccountTransfer postCrossMarginAccountTransfer(String asset, d
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isIsolated, Parameters.symbol, Parameters.amount},
 	mandatory = {true, false, false, true}
-}
+)
 public MarginAccountBorrow postMarginAccountBorrow(String asset, String isIsolated, String symbol, double amount);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public MarginAccountBorrow postMarginAccountBorrow(String asset, String isIsolat
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isIsolated, Parameters.symbol, Parameters.amount},
 	mandatory = {true, false, false, true}
-}
+)
 public MarginAccountRepay postMarginAccountRepay(String asset, String isIsolated, String symbol, double amount);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public MarginAccountRepay postMarginAccountRepay(String asset, String isIsolated
 	needSignature = false,
 	parameters = {Parameters.asset},
 	mandatory = {true}
-}
+)
 public QueryMarginAsset getQueryMarginAsset(String asset);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public QueryMarginAsset getQueryMarginAsset(String asset);
 	needSignature = false,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public QueryCrossMarginPair getQueryCrossMarginPair(String symbol);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public QueryCrossMarginPair getQueryCrossMarginPair(String symbol);
 	needSignature = false,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<GetAllMarginAssets> getGetAllMarginAssets();
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public List<GetAllMarginAssets> getGetAllMarginAssets();
 	needSignature = false,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<GetAllCrossMarginPairs> getGetAllCrossMarginPairs();
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public List<GetAllCrossMarginPairs> getGetAllCrossMarginPairs();
 	needSignature = false,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public QueryMarginPriceIndex getQueryMarginPriceIndex(String symbol);
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public QueryMarginPriceIndex getQueryMarginPriceIndex(String symbol);
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
 	mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
-}
+)
 public MarginAccountNewOrder postMarginAccountNewOrder(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public MarginAccountNewOrder postMarginAccountNewOrder(String symbol, String isI
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
 	mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
-}
+)
 public MarginAccountNewOrder1 postMarginAccountNewOrder1(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public MarginAccountNewOrder1 postMarginAccountNewOrder1(String symbol, String i
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
 	mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
-}
+)
 public MarginAccountNewOrder2 postMarginAccountNewOrder2(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
 
 @ApiEndpoint (
@@ -115,7 +115,7 @@ public MarginAccountNewOrder2 postMarginAccountNewOrder2(String symbol, String i
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.origClientOrderId, Parameters.newClientOrderId},
 	mandatory = {true, false, false, false, false}
-}
+)
 public MarginAccountCancelOrder deleteMarginAccountCancelOrder(String symbol, String isIsolated, long orderId, String origClientOrderId, String newClientOrderId);
 
 @ApiEndpoint (
@@ -125,7 +125,7 @@ public MarginAccountCancelOrder deleteMarginAccountCancelOrder(String symbol, St
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated},
 	mandatory = {true, false}
-}
+)
 public List<MarginAccountCancelallOpenOrdersonaSymbol> deleteMarginAccountCancelallOpenOrdersonaSymbol(String symbol, String isIsolated);
 
 @ApiEndpoint (
@@ -135,7 +135,7 @@ public List<MarginAccountCancelallOpenOrdersonaSymbol> deleteMarginAccountCancel
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 	mandatory = {false, false, false, false, false, false, false}
-}
+)
 public GetCrossMarginTransferHistory getGetCrossMarginTransferHistory(String asset, String type, long startTime, long endTime, long current, long size, String archived);
 
 @ApiEndpoint (
@@ -145,7 +145,7 @@ public GetCrossMarginTransferHistory getGetCrossMarginTransferHistory(String ass
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.txId, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 	mandatory = {true, false, false, false, false, false, false, false}
-}
+)
 public QueryLoanRecord getQueryLoanRecord(String asset, String isolatedSymbol, long txId, long startTime, long endTime, long current, long size, String archived);
 
 @ApiEndpoint (
@@ -155,7 +155,7 @@ public QueryLoanRecord getQueryLoanRecord(String asset, String isolatedSymbol, l
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.txId, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 	mandatory = {true, false, false, false, false, false, false, false}
-}
+)
 public QueryRepayRecord getQueryRepayRecord(String asset, String isolatedSymbol, long txId, long startTime, long endTime, long current, long size, String archived);
 
 @ApiEndpoint (
@@ -165,7 +165,7 @@ public QueryRepayRecord getQueryRepayRecord(String asset, String isolatedSymbol,
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 	mandatory = {false, false, false, false, false, false, false}
-}
+)
 public GetInterestHistory getGetInterestHistory(String asset, String isolatedSymbol, long startTime, long endTime, long current, long size, String archived);
 
 @ApiEndpoint (
@@ -175,7 +175,7 @@ public GetInterestHistory getGetInterestHistory(String asset, String isolatedSym
 	needSignature = true,
 	parameters = {Parameters.startTime, Parameters.endTime, Parameters.isolatedSymbol, Parameters.current, Parameters.size},
 	mandatory = {false, false, false, false, false}
-}
+)
 public GetForceLiquidationRecord getGetForceLiquidationRecord(long startTime, long endTime, String isolatedSymbol, long current, long size);
 
 @ApiEndpoint (
@@ -185,7 +185,7 @@ public GetForceLiquidationRecord getGetForceLiquidationRecord(long startTime, lo
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public QueryCrossMarginAccountDetails getQueryCrossMarginAccountDetails();
 
 @ApiEndpoint (
@@ -195,7 +195,7 @@ public QueryCrossMarginAccountDetails getQueryCrossMarginAccountDetails();
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.origClientOrderId},
 	mandatory = {true, false, false, false}
-}
+)
 public QueryMarginAccountsOrder getQueryMarginAccountsOrder(String symbol, String isIsolated, String orderId, String origClientOrderId);
 
 @ApiEndpoint (
@@ -205,7 +205,7 @@ public QueryMarginAccountsOrder getQueryMarginAccountsOrder(String symbol, Strin
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated},
 	mandatory = {false, false}
-}
+)
 public List<QueryMarginAccountsOpenOrders> getQueryMarginAccountsOpenOrders(String symbol, String isIsolated);
 
 @ApiEndpoint (
@@ -215,7 +215,7 @@ public List<QueryMarginAccountsOpenOrders> getQueryMarginAccountsOpenOrders(Stri
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false, false, false}
-}
+)
 public List<QueryMarginAccountsAllOrders> getQueryMarginAccountsAllOrders(String symbol, String isIsolated, long orderId, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -225,7 +225,7 @@ public List<QueryMarginAccountsAllOrders> getQueryMarginAccountsAllOrders(String
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType, Parameters.sideEffectType},
 	mandatory = {true, false, false, true, true, false, true, false, false, true, false, false, false, false, false}
-}
+)
 public MarginAccountNewOCO postMarginAccountNewOCO(String symbol, String isIsolated, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType, Enum sideEffectType);
 
 @ApiEndpoint (
@@ -235,7 +235,7 @@ public MarginAccountNewOCO postMarginAccountNewOCO(String symbol, String isIsola
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderListId, Parameters.listClientOrderId, Parameters.newClientOrderId},
 	mandatory = {true, false, false, false, false}
-}
+)
 public MarginAccountCancelOCO deleteMarginAccountCancelOCO(String symbol, String isIsolated, long orderListId, String listClientOrderId, String newClientOrderId);
 
 @ApiEndpoint (
@@ -245,7 +245,7 @@ public MarginAccountCancelOCO deleteMarginAccountCancelOCO(String symbol, String
 	needSignature = true,
 	parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.orderListId, Parameters.origClientOrderId},
 	mandatory = {false, false, false, false}
-}
+)
 public QueryMarginAccountsOCO getQueryMarginAccountsOCO(String isIsolated, String symbol, long orderListId, String origClientOrderId);
 
 @ApiEndpoint (
@@ -255,7 +255,7 @@ public QueryMarginAccountsOCO getQueryMarginAccountsOCO(String isIsolated, Strin
 	needSignature = true,
 	parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false, false}
-}
+)
 public List<QueryMarginAccountsallOCO> getQueryMarginAccountsallOCO(String isIsolated, String symbol, long fromId, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -265,7 +265,7 @@ public List<QueryMarginAccountsallOCO> getQueryMarginAccountsallOCO(String isIso
 	needSignature = true,
 	parameters = {Parameters.isIsolated, Parameters.symbol},
 	mandatory = {false, false}
-}
+)
 public List<QueryMarginAccountsOpenOCO> getQueryMarginAccountsOpenOCO(String isIsolated, String symbol);
 
 @ApiEndpoint (
@@ -275,7 +275,7 @@ public List<QueryMarginAccountsOpenOCO> getQueryMarginAccountsOpenOCO(String isI
 	needSignature = true,
 	parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 	mandatory = {true, false, false, false, false, false}
-}
+)
 public List<QueryMarginAccountsTradeList> getQueryMarginAccountsTradeList(String symbol, String isIsolated, long startTime, long endTime, long fromId, int limit);
 
 @ApiEndpoint (
@@ -285,7 +285,7 @@ public List<QueryMarginAccountsTradeList> getQueryMarginAccountsTradeList(String
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isolatedSymbol},
 	mandatory = {true, false}
-}
+)
 public QueryMaxBorrow getQueryMaxBorrow(String asset, String isolatedSymbol);
 
 @ApiEndpoint (
@@ -295,7 +295,7 @@ public QueryMaxBorrow getQueryMaxBorrow(String asset, String isolatedSymbol);
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.isolatedSymbol},
 	mandatory = {true, false}
-}
+)
 public QueryMaxTransferOutAmount getQueryMaxTransferOutAmount(String asset, String isolatedSymbol);
 
 @ApiEndpoint (
@@ -305,7 +305,7 @@ public QueryMaxTransferOutAmount getQueryMaxTransferOutAmount(String asset, Stri
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.symbol, Parameters.transFrom, Parameters.transTo, Parameters.amount},
 	mandatory = {true, true, true, true, true}
-}
+)
 public IsolatedMarginAccountTransfer postIsolatedMarginAccountTransfer(String asset, String symbol, String transFrom, String transTo, double amount);
 
 @ApiEndpoint (
@@ -315,7 +315,7 @@ public IsolatedMarginAccountTransfer postIsolatedMarginAccountTransfer(String as
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.symbol, Parameters.transFrom, Parameters.transTo, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 	mandatory = {false, true, false, false, false, false, false, false}
-}
+)
 public GetIsolatedMarginTransferHistory getGetIsolatedMarginTransferHistory(String asset, String symbol, String transFrom, String transTo, long startTime, long endTime, long current, long size);
 
 @ApiEndpoint (
@@ -325,7 +325,7 @@ public GetIsolatedMarginTransferHistory getGetIsolatedMarginTransferHistory(Stri
 	needSignature = true,
 	parameters = {Parameters.symbols},
 	mandatory = {false}
-}
+)
 public QueryIsolatedMarginAccountInfo getQueryIsolatedMarginAccountInfo(String symbols);
 
 @ApiEndpoint (
@@ -335,7 +335,7 @@ public QueryIsolatedMarginAccountInfo getQueryIsolatedMarginAccountInfo(String s
 	needSignature = true,
 	parameters = {Parameters.symbols},
 	mandatory = {false}
-}
+)
 public QueryIsolatedMarginAccountInfo1 getQueryIsolatedMarginAccountInfo1(String symbols);
 
 @ApiEndpoint (
@@ -345,7 +345,7 @@ public QueryIsolatedMarginAccountInfo1 getQueryIsolatedMarginAccountInfo1(String
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public DisableIsolatedMarginAccount deleteDisableIsolatedMarginAccount(String symbol);
 
 @ApiEndpoint (
@@ -355,7 +355,7 @@ public DisableIsolatedMarginAccount deleteDisableIsolatedMarginAccount(String sy
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public EnableIsolatedMarginAccount postEnableIsolatedMarginAccount(String symbol);
 
 @ApiEndpoint (
@@ -365,7 +365,7 @@ public EnableIsolatedMarginAccount postEnableIsolatedMarginAccount(String symbol
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public QueryEnabledIsolatedMarginAccountLimit getQueryEnabledIsolatedMarginAccountLimit();
 
 @ApiEndpoint (
@@ -375,7 +375,7 @@ public QueryEnabledIsolatedMarginAccountLimit getQueryEnabledIsolatedMarginAccou
 	needSignature = true,
 	parameters = {Parameters.symbol},
 	mandatory = {true}
-}
+)
 public QueryIsolatedMarginSymbol getQueryIsolatedMarginSymbol(String symbol);
 
 @ApiEndpoint (
@@ -385,7 +385,7 @@ public QueryIsolatedMarginSymbol getQueryIsolatedMarginSymbol(String symbol);
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public List<GetAllIsolatedMarginSymbol> getGetAllIsolatedMarginSymbol();
 
 @ApiEndpoint (
@@ -395,7 +395,7 @@ public List<GetAllIsolatedMarginSymbol> getGetAllIsolatedMarginSymbol();
 	needSignature = true,
 	parameters = {Parameters.spotBNBBurn, Parameters.interestBNBBurn},
 	mandatory = {false, false}
-}
+)
 public ToggleBNBBurnOnSpotTradeAndMarginInterest postToggleBNBBurnOnSpotTradeAndMarginInterest(String spotBNBBurn, String interestBNBBurn);
 
 @ApiEndpoint (
@@ -405,7 +405,7 @@ public ToggleBNBBurnOnSpotTradeAndMarginInterest postToggleBNBBurnOnSpotTradeAnd
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public GetBNBBurnStatus getGetBNBBurnStatus();
 
 @ApiEndpoint (
@@ -415,6 +415,6 @@ public GetBNBBurnStatus getGetBNBBurnStatus();
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.vipLevel, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {true, false, false, false, false}
-}
+)
 public List<QueryMarginInterestRateHistory> getQueryMarginInterestRateHistory(String asset, int vipLevel, long startTime, long endTime, int limit);
 

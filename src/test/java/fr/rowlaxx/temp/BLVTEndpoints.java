@@ -5,7 +5,7 @@
 	needSignature = false,
 	parameters = {Parameters.tokenName},
 	mandatory = {false}
-}
+)
 public List<GetBLVTInfo> getGetBLVTInfo(String tokenName);
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public List<GetBLVTInfo> getGetBLVTInfo(String tokenName);
 	needSignature = true,
 	parameters = {Parameters.tokenName, Parameters.cost},
 	mandatory = {true, true}
-}
+)
 public SubscribeBLVT postSubscribeBLVT(String tokenName, double cost);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public SubscribeBLVT postSubscribeBLVT(String tokenName, double cost);
 	needSignature = true,
 	parameters = {Parameters.tokenName, Parameters.id, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public List<QuerySubscriptionRecord> getQuerySubscriptionRecord(String tokenName, long id, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public List<QuerySubscriptionRecord> getQuerySubscriptionRecord(String tokenName
 	needSignature = true,
 	parameters = {Parameters.tokenName, Parameters.amount},
 	mandatory = {true, true}
-}
+)
 public RedeemBLVT postRedeemBLVT(String tokenName, double amount);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public RedeemBLVT postRedeemBLVT(String tokenName, double amount);
 	needSignature = true,
 	parameters = {Parameters.tokenName, Parameters.id, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public List<QueryRedemptionRecord> getQueryRedemptionRecord(String tokenName, long id, long startTime, long endTime, int limit);
 
 @ApiEndpoint (
@@ -55,6 +55,6 @@ public List<QueryRedemptionRecord> getQueryRedemptionRecord(String tokenName, lo
 	needSignature = true,
 	parameters = {Parameters.tokenName},
 	mandatory = {false}
-}
+)
 public List<GetBLVTUserLimitInfo> getGetBLVTUserLimitInfo(String tokenName);
 

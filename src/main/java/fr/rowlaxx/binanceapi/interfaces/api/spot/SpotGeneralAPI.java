@@ -70,5 +70,4 @@ public interface SpotGeneralAPI {
 			mandatory = {true}
 	)
 	public SpotExchangeInformation getExchangeInformation(Collection<String> symbols);
-	
 }

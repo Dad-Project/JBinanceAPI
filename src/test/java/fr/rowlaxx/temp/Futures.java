@@ -5,7 +5,7 @@
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.amount, Parameters.type},
 	mandatory = {true, true, true}
-}
+)
 public NewFutureAccountTransfer postNewFutureAccountTransfer(String asset, double amount, int type);
 
 @ApiEndpoint (
@@ -15,7 +15,7 @@ public NewFutureAccountTransfer postNewFutureAccountTransfer(String asset, doubl
 	needSignature = true,
 	parameters = {Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 	mandatory = {true, true, false, false, false}
-}
+)
 public GetFutureAccountTransactionHistoryList getGetFutureAccountTransactionHistoryList(String asset, long startTime, long endTime, long current, long size);
 
 @ApiEndpoint (
@@ -25,7 +25,7 @@ public GetFutureAccountTransactionHistoryList getGetFutureAccountTransactionHist
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.amount, Parameters.collateralCoin, Parameters.collateralAmount},
 	mandatory = {true, true, true, true}
-}
+)
 public BorrowForCrossCollateral postBorrowForCrossCollateral(String coin, double amount, String collateralCoin, double collateralAmount);
 
 @ApiEndpoint (
@@ -35,7 +35,7 @@ public BorrowForCrossCollateral postBorrowForCrossCollateral(String coin, double
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false}
-}
+)
 public CrossCollateralBorrowHistory getCrossCollateralBorrowHistory(String coin, long startTime, long endTime, long limit);
 
 @ApiEndpoint (
@@ -45,7 +45,7 @@ public CrossCollateralBorrowHistory getCrossCollateralBorrowHistory(String coin,
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.collateralCoin, Parameters.amount},
 	mandatory = {true, true, true}
-}
+)
 public RepayForCrossCollateral postRepayForCrossCollateral(String coin, String collateralCoin, double amount);
 
 @ApiEndpoint (
@@ -55,7 +55,7 @@ public RepayForCrossCollateral postRepayForCrossCollateral(String coin, String c
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false}
-}
+)
 public CrossCollateralRepaymentHistory getCrossCollateralRepaymentHistory(String coin, long startTime, long endTime, long limit);
 
 @ApiEndpoint (
@@ -65,7 +65,7 @@ public CrossCollateralRepaymentHistory getCrossCollateralRepaymentHistory(String
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public CrossCollateralWallet getCrossCollateralWallet();
 
 @ApiEndpoint (
@@ -75,7 +75,7 @@ public CrossCollateralWallet getCrossCollateralWallet();
 	needSignature = true,
 	parameters = {},
 	mandatory = {}
-}
+)
 public CrossCollateralWalletV2 getCrossCollateralWalletV2();
 
 @ApiEndpoint (
@@ -85,7 +85,7 @@ public CrossCollateralWalletV2 getCrossCollateralWalletV2();
 	needSignature = true,
 	parameters = {Parameters.collateralCoin},
 	mandatory = {false}
-}
+)
 public List<CrossCollateralInformation> getCrossCollateralInformation(String collateralCoin);
 
 @ApiEndpoint (
@@ -95,7 +95,7 @@ public List<CrossCollateralInformation> getCrossCollateralInformation(String col
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin},
 	mandatory = {false, false}
-}
+)
 public List<CrossCollateralInformationV2> getCrossCollateralInformationV2(String loanCoin, String collateralCoin);
 
 @ApiEndpoint (
@@ -105,7 +105,7 @@ public List<CrossCollateralInformationV2> getCrossCollateralInformationV2(String
 	needSignature = true,
 	parameters = {Parameters.collateralCoin, Parameters.amount, Parameters.direction},
 	mandatory = {true, true, true}
-}
+)
 public CalculateRateAfterAdjustCrossCollateralLTV getCalculateRateAfterAdjustCrossCollateralLTV(String collateralCoin, double amount, Enum direction);
 
 @ApiEndpoint (
@@ -115,7 +115,7 @@ public CalculateRateAfterAdjustCrossCollateralLTV getCalculateRateAfterAdjustCro
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin, Parameters.amount, Parameters.direction},
 	mandatory = {true, true, true, true}
-}
+)
 public CalculateRateAfterAdjustCrossCollateralLTVV2 getCalculateRateAfterAdjustCrossCollateralLTVV2(String loanCoin, String collateralCoin, double amount, Enum direction);
 
 @ApiEndpoint (
@@ -125,7 +125,7 @@ public CalculateRateAfterAdjustCrossCollateralLTVV2 getCalculateRateAfterAdjustC
 	needSignature = true,
 	parameters = {Parameters.collateralCoin},
 	mandatory = {true}
-}
+)
 public GetMaxAmountforAdjustCrossCollateralLTV getGetMaxAmountforAdjustCrossCollateralLTV(String collateralCoin);
 
 @ApiEndpoint (
@@ -135,7 +135,7 @@ public GetMaxAmountforAdjustCrossCollateralLTV getGetMaxAmountforAdjustCrossColl
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin},
 	mandatory = {true, true}
-}
+)
 public GetMaxAmountforAdjustCrossCollateralLTVV2 getGetMaxAmountforAdjustCrossCollateralLTVV2(String loanCoin, String collateralCoin);
 
 @ApiEndpoint (
@@ -145,7 +145,7 @@ public GetMaxAmountforAdjustCrossCollateralLTVV2 getGetMaxAmountforAdjustCrossCo
 	needSignature = true,
 	parameters = {Parameters.collateralCoin, Parameters.amount, Parameters.direction},
 	mandatory = {true, true, true}
-}
+)
 public AdjustCrossCollateralLTV postAdjustCrossCollateralLTV(String collateralCoin, double amount, Enum direction);
 
 @ApiEndpoint (
@@ -155,7 +155,7 @@ public AdjustCrossCollateralLTV postAdjustCrossCollateralLTV(String collateralCo
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin, Parameters.amount, Parameters.direction},
 	mandatory = {true, true, true, true}
-}
+)
 public AdjustCrossCollateralLTVV2 postAdjustCrossCollateralLTVV2(String loanCoin, String collateralCoin, double amount, Enum direction);
 
 @ApiEndpoint (
@@ -165,7 +165,7 @@ public AdjustCrossCollateralLTVV2 postAdjustCrossCollateralLTVV2(String loanCoin
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public AdjustCrossCollateralLTVHistory getAdjustCrossCollateralLTVHistory(String loanCoin, String collateralCoin, long startTime, long endTime, long limit);
 
 @ApiEndpoint (
@@ -175,7 +175,7 @@ public AdjustCrossCollateralLTVHistory getAdjustCrossCollateralLTVHistory(String
 	needSignature = true,
 	parameters = {Parameters.loanCoin, Parameters.collateralCoin, Parameters.startTime, Parameters.endTime, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public CrossCollateralLiquidationHistory getCrossCollateralLiquidationHistory(String loanCoin, String collateralCoin, long startTime, long endTime, long limit);
 
 @ApiEndpoint (
@@ -185,7 +185,7 @@ public CrossCollateralLiquidationHistory getCrossCollateralLiquidationHistory(St
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.collateralCoin},
 	mandatory = {true, true}
-}
+)
 public CheckCollateralRepayLimit getCheckCollateralRepayLimit(String coin, String collateralCoin);
 
 @ApiEndpoint (
@@ -195,7 +195,7 @@ public CheckCollateralRepayLimit getCheckCollateralRepayLimit(String coin, Strin
 	needSignature = true,
 	parameters = {Parameters.coin, Parameters.collateralCoin, Parameters.amount},
 	mandatory = {true, true, true}
-}
+)
 public GetCollateralRepayQuote getGetCollateralRepayQuote(String coin, String collateralCoin, double amount);
 
 @ApiEndpoint (
@@ -205,7 +205,7 @@ public GetCollateralRepayQuote getGetCollateralRepayQuote(String coin, String co
 	needSignature = true,
 	parameters = {Parameters.quoteId},
 	mandatory = {true}
-}
+)
 public RepaywithCollateral postRepaywithCollateral(String quoteId);
 
 @ApiEndpoint (
@@ -215,7 +215,7 @@ public RepaywithCollateral postRepaywithCollateral(String quoteId);
 	needSignature = true,
 	parameters = {Parameters.quoteId},
 	mandatory = {true}
-}
+)
 public CollateralRepaymentResult getCollateralRepaymentResult(String quoteId);
 
 @ApiEndpoint (
@@ -225,6 +225,6 @@ public CollateralRepaymentResult getCollateralRepaymentResult(String quoteId);
 	needSignature = true,
 	parameters = {Parameters.collateralCoin, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.limit},
 	mandatory = {false, false, false, false, false}
-}
+)
 public CrossCollateralInterestHistory getCrossCollateralInterestHistory(String collateralCoin, long startTime, long endTime, long current, long limit);
 

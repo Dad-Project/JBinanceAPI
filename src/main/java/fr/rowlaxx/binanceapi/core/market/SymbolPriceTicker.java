@@ -1,25 +1,27 @@
 package fr.rowlaxx.binanceapi.core.market;
 
+import fr.rowlaxx.jsavon.JSavONObject;
+
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.utils.json.BinanceResponseJSON;
-import fr.rowlaxx.binanceapi.utils.json.JsonValue;
-
-public class SymbolPriceTicker extends BinanceResponseJSON{
-	private static final long serialVersionUID = -1331160053511460644L;
+public class SymbolPriceTicker extends JSavONObject {
+	private static final long serialVersionUID = -2096759154175062669L;
 	
-	@JsonValue private String symbol;
-	@JsonValue private double price;
+	//Variables
+	private double price;
+	private String symbol;
 	
-	public SymbolPriceTicker(JSONObject response) {
-		super(response);
+	//Constructeurs
+	public SymbolPriceTicker(JSONObject json) {
+		super(json);
 	}
 	
-	public String getSymbol() {
-		return symbol;
+	//Getters
+	public final double getPrice() {
+		return this.price;
 	}
-
-	public double getPrice() {
-		return price;
+	
+	public final String getSymbol() {
+		return this.symbol;
 	}
 }

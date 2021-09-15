@@ -5,7 +5,7 @@
 	needSignature = true,
 	parameters = {Parameters.transactionType, Parameters.beginTime, Parameters.endTime, Parameters.page, Parameters.rows},
 	mandatory = {true, false, false, false, false}
-}
+)
 public GetFiatDepositWithdrawHistory getGetFiatDepositWithdrawHistory(String transactionType, long beginTime, long endTime, int page, int rows);
 
 @ApiEndpoint (
@@ -15,6 +15,6 @@ public GetFiatDepositWithdrawHistory getGetFiatDepositWithdrawHistory(String tra
 	needSignature = true,
 	parameters = {Parameters.transactionType, Parameters.beginTime, Parameters.endTime, Parameters.page, Parameters.rows},
 	mandatory = {true, false, false, false, false}
-}
+)
 public GetFiatPaymentsHistory getGetFiatPaymentsHistory(String transactionType, long beginTime, long endTime, int page, int rows);
 

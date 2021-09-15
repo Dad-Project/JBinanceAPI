@@ -1,23 +1,27 @@
-package fr.rowlaxx.temp.marketdataendpoints;
-
-import fr.rowlaxx.jsavon.JSavONObject;
+package fr.rowlaxx.binanceapi.core.market;
 
 import org.json.JSONObject;
 
-public class RecentTradesList extends JSavONObject {
-	private static final long serialVersionUID = -4504990920483257735L;
+import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
+
+public abstract class Trade extends JSavONObject {
+	private static final long serialVersionUID = 3119645480784672286L;
 	
 	//Variables
+	@JOValue(key = {"id", "a"})
 	private int id;
+	@JOValue(key = {"isBestMatch", "M"})
 	private boolean isBestMatch;
-	private boolean isBuyerMaker;
+	@JOValue(key = {"price", "p"})
 	private double price;
+	@JOValue(key = {"qty", "q"})
 	private double qty;
-	private double quoteQty;
+	@JOValue(key = {"time", "T"})
 	private long time;
 	
 	//Constructeurs
-	public RecentTradesList(JSONObject json) {
+	public Trade(JSONObject json) {
 		super(json);
 	}
 	
@@ -30,20 +34,12 @@ public class RecentTradesList extends JSavONObject {
 		return this.isBestMatch;
 	}
 	
-	public final boolean isBuyerMaker() {
-		return this.isBuyerMaker;
-	}
-	
 	public final double getPrice() {
 		return this.price;
 	}
 	
 	public final double getQty() {
 		return this.qty;
-	}
-	
-	public final double getQuoteQty() {
-		return this.quoteQty;
 	}
 	
 	public final long getTime() {
