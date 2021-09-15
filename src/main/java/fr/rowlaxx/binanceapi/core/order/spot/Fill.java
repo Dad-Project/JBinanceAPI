@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.spotaccounttrade.neworder2;
+package fr.rowlaxx.binanceapi.core.order.spot;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Fills extends JSavONObject {
+public class Fill extends JSavONObject {
 	private static final long serialVersionUID = 1049772128120402411L;
 	
 	//Variables
@@ -14,7 +14,7 @@ public class Fills extends JSavONObject {
 	private double qty;
 	
 	//Constructeurs
-	public Fills(JSONObject json) {
+	public Fill(JSONObject json) {
 		super(json);
 	}
 	
