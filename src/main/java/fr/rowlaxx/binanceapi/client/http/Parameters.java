@@ -6,6 +6,7 @@ import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
 import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
 
@@ -26,20 +27,20 @@ public enum Parameters {
 	current(Integer.class),
 	direction,
 	email(String.class),
-	enableBlvt,
+	enableBlvt(Boolean.class),
 	endTime(Long.class),
 	featured,
-	fromAccountType,
+	fromAccountType(String.class),
 	fromEmail(String.class),
 	fromId(Long.class),
 	fromSymbol(String.class),
-	futuresType(Long.class),
+	futuresType(FuturesType.class),
 	hashRate,
 	icebergQty(Double.class),
 	id(Long.class),
 	interestBNBBurn,
 	interval(Intervals.class),
-	isFreeze(String.class),
+	isFreeze(Boolean.class),
 	isIsolated,
 	isolatedSymbol,
 	isSortAsc,
@@ -62,7 +63,7 @@ public enum Parameters {
 	orderId(Long.class),
 	orderListId(Long.class),
 	origClientOrderId(String.class),
-	page(Integer.class),
+	page(Integer.class, Long.class),
 	pageIndex,
 	pageSize,
 	poolId(Long.class),
@@ -98,13 +99,13 @@ public enum Parameters {
 	symbols(String[].class, Collection.class),
 	timeInForce,
 	timestamp(Long.class),
-	toAccountType,
+	toAccountType(String.class),
 	toEmail(String.class),
 	tokenName(String.class),
 	toPoolUser,
 	toSymbol(String.class),
 	transactionFeeFlag(Boolean.class),
-	transferDate,
+	transferDate(Long.class),
 	transFrom,
 	transTo,
 	txId,
