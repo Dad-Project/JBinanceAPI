@@ -8,7 +8,7 @@ import java.util.Map;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
 import fr.rowlaxx.jsavon.utils.ReflectionUtils;
 
-public class BinanceAutoHttpRequest {
+public abstract class BinanceAutoHttpRequest implements Cloneable {
 
 	//Methodes
 	final Map<Parameters, Object> getParametersValue() {

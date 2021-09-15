@@ -1,29 +1,32 @@
 package fr.rowlaxx.binanceapi.core.wallet.future;
 
+import fr.rowlaxx.jsavon.JSavONObject;
+
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 public class Asset extends JSavONObject {
-	private static final long serialVersionUID = 5648115132270203784L;
-
-	@JOValue private String asset;
-	@JOValue private double marginBalance, walletBalance;
+	private static final long serialVersionUID = -1699547811207275051L;
 	
+	//Variables
+	private String asset;
+	private double marginBalance;
+	private double walletBalance;
+	
+	//Constructeurs
 	public Asset(JSONObject json) {
 		super(json);
 	}
 	
-	public String getAsset() {
-		return asset;
+	//Getters
+	public final String getAsset() {
+		return this.asset;
 	}
 	
-	public double getMarginBalance() {
-		return marginBalance;
+	public final double getMarginBalance() {
+		return this.marginBalance;
 	}
 	
-	public double getWalletBalance() {
-		return walletBalance;
+	public final double getWalletBalance() {
+		return this.walletBalance;
 	}
 }

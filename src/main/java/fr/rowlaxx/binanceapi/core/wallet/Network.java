@@ -1,19 +1,34 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import org.json.JSONObject;
-
 import fr.rowlaxx.jsavon.JSavONObject;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
-public class Network extends JSavONObject {
-	private static final long serialVersionUID = -8013201329341085363L;
+import org.json.JSONObject;
 
+public class Network extends JSavONObject {
+	private static final long serialVersionUID = 2350702230814448458L;
+	
 	//Variables
-	@JOValue(mandatory = false) private String specialTips;
-	@JOValue private String addressRegex, coin, depositDesc, memoRegex, name, network, withdrawDesc;
-	@JOValue private boolean depositEnable, isDefault, resetAddressStatus, withdrawEnable, sameAddress;
-	@JOValue private int minConfirm, unLockConfirm;
-	@JOValue private double withdrawFee, withdrawIntegerMultiple, withdrawMax, withdrawMin;
+	private String addressRegex;
+	private String coin;
+	private String depositDesc;
+	private boolean depositEnable;
+	private boolean isDefault;
+	private String memoRegex;
+	private int minConfirm;
+	private String name;
+	private String network;
+	private boolean resetAddressStatus;
+	private boolean sameAddress;
+	@JOValue(mandatory = false)
+	private String specialTips;
+	private int unLockConfirm;
+	private String withdrawDesc;
+	private boolean withdrawEnable;
+	private double withdrawFee;
+	private double withdrawIntegerMultiple;
+	private double withdrawMax;
+	private double withdrawMin;
 	
 	//Constructeurs
 	public Network(JSONObject json) {
@@ -21,79 +36,79 @@ public class Network extends JSavONObject {
 	}
 	
 	//Getters
-	public String getAddressRegex() {
-		return addressRegex;
+	public final String getAddressRegex() {
+		return this.addressRegex;
 	}
 	
-	public String getCoin() {
-		return coin;
+	public final String getCoin() {
+		return this.coin;
 	}
 	
-	public String getDepositDesc() {
-		return depositDesc;
+	public final String getDepositDesc() {
+		return this.depositDesc;
 	}
 	
-	public String getMemoRegex() {
-		return memoRegex;
+	public final boolean isDepositEnable() {
+		return this.depositEnable;
 	}
 	
-	public int getMinConfirm() {
-		return minConfirm;
+	public final boolean isDefault() {
+		return this.isDefault;
 	}
 	
-	public String getName() {
-		return name;
+	public final String getMemoRegex() {
+		return this.memoRegex;
 	}
 	
-	public String getNetwork() {
-		return network;
+	public final int getMinConfirm() {
+		return this.minConfirm;
 	}
 	
-	public String getSpecialTips() {
-		return specialTips;
+	public final String getName() {
+		return this.name;
 	}
 	
-	public int getUnLockConfirm() {
-		return unLockConfirm;
+	public final String getNetwork() {
+		return this.network;
 	}
 	
-	public String getWithdrawDesc() {
-		return withdrawDesc;
+	public final boolean isResetAddressStatus() {
+		return this.resetAddressStatus;
 	}
 	
-	public double getWithdrawFee() {
-		return withdrawFee;
+	public final boolean isSameAddress() {
+		return this.sameAddress;
 	}
 	
-	public double getWithdrawIntegerMultiple() {
-		return withdrawIntegerMultiple;
+	public final String getSpecialTips() {
+		return this.specialTips;
 	}
 	
-	public double getWithdrawMax() {
-		return withdrawMax;
+	public final int getUnLockConfirm() {
+		return this.unLockConfirm;
 	}
 	
-	public double getWithdrawMin() {
-		return withdrawMin;
+	public final String getWithdrawDesc() {
+		return this.withdrawDesc;
 	}
 	
-	public boolean isDefault() {
-		return isDefault;
+	public final boolean isWithdrawEnable() {
+		return this.withdrawEnable;
 	}
 	
-	public boolean isDepositEnable() {
-		return depositEnable;
+	public final double getWithdrawFee() {
+		return this.withdrawFee;
 	}
 	
-	public boolean isResetAddressStatus() {
-		return resetAddressStatus;
+	public final double getWithdrawIntegerMultiple() {
+		return this.withdrawIntegerMultiple;
 	}
 	
-	public boolean isSameAddress() {
-		return sameAddress;
+	public final double getWithdrawMax() {
+		return this.withdrawMax;
 	}
 	
-	public boolean isWithdrawEnable() {
-		return withdrawEnable;
+	public final double getWithdrawMin() {
+		return this.withdrawMin;
 	}
 }

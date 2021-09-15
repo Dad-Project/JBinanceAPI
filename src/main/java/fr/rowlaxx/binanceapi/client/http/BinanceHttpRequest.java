@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -200,8 +201,8 @@ public class BinanceHttpRequest {
 	}
 	
 	private final static void append(StringBuilder sb, Object value) {
-		if (value instanceof Number)
-			sb.append( String.format("%.8f", value) );
+		if (value instanceof Double || value instanceof Float)
+			sb.append(String.format(Locale.US, "%.8f", value) );
 		else
 			sb.append(value.toString());
 	}

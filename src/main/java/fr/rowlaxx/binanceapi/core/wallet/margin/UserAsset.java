@@ -3,13 +3,14 @@ package fr.rowlaxx.binanceapi.core.wallet.margin;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.wallet.Balance;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class UserAsset extends Balance {
 	private static final long serialVersionUID = -7794836890023245527L;
 
 	//Variables
-	@JOValue private double borrowed, interest, netAsset;
+	private double borrowed; 
+	private double interest; 
+	private double netAsset;
 	
 	//Constructeurs
 	public UserAsset(JSONObject json) {
@@ -17,15 +18,15 @@ public class UserAsset extends Balance {
 	}
 	
 	//Getters
-	public double getInterest() {
-		return interest;
+	public final double getInterest() {
+		return this.interest;
 	}
 	
-	public double getNetAsset() {
-		return netAsset;
+	public final double getNetAsset() {
+		return this.netAsset;
 	}
 	
-	public double getBorrowed() {
-		return borrowed;
+	public final double getBorrowed() {
+		return this.borrowed;
 	}
 }

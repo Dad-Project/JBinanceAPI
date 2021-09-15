@@ -13,7 +13,9 @@ public class SpotDailyAccountSnapshot extends DailyAccountSnapshot {
 	private static final long serialVersionUID = 1634716526563706889L;
 
 	//Variables
-	@JOValue(path = "data") private double totalAssetOfBtc;
+	@JOValue(path = "data") 
+	private double totalAssetOfBtc;
+	
 	@JOValue(path = "data") 
 	@MapKey(fieldName = "asset")
 	private Map<String, Balance> balances;
@@ -24,15 +26,15 @@ public class SpotDailyAccountSnapshot extends DailyAccountSnapshot {
 	}
 	
 	//Getters
-	public double getTotalAssetOfBtc() {
+	public final double getTotalAssetOfBtc() {
 		return totalAssetOfBtc;
 	}
 	
-	public Map<String, Balance> getBalances() {
-		return balances;
+	public final Map<String, Balance> getBalances() {
+		return this.balances;
 	}
 	
-	public Balance getBalance(String asset) {
-		return balances.get(asset);
+	public final Balance getBalance(String asset) {
+		return this.balances.get(asset);
 	}
 }

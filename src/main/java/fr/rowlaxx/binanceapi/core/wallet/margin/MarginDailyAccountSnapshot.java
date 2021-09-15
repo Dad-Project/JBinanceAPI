@@ -1,19 +1,27 @@
 package fr.rowlaxx.binanceapi.core.wallet.margin;
 
-import java.util.Map;
-
-import org.json.JSONObject;
-
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshot;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
-public class MarginDailyAccountSnapshot extends DailyAccountSnapshot {
-	private static final long serialVersionUID = -628167293791049109L;
+import java.util.Map;
 
+import org.json.JSONObject;
+
+public class MarginDailyAccountSnapshot extends DailyAccountSnapshot {
+	private static final long serialVersionUID = -7974718376590612474L;
+	
 	//Variables
-	@JOValue(path = "data") private double marginLevel, totalAssetOfBtc, totalLiabilityOfBtc, totalNetAssetOfBtc;
-	@JOValue(path = "data")
+	@JOValue(path = "data", mandatory = false) 
+	private Double marginLevel;
+	@JOValue(path = "data") 
+	private double totalAssetOfBtc;
+	@JOValue(path = "data") 
+	private double totalLiabilityOfBtc;
+	@JOValue(path = "data") 
+	private double totalNetAssetOfBtc;
+	
+	@JOValue(path = "data") 
 	@MapKey(fieldName = "asset")
 	private Map<String, UserAsset> userAssets;
 	
@@ -23,23 +31,27 @@ public class MarginDailyAccountSnapshot extends DailyAccountSnapshot {
 	}
 	
 	//Getters
-	public double getTotalAssetOfBtc() {
-		return totalAssetOfBtc;
+	public final double getMarginLevel() {
+		return this.marginLevel;
 	}
 	
-	public double getTotalLiabilityOfBtc() {
-		return totalLiabilityOfBtc;
+	public final double getTotalAssetOfBtc() {
+		return this.totalAssetOfBtc;
 	}
 	
-	public Map<String, UserAsset> getUserAssets() {
-		return userAssets;
+	public final double getTotalLiabilityOfBtc() {
+		return this.totalLiabilityOfBtc;
 	}
 	
-	public double getTotalNetAssetOfBtc() {
-		return totalNetAssetOfBtc;
+	public final double getTotalNetAssetOfBtc() {
+		return this.totalNetAssetOfBtc;
 	}
 	
-	public double getMarginLevel() {
-		return marginLevel;
+	public final Map<String, UserAsset> getUserAssets() {
+		return this.userAssets;
+	}
+	
+	public final UserAsset getUserAsset(String asset) {
+		return this.userAssets.get(asset);
 	}
 }

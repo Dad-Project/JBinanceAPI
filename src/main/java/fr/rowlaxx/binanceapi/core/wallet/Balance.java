@@ -1,17 +1,16 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
+import fr.rowlaxx.jsavon.JSavONObject;
+
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 public class Balance extends JSavONObject {
-	private static final long serialVersionUID = -8794330584396782394L;
-
+	private static final long serialVersionUID = -8246393742905404438L;
+	
 	//Variables
-	@JOValue private String asset;
-	@JOValue private double free;
-	@JOValue private double locked;
+	private String asset;
+	private double free;
+	private double locked;
 	
 	//Constructeurs
 	public Balance(JSONObject json) {
@@ -19,15 +18,15 @@ public class Balance extends JSavONObject {
 	}
 	
 	//Getters
-	public String getAsset() {
-		return asset;
+	public final String getAsset() {
+		return this.asset;
 	}
 	
-	public double getFree() {
-		return free;
+	public final double getFree() {
+		return this.free;
 	}
 	
-	public double getLocked() {
-		return locked;
+	public final double getLocked() {
+		return this.locked;
 	}
 }
