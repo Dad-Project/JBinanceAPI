@@ -1,8 +1,8 @@
 package fr.rowlaxx.binanceapi.interfaces.api.spot;
 
-public interface SpotAPI extends SpotAccountAPI, SpotMarketDataAPI, SpotGeneralAPI, SpotWalletAPI {
+public interface SpotAPI extends SpotTradeAPI, SpotMarketDataAPI, SpotGeneralAPI, SpotWalletAPI {
 
-	default SpotAccountAPI getAccountAPI() {
+	default SpotTradeAPI getTradeAPI() {
 		return this;
 	}
 	

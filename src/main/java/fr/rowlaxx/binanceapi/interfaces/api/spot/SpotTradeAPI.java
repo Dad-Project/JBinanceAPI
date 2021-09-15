@@ -6,7 +6,7 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.core.order.spot.SpotOrderRequest;
 
-public interface SpotAccountAPI {
+public interface SpotTradeAPI {
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/order/test",
