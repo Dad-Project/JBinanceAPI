@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.interfaces.api.subaccount;
+package fr.rowlaxx.binanceapi.interfaces.api;
 
 import java.util.List;
 import java.util.Map;

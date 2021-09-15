@@ -16,6 +16,6 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		client.spot().getGetAPIKeyPermission().print();
+		
 	}	
 }
