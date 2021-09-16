@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core.savings;
+package fr.rowlaxx.binanceapi.core.bswap;
 
 public enum RemoveLiquidityOperationTypes {
 

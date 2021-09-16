@@ -1,26 +1,26 @@
-package fr.rowlaxx.temp.bswapendpoints;
+package fr.rowlaxx.binanceapi.core.general.bswap;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
-import java.util.List;
+import java.util.Set;
 
 import org.json.JSONObject;
 
-public class ListAllSwapPools extends JSavONObject {
+public class SwapPool extends JSavONObject {
 	private static final long serialVersionUID = -8405819638278972559L;
 	
 	//Variables
-	private List<String> assets;
+	private Set<String> assets;
 	private int poolId;
 	private String poolName;
 	
 	//Constructeurs
-	public ListAllSwapPools(JSONObject json) {
+	public SwapPool(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final List<String> getAssets() {
+	public final Set<String> getAssets() {
 		return this.assets;
 	}
 	

@@ -1,11 +1,11 @@
-package fr.rowlaxx.temp.bswapendpoints;
+package fr.rowlaxx.binanceapi.core.bswap;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class RequestQuote extends JSavONObject {
-	private static final long serialVersionUID = 6165908770555428839L;
+public class Swap extends JSavONObject {
+	private static final long serialVersionUID = -338931940600086376L;
 	
 	//Variables
 	private String baseAsset;
@@ -14,10 +14,12 @@ public class RequestQuote extends JSavONObject {
 	private double price;
 	private String quoteAsset;
 	private int quoteQty;
-	private double slippage;
+	private LiquidityOperationStatus status;
+	private int swapId;
+	private long swapTime;
 	
 	//Constructeurs
-	public RequestQuote(JSONObject json) {
+	public Swap(JSONObject json) {
 		super(json);
 	}
 	
@@ -46,7 +48,15 @@ public class RequestQuote extends JSavONObject {
 		return this.quoteQty;
 	}
 	
-	public final double getSlippage() {
-		return this.slippage;
+	public final LiquidityOperationStatus getStatus() {
+		return this.status;
+	}
+	
+	public final int getSwapId() {
+		return this.swapId;
+	}
+	
+	public final long getSwapTime() {
+		return this.swapTime;
 	}
 }

@@ -1,28 +1,28 @@
-package fr.rowlaxx.temp.bswapendpoints;
+package fr.rowlaxx.binanceapi.core.bswap;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetLiquidityOperationRecord extends JSavONObject {
+public class LiquidityOperationRecord extends JSavONObject {
 	private static final long serialVersionUID = -3599987839297542872L;
 	
 	//Variables
-	private String operation;
+	private LiquidityOperations operation;
 	private int operationId;
 	private int poolId;
 	private String poolName;
 	private double shareAmount;
-	private int status;
+	private LiquidityOperationStatus status;
 	private long updateTime;
 	
 	//Constructeurs
-	public GetLiquidityOperationRecord(JSONObject json) {
+	public LiquidityOperationRecord(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final String getOperation() {
+	public final LiquidityOperations getOperation() {
 		return this.operation;
 	}
 	
@@ -42,7 +42,7 @@ public class GetLiquidityOperationRecord extends JSavONObject {
 		return this.shareAmount;
 	}
 	
-	public final int getStatus() {
+	public final LiquidityOperationStatus getStatus() {
 		return this.status;
 	}
 	

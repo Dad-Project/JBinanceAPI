@@ -2,10 +2,10 @@ package fr.rowlaxx.binanceapi.client.http;
 
 import java.util.Collection;
 
+import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
+import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
+import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
-import fr.rowlaxx.binanceapi.core.savings.LiquidityOperationStatus;
-import fr.rowlaxx.binanceapi.core.savings.LiquidityOperations;
-import fr.rowlaxx.binanceapi.core.savings.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
