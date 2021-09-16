@@ -1,19 +1,19 @@
-package fr.rowlaxx.temp.blvtendpoints;
+package fr.rowlaxx.binanceapi.core.wallet.blvt;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetBLVTUserLimitInfo extends JSavONObject {
+public class BLVTUserLimitInfo extends JSavONObject {
 	private static final long serialVersionUID = -2251796388307172118L;
 	
 	//Variables
 	private String tokenName;
-	private int userDailyTotalPurchaseLimit;
-	private int userDailyTotalRedeemLimit;
+	private double userDailyTotalPurchaseLimit;
+	private double userDailyTotalRedeemLimit;
 	
 	//Constructeurs
-	public GetBLVTUserLimitInfo(JSONObject json) {
+	public BLVTUserLimitInfo(JSONObject json) {
 		super(json);
 	}
 	
@@ -22,11 +22,11 @@ public class GetBLVTUserLimitInfo extends JSavONObject {
 		return this.tokenName;
 	}
 	
-	public final int getUserDailyTotalPurchaseLimit() {
+	public final double getUserDailyTotalPurchaseLimit() {
 		return this.userDailyTotalPurchaseLimit;
 	}
 	
-	public final int getUserDailyTotalRedeemLimit() {
+	public final double getUserDailyTotalRedeemLimit() {
 		return this.userDailyTotalRedeemLimit;
 	}
 }

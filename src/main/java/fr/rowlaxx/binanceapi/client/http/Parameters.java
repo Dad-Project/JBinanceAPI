@@ -2,10 +2,10 @@ package fr.rowlaxx.binanceapi.client.http;
 
 import java.util.Collection;
 
-import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperation;
-import fr.rowlaxx.binanceapi.core.api.bswap.LiquidityOperationStatus;
-import fr.rowlaxx.binanceapi.core.api.bswap.RemoveLiquidityOperationType;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.savings.LiquidityOperationStatus;
+import fr.rowlaxx.binanceapi.core.savings.LiquidityOperations;
+import fr.rowlaxx.binanceapi.core.savings.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
@@ -58,7 +58,7 @@ public enum Parameters {
 	newClientOrderId(String.class),
 	newOrderRespType,
 	offset(Integer.class),
-	operation(LiquidityOperation.class),
+	operation(LiquidityOperations.class),
 	operationId(Long.class),
 	orderId(Long.class),
 	orderListId(Long.class),
@@ -109,7 +109,7 @@ public enum Parameters {
 	transFrom,
 	transTo,
 	txId,
-	type(RemoveLiquidityOperationType.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class),
+	type(RemoveLiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class),
 	userName,
 	vipLevel,
 	withdrawOrderId(String.class),

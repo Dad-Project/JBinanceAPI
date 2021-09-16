@@ -1,18 +1,17 @@
-package fr.rowlaxx.temp.blvtendpoints;
+package fr.rowlaxx.binanceapi.core.general.blvt;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.blvtendpoints.getblvtinfo.CurrentBaskets;
 
 import java.util.List;
 
 import org.json.JSONObject;
 
-public class GetBLVTInfo extends JSavONObject {
+public class BLVTInfo extends JSavONObject {
 	private static final long serialVersionUID = -1469211921135121615L;
 	
 	//Variables
 	private String basket;
-	private List<CurrentBaskets> currentBaskets;
+	private List<Basket> currentBaskets;
 	private double dailyManagementFee;
 	private double dailyPurchaseLimit;
 	private double dailyRedeemLimit;
@@ -28,7 +27,7 @@ public class GetBLVTInfo extends JSavONObject {
 	private String underlying;
 	
 	//Constructeurs
-	public GetBLVTInfo(JSONObject json) {
+	public BLVTInfo(JSONObject json) {
 		super(json);
 	}
 	
@@ -37,7 +36,7 @@ public class GetBLVTInfo extends JSavONObject {
 		return this.basket;
 	}
 	
-	public final List<CurrentBaskets> getCurrentBaskets() {
+	public final List<Basket> getCurrentBaskets() {
 		return this.currentBaskets;
 	}
 	
