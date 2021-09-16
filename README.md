@@ -52,3 +52,19 @@ T response = client.getHttpClient().execute(request);
   
 //Parse the json
 ```
+# Donation
+You like my work ? You can give me few crypto here : 
+As I'm a student, any help will be appreciated
+
+### For gentleman
+BTC : 1JJZrkZEynrCqoPrJWKbtGLSyJziDmKKka
+### For optimistics
+ETH : 0xe349abf167a8d265785b256666737ecd5720d4bd
+### BNB Love
+BNB : bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23  
+TAG : 107019672
+### Some XRP ?
+XRP : rEb8TK3gBgk5auZkwc6sHnwrGVJH8DuaLh  
+TAG : 109836101
+### Maybe you prefer ADA ?
+ADA : DdzFFzCqrht7QmsyECRJsZiM3neGxrGFjhrkDHjCnjT1w45oeVeNKf1KwBQWcVcPCcAuz7kfzbMhTG8BEpgX7FRy25XdTsk4RfM6YXqC
