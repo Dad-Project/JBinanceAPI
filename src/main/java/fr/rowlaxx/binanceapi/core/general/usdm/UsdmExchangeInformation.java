@@ -14,7 +14,6 @@ public class UsdmExchangeInformation extends SimpleExchangeInformation<UsdmSymbo
 	//Variables
 	@JOValue private UsdmFuturesType futuresType;
 	
-	@JOValue 
 	@MapKey(fieldName = "asset")
 	private Map<String, Asset> assets;
 	

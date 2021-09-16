@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filters.Type;
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.ManualValue;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public abstract class Symbol extends JSavONObject {
@@ -17,6 +18,7 @@ public abstract class Symbol extends JSavONObject {
 	@JOValue private String symbol;
 	@JOValue private String quoteAsset;
 
+	@ManualValue
 	private Map<Filters, Filter> filters;
 	
 	//Constructeurs

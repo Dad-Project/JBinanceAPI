@@ -203,8 +203,13 @@ public class BinanceHttpRequest {
 	private final static void append(StringBuilder sb, Object value) {
 		if (value instanceof Double || value instanceof Float)
 			sb.append(String.format(Locale.US, "%.8f", value) );
-		else
-			sb.append(value.toString());
+		else{
+			String s = value.toString();
+			s = s.replaceAll("\"", "%" + (int)'"');
+			s = s.replaceAll(":", "%" + (int)':');
+			s = s.replaceAll(",", "%" + (int)',');
+			sb.append(s);
+		}
 	}
 	
 	public final Set<Object> getParameters(Parameters name){

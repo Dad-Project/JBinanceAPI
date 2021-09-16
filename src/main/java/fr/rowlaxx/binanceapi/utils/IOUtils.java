@@ -19,7 +19,8 @@ public class IOUtils {
 					sb.append( (char)buffer[i] );
 			return sb.toString();
 		}finally {
-			is.close();
+			if (is != null)
+				is.close();
 		}
 	}
 	

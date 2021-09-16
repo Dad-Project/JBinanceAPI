@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.client;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
@@ -32,6 +33,11 @@ public class BinanceClient {
 	
 	public static BinanceClient create(final String apiKey, final String apiSecret) {
 		return new BinanceClient(apiKey, apiSecret);
+	}
+	
+	public static BinanceClient create(final BinanceCredenticals credenticals) {
+		Objects.requireNonNull(credenticals, "credenticals may not be null.");
+		return new BinanceClient(credenticals);
 	}
 	
 	//Variables	

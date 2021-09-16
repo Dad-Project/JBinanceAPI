@@ -9,18 +9,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filters.Type;
+import fr.rowlaxx.jsavon.annotations.ManualValue;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public abstract class SimpleExchangeInformation<T extends Symbol> extends ExchangeInformation<T> {
 	private static final long serialVersionUID = 8865485419600969411L;
 
 	//Variables
-	@JOValue private List<RateLimit> rateLimits;
-	@JOValue
+	private List<RateLimit> rateLimits;
 	@MapKey(fieldName = "symbol")
 	private Map<String, T> symbols;
 	
+	@ManualValue
 	private Map<Filters, Filter> exchangeFilters;
 	
 	//Constructeurs

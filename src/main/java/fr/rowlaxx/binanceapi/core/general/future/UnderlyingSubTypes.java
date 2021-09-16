@@ -7,5 +7,6 @@ public enum UnderlyingSubTypes {
 	NFT,
 	HOT,
 	BSC,
+	INDEX
 	
 }

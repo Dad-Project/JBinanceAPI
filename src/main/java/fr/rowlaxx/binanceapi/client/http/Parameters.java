@@ -2,14 +2,17 @@ package fr.rowlaxx.binanceapi.client.http;
 
 import java.util.Collection;
 
+import org.json.JSONObject;
+
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
 import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.core.order.OrderSide;
+import fr.rowlaxx.binanceapi.core.order.TimeInForce;
+import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
-import fr.rowlaxx.binanceapi.core.wallet.TransferType;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
 
 public enum Parameters {
@@ -21,6 +24,7 @@ public enum Parameters {
 	archived,
 	asset(String.class, String[].class, Collection.class),
 	baseAsset(String.class),
+	batchOrders(JSONObject.class),
 	beginTime(Long.class),
 	coin(String.class),
 	collateralAmount,
@@ -72,10 +76,10 @@ public enum Parameters {
 	pageSize,
 	poolId(Long.class),
 	positionId,
-	price(Double.class),
+	price(Double.class, String.class),
 	productId,
 	projectId,
-	quantity(Double.class),
+	quantity(Double.class, String.class),
 	quoteAsset(String.class),
 	quoteId,
 	quoteOrderQty(Double.class),
@@ -83,7 +87,7 @@ public enum Parameters {
 	recvWindow(Integer.class),
 	rows(Integer.class),
 	shareAmount(Double.class),
-	side,
+	side(OrderSide.class),
 	sideEffectType,
 	signature(String.class),
 	size(Long.class, Integer.class),
@@ -103,7 +107,7 @@ public enum Parameters {
 	swapId(Long.class),
 	symbol(String.class),
 	symbols(String[].class, Collection.class),
-	timeInForce,
+	timeInForce(TimeInForce.class),
 	timestamp(Long.class),
 	toAccountType(String.class),
 	toEmail(String.class),
@@ -117,7 +121,7 @@ public enum Parameters {
 	transFrom,
 	transTo,
 	txId,
-	type(RemoveLiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class),
+	type(RemoveLiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class),
 	userName,
 	vipLevel,
 	withdrawOrderId(String.class),
