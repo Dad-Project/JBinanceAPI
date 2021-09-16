@@ -1,4 +1,55 @@
 # JBinanceAPI
-A simple Binance Java API
+A simple Binance Java API that use reflection for sending request & for converting JSON into object
 
-This is a simple java Binance client that support Spot, Margin, Future (Coin & Usd), Options, BSwap, Savings, BLVT, Fiat, C2C, Mining and Master Account features.
+## Creating a client
+
+### Guest
+```java
+final BinanceClient client = BinanceClient.createGuest();
+```
+
+### With Api Key & Api Secret
+
+```java
+BinanceCredenticals credenticals = new BinanceCredenticals(apiKey, apiSecret);
+  
+BinanceClient client = BinanceCient.create(credenticals); 
+```
+OR
+```java
+final BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
+```
+
+## Implemented features
+
+* BLVT
+* C2C
+* Fiat
+* Spot (Wallet)
+* Spot (Market)
+* Master & Sub Account
+
+## Unimplemented features (will be implemented soon)
+
+* Spot (Trade)
+* Futures USD Margined
+* Futures Coin Margined
+* Options
+* Minings
+* Savings
+* Margin
+* Websockets
+
+## Sending a custom request
+```java
+BinanceHttpRequest request = BinanceHttpRequest.newBuilder()
+        .setEndpoint(...)
+        .setBaseEndpoint(...)
+        .//Customize your request
+        .build()
+  
+//T can be a JSONObject or a JSONArray
+T response = client.getHttpClient().execute(request);
+  
+//Parse the json
+```
