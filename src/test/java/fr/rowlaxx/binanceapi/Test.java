@@ -16,7 +16,7 @@ public class Test {
 				
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
-		
-		client.c2c().getGetC2CTradeHistory(OrderSide.BUY, null, null, null, null);
+	
+		client.fiat().getFiatBuyHistory(null, null, null, null);
 	}	
 }

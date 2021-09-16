@@ -9,6 +9,7 @@ import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.core.order.OrderSide;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
+import fr.rowlaxx.binanceapi.core.wallet.TransferType;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
 
 public enum Parameters {
@@ -20,6 +21,7 @@ public enum Parameters {
 	archived,
 	asset(String.class, String[].class, Collection.class),
 	baseAsset(String.class),
+	beginTime(Long.class),
 	coin(String.class),
 	collateralAmount,
 	collateralCoin,
@@ -110,6 +112,7 @@ public enum Parameters {
 	toSymbol(String.class),
 	tradeType(OrderSide.class),
 	transactionFeeFlag(Boolean.class),
+	transactionType(String.class),
 	transferDate(Long.class),
 	transFrom,
 	transTo,
