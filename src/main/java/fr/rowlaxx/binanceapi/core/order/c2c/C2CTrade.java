@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.c2cendpoints.getc2ctradehistory;
+package fr.rowlaxx.binanceapi.core.order.c2c;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Data extends JSavONObject {
+public class C2CTrade extends JSavONObject {
 	private static final long serialVersionUID = 8374233288495381052L;
 	
 	//Variables
@@ -24,7 +24,7 @@ public class Data extends JSavONObject {
 	private double unitPrice;
 	
 	//Constructeurs
-	public Data(JSONObject json) {
+	public C2CTrade(JSONObject json) {
 		super(json);
 	}
 	

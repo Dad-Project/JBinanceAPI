@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutionException;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.order.OrderSide;
 
 public class Test {
 
@@ -16,7 +17,6 @@ public class Test {
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
 		
-		client.blvt().getBLVTUserLimitInfo("BTCUP");
-		
+		client.c2c().getGetC2CTradeHistory(OrderSide.BUY, null, null, null, null);
 	}	
 }

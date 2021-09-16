@@ -6,6 +6,7 @@ import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
 import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.order.OrderSide;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
@@ -29,6 +30,7 @@ public enum Parameters {
 	email(String.class),
 	enableBlvt(Boolean.class),
 	endTime(Long.class),
+	endTimestamp(Long.class),
 	featured,
 	fromAccountType(String.class),
 	fromEmail(String.class),
@@ -77,6 +79,7 @@ public enum Parameters {
 	quoteOrderQty(Double.class),
 	quoteQty(Double.class),
 	recvWindow(Integer.class),
+	rows(Integer.class),
 	shareAmount(Double.class),
 	side,
 	sideEffectType,
@@ -87,6 +90,7 @@ public enum Parameters {
 	sortColumn,
 	spotBNBBurn,
 	startTime(Long.class),
+	startTimestamp(Long.class),
 	status(LiquidityOperationStatus.class, Integer.class),
 	stopClientOrderId(String.class),
 	stopIcebergQty(Double.class),
@@ -104,6 +108,7 @@ public enum Parameters {
 	tokenName(String.class),
 	toPoolUser,
 	toSymbol(String.class),
+	tradeType(OrderSide.class),
 	transactionFeeFlag(Boolean.class),
 	transferDate(Long.class),
 	transFrom,
