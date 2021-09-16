@@ -17,5 +17,6 @@ public class Test {
 		client.login();
 		
 		client.blvt().getBLVTUserLimitInfo("BTCUP");
+		
 	}	
 }
