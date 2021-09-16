@@ -53,9 +53,8 @@ T response = client.getHttpClient().execute(request);
 //Parse the json
 ```
 # Donation
-You like my work ? You can give me few crypto here : 
+You like my work ? You can give me few crypto  
 As I'm a student, any help will be appreciated
-
 ### For gentleman
 BTC : 1JJZrkZEynrCqoPrJWKbtGLSyJziDmKKka
 ### For optimistics
