@@ -5,19 +5,18 @@ A simple Binance Java API that use reflection for sending request & for converti
 
 ### Guest
 ```java
-final BinanceClient client = BinanceClient.createGuest();
+BinanceClient client = BinanceClient.createGuest();
 ```
 
 ### With Api Key & Api Secret
 
 ```java
 BinanceCredenticals credenticals = new BinanceCredenticals(apiKey, apiSecret);
-  
 BinanceClient client = BinanceCient.create(credenticals); 
 ```
-OR
+or
 ```java
-final BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
+BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 ```
 
 ## Implemented features
