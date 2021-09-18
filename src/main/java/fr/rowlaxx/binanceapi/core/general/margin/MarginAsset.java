@@ -1,11 +1,11 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.general.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetAllMarginAssets extends JSavONObject {
-	private static final long serialVersionUID = 1636244035048821730L;
+public class MarginAsset extends JSavONObject {
+	private static final long serialVersionUID = -8493114889588569945L;
 	
 	//Variables
 	private String assetFullName;
@@ -16,7 +16,7 @@ public class GetAllMarginAssets extends JSavONObject {
 	private double userMinRepay;
 	
 	//Constructeurs
-	public GetAllMarginAssets(JSONObject json) {
+	public MarginAsset(JSONObject json) {
 		super(json);
 	}
 	

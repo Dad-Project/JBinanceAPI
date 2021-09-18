@@ -50,7 +50,7 @@ public enum Parameters {
 	interestBNBBurn,
 	interval(Intervals.class),
 	isFreeze(Boolean.class),
-	isIsolated,
+	isIsolated(Boolean.class),
 	isolatedSymbol,
 	isSortAsc,
 	lendingType,

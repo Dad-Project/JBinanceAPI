@@ -1,12 +1,17 @@
 package fr.rowlaxx.binanceapi.interfaces.api;
 
 import java.util.List;
+import java.util.Map;
 
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.core.general.margin.CrossMarginPair;
+import fr.rowlaxx.binanceapi.core.general.margin.MarginAsset;
+import fr.rowlaxx.binanceapi.core.market.margin.MarginPriceIndex;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public interface MarginAPI {
 
@@ -29,7 +34,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isIsolated, Parameters.symbol, Parameters.amount},
 			mandatory = {true, false, false, true}
 	)
-	public MarginAccountBorrow postMarginAccountBorrow(String asset, String isIsolated, String symbol, double amount);
+	@RedirectResponse(path = "tranId")
+	public long marginAccountBorrow(String asset, Boolean isIsolated, String symbol, double amount);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/repay",
@@ -39,7 +45,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isIsolated, Parameters.symbol, Parameters.amount},
 			mandatory = {true, false, false, true}
 	)
-	public MarginAccountRepay postMarginAccountRepay(String asset, String isIsolated, String symbol, double amount);
+	@RedirectResponse(path = "tranId")
+	public long marginAccountRepay(String asset, Boolean isIsolated, String symbol, double amount);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/asset",
@@ -49,7 +56,7 @@ public interface MarginAPI {
 			parameters = {Parameters.asset},
 			mandatory = {true}
 	)
-	public QueryMarginAsset getQueryMarginAsset(String asset);
+	public MarginAsset getMarginAsset(String asset);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/pair",
@@ -59,7 +66,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public QueryCrossMarginPair getQueryCrossMarginPair(String symbol);
+	public CrossMarginPair getCrossMarginPair(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/allAssets",
@@ -69,7 +76,8 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<GetAllMarginAssets> getGetAllMarginAssets();
+	@MapKey(fieldName = "assetName")
+	public Map<String, MarginAsset> getMarginAssets();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/allPairs",
@@ -79,7 +87,8 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<GetAllCrossMarginPairs> getGetAllCrossMarginPairs();
+	@MapKey(fieldName = "symbol")
+	public Map<String, CrossMarginPair> getGetAllCrossMarginPairs();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/priceIndex",
@@ -89,7 +98,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public QueryMarginPriceIndex getQueryMarginPriceIndex(String symbol);
+	public MarginPriceIndex getMarginPriceIndex(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
