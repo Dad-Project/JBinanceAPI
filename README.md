@@ -31,7 +31,7 @@ JSavON          https://github.com/RowlaxX/JSavON
 
 # Creating a client
 
-### As Guest
+### As guest
 ```java
 BinanceClient client = BinanceClient.createGuest();
 ```
