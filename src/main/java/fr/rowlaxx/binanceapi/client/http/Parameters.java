@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
 import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
+import fr.rowlaxx.binanceapi.core.future.Direction;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.core.order.OrderSide;
 import fr.rowlaxx.binanceapi.core.order.TimeInForce;
@@ -27,12 +28,12 @@ public enum Parameters {
 	batchOrders(JSONObject.class),
 	beginTime(Long.class),
 	coin(String.class),
-	collateralAmount,
-	collateralCoin,
+	collateralAmount(Double.class),
+	collateralCoin(String.class),
 	configId,
 	cost(Double.class),
-	current(Integer.class),
-	direction,
+	current(Integer.class, Long.class),
+	direction(Direction.class),
 	email(String.class),
 	enableBlvt(Boolean.class),
 	endTime(Long.class),
@@ -58,7 +59,7 @@ public enum Parameters {
 	limitIcebergQty(Double.class),
 	listClientOrderId(String.class),
 	listenKey(String.class),
-	loanCoin,
+	loanCoin(String.class),
 	lot,
 	name(String.class),
 	needBtcValuation(Boolean.class),
@@ -81,7 +82,7 @@ public enum Parameters {
 	projectId,
 	quantity(Double.class, String.class),
 	quoteAsset(String.class),
-	quoteId,
+	quoteId(String.class),
 	quoteOrderQty(Double.class),
 	quoteQty(Double.class),
 	recvWindow(Integer.class),

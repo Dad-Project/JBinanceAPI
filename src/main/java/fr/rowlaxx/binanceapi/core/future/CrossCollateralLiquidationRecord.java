@@ -1,10 +1,11 @@
-package fr.rowlaxx.temp.futures.crosscollateralliquidationhistory;
+package fr.rowlaxx.binanceapi.core.future;
 
+import fr.rowlaxx.binanceapi.core.order.OrderStatus;
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
+public class CrossCollateralLiquidationRecord extends JSavONObject {
 	private static final long serialVersionUID = 1209581111247235310L;
 	
 	//Variables
@@ -14,10 +15,10 @@ public class Rows extends JSavONObject {
 	private long forceLiquidationStartTime;
 	private double restCollateralAmountAfterLiquidation;
 	private double restLoanAmount;
-	private String status;
+	private OrderStatus status;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public CrossCollateralLiquidationRecord(JSONObject json) {
 		super(json);
 	}
 	
@@ -46,7 +47,7 @@ public class Rows extends JSavONObject {
 		return this.restLoanAmount;
 	}
 	
-	public final String getStatus() {
+	public final OrderStatus getStatus() {
 		return this.status;
 	}
 }

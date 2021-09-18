@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.futures.crosscollateralinteresthistory;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
+public class CrossCollateralInterestRecord extends JSavONObject {
 	private static final long serialVersionUID = -5696793126687215386L;
 	
 	//Variables
@@ -17,7 +17,7 @@ public class Rows extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public CrossCollateralInterestRecord(JSONObject json) {
 		super(json);
 	}
 	

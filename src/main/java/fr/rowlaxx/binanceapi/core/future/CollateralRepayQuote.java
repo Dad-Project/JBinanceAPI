@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetCollateralRepayQuote extends JSavONObject {
+public class CollateralRepayQuote extends JSavONObject {
 	private static final long serialVersionUID = 560272868947843889L;
 	
 	//Variables
@@ -14,7 +14,7 @@ public class GetCollateralRepayQuote extends JSavONObject {
 	private String quoteId;
 	
 	//Constructeurs
-	public GetCollateralRepayQuote(JSONObject json) {
+	public CollateralRepayQuote(JSONObject json) {
 		super(json);
 	}
 	

@@ -1,18 +1,18 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetMaxAmountforAdjustCrossCollateralLTVV2 extends JSavONObject {
-	private static final long serialVersionUID = 1260395813316589932L;
+public class MaxAmount extends JSavONObject {
+	private static final long serialVersionUID = -4481165629594289388L;
 	
 	//Variables
 	private double maxInAmount;
 	private double maxOutAmount;
 	
 	//Constructeurs
-	public GetMaxAmountforAdjustCrossCollateralLTVV2(JSONObject json) {
+	public MaxAmount(JSONObject json) {
 		super(json);
 	}
 	

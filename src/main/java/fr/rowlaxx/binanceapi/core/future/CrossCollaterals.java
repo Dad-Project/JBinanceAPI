@@ -1,6 +1,7 @@
-package fr.rowlaxx.temp.futures.crosscollateralwalletv2;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
@@ -13,6 +14,7 @@ public class CrossCollaterals extends JSavONObject {
 	private double interest;
 	private double interestFreeLimitUsed;
 	private double loanAmount;
+	@JOValue(mandatory = false)
 	private String loanCoin;
 	private double locked;
 	private double principalForInterest;

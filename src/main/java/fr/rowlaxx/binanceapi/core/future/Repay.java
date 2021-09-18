@@ -1,25 +1,25 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class RepaywithCollateral extends JSavONObject {
-	private static final long serialVersionUID = 1143586850625445974L;
+public class Repay extends JSavONObject {
+	private static final long serialVersionUID = 8493731377993148816L;
 	
 	//Variables
-	private int amount;
+	private double amount;
 	private String coin;
 	private String collateralCoin;
-	private String quoteId;
+	private long repayId;
 	
 	//Constructeurs
-	public RepaywithCollateral(JSONObject json) {
+	public Repay(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final int getAmount() {
+	public final double getAmount() {
 		return this.amount;
 	}
 	
@@ -31,7 +31,7 @@ public class RepaywithCollateral extends JSavONObject {
 		return this.collateralCoin;
 	}
 	
-	public final String getQuoteId() {
-		return this.quoteId;
+	public final long getRepayId() {
+		return this.repayId;
 	}
 }

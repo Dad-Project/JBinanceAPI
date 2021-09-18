@@ -1,21 +1,24 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
-public class AdjustCrossCollateralLTVV2 extends JSavONObject {
+public class AdjustCrossCollateral extends JSavONObject {
 	private static final long serialVersionUID = -7246380880745070984L;
 	
 	//Variables
 	private double amount;
 	private String collateralCoin;
-	private String direction;
+	private Direction direction;
+	@JOValue(mandatory = false)
 	private String loanCoin;
+	@JOValue(key = {"time", "adjustTime"})
 	private long time;
 	
 	//Constructeurs
-	public AdjustCrossCollateralLTVV2(JSONObject json) {
+	public AdjustCrossCollateral(JSONObject json) {
 		super(json);
 	}
 	
@@ -28,7 +31,7 @@ public class AdjustCrossCollateralLTVV2 extends JSavONObject {
 		return this.collateralCoin;
 	}
 	
-	public final String getDirection() {
+	public final Direction getDirection() {
 		return this.direction;
 	}
 	

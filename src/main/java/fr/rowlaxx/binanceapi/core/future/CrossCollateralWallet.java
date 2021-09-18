@@ -1,14 +1,13 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.futures.crosscollateralwalletv2.CrossCollaterals;
 
 import java.util.List;
 
 import org.json.JSONObject;
 
-public class CrossCollateralWalletV2 extends JSavONObject {
-	private static final long serialVersionUID = -171019312477661538L;
+public class CrossCollateralWallet extends JSavONObject {
+	private static final long serialVersionUID = 608297379902553732L;
 	
 	//Variables
 	private String asset;
@@ -19,7 +18,7 @@ public class CrossCollateralWalletV2 extends JSavONObject {
 	private double totalInterest;
 	
 	//Constructeurs
-	public CrossCollateralWalletV2(JSONObject json) {
+	public CrossCollateralWallet(JSONObject json) {
 		super(json);
 	}
 	

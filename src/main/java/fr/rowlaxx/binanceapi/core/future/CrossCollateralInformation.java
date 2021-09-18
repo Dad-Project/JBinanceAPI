@@ -1,10 +1,11 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
-public class CrossCollateralInformationV2 extends JSavONObject {
+public class CrossCollateralInformation extends JSavONObject {
 	private static final long serialVersionUID = -7215370812697379318L;
 	
 	//Variables
@@ -13,12 +14,13 @@ public class CrossCollateralInformationV2 extends JSavONObject {
 	private int interestGracePeriod;
 	private double interestRate;
 	private double liquidationCollateralRate;
+	@JOValue(mandatory = false)
 	private String loanCoin;
 	private double marginCallCollateralRate;
 	private double rate;
 	
 	//Constructeurs
-	public CrossCollateralInformationV2(JSONObject json) {
+	public CrossCollateralInformation(JSONObject json) {
 		super(json);
 	}
 	

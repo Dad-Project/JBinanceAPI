@@ -1,10 +1,11 @@
-package fr.rowlaxx.temp.futures;
+package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
-public class BorrowForCrossCollateral extends JSavONObject {
+public class Borrow extends JSavONObject {
 	private static final long serialVersionUID = 2063292274424751843L;
 	
 	//Variables
@@ -13,10 +14,11 @@ public class BorrowForCrossCollateral extends JSavONObject {
 	private String coin;
 	private double collateralAmount;
 	private String collateralCoin;
+	@JOValue(key = {"time", "confirmedTime"})
 	private long time;
 	
 	//Constructeurs
-	public BorrowForCrossCollateral(JSONObject json) {
+	public Borrow(JSONObject json) {
 		super(json);
 	}
 	
