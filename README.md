@@ -1,7 +1,7 @@
 # JBinanceAPI
 A complete Binance Java API that use reflection for sending request & for converting JSON into object with JSavON.  
-Please note that this library is still in early stage and a lot of endpoints need to be tested.
-If you find any bug, please report it in the issues section (I will fix it in a short amount of time)
+Please note that this library is still in early stage and a lot of endpoints needs to be tested.
+If you find a bug, please report it in the issues section (I will fix it in a short amount of time)
 
 Also, if you like this library, consider donating me a few bucks. It will help me a lot.
 
