@@ -1,5 +1,5 @@
 # JBinanceAPI (Early stage)
-A Binance Java API that use reflection for sending request & for converting JSON into object
+A complete Binance Java API that use reflection for sending request & for converting JSON into object
 
 # Implemented features
 
