@@ -53,7 +53,7 @@ SpotOrderRequest order = NewOrderRequest.spot()
         .setQuantity(0.001)
         .build()
 
-client.spot().postOrder(order);
+SpotOrder response = client.spot().postOrder(order);
 ```
 
 # Getting Candlesticks
