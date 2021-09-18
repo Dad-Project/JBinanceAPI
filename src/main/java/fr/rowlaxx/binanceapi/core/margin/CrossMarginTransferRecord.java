@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade.getcrossmargintransferhistory;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
+public class CrossMarginTransferRecord extends JSavONObject {
 	private static final long serialVersionUID = 4974505064584104434L;
 	
 	//Variables
@@ -16,7 +16,7 @@ public class Rows extends JSavONObject {
 	private String type;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public CrossMarginTransferRecord(JSONObject json) {
 		super(json);
 	}
 	

@@ -1,16 +1,14 @@
-package fr.rowlaxx.temp.marginaccounttrade.queryrepayrecord;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
-	private static final long serialVersionUID = -2983885789800198103L;
+public class LoanRecord extends JSavONObject {
+	private static final long serialVersionUID = 5995803459195148862L;
 	
 	//Variables
-	private double amount;
 	private String asset;
-	private double interest;
 	private String isolatedSymbol;
 	private double principal;
 	private String status;
@@ -18,21 +16,13 @@ public class Rows extends JSavONObject {
 	private long txId;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public LoanRecord(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final double getAmount() {
-		return this.amount;
-	}
-	
 	public final String getAsset() {
 		return this.asset;
-	}
-	
-	public final double getInterest() {
-		return this.interest;
 	}
 	
 	public final String getIsolatedSymbol() {

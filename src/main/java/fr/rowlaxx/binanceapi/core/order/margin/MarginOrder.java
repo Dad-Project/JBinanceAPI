@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.order.margin;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.order.spot.BasicSpotOrder;
+import fr.rowlaxx.binanceapi.core.order.spot.SpotOrder;
 
-public class MarginOrder extends BasicSpotOrder {
+public class MarginOrder extends SpotOrder {
 	private static final long serialVersionUID = -7971537535231382670L;
 
 	//Variables

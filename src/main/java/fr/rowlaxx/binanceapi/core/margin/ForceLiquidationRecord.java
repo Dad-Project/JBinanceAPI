@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade.getforceliquidationrecord;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
+public class ForceLiquidationRecord extends JSavONObject {
 	private static final long serialVersionUID = 4488410859688809636L;
 	
 	//Variables
@@ -20,7 +20,7 @@ public class Rows extends JSavONObject {
 	private long updatedTime;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public ForceLiquidationRecord(JSONObject json) {
 		super(json);
 	}
 	

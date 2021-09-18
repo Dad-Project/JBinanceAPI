@@ -14,7 +14,6 @@ public abstract class FutureOrder extends BasicOrder<FutureOrderTypes> {
 	private double avgPrice;
 	private boolean reduceOnly;
 	private PositionSides positionSide;
-	private double stopPrice;
 	private boolean closePosition;
 	private FutureOrderTypes origType;
 	@JOValue(mandatory = false)
@@ -24,8 +23,6 @@ public abstract class FutureOrder extends BasicOrder<FutureOrderTypes> {
 	private Double priceRate;
 	@JOValue(mandatory = false)
 	private Boolean priceProtect;
-	@JOValue(mandatory = false)
-	private Long time;
 	
 	//Constructeurs
 	public FutureOrder(JSONObject json) {
@@ -67,14 +64,6 @@ public abstract class FutureOrder extends BasicOrder<FutureOrderTypes> {
 	
 	public final Double getPriceRate() {
 		return priceRate;
-	}
-	
-	public final double getStopPrice() {
-		return stopPrice;
-	}
-	
-	public final long getTime() {
-		return time;
 	}
 	
 	public final WorkingType getWorkingType() {

@@ -1,13 +1,14 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.margin;
 
+import fr.rowlaxx.binanceapi.core.wallet.margin.UserAsset;
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.marginaccounttrade.querycrossmarginaccountdetails.UserAssets;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 
-import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-public class QueryCrossMarginAccountDetails extends JSavONObject {
+public class CrossMarginAccountDetails extends JSavONObject {
 	private static final long serialVersionUID = -8707527584962892528L;
 	
 	//Variables
@@ -18,10 +19,11 @@ public class QueryCrossMarginAccountDetails extends JSavONObject {
 	private double totalNetAssetOfBtc;
 	private boolean tradeEnabled;
 	private boolean transferEnabled;
-	private List<UserAssets> userAssets;
+	@MapKey(fieldName = "asset")
+	private Map<String, UserAsset> userAssets;
 	
 	//Constructeurs
-	public QueryCrossMarginAccountDetails(JSONObject json) {
+	public CrossMarginAccountDetails(JSONObject json) {
 		super(json);
 	}
 	
@@ -54,7 +56,11 @@ public class QueryCrossMarginAccountDetails extends JSavONObject {
 		return this.transferEnabled;
 	}
 	
-	public final List<UserAssets> getUserAssets() {
+	public final Map<String, UserAsset> getUserAssets() {
 		return this.userAssets;
+	}
+	
+	public final UserAsset getUserAsset(String asset) {
+		return this.userAssets.get(asset);
 	}
 }

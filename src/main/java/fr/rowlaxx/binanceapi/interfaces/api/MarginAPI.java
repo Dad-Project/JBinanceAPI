@@ -10,7 +10,15 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.general.margin.CrossMarginPair;
 import fr.rowlaxx.binanceapi.core.general.margin.MarginAsset;
+import fr.rowlaxx.binanceapi.core.margin.CrossMarginTransferRecord;
+import fr.rowlaxx.binanceapi.core.margin.ForceLiquidationRecord;
+import fr.rowlaxx.binanceapi.core.margin.InterestRecord;
+import fr.rowlaxx.binanceapi.core.margin.LoanRecord;
+import fr.rowlaxx.binanceapi.core.margin.CrossMarginAccountDetails;
+import fr.rowlaxx.binanceapi.core.margin.RepayRecord;
 import fr.rowlaxx.binanceapi.core.market.margin.MarginPriceIndex;
+import fr.rowlaxx.binanceapi.core.order.margin.MarginOrder;
+import fr.rowlaxx.binanceapi.core.order.margin.MarginOrderRequest;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public interface MarginAPI {
@@ -99,16 +107,6 @@ public interface MarginAPI {
 			mandatory = {true}
 	)
 	public MarginPriceIndex getMarginPriceIndex(String symbol);
-/*
-	@ApiEndpoint (
-			endpoint = "/sapi/v1/margin/order",
-			baseEndpoint = BaseEndpoints.SPOT,
-			method = Method.POST,
-			needSignature = true,
-			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
-			mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
-	)
-	public MarginAccountNewOrder postMarginAccountNewOrder(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
@@ -118,18 +116,8 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
 			mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
 	)
-	public MarginAccountNewOrder1 postMarginAccountNewOrder1(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
-
-	@ApiEndpoint (
-			endpoint = "/sapi/v1/margin/order",
-			baseEndpoint = BaseEndpoints.SPOT,
-			method = Method.POST,
-			needSignature = true,
-			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
-			mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
-	)
-	public MarginAccountNewOrder2 postMarginAccountNewOrder2(String symbol, String isIsolated, Enum side, Enum type, double quantity, double quoteOrderQty, double price, double stopPrice, String newClientOrderId, double icebergQty, Enum newOrderRespType, Enum sideEffectType, Enum timeInForce);
-
+	public MarginOrder newOrder(MarginOrderRequest request);
+	
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
 			baseEndpoint = BaseEndpoints.SPOT,
@@ -138,7 +126,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.origClientOrderId, Parameters.newClientOrderId},
 			mandatory = {true, false, false, false, false}
 	)
-	public MarginAccountCancelOrder deleteMarginAccountCancelOrder(String symbol, String isIsolated, long orderId, String origClientOrderId, String newClientOrderId);
+	public MarginOrder cancelOrder(String symbol, Boolean isIsolated, Long orderId, String origClientOrderId, String newClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/openOrders",
@@ -148,7 +136,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated},
 			mandatory = {true, false}
 	)
-	public List<MarginAccountCancelallOpenOrdersonaSymbol> deleteMarginAccountCancelallOpenOrdersonaSymbol(String symbol, String isIsolated);
+	public List<MarginOrder> cancelAllOrders(String symbol, Boolean isIsolated);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/transfer",
@@ -158,7 +146,9 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 			mandatory = {false, false, false, false, false, false, false}
 	)
-	public GetCrossMarginTransferHistory getGetCrossMarginTransferHistory(String asset, String type, long startTime, long endTime, long current, long size, String archived);
+	@RedirectResponse(path = "rows")
+	@MapKey(fieldName = "asset")
+	public Map<String, CrossMarginTransferRecord> getGetCrossMarginTransferHistory(String asset, String type, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/loan",
@@ -168,7 +158,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.txId, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 			mandatory = {true, false, false, false, false, false, false, false}
 	)
-	public QueryLoanRecord getQueryLoanRecord(String asset, String isolatedSymbol, long txId, long startTime, long endTime, long current, long size, String archived);
+	@RedirectResponse(path = "rows")
+	public List<LoanRecord> getLoanRecords(String asset, String isolatedSymbol, Long txId, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/repay",
@@ -178,7 +169,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.txId, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 			mandatory = {true, false, false, false, false, false, false, false}
 	)
-	public QueryRepayRecord getQueryRepayRecord(String asset, String isolatedSymbol, long txId, long startTime, long endTime, long current, long size, String archived);
+	@RedirectResponse(path = "rows")
+	public List<RepayRecord> getRepayRecords(String asset, String isolatedSymbol, Long txId, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/interestHistory",
@@ -188,7 +180,7 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isolatedSymbol, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size, Parameters.archived},
 			mandatory = {false, false, false, false, false, false, false}
 	)
-	public GetInterestHistory getGetInterestHistory(String asset, String isolatedSymbol, long startTime, long endTime, long current, long size, String archived);
+	public List<InterestRecord> getInterestHistory(String asset, String isolatedSymbol, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/forceLiquidationRec",
@@ -198,7 +190,7 @@ public interface MarginAPI {
 			parameters = {Parameters.startTime, Parameters.endTime, Parameters.isolatedSymbol, Parameters.current, Parameters.size},
 			mandatory = {false, false, false, false, false}
 	)
-	public GetForceLiquidationRecord getGetForceLiquidationRecord(long startTime, long endTime, String isolatedSymbol, long current, long size);
+	public List<ForceLiquidationRecord> getForceLiquidationRecords(Long startTime, Long endTime, String isolatedSymbol, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/account",
@@ -208,7 +200,7 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public QueryCrossMarginAccountDetails getQueryCrossMarginAccountDetails();
+	public CrossMarginAccountDetails getQueryCrossMarginAccountDetails();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
@@ -218,7 +210,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.origClientOrderId},
 			mandatory = {true, false, false, false}
 	)
-	public QueryMarginAccountsOrder getQueryMarginAccountsOrder(String symbol, String isIsolated, String orderId, String origClientOrderId);
+	public MarginOrder getOrder(String symbol, Boolean isIsolated, String orderId, String origClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/openOrders",
@@ -228,7 +220,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated},
 			mandatory = {false, false}
 	)
-	public List<QueryMarginAccountsOpenOrders> getQueryMarginAccountsOpenOrders(String symbol, String isIsolated);
+	public List<MarginOrder> getOpenOrders(String symbol, Boolean isIsolated);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/allOrders",
@@ -238,7 +230,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<QueryMarginAccountsAllOrders> getQueryMarginAccountsAllOrders(String symbol, String isIsolated, long orderId, long startTime, long endTime, int limit);
+	public List<MarginOrder> getAllOrders(String symbol, Boolean isIsolated, Long orderId, Long startTime, Long endTime, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order/oco",
@@ -248,7 +240,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType, Parameters.sideEffectType},
 			mandatory = {true, false, false, true, true, false, true, false, false, true, false, false, false, false, false}
 	)
-	public MarginAccountNewOCO postMarginAccountNewOCO(String symbol, String isIsolated, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType, Enum sideEffectType);
+	public MarginAccountNewOCO postMarginAccountNewOCO(String symbol, Boolean isIsolated, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType, Enum sideEffectType);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/orderList",
@@ -258,7 +250,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderListId, Parameters.listClientOrderId, Parameters.newClientOrderId},
 			mandatory = {true, false, false, false, false}
 	)
-	public MarginAccountCancelOCO deleteMarginAccountCancelOCO(String symbol, String isIsolated, long orderListId, String listClientOrderId, String newClientOrderId);
+	public MarginAccountCancelOCO deleteMarginAccountCancelOCO(String symbol, Boolean isIsolated, long orderListId, String listClientOrderId, String newClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/orderList",
@@ -268,7 +260,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.orderListId, Parameters.origClientOrderId},
 			mandatory = {false, false, false, false}
 	)
-	public QueryMarginAccountsOCO getQueryMarginAccountsOCO(String isIsolated, String symbol, long orderListId, String origClientOrderId);
+	public QueryMarginAccountsOCO getQueryMarginAccountsOCO(Boolean isIsolated, String symbol, long orderListId, String origClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/allOrderList",
@@ -278,7 +270,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false, false}
 	)
-	public List<QueryMarginAccountsallOCO> getQueryMarginAccountsallOCO(String isIsolated, String symbol, long fromId, long startTime, long endTime, int limit);
+	public List<QueryMarginAccountsallOCO> getQueryMarginAccountsallOCO(Boolean isIsolated, String symbol, long fromId, long startTime, long endTime, int limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/openOrderList",
@@ -288,7 +280,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol},
 			mandatory = {false, false}
 	)
-	public List<QueryMarginAccountsOpenOCO> getQueryMarginAccountsOpenOCO(String isIsolated, String symbol);
+	public List<QueryMarginAccountsOpenOCO> getQueryMarginAccountsOpenOCO(Boolean isIsolated, String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/myTrades",
@@ -298,7 +290,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<QueryMarginAccountsTradeList> getQueryMarginAccountsTradeList(String symbol, String isIsolated, long startTime, long endTime, long fromId, int limit);
+	public List<QueryMarginAccountsTradeList> getQueryMarginAccountsTradeList(String symbol, Boolean isIsolated, long startTime, long endTime, long fromId, int limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/maxBorrowable",

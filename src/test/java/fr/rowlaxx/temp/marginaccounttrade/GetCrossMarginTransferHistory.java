@@ -1,7 +1,7 @@
 package fr.rowlaxx.temp.marginaccounttrade;
 
+import fr.rowlaxx.binanceapi.core.margin.CrossMarginTransferRecord;
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.marginaccounttrade.getcrossmargintransferhistory.Rows;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class GetCrossMarginTransferHistory extends JSavONObject {
 	private static final long serialVersionUID = 1512772192227151211L;
 	
 	//Variables
-	private List<Rows> rows;
+	private List<CrossMarginTransferRecord> rows;
 	private int total;
 	
 	//Constructeurs
@@ -20,7 +20,7 @@ public class GetCrossMarginTransferHistory extends JSavONObject {
 	}
 	
 	//Getters
-	public final List<Rows> getRows() {
+	public final List<CrossMarginTransferRecord> getRows() {
 		return this.rows;
 	}
 	

@@ -10,6 +10,11 @@ public class BasicOrder<T extends OrderTypes> extends Order<T, BasicOrderStatus>
 	//Variables
 	@JOValue(mandatory = false)
 	private double origQty;
+	@JOValue(mandatory = false)
+	private Long time;
+	@JOValue(mandatory = false)
+	private Double stopPrice;
+
 	
 	//Constructeurs
 	public BasicOrder(JSONObject json) {
@@ -19,5 +24,13 @@ public class BasicOrder<T extends OrderTypes> extends Order<T, BasicOrderStatus>
 	//Getters
 	public final double getOrigQty() {
 		return origQty;
+	}
+	
+	public final Double getStopPrice() {
+		return stopPrice;
+	}
+	
+	public final Long getTime() {
+		return time;
 	}
 }

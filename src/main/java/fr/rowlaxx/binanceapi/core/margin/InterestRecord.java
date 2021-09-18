@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade.getinteresthistory;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Rows extends JSavONObject {
+public class InterestRecord extends JSavONObject {
 	private static final long serialVersionUID = 559063585587719408L;
 	
 	//Variables
@@ -17,7 +17,7 @@ public class Rows extends JSavONObject {
 	private String type;
 	
 	//Constructeurs
-	public Rows(JSONObject json) {
+	public InterestRecord(JSONObject json) {
 		super(json);
 	}
 	
