@@ -137,7 +137,7 @@ public interface FuturesAPI {
 			mandatory = {true, true, true}
 	)
 	@RedirectResponse(path = "afterCollateralRate")
-	public double calculateRateAfterAdjustCrossCollateralLTV(String collateralCoin, double amount, Direction direction);
+	public double calculateRateAfterAdjustCrossCollateral(String collateralCoin, double amount, Direction direction);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v2/futures/loan/calcAdjustLevel",
@@ -148,7 +148,7 @@ public interface FuturesAPI {
 			mandatory = {true, true, true, true}
 	)
 	@RedirectResponse(path = "afterCollateralRate")
-	public double calculateRateAfterAdjustCrossCollateralLTVV2(String loanCoin, String collateralCoin, double amount, Direction direction);
+	public double calculateRateAfterAdjustCrossCollateralV2(String loanCoin, String collateralCoin, double amount, Direction direction);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/futures/loan/calcMaxAdjustAmount",
@@ -158,7 +158,7 @@ public interface FuturesAPI {
 			parameters = {Parameters.collateralCoin},
 			mandatory = {true}
 	)
-	public MaxAmount getMaxAmountforAdjustCrossCollateral(String collateralCoin);
+	public MaxAmount getMaxAmountForAdjustCrossCollateral(String collateralCoin);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v2/futures/loan/calcMaxAdjustAmount",
@@ -168,7 +168,7 @@ public interface FuturesAPI {
 			parameters = {Parameters.loanCoin, Parameters.collateralCoin},
 			mandatory = {true, true}
 	)
-	public MaxAmount getMaxAmountforAdjustCrossCollateralV2(String loanCoin, String collateralCoin);
+	public MaxAmount getMaxAmountForAdjustCrossCollateralV2(String loanCoin, String collateralCoin);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/futures/loan/adjustCollateral",

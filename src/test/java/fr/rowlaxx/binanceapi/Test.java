@@ -42,6 +42,9 @@ public class Test {
 				
 		final BinanceClient client = BinanceClient.create(API_KEY, API_SECRET);
 		client.login();
+		
+		client.futures().calculateRateAfterAdjustCrossCollateralLTV(API_KEY, TRADE_COUNTDOWN, null)
+		
 		client.getHttpClient().setDefaultRecvWindow(3000);
 		
 		final BinanceHttpRequest usdmRequest = BinanceHttpRequest.newBuilder()
