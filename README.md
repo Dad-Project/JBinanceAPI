@@ -27,6 +27,7 @@ BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 * Spot (Wallet)
 * Spot (Market)
 * Master & Sub Account
+* Futures
 
 ## Unimplemented features (will be implemented soon)
 
