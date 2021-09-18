@@ -17,6 +17,7 @@ import fr.rowlaxx.binanceapi.core.margin.LoanRecord;
 import fr.rowlaxx.binanceapi.core.margin.CrossMarginAccountDetails;
 import fr.rowlaxx.binanceapi.core.margin.RepayRecord;
 import fr.rowlaxx.binanceapi.core.market.margin.MarginPriceIndex;
+import fr.rowlaxx.binanceapi.core.order.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOrder;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOrderRequest;
 import fr.rowlaxx.jsavon.annotations.MapKey;
@@ -116,7 +117,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.side, Parameters.type, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.stopPrice, Parameters.newClientOrderId, Parameters.icebergQty, Parameters.newOrderRespType, Parameters.sideEffectType, Parameters.timeInForce},
 			mandatory = {true, false, true, true, false, false, false, false, false, false, false, false, false}
 	)
-	public MarginOrder newOrder(MarginOrderRequest request);
+	public MarginOrder postOrder(MarginOrderRequest request);
 	
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
@@ -240,7 +241,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType, Parameters.sideEffectType},
 			mandatory = {true, false, false, true, true, false, true, false, false, true, false, false, false, false, false}
 	)
-	public MarginAccountNewOCO postMarginAccountNewOCO(String symbol, Boolean isIsolated, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType, Enum sideEffectType);
+	public MarginAccountNewOCO newOCOOrder(MarginOCOOrderRequest request);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/orderList",
