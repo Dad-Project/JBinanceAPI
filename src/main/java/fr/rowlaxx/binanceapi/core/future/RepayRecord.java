@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.future;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.order.OrderStatus;
+import fr.rowlaxx.binanceapi.core.order.BasicOrderStatus;
 
 public class RepayRecord extends Repay {
 	private static final long serialVersionUID = 3496267355855391860L;
@@ -14,7 +14,7 @@ public class RepayRecord extends Repay {
 	private double repayCollateral;
 	private double confirmedTime;
 	private double updateTime;
-	private OrderStatus status;
+	private BasicOrderStatus status;
 	
 	//Constructeurs
 	public RepayRecord(JSONObject json) {
@@ -42,7 +42,7 @@ public class RepayRecord extends Repay {
 		return repayType;
 	}
 	
-	public OrderStatus getStatus() {
+	public BasicOrderStatus getStatus() {
 		return status;
 	}
 	

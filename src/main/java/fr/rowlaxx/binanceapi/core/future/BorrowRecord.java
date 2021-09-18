@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.future;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.order.OrderStatus;
+import fr.rowlaxx.binanceapi.core.order.BasicOrderStatus;
 
 public class BorrowRecord extends Borrow {
 	private static final long serialVersionUID = -4593001988258598284L;
@@ -12,7 +12,7 @@ public class BorrowRecord extends Borrow {
 	private double leftTotal;
 	private double leftPrincipal;
 	private long deadLine;
-	private OrderStatus orderStatus;
+	private BasicOrderStatus orderStatus;
 	
 	//Constructeurs
 	public BorrowRecord(JSONObject json) {
@@ -36,7 +36,7 @@ public class BorrowRecord extends Borrow {
 		return leftTotal;
 	}
 	
-	public OrderStatus getOrderStatus() {
+	public BasicOrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 }

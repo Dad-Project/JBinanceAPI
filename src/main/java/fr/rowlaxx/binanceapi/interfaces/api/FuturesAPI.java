@@ -21,7 +21,7 @@ import fr.rowlaxx.binanceapi.core.future.Direction;
 import fr.rowlaxx.binanceapi.core.future.MaxAmount;
 import fr.rowlaxx.binanceapi.core.future.Repay;
 import fr.rowlaxx.binanceapi.core.future.RepayRecord;
-import fr.rowlaxx.binanceapi.core.order.OrderStatus;
+import fr.rowlaxx.binanceapi.core.order.BasicOrderStatus;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransfer;
 
 public interface FuturesAPI {
@@ -251,7 +251,7 @@ public interface FuturesAPI {
 			mandatory = {true}
 	)
 	@RedirectResponse(path = "status")
-	public OrderStatus getCollateralRepaymentResult(String quoteId);
+	public BasicOrderStatus getCollateralRepaymentResult(String quoteId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/futures/loan/interestHistory",

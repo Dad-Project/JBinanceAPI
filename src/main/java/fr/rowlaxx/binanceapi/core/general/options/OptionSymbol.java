@@ -3,7 +3,7 @@ package fr.rowlaxx.binanceapi.core.general.options;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Symbol;
-import fr.rowlaxx.binanceapi.core.order.options.OptionContractTypes;
+import fr.rowlaxx.binanceapi.core.order.options.OptionsContractTypes;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class OptionSymbol extends Symbol {
@@ -11,7 +11,7 @@ public class OptionSymbol extends Symbol {
 
 	//Variables
 	@JOValue double leverage;
-	@JOValue private OptionContractTypes side;
+	@JOValue private OptionsContractTypes side;
 	@JOValue private double minInitialMargin;
 	@JOValue private double maketFeeRate;
 	@JOValue private double minAutoReduceMargin;
@@ -97,7 +97,7 @@ public class OptionSymbol extends Symbol {
 		return quantityScale;
 	}
 	
-	public OptionContractTypes getSide() {
+	public OptionsContractTypes getSide() {
 		return side;
 	}
 	

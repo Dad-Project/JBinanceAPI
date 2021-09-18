@@ -30,6 +30,10 @@ public class BaseEndpoint {
 			addMirror(s);
 	}
 	
+	public BaseEndpoint(BaseEndpoints baseEndpoint) {
+		this(baseEndpoint.getUrls());
+	}
+	
 	//Methodes
 	private void addMirror(String url) {
 		if (!url.matches("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"))

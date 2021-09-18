@@ -79,6 +79,11 @@ public class BinanceHttpRequest {
 			return this;
 		}
 		
+		public Builder setBaseEndpoint(BaseEndpoints baseEndpoint) {
+			request.baseEndpoint = new BaseEndpoint(baseEndpoint);
+			return this;
+		}
+		
 		public Builder setBaseEndpoint(BaseEndpoint baseEndpoint) {
 			request.baseEndpoint = baseEndpoint;
 			return this;

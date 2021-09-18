@@ -1,21 +1,71 @@
 package fr.rowlaxx.binanceapi.core.order.future;
 
-import fr.rowlaxx.binanceapi.core.order.SimpleOrderRequest;
+import fr.rowlaxx.binanceapi.core.order.Basic2OrderRequest;
 
-public class FutureOrderRequest extends SimpleOrderRequest<FutureOrderTypes> {
+public final class FutureOrderRequest extends Basic2OrderRequest<FutureOrderTypes> {
 
+	//Methodes statiques
+	public static Builder newBuilder() {
+		return new Builder();
+	}
+	
+	//Builder
+	@SuppressWarnings("unused")
+	public final static class Builder extends Basic2OrderRequest.Builder<FutureOrderTypes, FutureOrderRequest, Builder> {
+
+		//Constructeurs
+		private Builder() {
+			super(new FutureOrderRequest());
+		}
+		
+		//Setters
+		public final Builder setActivationPrice(Double activationPrice) {
+			request().activationPrice = activationPrice;
+			return this;
+		}
+		
+		public final Builder setCallbackRate(Double callbackRate) {
+			request().callbackRate = callbackRate;
+			return this;
+		}
+		
+		public final Builder setClosePosition(Boolean closePosition) {
+			request().closePosition = closePosition;
+			return this;
+		}
+		
+		public final Builder setPositionSide(PositionSides positionSide) {
+			request().positionSide = positionSide;
+			return this;
+		}
+		
+		public final Builder setPriceProtect(Boolean priceProtect) {
+			request().priceProtect = priceProtect;
+			return this;
+		}
+		
+		public final Builder setReduceOnly(Boolean reduceOnly) {
+			request().reduceOnly = reduceOnly;
+			return this;
+		}
+		
+		public final Builder setWorkingType(WorkingType workingType) {
+			request().workingType = workingType;
+			return this;
+		}
+	}
+	
 	//Variables
 	private PositionSides positionSide;
 	private Boolean reduceOnly;
+	private Boolean closePosition;
 	private Double activationPrice;
 	private Double callbackRate;
 	private WorkingType workingType;
 	private Boolean priceProtect;
 	
 	//Constructeurs
-	protected FutureOrderRequest(FutureOrderTypes type) {
-		super(type);
-	}
+	private FutureOrderRequest() {}
 	
 	//Getters
 	public final Double getActivationPrice() {
@@ -26,44 +76,23 @@ public class FutureOrderRequest extends SimpleOrderRequest<FutureOrderTypes> {
 		return callbackRate;
 	}
 	
+	public final Boolean closePosition() {
+		return closePosition;
+	}
+	
 	public final PositionSides getPositionSide() {
 		return positionSide;
 	}
 	
-	public final Boolean getPriceProtect() {
+	public final Boolean priceProtect() {
 		return priceProtect;
 	}
 	
-	public final Boolean getReduceOnly() {
+	public final Boolean reduceOnly() {
 		return reduceOnly;
 	}
 	
 	public final WorkingType getWorkingType() {
 		return workingType;
-	}
-	
-	//Setters
-	protected void setActivationPrice(Double activationPrice) {
-		this.activationPrice = activationPrice;
-	}
-	
-	protected void setCallbackRate(Double callbackRate) {
-		this.callbackRate = callbackRate;
-	}
-	
-	protected void setPositionSide(PositionSides positionSide) {
-		this.positionSide = positionSide;
-	}
-	
-	protected void setPriceProtect(Boolean priceProtect) {
-		this.priceProtect = priceProtect;
-	}
-	
-	protected void setReduceOnly(Boolean reduceOnly) {
-		this.reduceOnly = reduceOnly;
-	}
-	
-	protected void setWorkingType(WorkingType workingType) {
-		this.workingType = workingType;
 	}	
 }

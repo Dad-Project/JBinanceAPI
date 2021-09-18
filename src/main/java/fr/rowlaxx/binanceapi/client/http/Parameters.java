@@ -9,6 +9,7 @@ import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
 import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.future.Direction;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
+import fr.rowlaxx.binanceapi.core.order.OrderResponseTypes;
 import fr.rowlaxx.binanceapi.core.order.OrderSide;
 import fr.rowlaxx.binanceapi.core.order.TimeInForce;
 import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
@@ -65,7 +66,7 @@ public enum Parameters {
 	needBtcValuation(Boolean.class),
 	network(String.class),
 	newClientOrderId(String.class),
-	newOrderRespType,
+	newOrderRespType(OrderResponseTypes.class),
 	offset(Integer.class),
 	operation(LiquidityOperations.class),
 	operationId(Long.class),

@@ -99,7 +99,7 @@ public interface MarginAPI {
 			mandatory = {true}
 	)
 	public MarginPriceIndex getMarginPriceIndex(String symbol);
-
+/*
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/order",
 			baseEndpoint = BaseEndpoints.SPOT,
@@ -439,4 +439,4 @@ public interface MarginAPI {
 			mandatory = {true, false, false, false, false}
 	)
 	public List<QueryMarginInterestRateHistory> getQueryMarginInterestRateHistory(String asset, int vipLevel, long startTime, long endTime, int limit);
-}
+*/}

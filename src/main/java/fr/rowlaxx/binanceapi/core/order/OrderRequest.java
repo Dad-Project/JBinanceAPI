@@ -2,24 +2,80 @@ package fr.rowlaxx.binanceapi.core.order;
 
 import java.util.Objects;
 
-public abstract class OrderRequest<T extends OrderTypes>{
+import fr.rowlaxx.binanceapi.client.http.BinanceAutoHttpRequest;
 
+public abstract class OrderRequest extends BinanceAutoHttpRequest {
+	
+	//Builder
+	@SuppressWarnings("unchecked")
+	protected abstract static class Builder<T extends OrderRequest, B extends Builder<T, B>> {
+		
+		//Variables
+		private OrderRequest request;
+		
+		//Constructeurs
+		protected Builder(T request) {
+			this.request = Objects.requireNonNull(request);
+		}
+		
+		//Getters
+		protected final T request() {
+			return (T) request;
+		}
+		
+		//Setters
+		public final B setSymbol(String symbol) {
+			request.symbol = symbol;
+			return (B) this;
+		}
+
+		public final B setSide(OrderSide side) {
+			request.side = side;
+			return (B) this;
+		}
+
+		public final B setQuantity(Double quantity) {
+			request.quantity = quantity;
+			return (B) this;
+		}
+
+		public final B setPrice(Double price) {
+			request.price = price;
+			return (B) this;
+		}
+
+		public final B setNewOrderRespType(OrderResponseTypes newOrderRespType) {
+			request.newOrderRespType = newOrderRespType;
+			return (B) this;
+		}
+		
+		public T build() {
+			checkBuild();
+			try {
+				return (T) this.request;
+			}finally {
+				this.request = null;
+			}
+		}
+		
+		protected void checkBuild() {
+			Objects.requireNonNull(request.symbol, "symbol may not be null.");
+			Objects.requireNonNull(request.side, "side may not be null.");
+		}
+	}
+	
+	//Constructeurs
+	protected OrderRequest() {}
+	
 	//Variables
 	private String symbol;
 	private OrderSide side;
-	private final T type;
-	private TimeInForce timeInForce;
 	private Double quantity;
 	private Double price;
 	private OrderResponseTypes newOrderRespType;
 	
-	//Constructeurs
-	protected OrderRequest(T type) {
-		this.type = Objects.requireNonNull(type, "type may not be null.");
-	}
-	
 	//Getters
-	public OrderResponseTypes getNewOrderRespType() {
+	public final OrderResponseTypes getNewOrderRespType() {
 		return newOrderRespType;
 	}
 	
@@ -37,34 +93,5 @@ public abstract class OrderRequest<T extends OrderTypes>{
 	
 	public final String getSymbol() {
 		return this.symbol;
-	}
-	
-	public final TimeInForce getTimeInForce() {
-		return this.timeInForce;
-	}
-	
-	public final T getType() {
-		return this.type;
-	}
-	
-	//Setters
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-	
-	public void setSide(OrderSide side) {
-		this.side = side;
-	}
-	
-	public void setQuantity(Double quantity) {
-		this.quantity = quantity;
-	}
-	
-	public void setTimeInForce(TimeInForce timeInForce) {
-		this.timeInForce = timeInForce;
-	}
-	
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 }
