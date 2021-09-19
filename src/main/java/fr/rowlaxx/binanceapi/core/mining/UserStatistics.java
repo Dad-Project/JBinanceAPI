@@ -1,27 +1,26 @@
-package fr.rowlaxx.temp.miningendpoints.accountlist;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.miningendpoints.accountlist.data.List;
 
 import java.util.List;
 
 import org.json.JSONObject;
 
-public class Data extends JSavONObject {
+public class UserStatistics extends JSavONObject {
 	private static final long serialVersionUID = -2423280816656980988L;
 	
 	//Variables
-	private List<List> list;
+	private List<UserStatisticsRecord> list;
 	private String type;
 	private String userName;
 	
 	//Constructeurs
-	public Data(JSONObject json) {
+	public UserStatistics(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final List<List> getList() {
+	public final List<UserStatisticsRecord> getList() {
 		return this.list;
 	}
 	

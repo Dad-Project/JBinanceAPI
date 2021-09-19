@@ -1,12 +1,11 @@
-package fr.rowlaxx.temp.miningendpoints.statisticlist;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.miningendpoints.statisticlist.data.ProfitToday;
-import fr.rowlaxx.temp.miningendpoints.statisticlist.data.ProfitYesterday;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-public class Data extends JSavONObject {
+public class MiningStatistics extends JSavONObject {
 	private static final long serialVersionUID = 88885892338114433L;
 	
 	//Variables
@@ -14,14 +13,14 @@ public class Data extends JSavONObject {
 	private double dayHashRate;
 	private double fifteenMinHashRate;
 	private int invalidNum;
-	private ProfitToday profitToday;
-	private ProfitYesterday profitYesterday;
+	private Map<String, Double> profitToday;
+	private Map<String, Double> profitYesterday;
 	private String unit;
 	private String userName;
 	private int validNum;
 	
 	//Constructeurs
-	public Data(JSONObject json) {
+	public MiningStatistics(JSONObject json) {
 		super(json);
 	}
 	
@@ -42,12 +41,20 @@ public class Data extends JSavONObject {
 		return this.invalidNum;
 	}
 	
-	public final ProfitToday getProfitToday() {
-		return this.profitToday;
+	public final Map<String, Double> getProfitToday() {
+		return profitToday;
 	}
 	
-	public final ProfitYesterday getProfitYesterday() {
-		return this.profitYesterday;
+	public final Double getProfitToday(String coin) {
+		return profitToday.get(coin);
+	}
+	
+	public final Map<String, Double> getProfitYesterday() {
+		return profitYesterday;
+	}
+	
+	public final Double getProfitYesterday(String coin) {
+		return profitYesterday.get(coin);
 	}
 	
 	public final String getUnit() {

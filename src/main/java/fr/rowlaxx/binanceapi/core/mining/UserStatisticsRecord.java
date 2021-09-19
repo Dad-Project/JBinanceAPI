@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.miningendpoints.accountlist.data;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class List extends JSavONObject {
+public class UserStatisticsRecord extends JSavONObject {
 	private static final long serialVersionUID = -2559045516902850133L;
 	
 	//Variables
@@ -13,7 +13,7 @@ public class List extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public List(JSONObject json) {
+	public UserStatisticsRecord(JSONObject json) {
 		super(json);
 	}
 	

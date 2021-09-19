@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.miningendpoints.hashrateresalelist.data;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class ConfigDetails extends JSavONObject {
+public class ConfigDetail extends JSavONObject {
 	private static final long serialVersionUID = -5386134546533663433L;
 	
 	//Variables
@@ -18,7 +18,7 @@ public class ConfigDetails extends JSavONObject {
 	private String toPoolUsername;
 	
 	//Constructeurs
-	public ConfigDetails(JSONObject json) {
+	public ConfigDetail(JSONObject json) {
 		super(json);
 	}
 	

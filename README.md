@@ -17,6 +17,7 @@ JSavON          https://github.com/RowlaxX/JSavON
 * Futures
 * Margin
 * Master & Sub Account
+* Mining
 * Spot (Wallet, Market & Trade)
 
 # Unimplemented features (will be implemented soon)
@@ -24,8 +25,7 @@ JSavON          https://github.com/RowlaxX/JSavON
 * Futures USD Margined
 * Futures Coin Margined
 * Options
-* Minings (Currently implementing)
-* Savings
+* Savings (Currently implementing)
 * Websockets
 
 # Creating a client

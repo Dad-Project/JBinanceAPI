@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.miningendpoints.requestforminerlist.data;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class WorkerDatas extends JSavONObject {
+public class WorkerData extends JSavONObject {
 	private static final long serialVersionUID = 3869847118376031611L;
 	
 	//Variables
@@ -17,7 +17,7 @@ public class WorkerDatas extends JSavONObject {
 	private String workerName;
 	
 	//Constructeurs
-	public WorkerDatas(JSONObject json) {
+	public WorkerData(JSONObject json) {
 		super(json);
 	}
 	

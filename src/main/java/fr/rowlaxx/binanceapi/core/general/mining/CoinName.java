@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.miningendpoints.acquiringcoinname;
+package fr.rowlaxx.binanceapi.core.general.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class Data extends JSavONObject {
+public class CoinName extends JSavONObject {
 	private static final long serialVersionUID = -7612386787136311987L;
 	
 	//Variables
@@ -15,7 +15,7 @@ public class Data extends JSavONObject {
 	private int poolIndex;
 	
 	//Constructeurs
-	public Data(JSONObject json) {
+	public CoinName(JSONObject json) {
 		super(json);
 	}
 	

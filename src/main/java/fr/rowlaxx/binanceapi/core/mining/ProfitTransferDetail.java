@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.miningendpoints.hashrateresaledetail.data;
+package fr.rowlaxx.binanceapi.core.mining;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class ProfitTransferDetails extends JSavONObject {
+public class ProfitTransferDetail extends JSavONObject {
 	private static final long serialVersionUID = 5541534486592989501L;
 	
 	//Variables
@@ -17,7 +17,7 @@ public class ProfitTransferDetails extends JSavONObject {
 	private String toPoolUsername;
 	
 	//Constructeurs
-	public ProfitTransferDetails(JSONObject json) {
+	public ProfitTransferDetail(JSONObject json) {
 		super(json);
 	}
 	

@@ -9,7 +9,7 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 
 public interface SavingsAPI {
 
-	@ApiEndpoint (
+	/*@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/product/list",
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.GET,
@@ -168,4 +168,4 @@ public interface SavingsAPI {
 			mandatory = {true, true, false}
 	)
 	public ChangeFixedActivityPositiontoDailyPosition postChangeFixedActivityPositiontoDailyPosition(String projectId, long lot, long positionId);
-}
+*/}
