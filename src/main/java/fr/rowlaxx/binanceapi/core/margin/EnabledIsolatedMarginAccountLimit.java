@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class QueryEnabledIsolatedMarginAccountLimit extends JSavONObject {
+public class EnabledIsolatedMarginAccountLimit extends JSavONObject {
 	private static final long serialVersionUID = 2093223017861992923L;
 	
 	//Variables
@@ -12,7 +12,7 @@ public class QueryEnabledIsolatedMarginAccountLimit extends JSavONObject {
 	private int maxAccount;
 	
 	//Constructeurs
-	public QueryEnabledIsolatedMarginAccountLimit(JSONObject json) {
+	public EnabledIsolatedMarginAccountLimit(JSONObject json) {
 		super(json);
 	}
 	

@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class QueryMaxBorrow extends JSavONObject {
+public class MaxBorrow extends JSavONObject {
 	private static final long serialVersionUID = -8490747344993137443L;
 	
 	//Variables
@@ -12,7 +12,7 @@ public class QueryMaxBorrow extends JSavONObject {
 	private int borrowLimit;
 	
 	//Constructeurs
-	public QueryMaxBorrow(JSONObject json) {
+	public MaxBorrow(JSONObject json) {
 		super(json);
 	}
 	

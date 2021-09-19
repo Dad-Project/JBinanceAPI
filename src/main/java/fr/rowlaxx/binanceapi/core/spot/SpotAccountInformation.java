@@ -1,18 +1,21 @@
-package fr.rowlaxx.temp.spotaccounttrade;
+package fr.rowlaxx.binanceapi.core.spot;
 
+import fr.rowlaxx.binanceapi.core.wallet.Balance;
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.spotaccounttrade.accountinformation.Balances;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-public class AccountInformation extends JSavONObject {
+public class SpotAccountInformation extends JSavONObject {
 	private static final long serialVersionUID = 2500421506551164994L;
 	
 	//Variables
 	private String accountType;
-	private List<Balances> balances;
+	@MapKey(fieldName = "asset")
+	private Map<String, Balance> balances;
 	private int buyerCommission;
 	private boolean canDeposit;
 	private boolean canTrade;
@@ -24,7 +27,7 @@ public class AccountInformation extends JSavONObject {
 	private int updateTime;
 	
 	//Constructeurs
-	public AccountInformation(JSONObject json) {
+	public SpotAccountInformation(JSONObject json) {
 		super(json);
 	}
 	
@@ -33,8 +36,12 @@ public class AccountInformation extends JSavONObject {
 		return this.accountType;
 	}
 	
-	public final List<Balances> getBalances() {
-		return this.balances;
+	public final Map<String, Balance> getBalances() {
+		return balances;
+	}
+	
+	public final Balance getBalance(String asset) {
+		return balances.get(asset);
 	}
 	
 	public final int getBuyerCommission() {

@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.spotaccounttrade;
+package fr.rowlaxx.binanceapi.core.spot;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class AccountTradeList extends JSavONObject {
+public class SpotAccountTrade extends JSavONObject {
 	private static final long serialVersionUID = -5483341101213361605L;
 	
 	//Variables
@@ -23,7 +23,7 @@ public class AccountTradeList extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public AccountTradeList(JSONObject json) {
+	public SpotAccountTrade(JSONObject json) {
 		super(json);
 	}
 	

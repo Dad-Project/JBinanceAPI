@@ -1,18 +1,11 @@
 package fr.rowlaxx.binanceapi.core.margin;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class CrossMarginTransferRecord extends JSavONObject {
-	private static final long serialVersionUID = 4974505064584104434L;
+public class CrossMarginTransferRecord extends MarginTransferRecord {
+	private static final long serialVersionUID = 2272958866909036635L;
 	
 	//Variables
-	private double amount;
-	private String asset;
-	private String status;
-	private int timestamp;
-	private long txId;
 	private String type;
 	
 	//Constructeurs
@@ -21,26 +14,6 @@ public class CrossMarginTransferRecord extends JSavONObject {
 	}
 	
 	//Getters
-	public final double getAmount() {
-		return this.amount;
-	}
-	
-	public final String getAsset() {
-		return this.asset;
-	}
-	
-	public final String getStatus() {
-		return this.status;
-	}
-	
-	public final int getTimestamp() {
-		return this.timestamp;
-	}
-	
-	public final long getTxId() {
-		return this.txId;
-	}
-	
 	public final String getType() {
 		return this.type;
 	}

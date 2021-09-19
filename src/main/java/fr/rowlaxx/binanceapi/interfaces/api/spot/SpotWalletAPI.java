@@ -125,7 +125,7 @@ public interface SpotWalletAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public void postDisableFastWithdrawSwitch();
+	public void disableFastWithdrawSwitch();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/account/enableFastWithdrawSwitch",
@@ -135,7 +135,7 @@ public interface SpotWalletAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public void postEnableFastWithdrawSwitch();
+	public void enableFastWithdrawSwitch();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/capital/withdraw/apply",

@@ -1,16 +1,13 @@
-package fr.rowlaxx.temp.marginaccounttrade.queryisolatedmarginaccountinfo;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.marginaccounttrade.queryisolatedmarginaccountinfo.assets.BaseAsset;
-import fr.rowlaxx.temp.marginaccounttrade.queryisolatedmarginaccountinfo.assets.QuoteAsset;
-
 import org.json.JSONObject;
 
-public class Assets extends JSavONObject {
+public class MarginUserAsset extends JSavONObject {
 	private static final long serialVersionUID = -8927603325686347569L;
 	
 	//Variables
-	private BaseAsset baseAsset;
+	private MarginBaseQuoteAsset baseAsset;
 	private boolean enabled;
 	private double indexPrice;
 	private boolean isolatedCreated;
@@ -19,17 +16,17 @@ public class Assets extends JSavONObject {
 	private double marginLevel;
 	private String marginLevelStatus;
 	private double marginRatio;
-	private QuoteAsset quoteAsset;
+	private MarginBaseQuoteAsset quoteAsset;
 	private String symbol;
 	private boolean tradeEnabled;
 	
 	//Constructeurs
-	public Assets(JSONObject json) {
+	public MarginUserAsset(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
-	public final BaseAsset getBaseAsset() {
+	public final MarginBaseQuoteAsset getBaseAsset() {
 		return this.baseAsset;
 	}
 	
@@ -65,7 +62,7 @@ public class Assets extends JSavONObject {
 		return this.marginRatio;
 	}
 	
-	public final QuoteAsset getQuoteAsset() {
+	public final MarginBaseQuoteAsset getQuoteAsset() {
 		return this.quoteAsset;
 	}
 	

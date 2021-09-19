@@ -1,10 +1,17 @@
 package fr.rowlaxx.binanceapi.interfaces.api.spot;
 
+import java.util.List;
+
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.core.order.spot.SpotOCOOrder;
+import fr.rowlaxx.binanceapi.core.order.spot.SpotOCOOrderRequest;
+import fr.rowlaxx.binanceapi.core.order.spot.SpotOrder;
 import fr.rowlaxx.binanceapi.core.order.spot.SpotOrderRequest;
+import fr.rowlaxx.binanceapi.core.spot.SpotAccountInformation;
+import fr.rowlaxx.binanceapi.core.spot.SpotAccountTrade;
 
 public interface SpotTradeAPI {
 
@@ -16,7 +23,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.side, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.icebergQty, Parameters.newOrderRespType},
 			mandatory = {true, true, true, false, false, false, false, false, false, false, false}
 	)
-	public void testNewOrder(SpotOrderRequest orderRequest);
+	public SpotOrder postTestOrder(SpotOrderRequest orderRequest);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/order",
@@ -26,9 +33,8 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.side, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.quoteOrderQty, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.icebergQty, Parameters.newOrderRespType},
 			mandatory = {true, true, true, false, false, false, false, false, false, false, false}
 	)
-	public void newOrder(SpotOrderRequest orderRequest);
+	public SpotOrder postOrder(SpotOrderRequest orderRequest);
 
-	/*
 	@ApiEndpoint (
 			endpoint = "/api/v3/order",
 			baseEndpoint = BaseEndpoints.SPOT,
@@ -37,7 +43,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId, Parameters.newClientOrderId},
 			mandatory = {true, false, false, false}
 	)
-	public CancelOrder deleteCancelOrder(String symbol, long orderId, String origClientOrderId, String newClientOrderId);
+	public SpotOrder cancelOrder(String symbol, Long orderId, String origClientOrderId, String newClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "api/v3/openOrders",
@@ -47,7 +53,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public List<CancelallOpenOrdersonaSymbol> deleteCancelallOpenOrdersonaSymbol(String symbol);
+	public List<SpotOrder> cancelAllOpenOrders(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/order",
@@ -57,7 +63,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId},
 			mandatory = {true, false, false}
 	)
-	public QueryOrder getQueryOrder(String symbol, long orderId, String origClientOrderId);
+	public SpotOrder getOrder(String symbol, Long orderId, String origClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/openOrders",
@@ -67,7 +73,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {false}
 	)
-	public List<CurrentOpenOrders> getCurrentOpenOrders(String symbol);
+	public List<SpotOrder> getOpenOrders(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/allOrders",
@@ -77,7 +83,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<AllOrders> getAllOrders(String symbol, long orderId, long startTime, long endTime, int limit);
+	public List<SpotOrder> getAllOrders(String symbol, Long orderId, Long startTime, Long endTime, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/order/oco",
@@ -87,7 +93,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType},
 			mandatory = {true, false, true, true, false, true, false, false, true, false, false, false, false}
 	)
-	public NewOCO postNewOCO(String symbol, String listClientOrderId, Enum side, double quantity, String limitClientOrderId, double price, double limitIcebergQty, String stopClientOrderId, double stopPrice, double stopLimitPrice, double stopIcebergQty, Enum stopLimitTimeInForce, Enum newOrderRespType);
+	public SpotOCOOrder postOCOOrder(SpotOCOOrderRequest request);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/orderList",
@@ -97,7 +103,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.orderListId, Parameters.listClientOrderId, Parameters.newClientOrderId},
 			mandatory = {true, false, false, false}
 	)
-	public CancelOCO deleteCancelOCO(String symbol, long orderListId, String listClientOrderId, String newClientOrderId);
+	public SpotOCOOrder cancelOCOOrder(String symbol, Long orderListId, String listClientOrderId, String newClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/orderList",
@@ -107,7 +113,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.orderListId, Parameters.origClientOrderId},
 			mandatory = {false, false}
 	)
-	public QueryOCO getQueryOCO(long orderListId, String origClientOrderId);
+	public SpotOCOOrder getOCOOrder(Long orderListId, String origClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/allOrderList",
@@ -117,7 +123,7 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false}
 	)
-	public List<QueryallOCO> getQueryallOCO(long fromId, long startTime, long endTime, int limit);
+	public List<SpotOCOOrder> getAllOCOOrder(Long fromId, Long startTime, Long endTime, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/openOrderList",
@@ -127,7 +133,7 @@ public interface SpotTradeAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<QueryOpenOCO> getQueryOpenOCO();
+	public List<SpotOCOOrder> getOpenOCOOrders();
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/account",
@@ -137,7 +143,7 @@ public interface SpotTradeAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public AccountInformation getAccountInformation();
+	public SpotAccountInformation getAccountInformation();
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/myTrades",
@@ -147,5 +153,5 @@ public interface SpotTradeAPI {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<AccountTradeList> getAccountTradeList(String symbol, long orderId, long startTime, long endTime, long fromId, int limit);
-*/}
+	public List<SpotAccountTrade> getAccountTradeList(String symbol, Long orderId, Long startTime, Long endTime, Long fromId, Integer limit);
+}

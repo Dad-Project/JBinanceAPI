@@ -12,12 +12,20 @@ import fr.rowlaxx.binanceapi.core.general.margin.CrossMarginPair;
 import fr.rowlaxx.binanceapi.core.general.margin.MarginAsset;
 import fr.rowlaxx.binanceapi.core.margin.CrossMarginTransferRecord;
 import fr.rowlaxx.binanceapi.core.margin.ForceLiquidationRecord;
+import fr.rowlaxx.binanceapi.core.margin.BNBBurnStatus;
 import fr.rowlaxx.binanceapi.core.margin.InterestRecord;
+import fr.rowlaxx.binanceapi.core.margin.IsolatedMarginAccountInfo;
+import fr.rowlaxx.binanceapi.core.margin.IsolatedMarginTransferRecord;
 import fr.rowlaxx.binanceapi.core.margin.LoanRecord;
+import fr.rowlaxx.binanceapi.core.margin.MarginAccountTrade;
+import fr.rowlaxx.binanceapi.core.margin.MarginUserAsset;
+import fr.rowlaxx.binanceapi.core.margin.MaxBorrow;
+import fr.rowlaxx.binanceapi.core.margin.EnabledIsolatedMarginAccountLimit;
+import fr.rowlaxx.binanceapi.core.margin.IsolatedMarginSymbol;
+import fr.rowlaxx.binanceapi.core.margin.MarginInterestRateRecord;
 import fr.rowlaxx.binanceapi.core.margin.CrossMarginAccountDetails;
 import fr.rowlaxx.binanceapi.core.margin.RepayRecord;
 import fr.rowlaxx.binanceapi.core.market.margin.MarginPriceIndex;
-import fr.rowlaxx.binanceapi.core.order.OcoOrder;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOCOOrder;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOrder;
@@ -150,8 +158,7 @@ public interface MarginAPI {
 			mandatory = {false, false, false, false, false, false, false}
 	)
 	@RedirectResponse(path = "rows")
-	@MapKey(fieldName = "asset")
-	public Map<String, CrossMarginTransferRecord> getGetCrossMarginTransferHistory(String asset, String type, Long startTime, Long endTime, Long current, Long size, Boolean archived);
+	public List<CrossMarginTransferRecord> getCrossMarginTransferHistory(String asset, String type, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/loan",
@@ -273,7 +280,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false, false}
 	)
-	public List<MarginOCOOrder> getAllOCOOrders(Boolean isIsolated, String symbol, long fromId, Long startTime, Long endTime, Integer limit);
+	public List<MarginOCOOrder> getAllOCOOrders(Boolean isIsolated, String symbol, Long fromId, Long startTime, Long endTime, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/openOrderList",
@@ -293,7 +300,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<QueryMarginAccountsTradeList> getQueryMarginAccountsTradeList(String symbol, Boolean isIsolated, long startTime, long endTime, long fromId, int limit);
+	public List<MarginAccountTrade> getTradeList(String symbol, Boolean isIsolated, Long startTime, Long endTime, Long fromId, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/maxBorrowable",
@@ -303,7 +310,7 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isolatedSymbol},
 			mandatory = {true, false}
 	)
-	public QueryMaxBorrow getQueryMaxBorrow(String asset, String isolatedSymbol);
+	public MaxBorrow getMaxBorrow(String asset, String isolatedSymbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/maxTransferable",
@@ -313,7 +320,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.isolatedSymbol},
 			mandatory = {true, false}
 	)
-	public QueryMaxTransferOutAmount getQueryMaxTransferOutAmount(String asset, String isolatedSymbol);
+	@RedirectResponse(path = "amount")
+	public double getMaxTransferOutAmount(String asset, String isolatedSymbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/transfer",
@@ -323,7 +331,8 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.symbol, Parameters.transFrom, Parameters.transTo, Parameters.amount},
 			mandatory = {true, true, true, true, true}
 	)
-	public IsolatedMarginAccountTransfer postIsolatedMarginAccountTransfer(String asset, String symbol, String transFrom, String transTo, double amount);
+	@RedirectResponse(path = "tranId")
+	public long isolatedMarginAccountTransfer(String asset, String symbol, String transFrom, String transTo, double amount);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/transfer",
@@ -333,7 +342,7 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.symbol, Parameters.transFrom, Parameters.transTo, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {false, true, false, false, false, false, false, false}
 	)
-	public GetIsolatedMarginTransferHistory getGetIsolatedMarginTransferHistory(String asset, String symbol, String transFrom, String transTo, long startTime, long endTime, long current, long size);
+	public List<IsolatedMarginTransferRecord> getIsolatedMarginTransferHistory(String asset, String symbol, String transFrom, String transTo, Long startTime, Long endTime, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/account",
@@ -341,19 +350,20 @@ public interface MarginAPI {
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbols},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public QueryIsolatedMarginAccountInfo getQueryIsolatedMarginAccountInfo(String symbols);
+	@RedirectResponse(path = "assets")
+	public MarginUserAsset getIsolatedMarginAccountInfo(String symbols);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/account",
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.GET,
 			needSignature = true,
-			parameters = {Parameters.symbols},
-			mandatory = {false}
+			parameters = {},
+			mandatory = {}
 	)
-	public QueryIsolatedMarginAccountInfo1 getQueryIsolatedMarginAccountInfo1(String symbols);
+	public IsolatedMarginAccountInfo getIsolatedMarginAccountInfos();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/account",
@@ -363,7 +373,8 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public DisableIsolatedMarginAccount deleteDisableIsolatedMarginAccount(String symbol);
+	@RedirectResponse(path = "success")
+	public boolean disableIsolatedMarginAccount(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/account",
@@ -373,7 +384,8 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public EnableIsolatedMarginAccount postEnableIsolatedMarginAccount(String symbol);
+	@RedirectResponse(path = "success")
+	public boolean enableIsolatedMarginAccount(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/accountLimit",
@@ -383,7 +395,7 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public QueryEnabledIsolatedMarginAccountLimit getQueryEnabledIsolatedMarginAccountLimit();
+	public EnabledIsolatedMarginAccountLimit getEnabledIsolatedMarginAccountLimit();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/pair",
@@ -393,7 +405,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public QueryIsolatedMarginSymbol getQueryIsolatedMarginSymbol(String symbol);
+	public IsolatedMarginSymbol getIsolatedMarginSymbol(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/isolated/allPairs",
@@ -403,7 +415,8 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<GetAllIsolatedMarginSymbol> getGetAllIsolatedMarginSymbol();
+	@MapKey(fieldName = "symbol")
+	public Map<String, IsolatedMarginSymbol> getAllIsolatedMarginSymbol();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/bnbBurn",
@@ -413,7 +426,7 @@ public interface MarginAPI {
 			parameters = {Parameters.spotBNBBurn, Parameters.interestBNBBurn},
 			mandatory = {false, false}
 	)
-	public ToggleBNBBurnOnSpotTradeAndMarginInterest postToggleBNBBurnOnSpotTradeAndMarginInterest(String spotBNBBurn, String interestBNBBurn);
+	public BNBBurnStatus toggleBNBBurn(Boolean spotBNBBurn, Boolean interestBNBBurn);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/bnbBurn",
@@ -423,7 +436,7 @@ public interface MarginAPI {
 			parameters = {},
 			mandatory = {}
 	)
-	public GetBNBBurnStatus getGetBNBBurnStatus();
+	public BNBBurnStatus getBNBBurnStatus();
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/interestRateHistory",
@@ -433,5 +446,5 @@ public interface MarginAPI {
 			parameters = {Parameters.asset, Parameters.vipLevel, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<QueryMarginInterestRateHistory> getQueryMarginInterestRateHistory(String asset, int vipLevel, long startTime, long endTime, int limit);
-*/}
+	public List<MarginInterestRateRecord> getMarginInterestRateHistory(String asset, Integer vipLevel, Long startTime, Long endTime, Integer limit);
+}

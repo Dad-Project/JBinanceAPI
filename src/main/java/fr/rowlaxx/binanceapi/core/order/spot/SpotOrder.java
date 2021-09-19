@@ -16,6 +16,8 @@ public class SpotOrder extends BasicOrder<SpotOrderTypes> {
 	@JOValue(mandatory = false)
 	private Double cummulativeQuoteQty;
 	@JOValue(mandatory = false)
+	private Double origQuoteOrderQty;
+	@JOValue(mandatory = false)
 	private List<Fill> fills;
 	@JOValue(mandatory = false)
 	private Double icebergQty;
@@ -46,5 +48,9 @@ public class SpotOrder extends BasicOrder<SpotOrderTypes> {
 	
 	public final Boolean getIsWorking() {
 		return isWorking;
+	}
+	
+	public final Double getOrigQuoteOrderQty() {
+		return origQuoteOrderQty;
 	}
 }

@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class QueryIsolatedMarginSymbol extends JSavONObject {
+public class IsolatedMarginSymbol extends JSavONObject {
 	private static final long serialVersionUID = 4571773304369949574L;
 	
 	//Variables
@@ -16,7 +16,7 @@ public class QueryIsolatedMarginSymbol extends JSavONObject {
 	private String symbol;
 	
 	//Constructeurs
-	public QueryIsolatedMarginSymbol(JSONObject json) {
+	public IsolatedMarginSymbol(JSONObject json) {
 		super(json);
 	}
 	

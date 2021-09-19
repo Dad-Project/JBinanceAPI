@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.marginaccounttrade;
+package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class QueryMarginAccountsTradeList extends JSavONObject {
+public class MarginAccountTrade extends JSavONObject {
 	private static final long serialVersionUID = -1427163229894164590L;
 	
 	//Variables
@@ -22,7 +22,7 @@ public class QueryMarginAccountsTradeList extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public QueryMarginAccountsTradeList(JSONObject json) {
+	public MarginAccountTrade(JSONObject json) {
 		super(json);
 	}
 	
