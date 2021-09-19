@@ -17,6 +17,8 @@ import fr.rowlaxx.binanceapi.core.margin.LoanRecord;
 import fr.rowlaxx.binanceapi.core.margin.CrossMarginAccountDetails;
 import fr.rowlaxx.binanceapi.core.margin.RepayRecord;
 import fr.rowlaxx.binanceapi.core.market.margin.MarginPriceIndex;
+import fr.rowlaxx.binanceapi.core.order.OcoOrder;
+import fr.rowlaxx.binanceapi.core.order.margin.MarginOCOOrder;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOrder;
 import fr.rowlaxx.binanceapi.core.order.margin.MarginOrderRequest;
@@ -241,7 +243,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.listClientOrderId, Parameters.side, Parameters.quantity, Parameters.limitClientOrderId, Parameters.price, Parameters.limitIcebergQty, Parameters.stopClientOrderId, Parameters.stopPrice, Parameters.stopLimitPrice, Parameters.stopIcebergQty, Parameters.stopLimitTimeInForce, Parameters.newOrderRespType, Parameters.sideEffectType},
 			mandatory = {true, false, false, true, true, false, true, false, false, true, false, false, false, false, false}
 	)
-	public MarginAccountNewOCO newOCOOrder(MarginOCOOrderRequest request);
+	public MarginOCOOrder postOCOOrder(MarginOCOOrderRequest request);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/orderList",
@@ -251,7 +253,7 @@ public interface MarginAPI {
 			parameters = {Parameters.symbol, Parameters.isIsolated, Parameters.orderListId, Parameters.listClientOrderId, Parameters.newClientOrderId},
 			mandatory = {true, false, false, false, false}
 	)
-	public MarginAccountCancelOCO deleteMarginAccountCancelOCO(String symbol, Boolean isIsolated, long orderListId, String listClientOrderId, String newClientOrderId);
+	public MarginOCOOrder cancelOCOOrder(String symbol, Boolean isIsolated, Long orderListId, String listClientOrderId, String newClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/orderList",
@@ -261,7 +263,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.orderListId, Parameters.origClientOrderId},
 			mandatory = {false, false, false, false}
 	)
-	public QueryMarginAccountsOCO getQueryMarginAccountsOCO(Boolean isIsolated, String symbol, long orderListId, String origClientOrderId);
+	public MarginOCOOrder getOCOOrder(Boolean isIsolated, String symbol, Long orderListId, String origClientOrderId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/allOrderList",
@@ -271,7 +273,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol, Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false, false}
 	)
-	public List<QueryMarginAccountsallOCO> getQueryMarginAccountsallOCO(Boolean isIsolated, String symbol, long fromId, long startTime, long endTime, int limit);
+	public List<MarginOCOOrder> getAllOCOOrders(Boolean isIsolated, String symbol, long fromId, Long startTime, Long endTime, Integer limit);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/openOrderList",
@@ -281,7 +283,7 @@ public interface MarginAPI {
 			parameters = {Parameters.isIsolated, Parameters.symbol},
 			mandatory = {false, false}
 	)
-	public List<QueryMarginAccountsOpenOCO> getQueryMarginAccountsOpenOCO(Boolean isIsolated, String symbol);
+	public List<MarginOCOOrder> getOpenOCOOrders(Boolean isIsolated, String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/margin/myTrades",

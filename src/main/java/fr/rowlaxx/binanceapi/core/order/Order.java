@@ -2,17 +2,11 @@ package fr.rowlaxx.binanceapi.core.order;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
 import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
-public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends JSavONObject {
+public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends SimpleOrder {
 	private static final long serialVersionUID = 6457717291749545166L;
 	
-	//Variables
-	private String symbol;
-	@JOValue(key = {"orderId", "id"})
-	private long orderId;
-	private String clientOrderId;
 	@JOValue(key = {"transactTime", "createDate", "updateTime"})
 	private long transactTime;
 	
@@ -35,18 +29,6 @@ public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends
 	}
 	
 	//Getters
-	public final String getClientOrderId() {
-		return this.clientOrderId;
-	}
-	
-	public final String getSymbol() {
-		return this.symbol;
-	}
-	
-	public final long getOrderId() {
-		return this.orderId;
-	}
-	
 	public final long getTransactTime() {
 		return this.transactTime;
 	}
