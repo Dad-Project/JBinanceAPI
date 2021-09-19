@@ -6,10 +6,28 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.core.order.blvt.RedemptionRecord;
+import fr.rowlaxx.binanceapi.core.savings.FixedActivityPositionToDailyPosition;
+import fr.rowlaxx.binanceapi.core.savings.FixedActivityProjectPosition;
+import fr.rowlaxx.binanceapi.core.savings.FixedAndActivityProject;
+import fr.rowlaxx.binanceapi.core.savings.FixedTypes;
+import fr.rowlaxx.binanceapi.core.savings.FlexibleProduct;
+import fr.rowlaxx.binanceapi.core.savings.FlexibleProductPosition;
+import fr.rowlaxx.binanceapi.core.savings.InterestRecord;
+import fr.rowlaxx.binanceapi.core.savings.LeftDailyPurchaseQuota;
+import fr.rowlaxx.binanceapi.core.savings.LeftDailyRedemptionQuota;
+import fr.rowlaxx.binanceapi.core.savings.LendingAccount;
+import fr.rowlaxx.binanceapi.core.savings.LendingTypes;
+import fr.rowlaxx.binanceapi.core.savings.PurchaseRecord;
+import fr.rowlaxx.binanceapi.core.savings.SavingsPositionStatus;
+import fr.rowlaxx.binanceapi.core.savings.SavingsRedemptionType;
+import fr.rowlaxx.binanceapi.core.savings.SavingsSortBy;
+import fr.rowlaxx.binanceapi.core.savings.SavingsStatus;
 
 public interface SavingsAPI {
 
-	/*@ApiEndpoint (
+	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/product/list",
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.GET,
@@ -17,7 +35,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.status, Parameters.featured, Parameters.current, Parameters.size},
 			mandatory = {false, false, false, false}
 	)
-	public List<GetFlexibleProductList> getGetFlexibleProductList(Enum status, String featured, long current, long size);
+	public List<FlexibleProduct> getFlexibleProductList(SavingsStatus status, String featured, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/userLeftQuota",
@@ -27,7 +45,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.productId},
 			mandatory = {true}
 	)
-	public GetLeftDailyPurchaseQuotaofFlexibleProduct getGetLeftDailyPurchaseQuotaofFlexibleProduct(String productId);
+	public LeftDailyPurchaseQuota getLeftDailyPurchaseQuotaOfFlexibleProduct(String productId);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/purchase",
@@ -37,7 +55,8 @@ public interface SavingsAPI {
 			parameters = {Parameters.productId, Parameters.amount},
 			mandatory = {true, true}
 	)
-	public PurchaseFlexibleProduct postPurchaseFlexibleProduct(String productId, double amount);
+	@RedirectResponse(path = "purchaseId")
+	public long purchaseFlexibleProduct(String productId, Double amount);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/userRedemptionQuota",
@@ -47,7 +66,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.productId, Parameters.type},
 			mandatory = {true, true}
 	)
-	public GetLeftDailyRedemptionQuotaofFlexibleProduct getGetLeftDailyRedemptionQuotaofFlexibleProduct(String productId, Enum type);
+	public LeftDailyRedemptionQuota getLeftDailyRedemptionQuotaOfFlexibleProduct(String productId, SavingsRedemptionType type);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/redeem",
@@ -57,7 +76,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.productId, Parameters.amount, Parameters.type},
 			mandatory = {true, true, true}
 	)
-	public void postRedeemFlexibleProduct(String productId, double amount, Enum type);
+	public void redeemFlexibleProduct(String productId, Double amount, SavingsRedemptionType type);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/token/position",
@@ -67,7 +86,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.asset},
 			mandatory = {true}
 	)
-	public List<GetFlexibleProductPosition> getGetFlexibleProductPosition(String asset);
+	public List<FlexibleProductPosition> getFlexibleProductPositions(String asset);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/project/list",
@@ -77,7 +96,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.asset, Parameters.type, Parameters.status, Parameters.isSortAsc, Parameters.sortBy, Parameters.current, Parameters.size},
 			mandatory = {false, true, false, false, false, false, false}
 	)
-	public List<GetFixedandActivityProjectList> getGetFixedandActivityProjectList(String asset, Enum type, Enum status, boolean isSortAsc, Enum sortBy, long current, long size);
+	public List<FixedAndActivityProject> getFixedAndActivityProjects(String asset, FixedTypes type, SavingsStatus status, Boolean isSortAsc, SavingsSortBy sortBy, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/customizedFixed/purchase",
@@ -87,7 +106,8 @@ public interface SavingsAPI {
 			parameters = {Parameters.projectId, Parameters.lot},
 			mandatory = {true, true}
 	)
-	public PurchaseFixedActivityProject postPurchaseFixedActivityProject(String projectId, long lot);
+	@RedirectResponse(path = "purchaseId")
+	public long purchaseFixedActivityProject(String projectId, long lot);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/project/position/list",
@@ -97,7 +117,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.asset, Parameters.projectId, Parameters.status},
 			mandatory = {true, false, false}
 	)
-	public List<GetFixedActivityProjectPosition> getGetFixedActivityProjectPosition(String asset, String projectId, Enum status);
+	public List<FixedActivityProjectPosition> getFixedActivityProjectPositions(String asset, String projectId, SavingsPositionStatus status);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/union/account",
@@ -117,17 +137,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<GetPurchaseRecord> getGetPurchaseRecord(Enum lendingType, String asset, long startTime, long endTime, long current, long size);
-
-	@ApiEndpoint (
-			endpoint = "/sapi/v1/lending/union/purchaseRecord",
-			baseEndpoint = BaseEndpoints.SPOT,
-			method = Method.GET,
-			needSignature = true,
-			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
-			mandatory = {true, false, false, false, false, false}
-	)
-	public List<GetPurchaseRecord1> getGetPurchaseRecord1(Enum lendingType, String asset, long startTime, long endTime, long current, long size);
+	public List<PurchaseRecord> getGetPurchaseRecord(LendingTypes lendingType, String asset, Long startTime, Long endTime, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/union/redemptionRecord",
@@ -137,17 +147,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<GetRedemptionRecord> getGetRedemptionRecord(Enum lendingType, String asset, long startTime, long endTime, long current, long size);
-
-	@ApiEndpoint (
-			endpoint = "/sapi/v1/lending/union/redemptionRecord",
-			baseEndpoint = BaseEndpoints.SPOT,
-			method = Method.GET,
-			needSignature = true,
-			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
-			mandatory = {true, false, false, false, false, false}
-	)
-	public List<GetRedemptionRecord1> getGetRedemptionRecord1(Enum lendingType, String asset, long startTime, long endTime, long current, long size);
+	public List<RedemptionRecord> getGetRedemptionRecord(LendingTypes lendingType, String asset, Long startTime, Long endTime, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/union/interestHistory",
@@ -157,7 +157,7 @@ public interface SavingsAPI {
 			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<GetInterestHistory> getGetInterestHistory(Enum lendingType, String asset, long startTime, long endTime, long current, long size);
+	public List<InterestRecord> getInterestHistory(LendingTypes lendingType, String asset, Long startTime, Long endTime, Long current, Long size);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/positionChanged",
@@ -167,5 +167,5 @@ public interface SavingsAPI {
 			parameters = {Parameters.projectId, Parameters.lot, Parameters.positionId},
 			mandatory = {true, true, false}
 	)
-	public ChangeFixedActivityPositiontoDailyPosition postChangeFixedActivityPositiontoDailyPosition(String projectId, long lot, long positionId);
-*/}
+	public FixedActivityPositionToDailyPosition changeFixedActivityPositionToDailyPosition(String projectId, Long lot, Long positionId);
+}

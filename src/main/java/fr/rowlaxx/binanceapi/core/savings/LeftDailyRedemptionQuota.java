@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetLeftDailyRedemptionQuotaofFlexibleProduct extends JSavONObject {
+public class LeftDailyRedemptionQuota extends JSavONObject {
 	private static final long serialVersionUID = -1595989675358798941L;
 	
 	//Variables
@@ -14,7 +14,7 @@ public class GetLeftDailyRedemptionQuotaofFlexibleProduct extends JSavONObject {
 	private double minRedemptionAmount;
 	
 	//Constructeurs
-	public GetLeftDailyRedemptionQuotaofFlexibleProduct(JSONObject json) {
+	public LeftDailyRedemptionQuota(JSONObject json) {
 		super(json);
 	}
 	

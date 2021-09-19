@@ -31,9 +31,6 @@ import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
 
 public class Test {
 
-	public static final String API_KEY = "ZaCevetiE3qBRZ3G21JMRVbq5qGINzpFhGCEOVapSy7Hvk8swcpDM5c2ZY55UHOG";
-	public static final String API_SECRET = "1M1ZXUBaoDG4kYLrTLfcgVOeXuOrrz2l77mXLNjpe8AcQdPXYS3AOebviFPfjDMx";
-	
 	public static final double TRADE_SIZE = 12.0;
 	public static final long TRADE_COUNTDOWN = 30_000;
 	public static final double MAX_TRADE_SIZE = 15.0;

@@ -1,24 +1,30 @@
 package fr.rowlaxx.temp.savingsendpoints;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
-public class GetRedemptionRecord extends JSavONObject {
+public class RedemptionRecord extends JSavONObject {
 	private static final long serialVersionUID = 4143614253979861860L;
 	
 	//Variables
 	private double amount;
 	private String asset;
+	@JOValue(mandatory = false)
+	private Double interest;
 	private long createTime;
 	private double principal;
 	private String projectId;
 	private String projectName;
 	private String status;
+	@JOValue(mandatory = false)
 	private String type;
+	@JOValue(mandatory = false)
+	private Double startTime;
 	
 	//Constructeurs
-	public GetRedemptionRecord(JSONObject json) {
+	public RedemptionRecord(JSONObject json) {
 		super(json);
 	}
 	
@@ -29,6 +35,14 @@ public class GetRedemptionRecord extends JSavONObject {
 	
 	public final String getAsset() {
 		return this.asset;
+	}
+	
+	public final Double getInterest() {
+		return interest;
+	}
+	
+	public final Double getStartTime() {
+		return startTime;
 	}
 	
 	public final long getCreateTime() {

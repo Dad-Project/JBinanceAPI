@@ -1,23 +1,26 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import org.json.JSONObject;
 
-public class GetPurchaseRecord extends JSavONObject {
+public class PurchaseRecord extends JSavONObject {
 	private static final long serialVersionUID = 1941507867703022230L;
 	
 	//Variables
 	private double amount;
 	private String asset;
 	private long createTime;
-	private String lendingType;
+	private LendingTypes lendingType;
+	@JOValue(mandatory = false)
+	private Double lot;
 	private String productName;
 	private int purchaseId;
 	private String status;
 	
 	//Constructeurs
-	public GetPurchaseRecord(JSONObject json) {
+	public PurchaseRecord(JSONObject json) {
 		super(json);
 	}
 	
@@ -34,8 +37,12 @@ public class GetPurchaseRecord extends JSavONObject {
 		return this.createTime;
 	}
 	
-	public final String getLendingType() {
+	public final LendingTypes getLendingType() {
 		return this.lendingType;
+	}
+	
+	public final Double getLot() {
+		return this.lot;
 	}
 	
 	public final String getProductName() {

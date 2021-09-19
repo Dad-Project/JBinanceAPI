@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetFixedandActivityProjectList extends JSavONObject {
+public class FixedAndActivityProject extends JSavONObject {
 	private static final long serialVersionUID = -1313239728536683667L;
 	
 	//Variables
@@ -26,7 +26,7 @@ public class GetFixedandActivityProjectList extends JSavONObject {
 	private boolean withAreaLimitation;
 	
 	//Constructeurs
-	public GetFixedandActivityProjectList(JSONObject json) {
+	public FixedAndActivityProject(JSONObject json) {
 		super(json);
 	}
 	

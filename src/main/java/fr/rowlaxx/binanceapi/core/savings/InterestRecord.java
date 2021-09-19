@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetInterestHistory extends JSavONObject {
+public class InterestRecord extends JSavONObject {
 	private static final long serialVersionUID = -5042757535970999556L;
 	
 	//Variables
@@ -15,7 +15,7 @@ public class GetInterestHistory extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public GetInterestHistory(JSONObject json) {
+	public InterestRecord(JSONObject json) {
 		super(json);
 	}
 	

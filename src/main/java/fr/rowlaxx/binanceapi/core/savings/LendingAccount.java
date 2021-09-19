@@ -1,7 +1,6 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.temp.savingsendpoints.lendingaccount.PositionAmountVos;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class LendingAccount extends JSavONObject {
 	private static final long serialVersionUID = 7712297511268282529L;
 	
 	//Variables
-	private List<PositionAmountVos> positionAmountVos;
+	private List<PositionAmount> positionAmountVos;
 	private double totalAmountInBTC;
 	private double totalAmountInUSDT;
 	private double totalFixedAmountInBTC;
@@ -25,7 +24,7 @@ public class LendingAccount extends JSavONObject {
 	}
 	
 	//Getters
-	public final List<PositionAmountVos> getPositionAmountVos() {
+	public final List<PositionAmount> getPositionAmountVos() {
 		return this.positionAmountVos;
 	}
 	

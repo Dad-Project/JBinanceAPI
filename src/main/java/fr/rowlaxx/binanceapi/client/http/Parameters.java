@@ -14,6 +14,11 @@ import fr.rowlaxx.binanceapi.core.order.OrderSide;
 import fr.rowlaxx.binanceapi.core.order.TimeInForce;
 import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
 import fr.rowlaxx.binanceapi.core.order.margin.SideEffectType;
+import fr.rowlaxx.binanceapi.core.savings.SavingsStatus;
+import fr.rowlaxx.binanceapi.core.savings.FixedTypes;
+import fr.rowlaxx.binanceapi.core.savings.LendingTypes;
+import fr.rowlaxx.binanceapi.core.savings.SavingsPositionStatus;
+import fr.rowlaxx.binanceapi.core.savings.SavingsRedemptionType;
 import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
@@ -56,7 +61,7 @@ public enum Parameters {
 	isIsolated(Boolean.class),
 	isolatedSymbol(String.class),
 	isSortAsc(Boolean.class),
-	lendingType(String.class),
+	lendingType(LendingTypes.class),
 	limit(Integer.class),
 	limitClientOrderId(String.class),
 	limitIcebergQty(Double.class),
@@ -102,7 +107,7 @@ public enum Parameters {
 	startDate(Long.class),
 	startTime(Long.class),
 	startTimestamp(Long.class),
-	status(LiquidityOperationStatus.class, Integer.class),
+	status(LiquidityOperationStatus.class, Integer.class, SavingsStatus.class, SavingsPositionStatus.class),
 	stopClientOrderId(String.class),
 	stopIcebergQty(Double.class),
 	stopLimitPrice(Double.class),
@@ -126,7 +131,7 @@ public enum Parameters {
 	transFrom(String.class),
 	transTo(String.class),
 	txId(Long.class),
-	type(LiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class),
+	type(LiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class, SavingsRedemptionType.class, FixedTypes.class),
 	userName(String.class),
 	vipLevel(Integer.class),
 	withdrawOrderId(String.class),

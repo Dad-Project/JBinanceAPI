@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints.lendingaccount;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class PositionAmountVos extends JSavONObject {
+public class PositionAmount extends JSavONObject {
 	private static final long serialVersionUID = -5545989450045049012L;
 	
 	//Variables
@@ -14,7 +14,7 @@ public class PositionAmountVos extends JSavONObject {
 	private String asset;
 	
 	//Constructeurs
-	public PositionAmountVos(JSONObject json) {
+	public PositionAmount(JSONObject json) {
 		super(json);
 	}
 	

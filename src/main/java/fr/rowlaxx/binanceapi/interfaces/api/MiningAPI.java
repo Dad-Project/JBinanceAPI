@@ -66,7 +66,7 @@ public interface MiningAPI {
 			mandatory = {true, true, false, false, false, false}
 	)
 	@RedirectResponse(path = "data/workerDatas")
-	public List<WorkerData> getWorkersData(String algo, String userName, Integer pageIndex, Integer sort, Integer sortColumn, Integer workerStatus);
+	public List<WorkerData> getWorkerDatas(String algo, String userName, Integer pageIndex, Integer sort, Integer sortColumn, Integer workerStatus);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/mining/payment/list",

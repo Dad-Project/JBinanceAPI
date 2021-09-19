@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class ChangeFixedActivityPositiontoDailyPosition extends JSavONObject {
+public class FixedActivityPositionToDailyPosition extends JSavONObject {
 	private static final long serialVersionUID = 4389323164929333090L;
 	
 	//Variables
@@ -13,7 +13,7 @@ public class ChangeFixedActivityPositiontoDailyPosition extends JSavONObject {
 	private long time;
 	
 	//Constructeurs
-	public ChangeFixedActivityPositiontoDailyPosition(JSONObject json) {
+	public FixedActivityPositionToDailyPosition(JSONObject json) {
 		super(json);
 	}
 	

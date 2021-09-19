@@ -1,10 +1,10 @@
-package fr.rowlaxx.temp.savingsendpoints;
+package fr.rowlaxx.binanceapi.core.savings;
 
 import fr.rowlaxx.jsavon.JSavONObject;
 
 import org.json.JSONObject;
 
-public class GetFlexibleProductList extends JSavONObject {
+public class FlexibleProduct extends JSavONObject {
 	private static final long serialVersionUID = 8342258680470277251L;
 	
 	//Variables
@@ -22,7 +22,7 @@ public class GetFlexibleProductList extends JSavONObject {
 	private double upLimitPerUser;
 	
 	//Constructeurs
-	public GetFlexibleProductList(JSONObject json) {
+	public FlexibleProduct(JSONObject json) {
 		super(json);
 	}
 	

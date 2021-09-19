@@ -25,7 +25,7 @@ public class Test2 {
 		final BinanceClient client = BinanceClient.create(Test.API_KEY, Test.API_SECRET);
 		client.login();
 		
-		
+		client.savings().getFlexibleProductList(null, null, null, null);
 	}
 
 }
