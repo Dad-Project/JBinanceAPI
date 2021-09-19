@@ -16,9 +16,7 @@ JSavON          https://github.com/RowlaxX/JSavON
 * Futures
 * Margin
 * Master & Sub Account
-* Spot (Wallet)
-* Spot (Market)
-* Spot (Trade)
+* Spot (Wallet, Market & Trade)
 
 # Unimplemented features (will be implemented soon)
 
