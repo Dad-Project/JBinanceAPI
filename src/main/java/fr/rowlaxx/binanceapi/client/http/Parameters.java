@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
-import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
+import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.future.Direction;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.core.order.OrderResponseTypes;
@@ -124,7 +124,7 @@ public enum Parameters {
 	transFrom(String.class),
 	transTo(String.class),
 	txId(Long.class),
-	type(RemoveLiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class),
+	type(LiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class),
 	userName(String.class),
 	vipLevel(Integer.class),
 	withdrawOrderId(String.class),

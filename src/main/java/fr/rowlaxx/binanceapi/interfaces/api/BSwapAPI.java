@@ -10,12 +10,15 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.core.bswap.AddLiquidityPreview;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationRecord;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
 import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
+import fr.rowlaxx.binanceapi.core.bswap.PoolConfigure;
 import fr.rowlaxx.binanceapi.core.bswap.PoolLiquidityInformation;
-import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityOperationTypes;
+import fr.rowlaxx.binanceapi.core.bswap.RemoveLiquidityPreview;
 import fr.rowlaxx.binanceapi.core.bswap.RequestQuote;
+import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationTypes;
 import fr.rowlaxx.binanceapi.core.bswap.Swap;
 import fr.rowlaxx.binanceapi.core.general.bswap.SwapPool;
 
@@ -86,7 +89,7 @@ public interface BSwapAPI {
 			mandatory = {true, true, false, true}
 	)
 	@RedirectResponse(path = "operationId")
-	public long removeLiquidity(long poolId, RemoveLiquidityOperationTypes type, Collection<String> asset, double shareAmount);
+	public long removeLiquidity(long poolId, LiquidityOperationTypes type, Collection<String> asset, double shareAmount);
 
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/bswap/liquidityRemove",
@@ -162,4 +165,47 @@ public interface BSwapAPI {
 	)
 	@RedirectResponse(path = "%INDEX=0%")
 	public Swap getSwap(Long swapId);
+	
+	@ApiEndpoint(
+			endpoint = "/sapi/v1/bswap/poolConfigure",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@MapKey(fieldName = "poolName")
+	public Map<String, PoolConfigure> getPoolConfigures();
+	
+	@ApiEndpoint(
+			endpoint = "/sapi/v1/bswap/poolConfigure",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.poolId},
+			mandatory = {true}
+	)
+	@RedirectResponse(path = "%INDEX=0%")
+	public PoolConfigure getPoolConfigure(Long poolId);
+	
+	@ApiEndpoint(
+			endpoint = "/sapi/v1/bswap/addLiquidityPreview",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.poolId, Parameters.type, Parameters.quoteAsset, Parameters.quoteQty},
+			mandatory = {true, true, true, true}
+	)
+	public AddLiquidityPreview addLiquidityPreview(Long poolId, LiquidityOperationTypes type, String quoteAsset, Double quoteQty);
+
+	@ApiEndpoint(
+			endpoint = "/sapi/v1/bswap/removeLiquidityPreview",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.poolId, Parameters.type, Parameters.quoteAsset, Parameters.shareAmount},
+			mandatory = {true, true, true, true}
+	)
+	public RemoveLiquidityPreview removeLiquidityPreview(Long poolId, LiquidityOperationTypes type, String quoteAsset, Double shareAmount);
+
 }

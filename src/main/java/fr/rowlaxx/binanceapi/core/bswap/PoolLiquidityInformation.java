@@ -13,7 +13,7 @@ private static final long serialVersionUID = 1035205055617813240L;
 	//Variables
 	private Map<String, Double> liquidity;
 	private int poolId;
-	private String poolNmae;
+	private String poolName;
 	private long updateTime;
 
 	@JOValue(path = "share")
@@ -37,8 +37,8 @@ private static final long serialVersionUID = 1035205055617813240L;
 		return this.poolId;
 	}
 	
-	public final String getPoolNmae() {
-		return this.poolNmae;
+	public final String getPoolName() {
+		return this.poolName;
 	}
 	
 	public Map<String, Double> getAsset() {

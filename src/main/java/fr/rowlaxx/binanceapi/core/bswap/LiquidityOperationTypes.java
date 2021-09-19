@@ -1,6 +1,6 @@
 package fr.rowlaxx.binanceapi.core.bswap;
 
-public enum RemoveLiquidityOperationTypes {
+public enum LiquidityOperationTypes {
 
 	SINGLE,
 	COMBINATION
