@@ -18,14 +18,14 @@ JSavON          https://github.com/RowlaxX/JSavON
 * Margin
 * Master & Sub Account
 * Mining
+* Savings
 * Spot (Wallet, Market & Trade)
 
 # Unimplemented features (will be implemented soon)
 
 * Futures USD Margined
 * Futures Coin Margined
-* Options
-* Savings (Currently implementing)
+* Options (currently implementing)
 * Websockets
 
 # Creating a client
