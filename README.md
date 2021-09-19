@@ -57,7 +57,7 @@ SpotOrderRequest order = NewOrderRequest.spot()
         .setSide(OrderSide.BUY)
         .setType(SpotOrderTypes.MARKET)
         .setQuantity(0.001)
-        .build()
+        .build();
 
 SpotOrder response = client.spot().postOrder(order);
 ```
