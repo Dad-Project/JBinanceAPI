@@ -11,22 +11,21 @@ JSavON          https://github.com/RowlaxX/JSavON
 # Implemented features
 
 * BLVT
+* BSwap
 * C2C
 * Fiat
-* Spot (Wallet)
-* Spot (Market)
-* Master & Sub Account
 * Futures
+* Margin
+* Master & Sub Account
+* Spot (Wallet, Market & Trade)
 
 # Unimplemented features (will be implemented soon)
 
-* Spot (Trade)
 * Futures USD Margined
 * Futures Coin Margined
 * Options
-* Minings
+* Minings (Currently implementing)
 * Savings
-* Margin (Currently implementing)
 * Websockets
 
 # Creating a client
