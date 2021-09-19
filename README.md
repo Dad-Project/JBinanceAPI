@@ -11,6 +11,7 @@ JSavON          https://github.com/RowlaxX/JSavON
 # Implemented features
 
 * BLVT
+* BSwap
 * C2C
 * Fiat
 * Futures
