@@ -132,6 +132,7 @@ public enum Parameters {
 	transTo(String.class),
 	txId(Long.class),
 	type(LiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class, SavingsRedemptionType.class, FixedTypes.class),
+	underlying(String.class),
 	userName(String.class),
 	vipLevel(Integer.class),
 	withdrawOrderId(String.class),

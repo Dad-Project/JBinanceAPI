@@ -11,8 +11,8 @@ public abstract class Trade extends JSavONObject {
 	//Variables
 	@JOValue(key = {"id", "a"})
 	private int id;
-	@JOValue(key = {"isBestMatch", "M"})
-	private boolean isBestMatch;
+	@JOValue(key = {"isBestMatch", "M"}, mandatory = false)
+	private Boolean isBestMatch;
 	@JOValue(key = {"price", "p"})
 	private double price;
 	@JOValue(key = {"qty", "q"})
@@ -30,7 +30,7 @@ public abstract class Trade extends JSavONObject {
 		return this.id;
 	}
 	
-	public final boolean isBestMatch() {
+	public final Boolean isBestMatch() {
 		return this.isBestMatch;
 	}
 	

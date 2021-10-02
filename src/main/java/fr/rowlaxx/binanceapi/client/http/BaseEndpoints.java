@@ -9,7 +9,7 @@ public enum BaseEndpoints {
 	SPOT("https://api.binance.com", "https://api1.binance.com", "https://api2.binance.com", "https://api3.binance.com"),
 	FUTURE_USD("https://fapi.binance.com"),
 	FUTURE_COIN("https://dapi.binance.com"),
-	VANILLE("https://vapi.binance.com"),
+	VANILLA("https://vapi.binance.com"),
 	CUSTOM;
 	
 	//Variables

@@ -1,8 +1,8 @@
-package fr.rowlaxx.binanceapi.core.market.spot;
+package fr.rowlaxx.binanceapi.core.market;
 
-import fr.rowlaxx.binanceapi.core.market.OrderBook;
 import fr.rowlaxx.jsavon.JSavONObject;
 import fr.rowlaxx.jsavon.annotations.ManualValue;
+import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,7 +20,8 @@ public class FinalOrderBook extends JSavONObject implements OrderBook {
 	private Map<Double, Double> asks;
 	@ManualValue
 	private Map<Double, Double> bids;
-	private long lastUpdateId;
+	@JOValue(mandatory = false)
+	private Long lastUpdateId;
 	
 	//Constructeurs
 	public FinalOrderBook(JSONObject json) {
@@ -62,7 +63,7 @@ public class FinalOrderBook extends JSavONObject implements OrderBook {
 		return bids;
 	}
 	
-	public final long getLastUpdateId() {
+	public final Long getLastUpdateId() {
 		return this.lastUpdateId;
 	}
 }
