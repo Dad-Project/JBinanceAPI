@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.wallet.fiat;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-abstract class FiatTransfer extends JSavONObject {
+abstract class FiatTransfer extends JsavonObject {
 	private static final long serialVersionUID = 1851902082203737743L;
 
 	//Variables

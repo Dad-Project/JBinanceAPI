@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.savings;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class InterestRecord extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class InterestRecord extends JsavonObject {
 	private static final long serialVersionUID = -5042757535970999556L;
 	
 	//Variables

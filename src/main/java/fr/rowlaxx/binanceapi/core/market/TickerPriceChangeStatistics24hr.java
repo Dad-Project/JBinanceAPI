@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.market;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public abstract class TickerPriceChangeStatistics24hr extends JSavONObject {
+public abstract class TickerPriceChangeStatistics24hr extends JsavonObject {
 	private static final long serialVersionUID = -2572423328910643620L;
 
 	//Variables

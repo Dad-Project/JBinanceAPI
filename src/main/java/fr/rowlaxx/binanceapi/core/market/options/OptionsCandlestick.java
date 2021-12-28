@@ -4,10 +4,10 @@ import org.json.JSONArray;
 
 import fr.rowlaxx.binanceapi.core.market.Candlestick;
 import fr.rowlaxx.binanceapi.core.market.Intervals;
-import fr.rowlaxx.jsavon.JSavONArray;
-import fr.rowlaxx.jsavon.annotations.array.JAValue;
+import fr.rowlaxx.jsavon.JsavonArray;
+import fr.rowlaxx.jsavon.annotations.JAValue;
 
-public class OptionsCandlestick extends JSavONArray implements Candlestick {
+public class OptionsCandlestick extends JsavonArray implements Candlestick {
 	private static final long serialVersionUID = -3133368743290654529L;
 	
 	//Variables

@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.order.blvt;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-abstract class BlvtTrade extends JSavONObject {
+abstract class BlvtTrade extends JsavonObject {
 	private static final long serialVersionUID = -4004343023477677130L;
 
 	//Variables

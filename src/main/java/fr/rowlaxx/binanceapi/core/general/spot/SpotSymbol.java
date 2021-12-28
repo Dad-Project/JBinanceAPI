@@ -6,22 +6,21 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.SimpleSymbol;
 import fr.rowlaxx.binanceapi.core.order.spot.SpotOrderTypes;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class SpotSymbol extends SimpleSymbol<SpotOrderTypes> {
 	private static final long serialVersionUID = 1381142129152963029L;
 
 	//Variables
-	@JOValue private Set<SpotPermissions> permissions;
-	@JOValue private SpotSymbolStatus status;
-	@JOValue private int baseCommissionPrecision;
-	@JOValue private boolean isMarginTradingAllowed;
-	@JOValue private boolean icebergAllowed;
-	@JOValue private boolean ocoAllowed;
-	@JOValue private boolean isSpotTradingAllowed;
-	@JOValue private boolean quoteOrderQtyMarketAllowed;
-	@JOValue private int quoteAssetPrecision;
-	@JOValue private int quoteCommissionPrecision;
+	private Set<SpotPermissions> permissions;
+	private SpotSymbolStatus status;
+	private int baseCommissionPrecision;
+	private boolean isMarginTradingAllowed;
+	private boolean icebergAllowed;
+	private boolean ocoAllowed;
+	private boolean isSpotTradingAllowed;
+	private boolean quoteOrderQtyMarketAllowed;
+	private int quoteAssetPrecision;
+	private int quoteCommissionPrecision;
 	
 	//Constructeurs
 	public SpotSymbol(JSONObject response) {

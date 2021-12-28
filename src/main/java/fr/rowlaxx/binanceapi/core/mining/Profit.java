@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.mining;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public class Profit extends JSavONObject {
+public class Profit extends JsavonObject {
 	private static final long serialVersionUID = -6612554663600466638L;
 	
 	//Variables

@@ -6,8 +6,8 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.wallet.Balance;
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshot;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class SpotDailyAccountSnapshot extends DailyAccountSnapshot {
 	private static final long serialVersionUID = 1634716526563706889L;

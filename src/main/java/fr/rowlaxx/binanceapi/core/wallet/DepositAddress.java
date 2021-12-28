@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class DepositAddress extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class DepositAddress extends JsavonObject {
 	private static final long serialVersionUID = 5872502337723190174L;
 	
 	//Variables

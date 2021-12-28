@@ -1,12 +1,12 @@
 package fr.rowlaxx.binanceapi.core.general.blvt;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import java.util.List;
 
 import org.json.JSONObject;
 
-public class BLVTInfo extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class BLVTInfo extends JsavonObject {
 	private static final long serialVersionUID = -1469211921135121615L;
 	
 	//Variables

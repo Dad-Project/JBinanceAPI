@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.market;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class SymbolOrderBookTicker extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class SymbolOrderBookTicker extends JsavonObject {
 	private static final long serialVersionUID = 6781128770211592070L;
 	
 	//Variables

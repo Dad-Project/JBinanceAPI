@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.order;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends SimpleOrder {
 	private static final long serialVersionUID = 6457717291749545166L;

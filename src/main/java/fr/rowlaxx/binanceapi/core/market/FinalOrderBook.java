@@ -1,8 +1,8 @@
 package fr.rowlaxx.binanceapi.core.market;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 import fr.rowlaxx.jsavon.annotations.ManualValue;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,7 +12,7 @@ import java.util.TreeMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class FinalOrderBook extends JSavONObject implements OrderBook {
+public class FinalOrderBook extends JsavonObject implements OrderBook {
 	private static final long serialVersionUID = -1189766329825065372L;
 	
 	//Variables

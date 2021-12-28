@@ -4,32 +4,31 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Symbol;
 import fr.rowlaxx.binanceapi.core.order.options.OptionsContractTypes;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class OptionSymbol extends Symbol {
 	private static final long serialVersionUID = 3638739540698918134L;
 
 	//Variables
-	@JOValue double leverage;
-	@JOValue private OptionsContractTypes side;
-	@JOValue private double minInitialMargin;
-	@JOValue private double maketFeeRate;
-	@JOValue private double minAutoReduceMargin;
-	@JOValue private String underlying;
-	@JOValue private double autoReduceMargin;
-	@JOValue private double initialMargin;
-	@JOValue private long expiryDate;
-	@JOValue private int unit;
-	@JOValue private double maintenanceMargin;
-	@JOValue private int contractId;
-	@JOValue private int quantityScale;
-	@JOValue private int priceScale;
-	@JOValue private double takerFeeRate;
-	@JOValue private int id;
-	@JOValue private double maxQty;
-	@JOValue private double minMaintenanceMargin;
-	@JOValue private double strikePrice;
-	@JOValue private double minQty;
+	private double leverage;
+	private OptionsContractTypes side;
+	private double minInitialMargin;
+	private double maketFeeRate;
+	private double minAutoReduceMargin;
+	private String underlying;
+	private double autoReduceMargin;
+	private double initialMargin;
+	private long expiryDate;
+	private int unit;
+	private double maintenanceMargin;
+	private int contractId;
+	private int quantityScale;
+	private int priceScale;
+	private double takerFeeRate;
+	private int id;
+	private double maxQty;
+	private double minMaintenanceMargin;
+	private double strikePrice;
+	private double minQty;
 	
 	//Constructeurs
 	public OptionSymbol(JSONObject response) {

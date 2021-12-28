@@ -4,10 +4,9 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filters.Type;
 import fr.rowlaxx.binanceapi.exceptions.FilterInstanciationException;
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public abstract class Filter extends JSavONObject {
+public abstract class Filter extends JsavonObject {
 	private static final long serialVersionUID = -2095714718119354586L;
 
 	//Statique
@@ -23,7 +22,7 @@ public abstract class Filter extends JSavONObject {
 	}
 
 	//Variables
-	@JOValue private Filters filterType;
+	private Filters filterType;
 
 	//Constructeurs
 	protected Filter(JSONObject response) {

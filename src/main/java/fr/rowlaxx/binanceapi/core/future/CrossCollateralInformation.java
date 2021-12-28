@@ -1,11 +1,11 @@
 package fr.rowlaxx.binanceapi.core.future;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 import org.json.JSONObject;
 
-public class CrossCollateralInformation extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
+
+public class CrossCollateralInformation extends JsavonObject {
 	private static final long serialVersionUID = -7215370812697379318L;
 	
 	//Variables

@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.wallet;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public abstract class DailyAccountSnapshot extends JSavONObject {
+public abstract class DailyAccountSnapshot extends JsavonObject {
 	private static final long serialVersionUID = -6025630785683454849L;
 
 	//Variables

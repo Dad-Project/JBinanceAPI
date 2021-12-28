@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.margin;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class BNBBurnStatus extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class BNBBurnStatus extends JsavonObject {
 	private static final long serialVersionUID = -3363236296432911500L;
 	
 	//Variables

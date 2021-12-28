@@ -7,10 +7,10 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONArray;
+import fr.rowlaxx.jsavon.JsavonArray;
 import fr.rowlaxx.jsavon.annotations.ManualValue;
 
-public class Indicators extends JSavONArray {
+public class Indicators extends JsavonArray {
 	private static final long serialVersionUID = 6299953810419276630L;
 
 	//Variables

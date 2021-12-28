@@ -1,11 +1,11 @@
 package fr.rowlaxx.binanceapi.core.future;
 
 import fr.rowlaxx.binanceapi.core.order.BasicOrderStatus;
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
 import org.json.JSONObject;
 
-public class CrossCollateralLiquidationRecord extends JSavONObject {
+public class CrossCollateralLiquidationRecord extends JsavonObject {
 	private static final long serialVersionUID = 1209581111247235310L;
 	
 	//Variables

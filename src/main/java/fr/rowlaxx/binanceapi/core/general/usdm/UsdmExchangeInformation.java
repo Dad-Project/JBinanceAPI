@@ -6,13 +6,12 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.SimpleExchangeInformation;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class UsdmExchangeInformation extends SimpleExchangeInformation<UsdmSymbol> {
 	private static final long serialVersionUID = -5298506133872695636L;
 
 	//Variables
-	@JOValue private UsdmFuturesType futuresType;
+	private UsdmFuturesType futuresType;
 	
 	@MapKey(fieldName = "asset")
 	private Map<String, Asset> assets;

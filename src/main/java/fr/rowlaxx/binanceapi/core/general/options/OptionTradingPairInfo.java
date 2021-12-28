@@ -2,13 +2,13 @@ package fr.rowlaxx.binanceapi.core.general.options;
 
 import fr.rowlaxx.binanceapi.core.general.Filter;
 import fr.rowlaxx.binanceapi.core.general.Filters;
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
 import java.util.Map;
 
 import org.json.JSONObject;
 
-public class OptionTradingPairInfo extends JSavONObject {
+public class OptionTradingPairInfo extends JsavonObject {
 	private static final long serialVersionUID = 8309470448559734149L;
 	
 	//Variables

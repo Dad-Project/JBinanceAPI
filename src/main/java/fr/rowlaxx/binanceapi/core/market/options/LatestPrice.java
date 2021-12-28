@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.market.options;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class LatestPrice extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class LatestPrice extends JsavonObject {
 	private static final long serialVersionUID = 8358192541868121515L;
 	
 	//Variables

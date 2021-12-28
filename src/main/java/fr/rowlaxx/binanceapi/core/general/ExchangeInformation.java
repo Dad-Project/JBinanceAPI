@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public abstract class ExchangeInformation<T extends Symbol> extends JSavONObject {
+public abstract class ExchangeInformation<T extends Symbol> extends JsavonObject {
 	private static final long serialVersionUID = -7707306277131875272L;
 	
 	//Variables

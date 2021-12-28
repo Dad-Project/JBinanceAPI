@@ -7,16 +7,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filters.Type;
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.ManualValue;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
-public abstract class Symbol extends JSavONObject {
+public abstract class Symbol extends JsavonObject {
 	private static final long serialVersionUID = -6654992662838138776L;
 
 	//Variables
-	@JOValue private String symbol;
-	@JOValue private String quoteAsset;
+	private String symbol;
+	private String quoteAsset;
 
 	@ManualValue
 	private Map<Filters, Filter> filters;

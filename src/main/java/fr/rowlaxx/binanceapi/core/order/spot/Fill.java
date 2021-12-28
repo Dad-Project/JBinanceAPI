@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.order.spot;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class Fill extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class Fill extends JsavonObject {
 	private static final long serialVersionUID = 1049772128120402411L;
 	
 	//Variables

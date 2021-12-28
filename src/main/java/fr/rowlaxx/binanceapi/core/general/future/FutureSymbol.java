@@ -7,27 +7,27 @@ import org.json.JSONObject;
 import fr.rowlaxx.binanceapi.core.general.SimpleSymbol;
 import fr.rowlaxx.binanceapi.core.order.TimeInForce;
 import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public abstract class FutureSymbol extends SimpleSymbol<FutureOrderTypes> {
 	private static final long serialVersionUID = 4784472032259702080L;
 
 	//Variables
-	@JOValue private int quantityPrecision;
-	@JOValue private int pricePrecision;
-	@JOValue private double requiredMarginPercent;
-	@JOValue private long onboardDate;
-	@JOValue private String pair;
-	@JOValue private double triggerProtect;
-	@JOValue private String marginAsset;
-	@JOValue private double liquidationFee;
-	@JOValue private double maintMarginPercent;
-	@JOValue private double marketTakeBound;
-	@JOValue private long deliveryDate;
-	@JOValue private FutureContractTypes contractType;
-	@JOValue private UnderlyingTypes underlyingType;
-	@JOValue private Set<UnderlyingSubTypes> underlyingSubType;
-	@JOValue private Set<TimeInForce> timeInForce;
+	private int quantityPrecision;
+	private int pricePrecision;
+	private double requiredMarginPercent;
+	private long onboardDate;
+	private String pair;
+	private double triggerProtect;
+	private String marginAsset;
+	private double liquidationFee;
+	private double maintMarginPercent;
+	private double marketTakeBound;
+	private long deliveryDate;
+	private FutureContractTypes contractType;
+	private UnderlyingTypes underlyingType;
+	private Set<UnderlyingSubTypes> underlyingSubType;
+	private Set<TimeInForce> timeInForce;
 	@JOValue(key = {"status", "contractStatus"})
 	private FutureContractStatus status;
 	

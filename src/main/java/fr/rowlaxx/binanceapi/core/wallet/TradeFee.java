@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class TradeFee extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class TradeFee extends JsavonObject {
 	private static final long serialVersionUID = 6412460026443809680L;
 	
 	//Variables

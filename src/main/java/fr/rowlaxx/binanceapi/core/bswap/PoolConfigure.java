@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public class PoolConfigure extends JSavONObject {
+public class PoolConfigure extends JsavonObject {
 	private static final long serialVersionUID = 6056615331216757549L;
 	
 	//Variables

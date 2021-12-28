@@ -1,7 +1,7 @@
 package fr.rowlaxx.binanceapi.core.spot;
 
 import fr.rowlaxx.binanceapi.core.wallet.Balance;
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-public class SpotAccountInformation extends JSavONObject {
+public class SpotAccountInformation extends JsavonObject {
 	private static final long serialVersionUID = 2500421506551164994L;
 	
 	//Variables

@@ -1,11 +1,11 @@
 package fr.rowlaxx.binanceapi.core.savings;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 import org.json.JSONObject;
 
-public class RedemptionRecord extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
+
+public class RedemptionRecord extends JsavonObject {
 	private static final long serialVersionUID = 4143614253979861860L;
 	
 	//Variables

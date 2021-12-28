@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.market.spot;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public class SpotCompressedTrade extends SpotAbstractTrade {
 	private static final long serialVersionUID = 8527421398690357381L;

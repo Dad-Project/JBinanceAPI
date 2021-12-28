@@ -2,10 +2,10 @@ package fr.rowlaxx.binanceapi.core.order;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public class SimpleOrder extends JSavONObject {
+public class SimpleOrder extends JsavonObject {
 	private static final long serialVersionUID = 1492707707138253457L;
 	
 	//Variables

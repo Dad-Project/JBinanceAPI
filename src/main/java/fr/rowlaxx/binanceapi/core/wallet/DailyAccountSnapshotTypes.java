@@ -1,6 +1,6 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.annotations.EnumMatcher;
+import fr.rowlaxx.convertutils.annotations.EnumMatcher;
 
 public enum DailyAccountSnapshotTypes {
 

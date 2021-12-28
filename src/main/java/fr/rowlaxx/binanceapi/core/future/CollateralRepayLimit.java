@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.future;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
 import org.json.JSONObject;
 
-public class CollateralRepayLimit extends JSavONObject {
+public class CollateralRepayLimit extends JsavonObject {
 	private static final long serialVersionUID = -3991816538323425562L;
 	
 	//Variables

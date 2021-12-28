@@ -2,15 +2,14 @@ package fr.rowlaxx.binanceapi.core.general.options;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public class OptionAsset extends JSavONObject {
+public class OptionAsset extends JsavonObject {
 	private static final long serialVersionUID = -3751210553171232844L;
 
 	//Variables
-	@JOValue private String name;
-	@JOValue private int id;
+	private String name;
+	private int id;
 	
 	//Constructeurs
 	public OptionAsset(JSONObject json) {

@@ -1,13 +1,13 @@
 package fr.rowlaxx.binanceapi.core.subaccount;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 
 import java.util.Map;
 
 import org.json.JSONObject;
 
-public class SubAccountsFuturesSummary extends JSavONObject {
+public class SubAccountsFuturesSummary extends JsavonObject {
 	private static final long serialVersionUID = -3504303871191442718L;
 	
 	//Variables

@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.wallet.blvt;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class BLVTUserLimitInfo extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class BLVTUserLimitInfo extends JsavonObject {
 	private static final long serialVersionUID = -2251796388307172118L;
 	
 	//Variables

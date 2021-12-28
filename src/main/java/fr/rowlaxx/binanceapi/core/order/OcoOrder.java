@@ -5,10 +5,10 @@ import java.util.List;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.order.spot.SpotOrder;
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public class OcoOrder<O extends SpotOrder> extends JSavONObject {
+public class OcoOrder<O extends SpotOrder> extends JsavonObject {
 	private static final long serialVersionUID = -5128726759871863206L;
 	
 	//Variables

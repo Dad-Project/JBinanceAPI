@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.margin;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class ForceLiquidationRecord extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class ForceLiquidationRecord extends JsavonObject {
 	private static final long serialVersionUID = 4488410859688809636L;
 	
 	//Variables

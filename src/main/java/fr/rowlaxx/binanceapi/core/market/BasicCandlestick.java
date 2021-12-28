@@ -2,10 +2,10 @@ package fr.rowlaxx.binanceapi.core.market;
 
 import org.json.JSONArray;
 
-import fr.rowlaxx.jsavon.JSavONArray;
-import fr.rowlaxx.jsavon.annotations.array.JAValue;
+import fr.rowlaxx.jsavon.JsavonArray;
+import fr.rowlaxx.jsavon.annotations.JAValue;
 
-public class BasicCandlestick extends JSavONArray implements Candlestick {
+public class BasicCandlestick extends JsavonArray implements Candlestick {
 	private static final long serialVersionUID = -1885063134974002265L;
 	
 	//Variables

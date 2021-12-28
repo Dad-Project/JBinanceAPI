@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.subaccount;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class SubAccount extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class SubAccount extends JsavonObject {
 	private static final long serialVersionUID = 7666190389359963590L;
 	
 	//Variables

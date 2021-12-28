@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.savings;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class FixedAndActivityProject extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class FixedAndActivityProject extends JsavonObject {
 	private static final long serialVersionUID = -1313239728536683667L;
 	
 	//Variables

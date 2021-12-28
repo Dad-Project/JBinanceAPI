@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.market.spot;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class CurrentAveragePrice extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class CurrentAveragePrice extends JsavonObject {
 	private static final long serialVersionUID = -1092219404614702932L;
 	
 	//Variables

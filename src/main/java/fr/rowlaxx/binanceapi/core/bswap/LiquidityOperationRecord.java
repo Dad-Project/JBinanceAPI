@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.bswap;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
 import org.json.JSONObject;
 
-public class LiquidityOperationRecord extends JSavONObject {
+public class LiquidityOperationRecord extends JsavonObject {
 	private static final long serialVersionUID = -3599987839297542872L;
 	
 	//Variables

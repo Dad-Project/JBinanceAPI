@@ -1,11 +1,11 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 import org.json.JSONObject;
 
-public class APIKeyPermission extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
+
+public class APIKeyPermission extends JsavonObject {
 	private static final long serialVersionUID = 7486596936335182547L;
 	
 	//Variables

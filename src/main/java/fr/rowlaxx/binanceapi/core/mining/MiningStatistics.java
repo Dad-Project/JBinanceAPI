@@ -1,11 +1,12 @@
 package fr.rowlaxx.binanceapi.core.mining;
 
-import fr.rowlaxx.jsavon.JSavONObject;
 import java.util.Map;
 
 import org.json.JSONObject;
 
-public class MiningStatistics extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class MiningStatistics extends JsavonObject {
 	private static final long serialVersionUID = 88885892338114433L;
 	
 	//Variables

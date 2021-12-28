@@ -1,7 +1,7 @@
 package fr.rowlaxx.binanceapi.core.order.margin;
 
 import fr.rowlaxx.binanceapi.core.order.OcoOrder;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 import org.json.JSONObject;
 

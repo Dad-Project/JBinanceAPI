@@ -3,7 +3,7 @@ package fr.rowlaxx.binanceapi.core.order.future;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.order.BasicOrder;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public abstract class FutureOrder extends BasicOrder<FutureOrderTypes> {
 	private static final long serialVersionUID = -4526521473369286889L;

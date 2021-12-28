@@ -3,14 +3,14 @@ package fr.rowlaxx.binanceapi.core.general.filters;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.Filter;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public class PercentPriceFilter extends Filter {
 	private static final long serialVersionUID = -8439783889456487614L;
 
 	//Variables
-	@JOValue private double multiplierUp;
-	@JOValue private double multiplierDown;
+	private double multiplierUp;
+	private double multiplierDown;
 	
 	@JOValue(mandatory = false) 
 	private Integer avgPriceMins;

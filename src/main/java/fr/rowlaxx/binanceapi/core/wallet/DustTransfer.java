@@ -1,14 +1,13 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
-
 import java.util.Map;
 
 import org.json.JSONObject;
 
-public class DustTransfer extends JSavONObject {
+public class DustTransfer extends JsavonObject {
 	private static final long serialVersionUID = -9189583470562999350L;
 	
 	//Variables

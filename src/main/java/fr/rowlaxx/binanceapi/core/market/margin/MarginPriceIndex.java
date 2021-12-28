@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.market.margin;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class MarginPriceIndex extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class MarginPriceIndex extends JsavonObject {
 	private static final long serialVersionUID = 2490542383016227502L;
 	
 	//Variables

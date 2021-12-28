@@ -7,9 +7,7 @@ import java.util.Objects;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpRequestException;
-import fr.rowlaxx.jsavon.convert.ConvertRequest;
-import fr.rowlaxx.jsavon.convert.Destination;
-import fr.rowlaxx.jsavon.exceptions.JSavONException;
+import fr.rowlaxx.jsavon.exceptions.JsavonException;
 
 public class BinanceHttpClient extends SimpleBinanceHttpClient {
 
@@ -97,7 +95,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 								value = new ConvertRequest<>(value, Destination.from(clazz)).execute();
 								converted = true;
 								break;
-							}catch(JSavONException | IllegalArgumentException ignored) {}
+							}catch(JsavonException | IllegalArgumentException ignored) {}
 						
 						if (!converted)
 							throw new BinanceHttpRequestException("unable to convert \"" + value + "\" for the parameter " + parameter);

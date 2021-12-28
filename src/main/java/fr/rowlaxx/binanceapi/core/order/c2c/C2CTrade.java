@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.order.c2c;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class C2CTrade extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class C2CTrade extends JsavonObject {
 	private static final long serialVersionUID = 8374233288495381052L;
 	
 	//Variables

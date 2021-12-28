@@ -1,12 +1,12 @@
 package fr.rowlaxx.binanceapi.core.savings;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import java.util.List;
 
 import org.json.JSONObject;
 
-public class LendingAccount extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class LendingAccount extends JsavonObject {
 	private static final long serialVersionUID = 7712297511268282529L;
 	
 	//Variables

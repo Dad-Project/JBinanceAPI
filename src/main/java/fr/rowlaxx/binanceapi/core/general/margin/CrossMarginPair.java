@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.general.margin;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class CrossMarginPair extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class CrossMarginPair extends JsavonObject {
 	private static final long serialVersionUID = 4287663740474370793L;
 	
 	//Variables

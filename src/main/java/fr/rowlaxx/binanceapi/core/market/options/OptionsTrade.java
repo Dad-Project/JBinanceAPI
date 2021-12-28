@@ -1,9 +1,9 @@
-package fr.rowlaxx.binanceapi.interfaces.api.options;
+package fr.rowlaxx.binanceapi.core.market.options;
 
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.market.Trade;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public class OptionsTrade extends Trade {
 	private static final long serialVersionUID = 1130823384919172576L;

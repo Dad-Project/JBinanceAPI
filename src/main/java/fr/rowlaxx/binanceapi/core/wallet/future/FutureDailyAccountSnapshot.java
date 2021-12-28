@@ -1,8 +1,8 @@
 package fr.rowlaxx.binanceapi.core.wallet.future;
 
 import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshot;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 import java.util.Map;
 

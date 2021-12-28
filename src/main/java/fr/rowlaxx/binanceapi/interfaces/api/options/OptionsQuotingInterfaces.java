@@ -13,6 +13,7 @@ import fr.rowlaxx.binanceapi.core.market.Intervals;
 import fr.rowlaxx.binanceapi.core.market.options.LatestMarkPrice;
 import fr.rowlaxx.binanceapi.core.market.options.LatestPrice;
 import fr.rowlaxx.binanceapi.core.market.options.OptionsCandlestick;
+import fr.rowlaxx.binanceapi.core.market.options.OptionsTrade;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;

@@ -2,16 +2,15 @@ package fr.rowlaxx.binanceapi.core.general.usdm;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public class Asset extends JSavONObject {
+public class Asset extends JsavonObject {
 	private static final long serialVersionUID = -8867757164767750187L;
 
 	//Variables
-	@JOValue private double autoAssetExchange;
-	@JOValue private String asset;
-	@JOValue private boolean marginAvailable;
+	private double autoAssetExchange;
+	private String asset;
+	private boolean marginAvailable;
 	
 	//Constructeurs
 	public Asset(JSONObject response) {

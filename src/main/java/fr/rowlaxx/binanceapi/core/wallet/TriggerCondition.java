@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.wallet;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class TriggerCondition extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class TriggerCondition extends JsavonObject {
 	private static final long serialVersionUID = -2753940970920869578L;
 	
 	//Variables

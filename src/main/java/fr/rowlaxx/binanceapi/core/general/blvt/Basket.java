@@ -1,10 +1,10 @@
 package fr.rowlaxx.binanceapi.core.general.blvt;
 
-import fr.rowlaxx.jsavon.JSavONObject;
-
 import org.json.JSONObject;
 
-public class Basket extends JSavONObject {
+import fr.rowlaxx.jsavon.JsavonObject;
+
+public class Basket extends JsavonObject {
 	private static final long serialVersionUID = -8127523780594862991L;
 	
 	//Variables

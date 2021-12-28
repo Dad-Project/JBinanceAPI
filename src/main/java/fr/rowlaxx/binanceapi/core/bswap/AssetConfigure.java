@@ -2,9 +2,9 @@ package fr.rowlaxx.binanceapi.core.bswap;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.jsavon.JSavONObject;
+import fr.rowlaxx.jsavon.JsavonObject;
 
-public class AssetConfigure extends JSavONObject {
+public class AssetConfigure extends JsavonObject {
 	private static final long serialVersionUID = -2889642633793927927L;
 	
 	//Variables

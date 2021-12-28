@@ -6,8 +6,8 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.general.ExchangeInformation;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 import fr.rowlaxx.jsavon.annotations.MapKey;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public class OptionExchangeInformation extends ExchangeInformation<OptionSymbol> {
 	private static final long serialVersionUID = 8537806609654238210L;

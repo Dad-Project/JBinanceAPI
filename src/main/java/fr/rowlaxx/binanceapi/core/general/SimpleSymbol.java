@@ -5,16 +5,15 @@ import java.util.Set;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.order.OrderTypes;
-import fr.rowlaxx.jsavon.annotations.object.JOValue;
 
 public abstract class SimpleSymbol<T extends OrderTypes> extends Symbol {
 	private static final long serialVersionUID = -2491528525290759925L;
 
 	//Variables
-	@JOValue private String baseAsset;
-	@JOValue private int baseAssetPrecision;
-	@JOValue private int quotePrecision;
-	@JOValue private Set<T> orderTypes;
+	private String baseAsset;
+	private int baseAssetPrecision;
+	private int quotePrecision;
+	private Set<T> orderTypes;
 	
 	//Constructeurs
 	public SimpleSymbol(JSONObject response) {
@@ -27,6 +26,10 @@ public abstract class SimpleSymbol<T extends OrderTypes> extends Symbol {
 	
 	public int getQuotePrecision() {
 		return quotePrecision;
+	}
+	
+	public int getBaseAssetPrecision() {
+		return baseAssetPrecision;
 	}
 	
 	public Set<T> getOrderTypes() {
