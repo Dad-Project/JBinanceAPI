@@ -1,3 +1,4 @@
+package fr.rowlaxx.binanceapi;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
 
 public class Test {
@@ -6,7 +7,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		client.spot().trade().po
+		
 		
 	}
 
