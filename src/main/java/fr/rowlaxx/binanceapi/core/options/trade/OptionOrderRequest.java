@@ -1,8 +1,8 @@
-package fr.rowlaxx.binanceapi.core2.order.options;
+package fr.rowlaxx.binanceapi.core.options.trade;
 
 import fr.rowlaxx.binanceapi.core.BasicOrderRequest;
 
-public final class OptionsOrderRequest extends BasicOrderRequest<OptionsOrderTypes> {
+public final class OptionOrderRequest extends BasicOrderRequest<OptionOrderTypes> {
 	
 	//Methodes statiques
 	public static Builder newBuilder() {
@@ -11,11 +11,11 @@ public final class OptionsOrderRequest extends BasicOrderRequest<OptionsOrderTyp
 	
 	//Builder
 	@SuppressWarnings("unused")
-	public final static class Builder extends BasicOrderRequest.Builder<OptionsOrderTypes, OptionsOrderRequest, Builder> {
+	public final static class Builder extends BasicOrderRequest.Builder<OptionOrderTypes, OptionOrderRequest, Builder> {
 
 		//Constructeurs
 		private Builder() {
-			super(new OptionsOrderRequest());
+			super(new OptionOrderRequest());
 		}
 		
 		//Setters
@@ -36,7 +36,7 @@ public final class OptionsOrderRequest extends BasicOrderRequest<OptionsOrderTyp
 	}
 	
 	//Constructeurs
-	private OptionsOrderRequest() {}
+	private OptionOrderRequest() {}
 	
 	//Variables
 	private Boolean reduceOnly;

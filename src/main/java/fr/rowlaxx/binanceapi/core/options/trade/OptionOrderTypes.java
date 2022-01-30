@@ -1,8 +1,8 @@
-package fr.rowlaxx.binanceapi.core2.order.options;
+package fr.rowlaxx.binanceapi.core.options.trade;
 
 import fr.rowlaxx.binanceapi.core.OrderTypes;
 
-public enum OptionsOrderTypes implements OrderTypes {
+public enum OptionOrderTypes implements OrderTypes {
 
 	LIMIT,
 	MARKET,

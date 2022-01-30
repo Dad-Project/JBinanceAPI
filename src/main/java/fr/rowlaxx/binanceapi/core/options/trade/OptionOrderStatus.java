@@ -1,8 +1,8 @@
-package fr.rowlaxx.binanceapi.core2.order.options;
+package fr.rowlaxx.binanceapi.core.options.trade;
 
 import fr.rowlaxx.binanceapi.core.OrderStatus;
 
-public enum OptionsOrderStatus implements OrderStatus {
+public enum OptionOrderStatus implements OrderStatus {
 
 	RECEIVED(0),
 	UNTRIGGERED(1),
@@ -15,7 +15,7 @@ public enum OptionsOrderStatus implements OrderStatus {
 	
 	private int type;
 	
-	private OptionsOrderStatus(int type) {
+	private OptionOrderStatus(int type) {
 		this.type = type;
 	}
 	
