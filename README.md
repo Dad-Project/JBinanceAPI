@@ -1,5 +1,5 @@
 # JBinanceAPI
-A java library that try to cover all Binance endpoints available  
+A java library that try to cover all available Binance endpoints  
 
 Documentation of each endpoint can be found here :  
 https://binance-docs.github.io/apidocs/#change-log
