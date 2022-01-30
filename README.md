@@ -43,7 +43,7 @@ Last update in parentheses
 ## Options
 
 * Quoting <font size="1">(2022-01-30)</font>
-* Trade <font size="1">(Implementing...)</font>
+* Trade <font size="1">(2022-01-30)</font>
 
 # Unimplemented features (will be implemented soon)
 
@@ -54,7 +54,7 @@ Last update in parentheses
 
 ### USD-M
 
-* Market Data
+* Market Data (implementing...)
 * Trade
 * Market Data streams
 * User streams
@@ -62,7 +62,7 @@ Last update in parentheses
 
 ### COIN-M
 
-* Market Data
+* Market Data (implementing...)
 * Trade
 * Market Data streams
 * User streams
