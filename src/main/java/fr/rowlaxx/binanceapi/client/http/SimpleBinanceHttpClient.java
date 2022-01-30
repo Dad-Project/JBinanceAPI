@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.client.BinanceClientImpl;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpRequestException;
 import fr.rowlaxx.binanceapi.utils.IOUtils;
@@ -23,11 +23,11 @@ class SimpleBinanceHttpClient {
 	public static final String APIKEY_HEADER = "X-MBX-APIKEY";
 
 	//Variables
-	private final BinanceClient api;	
+	private final BinanceClientImpl api;	
 	private long defaultRecvWindow = 5_000;
 
 	//Constructeurs
-	public SimpleBinanceHttpClient(BinanceClient api) {
+	public SimpleBinanceHttpClient(BinanceClientImpl api) {
 		Objects.requireNonNull(api, "api may not be null.");
 		if ( api.getHttpClient() != null )
 			throw new IllegalArgumentException("this api already has a httpClient.");

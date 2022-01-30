@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.client.BinanceClientImpl;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpRequestException;
 import fr.rowlaxx.jsavon.exceptions.JsavonException;
@@ -15,7 +15,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 	private final BaseEndpointResolver baseEndpointResolver = new BaseEndpointResolver();
 	
 	//Constructeurs
-	public BinanceHttpClient(BinanceClient api) {
+	public BinanceHttpClient(BinanceClientImpl api) {
 		super(api);
 	}
 

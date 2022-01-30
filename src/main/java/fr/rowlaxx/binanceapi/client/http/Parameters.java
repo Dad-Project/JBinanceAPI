@@ -4,25 +4,6 @@ import java.util.Collection;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationStatus;
-import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperations;
-import fr.rowlaxx.binanceapi.core.bswap.LiquidityOperationTypes;
-import fr.rowlaxx.binanceapi.core.future.Direction;
-import fr.rowlaxx.binanceapi.core.market.Intervals;
-import fr.rowlaxx.binanceapi.core.order.OrderResponseTypes;
-import fr.rowlaxx.binanceapi.core.order.OrderSide;
-import fr.rowlaxx.binanceapi.core.order.TimeInForce;
-import fr.rowlaxx.binanceapi.core.order.future.FutureOrderTypes;
-import fr.rowlaxx.binanceapi.core.order.margin.SideEffectType;
-import fr.rowlaxx.binanceapi.core.savings.SavingsStatus;
-import fr.rowlaxx.binanceapi.core.savings.FixedTypes;
-import fr.rowlaxx.binanceapi.core.savings.LendingTypes;
-import fr.rowlaxx.binanceapi.core.savings.SavingsPositionStatus;
-import fr.rowlaxx.binanceapi.core.savings.SavingsRedemptionType;
-import fr.rowlaxx.binanceapi.core.subaccount.transfer.FuturesType;
-import fr.rowlaxx.binanceapi.core.wallet.DailyAccountSnapshotTypes;
-import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
-
 public enum Parameters {
 
 	address(String.class),
@@ -31,16 +12,19 @@ public enum Parameters {
 	amount(Double.class),
 	archived(Boolean.class),
 	asset(String.class, String[].class, Collection.class),
+	assetRewards(String.class),
 	baseAsset(String.class),
 	batchOrders(JSONObject.class),
 	beginTime(Long.class),
+	clientTranId(String.class),
+	code(String.class),
 	coin(String.class),
 	collateralAmount(Double.class),
 	collateralCoin(String.class),
 	configId(Integer.class),
 	cost(Double.class),
 	current(Integer.class, Long.class),
-	direction(Direction.class),
+	direction(Enum.class),
 	email(String.class),
 	enableBlvt(Boolean.class),
 	endDate(Long.class),
@@ -51,17 +35,19 @@ public enum Parameters {
 	fromEmail(String.class),
 	fromId(Long.class),
 	fromSymbol(String.class),
-	futuresType(FuturesType.class),
+	futuresType(Enum.class),
 	hashRate(Long.class),
 	icebergQty(Double.class),
 	id(Long.class),
 	interestBNBBurn(Boolean.class),
-	interval(Intervals.class),
+	interval(Enum.class),
+	ipAddress(String.class),
+	ipRestrict(Boolean.class),
 	isFreeze(Boolean.class),
 	isIsolated(Boolean.class),
 	isolatedSymbol(String.class),
 	isSortAsc(Boolean.class),
-	lendingType(LendingTypes.class),
+	lendingType(Enum.class),
 	limit(Integer.class),
 	limitClientOrderId(String.class),
 	limitIcebergQty(Double.class),
@@ -73,12 +59,13 @@ public enum Parameters {
 	needBtcValuation(Boolean.class),
 	network(String.class),
 	newClientOrderId(String.class),
-	newOrderRespType(OrderResponseTypes.class),
+	newOrderRespType(Enum.class),
 	offset(Integer.class),
-	operation(LiquidityOperations.class),
+	operation(Enum.class),
 	operationId(Long.class),
 	orderId(Long.class),
 	orderListId(Long.class),
+	orderType(Enum.class),
 	origClientOrderId(String.class),
 	page(Integer.class, Long.class),
 	pageIndex(Integer.class),
@@ -96,8 +83,8 @@ public enum Parameters {
 	recvWindow(Integer.class),
 	rows(Integer.class),
 	shareAmount(Double.class),
-	side(OrderSide.class),
-	sideEffectType(SideEffectType.class),
+	side(Enum.class),
+	sideEffectType(Enum.class),
 	signature(String.class),
 	size(Long.class, Integer.class),
 	sort(Integer.class),
@@ -107,31 +94,34 @@ public enum Parameters {
 	startDate(Long.class),
 	startTime(Long.class),
 	startTimestamp(Long.class),
-	status(LiquidityOperationStatus.class, Integer.class, SavingsStatus.class, SavingsPositionStatus.class),
+	status(Integer.class, Enum.class),
 	stopClientOrderId(String.class),
 	stopIcebergQty(Double.class),
 	stopLimitPrice(Double.class),
 	stopLimitTimeInForce,
 	stopPrice(Double.class),
+	subAccountApiKey(String.class),
 	subAccountString(String.class),
 	swapId(Long.class),
 	symbol(String.class),
 	symbols(String[].class, Collection.class),
-	timeInForce(TimeInForce.class),
+	tier(String.class),
+	timeInForce(Enum.class),
 	timestamp(Long.class),
 	toAccountType(String.class),
 	toEmail(String.class),
+	token(String.class),
 	tokenName(String.class),
 	toPoolUser(String.class),
 	toSymbol(String.class),
-	tradeType(OrderSide.class),
+	tradeType(Enum.class),
 	transactionFeeFlag(Boolean.class),
 	transactionType(String.class),
 	transferDate(Long.class),
 	transFrom(String.class),
 	transTo(String.class),
 	txId(Long.class),
-	type(LiquidityOperationTypes.class, Integer.class, DailyAccountSnapshotTypes.class, UniversalTransferTypes.class, FutureOrderTypes.class, SavingsRedemptionType.class, FixedTypes.class),
+	type(Integer.class, Enum.class),
 	underlying(String.class),
 	userName(String.class),
 	vipLevel(Integer.class),
