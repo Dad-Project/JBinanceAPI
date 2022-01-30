@@ -1,32 +1,71 @@
 # JBinanceAPI
-A complete Binance Java API that use reflection for sending request & for converting JSON into object with JSavON.  
-Please note that this library is still in early stage and a lot of endpoints needs to be tested.
-If you find a bug, please report it in the issues section (I will fix it in a short amount of time)
+A java library that try to cover all Binance endpoints available  
 
-Also, if you like this library, consider donating me a few bucks. It will help me a lot.
+Documentation of each endpoint can be found here :  
+https://binance-docs.github.io/apidocs/#change-log
 
-Requiered library : 
-JSavON          https://github.com/RowlaxX/JSavON
+JBinanceAPI use reflection for sending request & parsing responses with JSavon
 
-# Implemented features
+Requiered libraries :  
+- JSavON https://github.com/RowlaxX/JSavON
+- JSON-Java https://github.com/stleary/JSON-java
+- Convert-Utils https://github.com/RowlaxX/Convert-Utils
+- Reflection-Utils https://github.com/RowlaxX/Reflection-Utils
 
-* BLVT
-* BSwap
-* C2C
-* Fiat
-* Futures
-* Margin
-* Master & Sub Account
-* Mining
-* Savings
-* Spot (Wallet, Market & Trade)
+Please note that a lot of endpoints needs to be tested.
+If you find a bug, please report it in the issues section
 
-# Unimplemented features (will be implemented soon)
+## Spot features
 
-* Futures USD Margined
-* Futures Coin Margined
-* Options (currently implementing)
-* Websockets
+Last update in parentheses
+
+* BLVT <font size="1">(2022-01-30)</font>
+* BSwap <font size="1">(2022-01-30)</font>
+* C2C <font size="1">(2022-01-30)</font>
+* Convert <font size="1">(2022-01-30)</font>
+* CryptoLoans <font size="1">(2022-01-30)</font>
+* Fiat <font size="1">(2022-01-30)</font>
+* Futures <font size="1">(2022-01-30)</font>
+* Giftcard <font size="1">(2022-01-30)</font>
+* Margin <font size="1">(2022-01-27)</font>
+* Market Data <font size="1">(2022-01-27)</font>
+* Mining <font size="1">(2022-01-30)</font>
+* NFT <font size="1">(2022-01-30)</font>
+* Pay <font size="1">(2022-01-30)</font>
+* Rebate <font size="1">(2022-01-30)</font>
+* Savings <font size="1">(2022-01-28)</font>
+* Sub Account <font size="1">(2022-01-27)</font>
+* Trade <font size="1">(2022-01-27)</font>
+* Wallet <font size="1">(2022-01-26)</font>
+
+## Spot unimplemented features (will be implemented soon)
+
+* User streams
+* Market Data streams
+
+## USD-M unimplemented features (will be implemented soon)
+
+* Market Data
+* Trade
+* Market Data streams
+* User streams
+* Testnet
+
+## COIN-M unimplemented features (will be implemented soon)
+
+* Market Data
+* Trade
+* Market Data streams
+* User streams
+* Testnet
+
+## Options unimplemented features (will be implemented soon)
+
+* Quoting
+* Trade
+* Account streams
+* Market Data streams
+
 
 # Creating a client
 
@@ -41,11 +80,13 @@ BinanceClient client = BinanceClient.createGuest();
 BinanceCredenticals credenticals = new BinanceCredenticals(apiKey, apiSecret);
 BinanceClient client = BinanceCient.create(credenticals);  
 ```
-or  
+or 
+ 
 ```java
 BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 ```
-then use  
+then use 
+ 
 ```java
 client.login(); //For testing your credenticals
 ```
@@ -59,17 +100,17 @@ SpotOrderRequest order = NewOrderRequest.spot()
         .setQuantity(0.001)
         .build();
 
-SpotOrder response = client.spot().postOrder(order);
+SpotOrder response = client.spot().trade().postOrder(order);
 ```
 
 # Getting Candlesticks
 
 ```java
-List<BasicCandlestick> candlesticks = client.spot().getCandlesticks("BTCUSDT", Intervals.HOUR_1, 1000);
+List<BasicCandlestick> candlesticks = client.spot().market().getCandlesticks("BTCUSDT", Intervals.HOUR_1, 1000);
 ```
 For the last 1000 hourly candlesticks
 
-# Sending a custom request (for unimplemented endpoints)
+# Sending a custom request
 ```java
 BinanceHttpRequest request = BinanceHttpRequest.newBuilder()
         .setEndpoint(...)
@@ -77,22 +118,13 @@ BinanceHttpRequest request = BinanceHttpRequest.newBuilder()
         .//Customize your request
         .build()
   
-//T can be a JSONObject or a JSONArray
+//T can be JSONObject or a JSONArray
 T response = client.getHttpClient().execute(request);
-  
-//Parse the json
 ```
 # Donation
-I'm a student, so any help will be appreciated
-### For gentleman
-BTC : 1JJZrkZEynrCqoPrJWKbtGLSyJziDmKKka
-### For optimistics
-ETH : 0xe349abf167a8d265785b256666737ecd5720d4bd
-### BNB Love
+As a student, any help will be appreciated
+
+BTC : 1JJZrkZEynrCqoPrJWKbtGLSyJziDmKKka  
+ETH : 0xe349abf167a8d265785b256666737ecd5720d4bd  
 BNB : bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23  
-TAG : 107019672
-### Some XRP ?
-XRP : rEb8TK3gBgk5auZkwc6sHnwrGVJH8DuaLh  
-TAG : 109836101
-### Maybe you prefer ADA ?
-ADA : DdzFFzCqrht7QmsyECRJsZiM3neGxrGFjhrkDHjCnjT1w45oeVeNKf1KwBQWcVcPCcAuz7kfzbMhTG8BEpgX7FRy25XdTsk4RfM6YXqC
+TAG : 107019672  
