@@ -59,9 +59,13 @@ Last update in parentheses
 * User streams
 * Testnet
 
+## Options features
+
+* Quoting <font size="1">(2022-01-30)</font>
+* Trade <font size="1">(Implementing...)</font>
+
 ## Options unimplemented features (will be implemented soon)
 
-* Quoting
 * Trade
 * Account streams
 * Market Data streams
