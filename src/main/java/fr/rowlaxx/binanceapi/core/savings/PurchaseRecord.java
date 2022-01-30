@@ -12,9 +12,8 @@ public class PurchaseRecord extends JsavonObject {
 	private double amount;
 	private String asset;
 	private long createTime;
-	private LendingTypes lendingType;
-	@JOValue(mandatory = false)
-	private Double lot;
+	private LendingTypes lendingType; 
+	@JOValue(mandatory = false) private Double lot;
 	private String productName;
 	private int purchaseId;
 	private String status;

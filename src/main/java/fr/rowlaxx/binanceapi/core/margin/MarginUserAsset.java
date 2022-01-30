@@ -8,7 +8,7 @@ public class MarginUserAsset extends JsavonObject {
 	private static final long serialVersionUID = -8927603325686347569L;
 	
 	//Variables
-	private MarginBaseQuoteAsset baseAsset;
+	private BaseQuoteAsset baseAsset;
 	private boolean enabled;
 	private double indexPrice;
 	private boolean isolatedCreated;
@@ -17,7 +17,7 @@ public class MarginUserAsset extends JsavonObject {
 	private double marginLevel;
 	private String marginLevelStatus;
 	private double marginRatio;
-	private MarginBaseQuoteAsset quoteAsset;
+	private BaseQuoteAsset quoteAsset;
 	private String symbol;
 	private boolean tradeEnabled;
 	
@@ -27,7 +27,7 @@ public class MarginUserAsset extends JsavonObject {
 	}
 	
 	//Getters
-	public final MarginBaseQuoteAsset getBaseAsset() {
+	public final BaseQuoteAsset getBaseAsset() {
 		return this.baseAsset;
 	}
 	
@@ -63,7 +63,7 @@ public class MarginUserAsset extends JsavonObject {
 		return this.marginRatio;
 	}
 	
-	public final MarginBaseQuoteAsset getQuoteAsset() {
+	public final BaseQuoteAsset getQuoteAsset() {
 		return this.quoteAsset;
 	}
 	

@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.bswap;
 
 import org.json.JSONObject;
 
-public class AddLiquidityPreview extends RemoveLiquidityPreview {
+public class AddLiquidityPreview extends LiquidityPreview {
 	private static final long serialVersionUID = 7515721475951777627L;
 
 	//Variables

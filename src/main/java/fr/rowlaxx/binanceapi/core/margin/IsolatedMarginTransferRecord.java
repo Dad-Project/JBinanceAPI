@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.margin;
 
 import org.json.JSONObject;
 
-public class IsolatedMarginTransferRecord extends MarginTransferRecord {
+public class IsolatedMarginTransferRecord extends TransferRecord {
 	private static final long serialVersionUID = 4779714752784142470L;
 
 	//Variables

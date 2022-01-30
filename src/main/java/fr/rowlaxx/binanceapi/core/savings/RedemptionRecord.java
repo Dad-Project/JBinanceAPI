@@ -11,17 +11,14 @@ public class RedemptionRecord extends JsavonObject {
 	//Variables
 	private double amount;
 	private String asset;
-	@JOValue(mandatory = false)
-	private Double interest;
+	@JOValue(mandatory = false) private Double interest;
 	private long createTime;
 	private double principal;
 	private String projectId;
 	private String projectName;
 	private String status;
-	@JOValue(mandatory = false)
-	private String type;
-	@JOValue(mandatory = false)
-	private Double startTime;
+	@JOValue(mandatory = false) private String type;
+	@JOValue(mandatory = false) private Double startTime;
 	
 	//Constructeurs
 	public RedemptionRecord(JSONObject json) {
