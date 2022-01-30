@@ -12,7 +12,7 @@ public class Accountfundingflow extends JSavONObject {
 	
 	//Variables
 	private int code;
-	private List<OptionTradingPairInfo> data;
+	private List<OptionTradingPair> data;
 	private String msg;
 	
 	//Constructeurs
@@ -25,7 +25,7 @@ public class Accountfundingflow extends JSavONObject {
 		return this.code;
 	}
 	
-	public final List<OptionTradingPairInfo> getData() {
+	public final List<OptionTradingPair> getData() {
 		return this.data;
 	}
 	

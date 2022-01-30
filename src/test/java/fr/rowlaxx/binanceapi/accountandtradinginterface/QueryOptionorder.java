@@ -10,7 +10,7 @@ public class QueryOptionorder extends JSavONObject {
 	
 	//Variables
 	private int code;
-	private OptionTradingPairInfo data;
+	private OptionTradingPair data;
 	private String msg;
 	
 	//Constructeurs
@@ -23,7 +23,7 @@ public class QueryOptionorder extends JSavONObject {
 		return this.code;
 	}
 	
-	public final OptionTradingPairInfo getData() {
+	public final OptionTradingPair getData() {
 		return this.data;
 	}
 	
