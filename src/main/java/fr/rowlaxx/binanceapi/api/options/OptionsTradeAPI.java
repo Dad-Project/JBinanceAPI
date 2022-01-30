@@ -1,6 +1,13 @@
-package fr.rowlaxx.binanceapi.api.temp;
+package fr.rowlaxx.binanceapi.api.options;
 
-public interface OptionsAccountAndTrading {
+import fr.rowlaxx.binanceapi.api.Api;
+
+/**
+ * @version 2022-01-30
+ * @author Théo
+ * @see https://binance-docs.github.io/apidocs/voptions/en/#account-and-trading-interface
+ */
+public interface OptionsTradeAPI extends Api.Https, Api.Options {
 /*
 	@ApiEndpoint (
 			endpoint = "/vapi/v1/account",

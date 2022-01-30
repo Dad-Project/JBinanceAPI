@@ -1,5 +1,6 @@
 package fr.rowlaxx.binanceapi.client;
 
+import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
 import fr.rowlaxx.binanceapi.api.spot.BSwapAPI;
 import fr.rowlaxx.binanceapi.api.spot.GiftcardAPI;
@@ -26,7 +27,7 @@ public interface BinanceClient {
 	public BinanceHttpClient getHttpClient();
 	
 	/*
-	 * SPOT HTTPS
+	 * SPOT
 	 * https://binance-docs.github.io/apidocs/spot/en/
 	 */
 	public SpotAPI spot();
@@ -46,4 +47,10 @@ public interface BinanceClient {
 	public RebateAPI rebate();
 	public NFTAPI nft();
 	public GiftcardAPI giftcard();
+	
+	/*
+	 * OPTIONS 
+	 * https://binance-docs.github.io/apidocs/voptions/en/
+	 */
+	public OptionsAPI options();
 }
