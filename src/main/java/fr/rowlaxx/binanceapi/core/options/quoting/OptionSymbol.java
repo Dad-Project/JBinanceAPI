@@ -3,14 +3,14 @@ package fr.rowlaxx.binanceapi.core.options.quoting;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.exchangeinfos.SimpleSymbol;
-import fr.rowlaxx.binanceapi.core2.order.options.OptionsContractTypes;
+import fr.rowlaxx.binanceapi.core.options.trade.OptionContractTypes;
 
 public class OptionSymbol extends SimpleSymbol {
 	private static final long serialVersionUID = 3638739540698918134L;
 
 	//Variables
 	private double leverage;
-	private OptionsContractTypes side;
+	private OptionContractTypes side;
 	private double minInitialMargin;
 	private double maketFeeRate;
 	private double minAutoReduceMargin;
@@ -96,7 +96,7 @@ public class OptionSymbol extends SimpleSymbol {
 		return quantityScale;
 	}
 	
-	public OptionsContractTypes getSide() {
+	public OptionContractTypes getSide() {
 		return side;
 	}
 	
