@@ -25,7 +25,11 @@ public final class NewOrderRequest {
 		return MarginOCOOrderRequest.newMarginBuilder();
 	}
 	
-	public static FutureOrderRequest.Builder futures(){
+	public static FutureOrderRequest.Builder usdm(){
+		return FutureOrderRequest.newBuilder();
+	}
+	
+	public static FutureOrderRequest.Builder coinm(){
 		return FutureOrderRequest.newBuilder();
 	}
 	

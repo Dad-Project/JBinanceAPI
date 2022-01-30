@@ -1,5 +1,6 @@
 package fr.rowlaxx.binanceapi.client;
 
+import fr.rowlaxx.binanceapi.api.coinm.CoinmAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
 import fr.rowlaxx.binanceapi.api.spot.BSwapAPI;
@@ -18,6 +19,7 @@ import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
+import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 
 public interface BinanceClient {
@@ -53,4 +55,16 @@ public interface BinanceClient {
 	 * https://binance-docs.github.io/apidocs/voptions/en/
 	 */
 	public OptionsAPI options();
+	
+	/*
+	 * USD-M
+	 * https://binance-docs.github.io/apidocs/futures/en/
+	 */
+	public UsdmAPI usdm();
+	
+	/*
+	 * COIN-M
+	 * https://binance-docs.github.io/apidocs/delivery/en/
+	 */
+	public CoinmAPI coinm();
 }
