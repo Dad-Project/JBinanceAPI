@@ -21,7 +21,7 @@ import fr.rowlaxx.binanceapi.core.futures.Repay;
 import fr.rowlaxx.binanceapi.core.futures.RepayLimit;
 import fr.rowlaxx.binanceapi.core.futures.RepayQuote;
 import fr.rowlaxx.binanceapi.core.futures.RepayRecord;
-import fr.rowlaxx.binanceapi.core.spot.wallet.UniversalTransfer;
+import fr.rowlaxx.binanceapi.core.wallet.UniversalTransfer;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
