@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public abstract class Trade extends JsavonObject {
+public class Trade extends JsavonObject {
 	private static final long serialVersionUID = 3119645480784672286L;
 	
 	//Variables
@@ -15,9 +15,9 @@ public abstract class Trade extends JsavonObject {
 	private Boolean isBestMatch;
 	@JOValue(key = {"price", "p"})
 	private double price;
-	@JOValue(key = {"qty", "q"})
+	@JOValue(key = {"qty", "q", "quantity"})
 	private double qty;
-	@JOValue(key = {"time", "T"})
+	@JOValue(key = {"time", "T", "createDate"})
 	private long time;
 	
 	//Constructeurs
@@ -38,7 +38,7 @@ public abstract class Trade extends JsavonObject {
 		return this.price;
 	}
 	
-	public final double getQty() {
+	public final double getQuantity() {
 		return this.qty;
 	}
 	

@@ -2,10 +2,10 @@ package fr.rowlaxx.binanceapi.core;
 
 import fr.rowlaxx.binanceapi.core.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOrderRequest;
+import fr.rowlaxx.binanceapi.core.options.trade.OptionOrderRequest;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOrderRequest;
 import fr.rowlaxx.binanceapi.core2.order.future.FutureOrderRequest;
-import fr.rowlaxx.binanceapi.core2.order.options.OptionsOrderRequest;
 
 public final class NewOrderRequest {
 	
@@ -29,7 +29,7 @@ public final class NewOrderRequest {
 		return FutureOrderRequest.newBuilder();
 	}
 	
-	public static OptionsOrderRequest.Builder options() {
-		return OptionsOrderRequest.newBuilder();
+	public static OptionOrderRequest.Builder options() {
+		return OptionOrderRequest.newBuilder();
 	}	
 }

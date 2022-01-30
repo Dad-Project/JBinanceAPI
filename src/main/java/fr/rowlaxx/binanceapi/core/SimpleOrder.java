@@ -10,8 +10,7 @@ public class SimpleOrder extends JsavonObject {
 	
 	//Variables
 	private String symbol;
-	@JOValue(key = { "orderId", "id" })
-	private long orderId;
+	@JOValue(key = { "orderId", "id" }) private long orderId;
 	private String clientOrderId;
 
 	//Constructeurs
