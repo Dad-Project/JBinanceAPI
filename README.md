@@ -15,9 +15,11 @@ Requiered libraries :
 Please note that a lot of endpoints needs to be tested.
 If you find a bug, please report it in the issues section
 
-## Spot features
+# Features
 
 Last update in parentheses
+
+## Spot
 
 * BLVT <font size="1">(2022-01-30)</font>
 * BSwap <font size="1">(2022-01-30)</font>
@@ -38,38 +40,39 @@ Last update in parentheses
 * Trade <font size="1">(2022-01-27)</font>
 * Wallet <font size="1">(2022-01-26)</font>
 
-## Spot unimplemented features (will be implemented soon)
-
-* User streams
-* Market Data streams
-
-## USD-M unimplemented features (will be implemented soon)
-
-* Market Data
-* Trade
-* Market Data streams
-* User streams
-* Testnet
-
-## COIN-M unimplemented features (will be implemented soon)
-
-* Market Data
-* Trade
-* Market Data streams
-* User streams
-* Testnet
-
-## Options features
+## Options
 
 * Quoting <font size="1">(2022-01-30)</font>
 * Trade <font size="1">(Implementing...)</font>
 
-## Options unimplemented features (will be implemented soon)
+# Unimplemented features (will be implemented soon)
 
-* Trade
-* Account streams
+### Spot
+
+* User streams
 * Market Data streams
 
+### USD-M
+
+* Market Data
+* Trade
+* Market Data streams
+* User streams
+* Testnet
+
+### COIN-M
+
+* Market Data
+* Trade
+* Market Data streams
+* User streams
+* Testnet
+
+
+### Options
+
+* Account streams
+* Market Data streams
 
 # Creating a client
 
