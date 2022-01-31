@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.order.coinm;
+package fr.rowlaxx.binanceapi.core.coinm.trade;
 
 import org.json.JSONObject;
 

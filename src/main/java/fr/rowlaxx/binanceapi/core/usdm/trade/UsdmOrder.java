@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.order.usdm;
+package fr.rowlaxx.binanceapi.core.usdm.trade;
 
 import org.json.JSONObject;
 
