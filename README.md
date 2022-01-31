@@ -1,3 +1,5 @@
+![Alt text](https://upload.wikimedia.org/wikipedia/commons/1/12/Binance_logo.svg)  
+
 # JBinanceAPI
 A java library that try to cover all available Binance endpoints  
 
