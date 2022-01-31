@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core.blvt;
+package fr.rowlaxx.binanceapi.core.futures.marketdata;
 
 import org.json.JSONArray;
 
@@ -6,7 +6,7 @@ import fr.rowlaxx.binanceapi.core.Candlestick;
 import fr.rowlaxx.jsavon.JsavonArray;
 import fr.rowlaxx.jsavon.annotations.JAValue;
 
-public class BlvtCandlestick extends JsavonArray implements Candlestick {
+public class PremiumIndexCandlestick extends JsavonArray implements Candlestick {
 	private static final long serialVersionUID = -2836222048640903246L;
 
 	//Variables
@@ -15,16 +15,16 @@ public class BlvtCandlestick extends JsavonArray implements Candlestick {
 	@JAValue(index = 2) private double high;
 	@JAValue(index = 3) private double low;
 	@JAValue(index = 4) private double close;
-	@JAValue(index = 5) private double realLeverage;
+	@JAValue(index = 5) private double ignore1;
 	@JAValue(index = 6) private long closeTime;
-	@JAValue(index = 7) private double ignore1;
-	@JAValue(index = 8) private int numberOfNAVUpdate;
-	@JAValue(index = 9) private double ignore2;
-	@JAValue(index = 10) private double ignore3;
-	@JAValue(index = 11) private double ignore4;
+	@JAValue(index = 7) private double ignore2;
+	@JAValue(index = 8) private int numberOfBisicData;
+	@JAValue(index = 9) private double ignore3;
+	@JAValue(index = 10) private double ignore4;
+	@JAValue(index = 11) private double ignore5;
 
 	//Constructeurs
-	public BlvtCandlestick(JSONArray array) {
+	public PremiumIndexCandlestick(JSONArray array) {
 		super(array);
 	}
 
@@ -75,11 +75,11 @@ public class BlvtCandlestick extends JsavonArray implements Candlestick {
 		return ignore4;
 	}
 	
-	public final int getNumberOfNAVUpdate() {
-		return this.numberOfNAVUpdate;
+	public final double getIgnoreData5() {
+		return ignore5;
 	}
 	
-	public final double getRealLeverage() {
-		return this.realLeverage;
+	public final int getNumberOfBisicData() {
+		return numberOfBisicData;
 	}
 }

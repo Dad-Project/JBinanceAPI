@@ -36,4 +36,13 @@ public interface Candlestick {
 	default double getOHLC4() {
 		return (getHigh() + getLow() + getClose() + getOpen()) / 4;
 	}
+	
+	public static interface Volume extends Candlestick {
+		
+		public double getVolume();
+		public int getNumberOfTrades();
+		public double getTakerBuyBaseAssetVolume();
+		public double getTakerBuyQuoteAssetVolume();
+		
+	}
 }

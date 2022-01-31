@@ -1,11 +1,12 @@
-package fr.rowlaxx.binanceapi.core;
+package fr.rowlaxx.binanceapi.core.coinm.marketdata;
 
 import org.json.JSONArray;
 
+import fr.rowlaxx.binanceapi.core.Candlestick;
 import fr.rowlaxx.jsavon.JsavonArray;
 import fr.rowlaxx.jsavon.annotations.JAValue;
 
-public class BasicCandlestick extends JsavonArray implements Candlestick.Volume {
+public class CoinmCandlestick extends JsavonArray implements Candlestick.Volume {
 	private static final long serialVersionUID = -1885063134974002265L;
 	
 	//Variables
@@ -16,14 +17,14 @@ public class BasicCandlestick extends JsavonArray implements Candlestick.Volume 
 	@JAValue(index = 4) private double close;
 	@JAValue(index = 5) private double volume;
 	@JAValue(index = 6) private long closeTime;
-	@JAValue(index = 7) private double quoteAssetVolume;
+	@JAValue(index = 7) private double baseAssetVolume;
 	@JAValue(index = 8) private int numberOfTrades;
 	@JAValue(index = 9) private double takerBuyBaseAssetVolume;
 	@JAValue(index = 10) private double takerBuyQuoteAssetVolume;
 	@JAValue(index = 11) private double ignore;
 	
 	//Constructeurs
-	public BasicCandlestick(JSONArray array) {
+	public CoinmCandlestick(JSONArray array) {
 		super(array);
 	}
 	
@@ -41,10 +42,6 @@ public class BasicCandlestick extends JsavonArray implements Candlestick.Volume 
 	@Override
 	public final double getOpen() {
 		return this.open;
-	}
-	
-	public final double getIgnoreData() {
-		return ignore;
 	}
 
 	@Override
@@ -67,13 +64,17 @@ public class BasicCandlestick extends JsavonArray implements Candlestick.Volume 
 		return this.numberOfTrades;
 	}
 	
-	public final double getQuoteAssetVolume() {
-		return this.quoteAssetVolume;
+	public final double getBaseAssetVolume() {
+		return baseAssetVolume;
 	}
 	
 	@Override
 	public final double getTakerBuyBaseAssetVolume() {
 		return this.takerBuyBaseAssetVolume;
+	}
+	
+	public final double getIgnoreData() {
+		return ignore;
 	}
 	
 	@Override
