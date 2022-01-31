@@ -17,19 +17,25 @@ If you find a bug, please report it in the issues section
 
 # Features
 
-The version refer to the last date the API has been modified.
+The version refer to the last date the API has been modified.  
+
+Meaning of symbols :  
+✔️ - Implemented  
+❌ - Not implemented  
+⬛ - Unavailable  
+
+All the ❌ fields will be implemented.
 
 ## Main
 
 |                    | Spot | Usd-M | Coin-M | Options |
 |:------------------:|:----:|:-----:|:------:|:-------:|
-|       Trades       |  Yes |   No  |   No   |   Yes   |
-|     Market Data    |  Yes |  Yes  |   Yes  |   Yes   |
-|     User Stream    |  No  |   No  |   No   |    No   |
-| Market Data Stream |  No  |   No  |   No   |    No   |
-|       Testnet      |   -  |   No  |   No   |    -    |
+|       Trades       |  ✔️  |  ❌  |   ❌  |   ✔️    |
+|     Market Data    |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
+|     User Stream    |  ❌  |  ❌  |   ❌  |   ❌    |
+| Market Data Stream |  ❌  |  ❌  |   ❌  |   ❌    |
+|       Testnet      |  ⬛  |  ❌  |   ❌  |   ⬛    |
 
-All the "No" fields will be implemented.  
 Currently implementing : Usd-M & Coin-M Trades
 
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
@@ -41,22 +47,25 @@ Currently implementing : Usd-M & Coin-M Trades
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
-|     BLVT    |     Yes     | 2022-01-30 |
-|    BSwap    |     Yes     | 2022-01-30 |
-|     C2C     |     Yes     | 2022-01-30 |
-|   Convert   |     Yes     | 2022-01-30 |
-| CryptoLoans |     Yes     | 2022-01-30 |
-|     Fiat    |     Yes     | 2022-01-30 |
-|   Futures   |     Yes     | 2022-01-30 |
-|   Giftcard  |     Yes     | 2022-01-30 |
-|    Margin   |     Yes     | 2022-01-27 |
-|    Mining   |     Yes     | 2022-01-30 |
-|     NFT     |     Yes     | 2022-01-30 |
-|     Pay     |     Yes     | 2022-01-30 |
-|    Rebate   |     Yes     | 2022-01-30 |
-|   Savings   |     Yes     | 2022-01-28 |
-| Sub-Account |     Yes     | 2022-01-27 |
-|    Wallet   |     Yes     | 2022-01-26 |
+|     BLVT    |     ✔️     | 2022-01-30 |
+|    BSwap    |     ✔️     | 2022-01-30 |
+|     C2C     |     ✔️     | 2022-01-30 |
+|   Convert   |     ✔️     | 2022-01-30 |
+| CryptoLoans |     ✔️     | 2022-01-30 |
+|     Fiat    |     ✔️     | 2022-01-30 |
+|   Futures   |     ✔️     | 2022-01-30 |
+|   Giftcard  |     ✔️     | 2022-01-30 |
+|    Margin   |     ✔️     | 2022-01-27 |
+|    Mining   |     ✔️     | 2022-01-30 |
+|     NFT     |     ✔️     | 2022-01-30 |
+|     Pay     |     ✔️     | 2022-01-30 |
+|    Rebate   |     ✔️     | 2022-01-30 |
+|   Savings   |     ✔️     | 2022-01-28 |
+| Sub-Account |     ✔️     | 2022-01-27 |
+|    Wallet   |     ✔️     | 2022-01-26 |
+
+'X' - Implemented  
+'-' - Not implemented  
 
 # Usage
 
