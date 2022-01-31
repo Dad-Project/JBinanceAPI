@@ -17,69 +17,50 @@ If you find a bug, please report it in the issues section
 
 # Features
 
-Last update in parentheses
+The version refer to the last date the API has been modified.
 
-## Spot
+## Main
 
-* BLVT <font size="1">(2022-01-30)</font>
-* BSwap <font size="1">(2022-01-30)</font>
-* C2C <font size="1">(2022-01-30)</font>
-* Convert <font size="1">(2022-01-30)</font>
-* CryptoLoans <font size="1">(2022-01-30)</font>
-* Fiat <font size="1">(2022-01-30)</font>
-* Futures <font size="1">(2022-01-30)</font>
-* Giftcard <font size="1">(2022-01-30)</font>
-* Margin <font size="1">(2022-01-27)</font>
-* Market Data <font size="1">(2022-01-27)</font>
-* Mining <font size="1">(2022-01-30)</font>
-* NFT <font size="1">(2022-01-30)</font>
-* Pay <font size="1">(2022-01-30)</font>
-* Rebate <font size="1">(2022-01-30)</font>
-* Savings <font size="1">(2022-01-28)</font>
-* Sub Account <font size="1">(2022-01-27)</font>
-* Trade <font size="1">(2022-01-27)</font>
-* Wallet <font size="1">(2022-01-26)</font>
+|                    | Spot | Usd-M | Coin-M | Options |
+|:------------------:|:----:|:-----:|:------:|:-------:|
+|       Trades       |  Yes |   No  |   No   |   Yes   |
+|     Market Data    |  Yes |  Yes  |   Yes  |   Yes   |
+|     User Stream    |  No  |   No  |   No   |    No   |
+| Market Data Stream |  No  |   No  |   No   |    No   |
+|       Testnet      |   -  |   No  |   No   |    -    |
 
-## Usd-M Futures
+All the "No" fields will be implemented.  
+Currently implementing : Usd-M & Coin-M Trades
 
-* Market Data <font size="1">(2022-01-31)</font>
+|         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
+|:-------:|:----------:|:----------:|:----------:|:----------:|
+| Version | 2022-01-30 | 2022-01-31 | 2022-01-31 | 2022-01-30 |
 
-## Coin-M Futures
 
-* Market Data <font size="1">(2022-01-31)</font>
+## Additional
 
-## Options
+|             | Implemented |   Version  |
+|:-----------:|:-----------:|:----------:|
+|     BLVT    |     Yes     | 2022-01-30 |
+|    BSwap    |     Yes     | 2022-01-30 |
+|     C2C     |     Yes     | 2022-01-30 |
+|   Convert   |     Yes     | 2022-01-30 |
+| CryptoLoans |     Yes     | 2022-01-30 |
+|     Fiat    |     Yes     | 2022-01-30 |
+|   Futures   |     Yes     | 2022-01-30 |
+|   Giftcard  |     Yes     | 2022-01-30 |
+|    Margin   |     Yes     | 2022-01-27 |
+|    Mining   |     Yes     | 2022-01-30 |
+|     NFT     |     Yes     | 2022-01-30 |
+|     Pay     |     Yes     | 2022-01-30 |
+|    Rebate   |     Yes     | 2022-01-30 |
+|   Savings   |     Yes     | 2022-01-28 |
+| Sub-Account |     Yes     | 2022-01-27 |
+|    Wallet   |     Yes     | 2022-01-26 |
 
-* Quoting <font size="1">(2022-01-30)</font>
-* Trade <font size="1">(2022-01-30)</font>
+# Usage
 
-# Unimplemented features (will be implemented soon)
-
-### Spot
-
-* User streams
-* Market Data streams
-
-### USD-M Futures
-
-* Trade
-* Market Data streams
-* User streams
-* Testnet
-
-### COIN-M Futures
-
-* Trade
-* Market Data streams
-* User streams
-* Testnet
-
-### Options
-
-* Account streams
-* Market Data streams
-
-# Creating a client
+## Creating a client
 
 ### As guest
 ```java
@@ -97,12 +78,12 @@ or
 ```java
 BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 ```
-then use 
+### Login
  
 ```java
 client.login(); //For testing your credenticals
 ```
-# Placing an order
+## Placing an order
 
 ```java
 SpotOrderRequest order = NewOrderRequest.spot()
@@ -115,14 +96,14 @@ SpotOrderRequest order = NewOrderRequest.spot()
 SpotOrder response = client.spot().trade().postOrder(order);
 ```
 
-# Getting Candlesticks
+## Getting Candlesticks
 
 ```java
 List<BasicCandlestick> candlesticks = client.spot().market().getCandlesticks("BTCUSDT", Intervals.HOUR_1, 1000);
 ```
-For the last 1000 hourly candlesticks
+For the last 1 000 hourly candlesticks
 
-# Sending a custom request
+## Sending a custom request
 ```java
 BinanceHttpRequest request = BinanceHttpRequest.newBuilder()
         .setEndpoint(...)
