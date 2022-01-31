@@ -40,6 +40,14 @@ Last update in parentheses
 * Trade <font size="1">(2022-01-27)</font>
 * Wallet <font size="1">(2022-01-26)</font>
 
+## Usd-M Futures
+
+* Market Data <font size="1">(2022-01-31)</font>
+
+## Coin-M Futures
+
+* Market Data <font size="1">(2022-01-31)</font>
+
 ## Options
 
 * Quoting <font size="1">(2022-01-30)</font>
@@ -52,22 +60,19 @@ Last update in parentheses
 * User streams
 * Market Data streams
 
-### USD-M
+### USD-M Futures
 
-* Market Data (implementing...)
 * Trade
 * Market Data streams
 * User streams
 * Testnet
 
-### COIN-M
+### COIN-M Futures
 
-* Market Data (implementing...)
 * Trade
 * Market Data streams
 * User streams
 * Testnet
-
 
 ### Options
 

@@ -3,8 +3,6 @@ package fr.rowlaxx.binanceapi.api.coinm;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.java.accessibility.util.TopLevelWindowListener;
-
 import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
@@ -12,7 +10,7 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.CompressedTrade;
 import fr.rowlaxx.binanceapi.core.FinalOrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
-import fr.rowlaxx.binanceapi.core.SymbolPriceTicker;
+import fr.rowlaxx.binanceapi.core.coinm.marketdata.Basis;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmCandlestick;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmExchangeInformation;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmLongShortAccountRatio;
@@ -21,6 +19,7 @@ import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmOpenInterest;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmOpenInterestStatistics;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmOrderBookTicker;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmSymbolPriceTicker;
+import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmTakerVolume;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmTickerStatistics;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmTrade;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.ContractTypes;
@@ -32,6 +31,11 @@ import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
+/**
+ * @version 2022-01-31
+ * @author Théo
+ * @see https://binance-docs.github.io/apidocs/delivery/en/#market-data-endpoints
+ */
 public interface CoinmMarketDataAPI extends Api.Https, Api.Coinm {
 
 	//Test Connectivity
@@ -404,8 +408,13 @@ public interface CoinmMarketDataAPI extends Api.Https, Api.Coinm {
 			parameters = {Parameters.pair, Parameters.contractType, Parameters.period, Parameters.limit, Parameters.startTime, Parameters.endTime},
 			mandatory = {true, true, true, false, false, false}
 	)
-	public List<TakerBuySellVolume> getTakerBuySellVolume(String pair, Enum contractType, Enum period, long limit, long startTime, long endTime);
+	public List<CoinmTakerVolume> getTakerBuySellVolume(String pair, ContractTypes contractType, Period period, Integer limit, Long startTime, Long endTime);
 
+	default List<CoinmTakerVolume> getTakerBuySellVolume(String pair, ContractTypes contractType, Period period, Integer limit){
+		return getTakerBuySellVolume(pair, contractType, period, limit, null, null);
+	}
+	
+	//Basis
 	@ApiEndpoint (
 			endpoint = "/futures/data/basis",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -414,8 +423,9 @@ public interface CoinmMarketDataAPI extends Api.Https, Api.Coinm {
 			parameters = {Parameters.pair, Parameters.contractType, Parameters.period, Parameters.limit, Parameters.startTime, Parameters.endTime},
 			mandatory = {true, true, true, false, false, false}
 	)
-	public List<Basis> getBasis(String pair, Enum contractType, Enum period, long limit, long startTime, long endTime);
+	public List<Basis> getBasis(String pair, ContractTypes contractType, Period period, Integer limit, Long startTime, Long endTime);
 
-
-
+	default List<Basis> getBasis(String pair, ContractTypes contractType, Period period, Integer limit){
+		return getBasis(pair, contractType, period, limit, null, null);
+	}
 }

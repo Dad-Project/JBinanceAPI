@@ -15,23 +15,28 @@ import fr.rowlaxx.binanceapi.core.FinalOrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.OrderBookTicker;
 import fr.rowlaxx.binanceapi.core.SymbolPriceTicker;
-import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmCandlestick;
-import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmLongShortAccountRatio;
-import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmOpenInterestStatistics;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.ContractTypes;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.FundingRate;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.OpenInterest;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.Period;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.PremiumIndex;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.PremiumIndexCandlestick;
+import fr.rowlaxx.binanceapi.core.usdm.marketdata.AssetIndex;
+import fr.rowlaxx.binanceapi.core.usdm.marketdata.CompositeIndex;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmExchangeInformation;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmLongShortAccountRatio;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmLongShortPositionRatio;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmOpenInterestStatistics;
+import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTakerVolume;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTickerStatistics;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTrade;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 
+/**
+ * @version 2022-01-31
+ * @author Théo
+ * @see https://binance-docs.github.io/apidocs/futures/en/#market-data-endpoints
+ */
 public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 
 	//Test Connectivity
@@ -355,45 +360,54 @@ public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.period, Parameters.limit, Parameters.startTime, Parameters.endTime},
 			mandatory = {true, true, false, false, false}
 	)
-	public List<TakerBuySellVolume> getTakerBuySellVolume(String symbol, Enum period, long limit, long startTime, long endTime);
+	public List<UsdmTakerVolume> getTakerBuySellVolume(String symbol, Period period, Integer limit, Long startTime, Long endTime);
 
-	@ApiEndpoint (
-			endpoint = "/fapi/v1/lvtKlines",
-			baseEndpoint = BaseEndpoints.FUTURE_USD,
-			method = Method.GET,
-			needSignature = false,
-			parameters = {Parameters.symbol, Parameters.interval, Parameters.startTime, Parameters.endTime, Parameters.limit},
-			mandatory = {true, true, false, false, false}
-	)
-	public List<HistoricalBLVTNAVKlineCandlestick> getHistoricalBLVTNAVKlineCandlestick(String symbol, Enum interval, long startTime, long endTime, int limit);
-
+	default List<UsdmTakerVolume> getTakerBuySellVolume(String symbol, Period period, Integer limit){
+		return getTakerBuySellVolume(symbol, period, limit, null, null);
+	}
+	
+	//Composite Index Symbol Information
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/indexInfo",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = false,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public List<CompositeIndexSymbolInformation> getCompositeIndexSymbolInformation(String symbol);
+	@RedirectResponse(path = "%INDEX=0%")
+	public CompositeIndex getCompositeIndex(String symbol);
 
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/indexInfo",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {},
+			mandatory = {}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, CompositeIndex> getCompositeIndexes();
+	
+	//Multi-Assets Mode Asset Index
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/assetIndex",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = false,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public MultiAssetsModeAssetIndex getMultiAssetsModeAssetIndex(String symbol);
+	public AssetIndex getAssetIndex(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/assetIndex",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = false,
-			parameters = {Parameters.symbol},
-			mandatory = {false}
+			parameters = {},
+			mandatory = {}
 	)
-	public List<MultiAssetsModeAssetIndex1> getMultiAssetsModeAssetIndex1(String symbol);
+	@MapKey(fieldName = "symbol")
+	public Map<String, AssetIndex> getAssetIndexes();
 }
