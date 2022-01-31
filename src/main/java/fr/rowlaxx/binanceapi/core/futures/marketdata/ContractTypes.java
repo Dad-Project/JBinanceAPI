@@ -1,6 +1,6 @@
 package fr.rowlaxx.binanceapi.core.futures.marketdata;
 
-public enum FutureContractTypes {
+public enum ContractTypes {
 	
     PERPETUAL,
     CURRENT_QUARTER,

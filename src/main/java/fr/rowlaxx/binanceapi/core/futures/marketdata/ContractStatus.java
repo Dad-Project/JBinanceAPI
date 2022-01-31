@@ -1,6 +1,6 @@
 package fr.rowlaxx.binanceapi.core.futures.marketdata;
 
-public enum FutureContractStatus {
+public enum ContractStatus {
 	
     PENDING_TRADING,
     TRADING,

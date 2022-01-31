@@ -24,12 +24,12 @@ public abstract class FutureSymbol extends Symbol<FutureOrderTypes> {
 	private double maintMarginPercent;
 	private double marketTakeBound;
 	private long deliveryDate;
-	private FutureContractTypes contractType;
+	private ContractTypes contractType;
 	private UnderlyingTypes underlyingType;
 	private Set<UnderlyingSubTypes> underlyingSubType;
 	private Set<TimeInForce> timeInForce;
 	@JOValue(key = {"status", "contractStatus"})
-	private FutureContractStatus status;
+	private ContractStatus status;
 	
 	//Constructeurs
 	public FutureSymbol(JSONObject response) {
@@ -37,7 +37,7 @@ public abstract class FutureSymbol extends Symbol<FutureOrderTypes> {
 	}
 	
 	//Getter
-	public FutureContractTypes getContractType() {
+	public ContractTypes getContractType() {
 		return contractType;
 	}
 	
@@ -81,7 +81,7 @@ public abstract class FutureSymbol extends Symbol<FutureOrderTypes> {
 		return requiredMarginPercent;
 	}
 	
-	public FutureContractStatus getStatus() {
+	public ContractStatus getStatus() {
 		return status;
 	}
 	
