@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.jsavon.JsavonObject;
 
-public class InterestRecord extends JsavonObject {
+public class MarginInterestRecord extends JsavonObject {
 	private static final long serialVersionUID = 559063585587719408L;
 	
 	//Variables
@@ -17,7 +17,7 @@ public class InterestRecord extends JsavonObject {
 	private String type;
 	
 	//Constructeurs
-	public InterestRecord(JSONObject json) {
+	public MarginInterestRecord(JSONObject json) {
 		super(json);
 	}
 	
