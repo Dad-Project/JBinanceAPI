@@ -196,17 +196,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			mandatory = {}
 	)
 	@MapKey(fieldName = "symbol")
-	public Map<String, SpotTickerStatistics> getTickersStatistics24hr();	
-	
-	@ApiEndpoint (
-			endpoint = "/api/v3/ticker/24hr",
-			baseEndpoint = BaseEndpoints.SPOT,
-			method = Method.GET,
-			needSignature = false,
-			parameters = {Parameters.symbol},
-			mandatory = {true}
-	)
-	public SpotTickerStatistics getTickerStatistics24hr(String symbol);	
+	public Map<String, SpotTickerStatistics> get24hrStatistics();		
 	
 	//Symbol Price Ticker
 	@ApiEndpoint (
@@ -217,7 +207,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public SymbolPriceTicker getSymbolPriceTicker(String symbol);
+	public SymbolPriceTicker getPriceTicker(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/api/v3/ticker/price",
@@ -228,7 +218,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			mandatory = {}
 	)
 	@MapKey(fieldName = "symbol")
-	public Map<String, SymbolPriceTicker> getSymbolPriceTickers();
+	public Map<String, SymbolPriceTicker> getPriceTickers();
 	
 	//Symbol Order Book Ticker
 	@ApiEndpoint (
@@ -239,7 +229,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public OrderBookTicker getSymbolOrderBookTicker(String symbol);
+	public OrderBookTicker getOrderBookTicker(String symbol);
 	
 	@ApiEndpoint (
 			endpoint = "/api/v3/ticker/bookTicker",
@@ -250,5 +240,5 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			mandatory = {}
 	)
 	@MapKey(fieldName = "symbol")
-	public Map<String, OrderBookTicker> getSymbolOrderBookTickers();
+	public Map<String, OrderBookTicker> getOrderBookTickers();
 }

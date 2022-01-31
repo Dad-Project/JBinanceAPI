@@ -7,7 +7,7 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.savings.FlexibleProduct;
-import fr.rowlaxx.binanceapi.core.savings.InterestRecord;
+import fr.rowlaxx.binanceapi.core.savings.SavingsInterestRecord;
 import fr.rowlaxx.binanceapi.core.savings.LendingAccount;
 import fr.rowlaxx.binanceapi.core.savings.LendingTypes;
 import fr.rowlaxx.binanceapi.core.savings.PurchaseRecord;
@@ -176,7 +176,7 @@ public interface SavingsAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.lendingType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false, false, false}
 	)
-	public List<InterestRecord> getInterestHistory(LendingTypes lendingType, String asset, Long startTime, Long endTime, Long current, Long size);
+	public List<SavingsInterestRecord> getInterestHistory(LendingTypes lendingType, String asset, Long startTime, Long endTime, Long current, Long size);
 
 	//Change Fixed/Activity Position to Daily Position(USER_DATA)
 	@ApiEndpoint (

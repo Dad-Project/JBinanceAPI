@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.api.usdm;
 
 public interface UsdmAPI {
 
-	public UsdmMarketDataAPI marketData();
+	public UsdmMarketDataAPI market();
 	public UsdmTradeAPI trade();
 	
 }

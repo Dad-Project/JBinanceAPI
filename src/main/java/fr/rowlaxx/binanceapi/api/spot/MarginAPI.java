@@ -12,7 +12,7 @@ import fr.rowlaxx.binanceapi.core.margin.CrossFeeData;
 import fr.rowlaxx.binanceapi.core.margin.CrossMarginAccount;
 import fr.rowlaxx.binanceapi.core.margin.CrossTransferRecord;
 import fr.rowlaxx.binanceapi.core.margin.ForceLiquidationRecord;
-import fr.rowlaxx.binanceapi.core.margin.InterestRecord;
+import fr.rowlaxx.binanceapi.core.margin.MarginInterestRecord;
 import fr.rowlaxx.binanceapi.core.margin.IsolatedAccountLimit;
 import fr.rowlaxx.binanceapi.core.margin.IsolatedFeeData;
 import fr.rowlaxx.binanceapi.core.margin.IsolatedMarginAccount;
@@ -214,7 +214,7 @@ public interface MarginAPI extends Api.Https, Api.Spot {
 			mandatory = {false, false, false, false, false, false, false}
 	)
 	@RedirectResponse(path = "rows")
-	public List<InterestRecord> getInterestHistory(String asset, String isolatedSymbol, Long startTime, Long endTime, Long current, Long size, Boolean archived);
+	public List<MarginInterestRecord> getInterestHistory(String asset, String isolatedSymbol, Long startTime, Long endTime, Long current, Long size, Boolean archived);
 
 	//Get Force Liquidation Record (USER_DATA)
 	@ApiEndpoint (

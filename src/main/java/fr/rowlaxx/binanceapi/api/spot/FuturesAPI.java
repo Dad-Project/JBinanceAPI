@@ -15,7 +15,7 @@ import fr.rowlaxx.binanceapi.core.futures.CrossCollateralInformation;
 import fr.rowlaxx.binanceapi.core.futures.CrossCollateralLiquidationRecord;
 import fr.rowlaxx.binanceapi.core.futures.CrossCollateralWallet;
 import fr.rowlaxx.binanceapi.core.futures.Directions;
-import fr.rowlaxx.binanceapi.core.futures.InterestRecord;
+import fr.rowlaxx.binanceapi.core.futures.FuturesInterestRecord;
 import fr.rowlaxx.binanceapi.core.futures.MaxAmount;
 import fr.rowlaxx.binanceapi.core.futures.Repay;
 import fr.rowlaxx.binanceapi.core.futures.RepayLimit;
@@ -305,5 +305,5 @@ public interface FuturesAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.collateralCoin, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.limit},
 			mandatory = {false, false, false, false, false}
 	)
-	public List<InterestRecord> getInterestHistory(String collateralCoin, Long startTime, Long endTime, Long current, Long limit);
+	public List<FuturesInterestRecord> getInterestHistory(String collateralCoin, Long startTime, Long endTime, Long current, Long limit);
 }
