@@ -10,7 +10,7 @@ public class Trade extends JsavonObject {
 	
 	//Variables
 	@JOValue(key = {"id", "a"})
-	private int id;
+	private long id;
 	@JOValue(key = {"isBestMatch", "M"}, mandatory = false)
 	private Boolean isBestMatch;
 	@JOValue(key = {"price", "p"})
@@ -26,7 +26,7 @@ public class Trade extends JsavonObject {
 	}
 	
 	//Getters
-	public final int getId() {
+	public final long getId() {
 		return this.id;
 	}
 	
