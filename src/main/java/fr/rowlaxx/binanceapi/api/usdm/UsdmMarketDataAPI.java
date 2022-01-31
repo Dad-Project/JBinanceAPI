@@ -117,6 +117,10 @@ public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 	)
 	public List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Long startTime, Long endTime, Integer limit);
 
+	default List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Integer limit){
+		return getCompressedTrades(symbol, fromId, null, null, limit);
+	}
+	
 	//Kline/Candlestick Data
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/klines",

@@ -116,6 +116,10 @@ public interface CoinmMarketDataAPI extends Api.Https, Api.Coinm {
 	)
 	public List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Long startTime, Long endTime, Integer limit);
 
+	default List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Integer limit){
+		return getCompressedTrades(symbol, fromId, null, null, limit);
+	}
+	
 	//Index Price and Mark Price
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/premiumIndex",
