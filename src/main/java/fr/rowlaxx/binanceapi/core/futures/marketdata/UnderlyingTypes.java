@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.general.future;
+package fr.rowlaxx.binanceapi.core.futures.marketdata;
 
 public enum UnderlyingTypes {
 	

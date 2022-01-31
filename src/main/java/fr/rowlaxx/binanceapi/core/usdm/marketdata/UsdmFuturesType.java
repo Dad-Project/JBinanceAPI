@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.general.usdm;
+package fr.rowlaxx.binanceapi.core.usdm.marketdata;
 
 public enum UsdmFuturesType {
 	

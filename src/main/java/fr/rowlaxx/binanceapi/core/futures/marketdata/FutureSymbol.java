@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.general.future;
+package fr.rowlaxx.binanceapi.core.futures.marketdata;
 
 import java.util.Set;
 
@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.TimeInForce;
 import fr.rowlaxx.binanceapi.core.exchangeinfos.Symbol;
-import fr.rowlaxx.binanceapi.core2.order.future.FutureOrderTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderTypes;
 import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public abstract class FutureSymbol extends Symbol<FutureOrderTypes> {

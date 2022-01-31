@@ -1,10 +1,10 @@
-package fr.rowlaxx.binanceapi.core2.general.usdm;
+package fr.rowlaxx.binanceapi.core.usdm.marketdata;
 
 import org.json.JSONObject;
 
 import fr.rowlaxx.jsavon.JsavonObject;
 
-public class Asset extends JsavonObject {
+public class UsdmAsset extends JsavonObject {
 	private static final long serialVersionUID = -8867757164767750187L;
 
 	//Variables
@@ -13,7 +13,7 @@ public class Asset extends JsavonObject {
 	private boolean marginAvailable;
 	
 	//Constructeurs
-	public Asset(JSONObject response) {
+	public UsdmAsset(JSONObject response) {
 		super(response);
 	}
 	

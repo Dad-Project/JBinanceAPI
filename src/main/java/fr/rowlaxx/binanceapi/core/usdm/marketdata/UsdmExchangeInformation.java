@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.general.usdm;
+package fr.rowlaxx.binanceapi.core.usdm.marketdata;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ public class UsdmExchangeInformation extends ExchangeInformation<UsdmSymbol> {
 	private UsdmFuturesType futuresType;
 	
 	@MapKey(fieldName = "asset")
-	private Map<String, Asset> assets;
+	private Map<String, UsdmAsset> assets;
 	
 	//Constructeurs
 	public UsdmExchangeInformation(JSONObject response) {
@@ -26,11 +26,11 @@ public class UsdmExchangeInformation extends ExchangeInformation<UsdmSymbol> {
 		return futuresType;
 	}
 	
-	public Map<String, Asset> getAssets() {
+	public Map<String, UsdmAsset> getAssets() {
 		return assets;
 	}
 	
-	public Asset getAsset(String asset) {
+	public UsdmAsset getAsset(String asset) {
 		return assets.get(asset);
 	}
 }

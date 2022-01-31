@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core2.order.coinm;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core2.order.future.FutureOrder;
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrder;
 
 public class CoinmOrder extends FutureOrder {
 	private static final long serialVersionUID = 4274208194826641865L;

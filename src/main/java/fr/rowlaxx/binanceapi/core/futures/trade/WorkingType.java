@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.order.future;
+package fr.rowlaxx.binanceapi.core.futures.trade;
 
 public enum WorkingType {
 
