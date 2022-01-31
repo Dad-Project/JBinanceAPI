@@ -8,9 +8,11 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
 public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 
+	//Change Position Mode(TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/positionSide/dual",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -19,8 +21,10 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.dualSidePosition},
 			mandatory = {true}
 	)
-	public ChangePositionMode postChangePositionMode(String dualSidePosition);
+	@RedirectResponse(path = "msg")
+	public String setDualSidePosition(Boolean dualSidePosition);
 
+	//Get Current Position Mode(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/positionSide/dual",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -29,8 +33,10 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {},
 			mandatory = {}
 	)
-	public GetCurrentPositionMode getGetCurrentPositionMode();
+	@RedirectResponse(path = "dualSidePosition")
+	public boolean isDualSidePosition();
 
+	//New Order (TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/order",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,

@@ -8,9 +8,11 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
+import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
 public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 
+	//Change Position Mode(TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/positionSide/dual",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -19,8 +21,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.dualSidePosition},
 			mandatory = {true}
 	)
-	public ChangePositionMode postChangePositionMode(String dualSidePosition);
+	@RedirectResponse(path = "msg")
+	public String setDualSidePosition(Boolean dualSidePosition);
 
+	//Get Current Position Mode(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/positionSide/dual",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -29,8 +33,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {},
 			mandatory = {}
 	)
-	public GetCurrentPositionMode getGetCurrentPositionMode();
+	@RedirectResponse(path = "dualSidePosition")
+	public boolean isDualSidePosition();
 
+	//Change Multi-Assets Mode (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/multiAssetsMargin",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -39,8 +45,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.multiAssetsMargin},
 			mandatory = {true}
 	)
-	public ChangeMultiAssetsMode postChangeMultiAssetsMode(String multiAssetsMargin);
+	@RedirectResponse(path = "msg")
+	public String setMultiAssetsMargin(Boolean multiAssetsMargin);
 
+	//Get Current Multi-Assets Mode (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/multiAssetsMargin",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -49,8 +57,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {},
 			mandatory = {}
 	)
-	public GetCurrentMultiAssetsMode getGetCurrentMultiAssetsMode();
+	@RedirectResponse(path = "multiAssetsMargin")
+	public boolean isMultiAssetsMargin();
 
+	//New Order (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/order",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
