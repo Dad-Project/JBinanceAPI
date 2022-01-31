@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core2.general.coinm;
+package fr.rowlaxx.binanceapi.core.coinm.marketdata;
 
 import org.json.JSONObject;
 

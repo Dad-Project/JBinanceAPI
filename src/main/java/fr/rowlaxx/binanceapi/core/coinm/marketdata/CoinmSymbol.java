@@ -1,8 +1,8 @@
-package fr.rowlaxx.binanceapi.core2.general.coinm;
+package fr.rowlaxx.binanceapi.core.coinm.marketdata;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core2.general.future.FutureSymbol;
+import fr.rowlaxx.binanceapi.core.futures.marketdata.FutureSymbol;
 
 public class CoinmSymbol extends FutureSymbol {
 	private static final long serialVersionUID = 4912543539944543970L;
