@@ -66,9 +66,6 @@ Currently implementing : Usd-M & Coin-M Trades
 | Sub-Account |     ✔️     | 2022-01-27 |
 |    Wallet   |     ✔️     | 2022-01-26 |
 
-'X' - Implemented  
-'-' - Not implemented  
-
 # Usage
 
 ## Creating a client
