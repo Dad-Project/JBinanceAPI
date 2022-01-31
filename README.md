@@ -24,7 +24,6 @@ The version refer to the last date the API has been modified.
 Meaning of symbols :  
 ✔️ - Implemented  
 ❌ - Not implemented  
-⬛ - Unavailable  
 
 All the ❌ fields will be implemented.
 
@@ -36,7 +35,7 @@ All the ❌ fields will be implemented.
 |     Market Data    |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     User Stream    |  ❌  |  ❌  |   ❌  |   ❌    |
 | Market Data Stream |  ❌  |  ❌  |   ❌  |   ❌    |
-|       Testnet      |  ⬛  |  ❌  |   ❌  |   ⬛    |
+|       Testnet      |      |  ❌  |   ❌  |          |
 
 Currently implementing : Usd-M & Coin-M Trades
 
