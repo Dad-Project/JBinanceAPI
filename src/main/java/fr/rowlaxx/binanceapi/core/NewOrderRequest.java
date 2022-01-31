@@ -1,11 +1,11 @@
 package fr.rowlaxx.binanceapi.core;
 
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOrderRequest;
 import fr.rowlaxx.binanceapi.core.options.trade.OptionOrderRequest;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOrderRequest;
-import fr.rowlaxx.binanceapi.core2.order.future.FutureOrderRequest;
 
 public final class NewOrderRequest {
 	

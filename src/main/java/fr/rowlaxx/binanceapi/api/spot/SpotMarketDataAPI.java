@@ -11,12 +11,12 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.BasicCandlestick;
+import fr.rowlaxx.binanceapi.core.CompressedTrade;
 import fr.rowlaxx.binanceapi.core.FinalOrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.OrderBookTicker;
 import fr.rowlaxx.binanceapi.core.SymbolPriceTicker;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.CurrentAveragePrice;
-import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotCompressedTrade;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotExchangeInformation;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTickerStatistics;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTrade;
@@ -135,13 +135,13 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.symbol, Parameters.fromId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<SpotCompressedTrade> getCompressedTrades(String symbol, Long fromId, Long startTime, Long endTime, Integer limit);
+	public List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Long startTime, Long endTime, Integer limit);
 
-	default List<SpotCompressedTrade> getCompressedTrades(String symbol, Long fromId, Integer limit) {
+	default List<CompressedTrade> getCompressedTrades(String symbol, Long fromId, Integer limit) {
 		return getCompressedTrades(symbol, fromId, null, null, limit);
 	}
 	
-	default List<SpotCompressedTrade> getCompressedTrades(String symbol, Long startTime, Long endTime, Integer limit){
+	default List<CompressedTrade> getCompressedTrades(String symbol, Long startTime, Long endTime, Integer limit){
 		return getCompressedTrades(symbol, null, startTime, endTime, limit);
 	}
 	
