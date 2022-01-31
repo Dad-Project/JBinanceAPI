@@ -20,8 +20,17 @@ public class FinalOrderBook extends JsavonObject implements OrderBook {
 	private Map<Double, Double> asks;
 	@ManualValue
 	private Map<Double, Double> bids;
+	
 	@JOValue(mandatory = false)
 	private Long lastUpdateId;
+	@JOValue(mandatory = false, key = "T")
+	private Long transactionTime;
+	@JOValue(mandatory = false, key = "E")
+	private Long messageOutputTime;
+	@JOValue(mandatory = false)
+	private String pair;
+	@JOValue(mandatory = false)
+	private String symbol;
 	
 	//Constructeurs
 	public FinalOrderBook(JSONObject json) {
@@ -65,5 +74,21 @@ public class FinalOrderBook extends JsavonObject implements OrderBook {
 	
 	public final Long getLastUpdateId() {
 		return this.lastUpdateId;
+	}
+	
+	public final Long getMessageOutputTime() {
+		return messageOutputTime;
+	}
+	
+	public final Long getTransactionTime() {
+		return transactionTime;
+	}
+	
+	public final String getPair() {
+		return pair;
+	}
+	
+	public final String getSymbol() {
+		return symbol;
 	}
 }
