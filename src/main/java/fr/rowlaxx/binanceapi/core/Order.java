@@ -13,7 +13,7 @@ public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends
 	@JOValue(mandatory = false)
 	private Double price;
 	@JOValue(mandatory = false)
-	private OrderSide side;
+	private OrderSides side;
 	@JOValue(mandatory = false)
 	private Double executedQty;
 	@JOValue(mandatory = false)
@@ -41,7 +41,7 @@ public abstract class Order<T extends OrderTypes, S extends OrderStatus> extends
 		return price;
 	}
 	
-	public final OrderSide getSide() {
+	public final OrderSides getSide() {
 		return side;
 	}
 	

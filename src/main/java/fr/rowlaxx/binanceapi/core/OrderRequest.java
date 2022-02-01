@@ -29,7 +29,7 @@ public abstract class OrderRequest extends BinanceAutoHttpRequest {
 			return (B) this;
 		}
 
-		public final B setSide(OrderSide side) {
+		public final B setSide(OrderSides side) {
 			request.side = side;
 			return (B) this;
 		}
@@ -69,7 +69,7 @@ public abstract class OrderRequest extends BinanceAutoHttpRequest {
 	
 	//Variables
 	private String symbol;
-	private OrderSide side;
+	private OrderSides side;
 	private Double quantity;
 	private Double price;
 	private OrderResponseTypes newOrderRespType;
@@ -87,7 +87,7 @@ public abstract class OrderRequest extends BinanceAutoHttpRequest {
 		return this.quantity;
 	}
 	
-	public final OrderSide getSide() {
+	public final OrderSides getSide() {
 		return this.side;
 	}
 	

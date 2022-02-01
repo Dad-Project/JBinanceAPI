@@ -9,20 +9,16 @@ public abstract class FutureOrder extends BasicOrder<FutureOrderTypes> {
 	private static final long serialVersionUID = -4526521473369286889L;
 
 	//Variables
-	@JOValue(mandatory = false)
-	private Double cumQty;
+	@JOValue(mandatory = false) private Double cumQty;
 	private double avgPrice;
 	private boolean reduceOnly;
 	private PositionSides positionSide;
 	private boolean closePosition;
 	private FutureOrderTypes origType;
-	@JOValue(mandatory = false)
-	private Double activationPrice;
+	@JOValue(mandatory = false) private Double activationPrice;
 	private WorkingType workingType;
-	@JOValue(mandatory = false)
-	private Double priceRate;
-	@JOValue(mandatory = false)
-	private Boolean priceProtect;
+	@JOValue(mandatory = false) private Double priceRate;
+	@JOValue(mandatory = false) private Boolean priceProtect;
 	
 	//Constructeurs
 	public FutureOrder(JSONObject json) {
