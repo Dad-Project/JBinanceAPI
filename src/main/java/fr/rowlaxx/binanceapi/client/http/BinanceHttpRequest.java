@@ -131,7 +131,7 @@ public class BinanceHttpRequest {
 	}
 
 	//Enum
-	public static enum Method{GET,POST,DELETE}
+	public static enum Method{GET,POST,DELETE,PUT}
 
 	//Variables
 	private Long recvWindow = null;
