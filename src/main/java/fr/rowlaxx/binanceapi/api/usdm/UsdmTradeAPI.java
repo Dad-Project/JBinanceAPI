@@ -7,6 +7,9 @@ import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmOrder;
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
@@ -69,18 +72,30 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.side, Parameters.positionSide, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.reduceOnly, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.closePosition, Parameters.activationPrice, Parameters.callbackRate, Parameters.workingType, Parameters.priceProtect, Parameters.newOrderRespType},
 			mandatory = {true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false}
 	)
-	public NewOrder postNewOrder(String symbol, Enum side, Enum positionSide, Enum type, Enum timeInForce, double quantity, String reduceOnly, double price, String newClientOrderId, double stopPrice, String closePosition, double activationPrice, double callbackRate, Enum workingType, String priceProtect, Enum newOrderRespType);
+	public UsdmOrder postOrder(FutureOrderRequest request);
+	
+	//Place Multiple Orders (TRADE)
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/batchOrders",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.POST,
+			needSignature = true,
+			parameters = {Parameters.batchOrders},
+			mandatory = {true}
+	)
+	public List<UsdmOrder> postOrders(List<FutureOrderRequest> requests);
 
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/batchOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.POST,
 			needSignature = true,
-			parameters = {Parameters.batchOrders, Parameters.symbol, Parameters.side, Parameters.positionSide, Parameters.type, Parameters.timeInForce, Parameters.quantity, Parameters.reduceOnly, Parameters.price, Parameters.newClientOrderId, Parameters.stopPrice, Parameters.activationPrice, Parameters.callbackRate, Parameters.workingType, Parameters.priceProtect, Parameters.newOrderRespType},
-			mandatory = {true, true, true, false, true, false, true, false, false, false, false, false, false, false, false, false}
+			parameters = {Parameters.batchOrders},
+			mandatory = {true}
 	)
-	public List<PlaceMultipleOrders> postPlaceMultipleOrders(List<Object> batchOrders, String symbol, Enum side, Enum positionSide, Enum type, Enum timeInForce, double quantity, String reduceOnly, double price, String newClientOrderId, double stopPrice, double activationPrice, double callbackRate, Enum workingType, String priceProtect, Enum newOrderRespType);
+	public List<UsdmOrder> postOrders(FutureOrderRequest[] requests);
 
+	//Query Order (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/order",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -89,8 +104,17 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId},
 			mandatory = {true, false, false}
 	)
-	public QueryOrder getQueryOrder(String symbol, long orderId, String origClientOrderId);
+	public UsdmOrder getOrder(String symbol, Long orderId, String origClientOrderId);
 
+	default UsdmOrder getOrder(String symbol, Long orderId) {
+		return getOrder(symbol, orderId, null);
+	}
+	
+	default UsdmOrder getOrder(String symbol, String origClientOrderId) {
+		return getOrder(symbol, null, origClientOrderId);
+	}
+	
+	//Cancel Order (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/order",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -99,8 +123,17 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId},
 			mandatory = {true, false, false}
 	)
-	public CancelOrder deleteCancelOrder(String symbol, long orderId, String origClientOrderId);
+	public UsdmOrder cancelOrder(String symbol, Long orderId, String origClientOrderId);
 
+	default UsdmOrder cancelOrder(String symbol, Long orderId) {
+		return cancelOrder(symbol, orderId, null);
+	}
+	
+	default UsdmOrder cancelOrder(String symbol, String origClientOrderId) {
+		return cancelOrder(symbol, null, origClientOrderId);
+	}
+	
+	//Cancel All Open Orders (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/allOpenOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -109,7 +142,19 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public CancelAllOpenOrders deleteCancelAllOpenOrders(String symbol);
+	@RedirectResponse(path = "msg")
+	public String cancelAllOpenOrders(String symbol);
+
+	//Cancel Multiple Orders (TRADE)
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/batchOrders",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.DELETE,
+			needSignature = true,
+			parameters = {Parameters.symbol, Parameters.orderIdList, Parameters.origClientOrderIdList},
+			mandatory = {true, false, false}
+	)
+	public List<UsdmOrder> cancelMultipleOrders(String symbol, List<Long> orderIdList, List<String> origClientOrderIdList);
 
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/batchOrders",
@@ -119,8 +164,17 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.orderIdList, Parameters.origClientOrderIdList},
 			mandatory = {true, false, false}
 	)
-	public List<CancelMultipleOrders> deleteCancelMultipleOrders(String symbol, List<Long> orderIdList, List<Long> origClientOrderIdList);
+	public List<UsdmOrder> cancelMultipleOrders(String symbol, Long[] orderIdList, String[] origClientOrderIdList);
 
+	default List<UsdmOrder> cancelMultipleOrders(String symbol, Long... orderIdList){
+		return cancelMultipleOrders(symbol, orderIdList, null);
+	}
+	
+	default List<UsdmOrder> cancelMultipleOrders(String symbol, String... origClientOrderIdList){
+		return cancelMultipleOrders(symbol, null, origClientOrderIdList);
+	}
+	
+	//Auto-Cancel All Open Orders (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/countdownCancelAll",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -129,8 +183,9 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.countdownTime},
 			mandatory = {true, true}
 	)
-	public AutoCancelAllOpenOrders postAutoCancelAllOpenOrders(String symbol, long countdownTime);
+	public void autoCancelAllOpenOrders(String symbol, Long countdownTime);
 
+	//Query Current Open Order (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/openOrder",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -139,18 +194,38 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.origClientOrderId},
 			mandatory = {true, false, false}
 	)
-	public QueryCurrentOpenOrder getQueryCurrentOpenOrder(String symbol, long orderId, String origClientOrderId);
+	public UsdmOrder getOpenOrder(String symbol, Long orderId, String origClientOrderId);
 
+	default UsdmOrder getOpenOrder(String symbol, Long orderId) {
+		return getOpenOrder(symbol, orderId, null);
+	}
+	
+	default UsdmOrder getOpenOrder(String symbol, String origClientOrderId) {
+		return getOpenOrder(symbol, null, origClientOrderId);
+	}
+	
+	//Current All Open Orders (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/openOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public List<CurrentAllOpenOrders> getCurrentAllOpenOrders(String symbol);
+	public List<UsdmOrder> getOpenOrders(String symbol);
 
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/openOrders",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	public List<UsdmOrder> getOpenOrders();
+
+	//All Orders (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/allOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -159,8 +234,13 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.orderId, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<AllOrders> getAllOrders(String symbol, long orderId, long startTime, long endTime, int limit);
+	public List<UsdmOrder> getAllOrders(String symbol, Long orderId, Long startTime, Long endTime, Integer limit);
 
+	default List<UsdmOrder> getAllOrders(String symbol, Long orderId, Integer limit){
+		return getAllOrders(symbol, orderId, null, null, limit);
+	}
+	
+	//Futures Account Balance V2 (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v2/balance",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
