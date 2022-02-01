@@ -6,7 +6,7 @@ import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
-import fr.rowlaxx.binanceapi.core.BasicOrderStatus;
+import fr.rowlaxx.binanceapi.core.OrderStatus;
 import fr.rowlaxx.binanceapi.core.futures.Adjustment;
 import fr.rowlaxx.binanceapi.core.futures.AdjustmentRecord;
 import fr.rowlaxx.binanceapi.core.futures.Borrow;
@@ -294,7 +294,7 @@ public interface FuturesAPI extends Api.Https, Api.Spot {
 			mandatory = {true}
 	)
 	@RedirectResponse(path = "status")
-	public BasicOrderStatus getRepaymentResult(String quoteId);
+	public OrderStatus getRepaymentResult(String quoteId);
 
 	//Cross-Collateral Interest History (USER_DATA)
 	@ApiEndpoint (
