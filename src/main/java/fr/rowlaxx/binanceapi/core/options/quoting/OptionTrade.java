@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.options.quoting;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.OrderSide;
+import fr.rowlaxx.binanceapi.core.OrderSides;
 import fr.rowlaxx.binanceapi.core.Trade;
 import fr.rowlaxx.jsavon.annotations.JOValue;
 
@@ -10,7 +10,7 @@ public class OptionTrade extends Trade {
 	private static final long serialVersionUID = 1130823384919172576L;
 	
 	//Variables
-	private OrderSide side;
+	private OrderSides side;
 	@JOValue(mandatory = false) private Double quoteQty;
 	@JOValue(mandatory = false) private Long tradeId;
 	
@@ -24,7 +24,7 @@ public class OptionTrade extends Trade {
 		return quoteQty;
 	}
 	
-	public final OrderSide getSide() {
+	public final OrderSides getSide() {
 		return side;
 	}
 	

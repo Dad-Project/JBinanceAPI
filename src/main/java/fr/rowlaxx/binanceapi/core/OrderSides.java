@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core;
 
 import fr.rowlaxx.convertutils.annotations.EnumMatcher;
 
-public enum OrderSide {
+public enum OrderSides {
 
 	@EnumMatcher(possibleMatchs = {"BUY", "1"}, caseSensitiv = false)
 	BUY,
