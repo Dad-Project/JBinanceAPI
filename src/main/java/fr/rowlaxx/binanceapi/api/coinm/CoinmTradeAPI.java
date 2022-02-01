@@ -13,13 +13,22 @@ import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.OrderSides;
 import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountBalance;
 import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountInformation;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountTrade;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmForceOrder;
 import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmOrder;
 import fr.rowlaxx.binanceapi.core.coinm.trade.ModifyOrderRequest;
 import fr.rowlaxx.binanceapi.core.coinm.trade.OrderModifyRecord;
+import fr.rowlaxx.binanceapi.core.futures.trade.ADLQuantile;
+import fr.rowlaxx.binanceapi.core.futures.trade.AutoCloseTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.Brackets;
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureIncomeRecord;
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.futures.trade.IncomeTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.MarginChangeRecord;
 import fr.rowlaxx.binanceapi.core.futures.trade.MarginTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.PositionInformation;
 import fr.rowlaxx.binanceapi.core.futures.trade.PositionSides;
-import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
+import fr.rowlaxx.binanceapi.core.futures.trade.UserCommissionRate;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
@@ -362,8 +371,13 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<GetPositionMarginChangeHistory> getGetPositionMarginChangeHistory(String symbol, int type, long startTime, long endTime, int limit);
+	public List<MarginChangeRecord> getMarginChangeHistory(String symbol, Integer type, Long startTime, Long endTime, Integer limit);
 
+	default List<MarginChangeRecord> getMarginChangeHistory(String symbol, Integer type, Integer limit){
+		return getMarginChangeHistory(symbol, type, null, null, limit);
+	}
+	
+	//Position Information V2 (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/positionRisk",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -374,6 +388,7 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 	)
 	public List<PositionInformation> getPositionInformation(String marginAsset, String pair);
 
+	//Account Trade List (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/userTrades",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -382,8 +397,13 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.pair, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 			mandatory = {false, false, false, false, false, false}
 	)
-	public List<AccountTradeList> getAccountTradeList(String symbol, String pair, long startTime, long endTime, long fromId, int limit);
+	public List<CoinmAccountTrade> getAccountTrades(String symbol, String pair, Long startTime, Long endTime, Long fromId, Integer limit);
 
+	default List<CoinmAccountTrade> getAccountTrades(String symbol, String pair, Long fromId, Integer limit){
+		return getAccountTrades(symbol, pair, null, null, fromId, limit);
+	}
+	
+	//Get Income History(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/income",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -392,8 +412,13 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.incomeType, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false}
 	)
-	public List<GetIncomeHistory> getGetIncomeHistory(String symbol, String incomeType, long startTime, long endTime, int limit);
+	public List<FutureIncomeRecord> getIncomeHistory(String symbol, IncomeTypes incomeType, Long startTime, Long endTime, Integer limit);
 
+	default List<FutureIncomeRecord> getIncomeHistory(String symbol, IncomeTypes incomeType, Integer limit){
+		return getIncomeHistory(symbol, incomeType, null, null, limit);
+	}
+	
+	//Notional Bracket for Pair(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/leverageBracket",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -402,8 +427,9 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.pair},
 			mandatory = {false}
 	)
-	public List<NotionalBracketforSymbol> getNotionalBracketforSymbol(String pair);
+	public List<Brackets> getBracketsPair(String pair);
 
+	//Notional Bracket for Symbol(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v2/leverageBracket",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -412,8 +438,9 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol},
 			mandatory = {false}
 	)
-	public List<NotionalBracketforPair> getNotionalBracketforPair(String symbol);
+	public List<Brackets> getBracketsSymbol(String symbol);
 
+	//User's Force Orders (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/forceOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -422,18 +449,35 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.autoCloseType, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false}
 	)
-	public List<UsersForceOrders> getUsersForceOrders(String symbol, Enum autoCloseType, long startTime, long endTime, int limit);
+	public List<CoinmForceOrder> getUsersForceOrders(String symbol, AutoCloseTypes autoCloseType, Long startTime, Long endTime, Integer limit);
 
+	default List<CoinmForceOrder> getUsersForceOrders(String symbol, AutoCloseTypes autoCloseType, Integer limit){
+		return getUsersForceOrders(symbol, autoCloseType, null, null, limit);
+	}
+	
+	//Position ADL Quantile Estimation (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/adlQuantile",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public List<PositionADLQuantileEstimation> getPositionADLQuantileEstimation(String symbol);
+	public ADLQuantile getADLQuantile(String symbol);
 
+	@ApiEndpoint (
+			endpoint = "/dapi/v1/adlQuantile",
+			baseEndpoint = BaseEndpoints.FUTURE_COIN,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, ADLQuantile> getADLQuantiles();
+
+	//User Commission Rate (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/commissionRate",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -443,7 +487,4 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			mandatory = {true}
 	)
 	public UserCommissionRate getUserCommissionRate(String symbol);
-
-
-
 }

@@ -2,7 +2,6 @@ package fr.rowlaxx.binanceapi.core.coinm.trade;
 
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureAccountAsset;
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureAccountInformation;
-import fr.rowlaxx.binanceapi.core.usdm.trade.CoinmAccountPosition;
 
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core.usdm.trade;
+package fr.rowlaxx.binanceapi.core.coinm.trade;
 
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureAccountPosition;
 

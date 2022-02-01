@@ -7,14 +7,23 @@ import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
-import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountBalance;
-import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmOrder;
+import fr.rowlaxx.binanceapi.core.futures.trade.ADLQuantile;
+import fr.rowlaxx.binanceapi.core.futures.trade.AutoCloseTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.Brackets;
+import fr.rowlaxx.binanceapi.core.futures.trade.FutureIncomeRecord;
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.futures.trade.IncomeTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.MarginChangeRecord;
 import fr.rowlaxx.binanceapi.core.futures.trade.MarginTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.PositionInformation;
 import fr.rowlaxx.binanceapi.core.futures.trade.PositionSides;
+import fr.rowlaxx.binanceapi.core.futures.trade.UserCommissionRate;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountBalance;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountInformation;
+import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountTrade;
+import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmForceOrder;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
+import fr.rowlaxx.binanceapi.core.wallet.Indicators;
 import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
@@ -318,8 +327,13 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<GetPositionMarginChangeHistory> getGetPositionMarginChangeHistory(String symbol, int type, long startTime, long endTime, int limit);
+	public List<MarginChangeRecord> getMarginChangeHistory(String symbol, Integer type, Long startTime, Long endTime, Integer limit);
 
+	default List<MarginChangeRecord> getMarginChangeHistory(String symbol, Integer type, Integer limit){
+		return getMarginChangeHistory(symbol, type, null, null, limit);
+	}
+	
+	//Position Information V2 (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v2/positionRisk",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -328,18 +342,9 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol},
 			mandatory = {false}
 	)
-	public List<PositionInformationV2> getPositionInformationV2(String symbol);
+	public List<PositionInformation> getPositionInformation(String symbol);
 
-	@ApiEndpoint (
-			endpoint = "/fapi/v2/positionRisk",
-			baseEndpoint = BaseEndpoints.FUTURE_USD,
-			method = Method.GET,
-			needSignature = true,
-			parameters = {Parameters.symbol},
-			mandatory = {false}
-	)
-	public List<PositionInformationV21> getPositionInformationV21(String symbol);
-
+	//Account Trade List (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/userTrades",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -348,8 +353,13 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.startTime, Parameters.endTime, Parameters.fromId, Parameters.limit},
 			mandatory = {true, false, false, false, false}
 	)
-	public List<AccountTradeList> getAccountTradeList(String symbol, long startTime, long endTime, long fromId, int limit);
+	public List<UsdmAccountTrade> getAccountTrades(String symbol, Long startTime, Long endTime, Long fromId, Integer limit);
 
+	default List<UsdmAccountTrade> getAccountTrades(String symbol, Long fromId, Integer limit){
+		return getAccountTrades(symbol, null, null, fromId, limit);
+	}
+	
+	//Get Income History(USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/income",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -358,7 +368,23 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.incomeType, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false}
 	)
-	public List<GetIncomeHistory> getGetIncomeHistory(String symbol, String incomeType, long startTime, long endTime, int limit);
+	public List<FutureIncomeRecord> getIncomeHistory(String symbol, IncomeTypes incomeType, Long startTime, Long endTime, Integer limit);
+
+	default List<FutureIncomeRecord> getIncomeHistory(String symbol, IncomeTypes incomeType, Integer limit){
+		return getIncomeHistory(symbol, incomeType, null, null, limit);
+	}
+	
+	//Notional and Leverage Brackets (USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/leverageBracket",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, Brackets> getBrackets();
 
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/leverageBracket",
@@ -366,30 +392,33 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public List<NotionalandLeverageBrackets> getNotionalandLeverageBrackets(String symbol);
-
-	@ApiEndpoint (
-			endpoint = "/fapi/v1/leverageBracket",
-			baseEndpoint = BaseEndpoints.FUTURE_USD,
-			method = Method.GET,
-			needSignature = true,
-			parameters = {Parameters.symbol},
-			mandatory = {false}
-	)
-	public NotionalandLeverageBrackets1 getNotionalandLeverageBrackets1(String symbol);
-
+	public Brackets getBrackets(String symbol);
+	
+	//Position ADL Quantile Estimation (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/adlQuantile",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public List<PositionADLQuantileEstimation> getPositionADLQuantileEstimation(String symbol);
+	public ADLQuantile getADLQuantile(String symbol);
 
+	@ApiEndpoint (
+			endpoint = "/dapi/v1/adlQuantile",
+			baseEndpoint = BaseEndpoints.FUTURE_COIN,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, ADLQuantile> getADLQuantiles();
+	
+	//User's Force Orders (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/forceOrders",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -398,18 +427,36 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.autoCloseType, Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false, false, false}
 	)
-	public void getUsersForceOrders(String symbol, Enum autoCloseType, long startTime, long endTime, int limit);
+	public List<UsdmForceOrder> getUsersForceOrders(String symbol, AutoCloseTypes autoCloseType, Long startTime, Long endTime, Integer limit);
 
+	default List<UsdmForceOrder> getUsersForceOrders(String symbol, AutoCloseTypes autoCloseType, Integer limit){
+		return getUsersForceOrders(symbol, autoCloseType, null, null, limit);
+	}
+	
+	//User API Trading Quantitative Rules Indicators (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/apiTradingStatus",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.symbol},
-			mandatory = {false}
+			mandatory = {true}
 	)
-	public void getUserAPITradingQuantitativeRulesIndicators(String symbol);
+	@RedirectResponse(path = "indicators/%PARAMETER=symbol%")
+	public Indicators getApiTradingStatus(String symbol);
 
+	@ApiEndpoint (
+			endpoint = "/fapi/v1/apiTradingStatus",
+			baseEndpoint = BaseEndpoints.FUTURE_USD,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@RedirectResponse(path = "indicators")
+	public Map<String, Indicators> getApiTradingStatus();
+	
+	//User Commission Rate (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/commissionRate",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
