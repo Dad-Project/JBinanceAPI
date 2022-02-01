@@ -11,11 +11,16 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.OrderSides;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountBalance;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountInformation;
 import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmOrder;
 import fr.rowlaxx.binanceapi.core.coinm.trade.ModifyOrderRequest;
 import fr.rowlaxx.binanceapi.core.coinm.trade.OrderModifyRecord;
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.futures.trade.MarginTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.PositionSides;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 
@@ -294,8 +299,14 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<FuturesAccountBalance> getFuturesAccountBalance();
+	@MapKey(fieldName = "asset")
+	public Map<String, CoinmAccountBalance> getAccountBalances();
+	
+	default CoinmAccountBalance getAccountBalance(String asset) {
+		return getAccountBalances().get(asset);
+	}
 
+	//Account Information (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/account",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -304,8 +315,9 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {},
 			mandatory = {}
 	)
-	public AccountInformation getAccountInformation();
+	public CoinmAccountInformation getAccountInformation();
 
+	//Change Initial Leverage (TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/leverage",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -314,8 +326,10 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.leverage},
 			mandatory = {true, true}
 	)
-	public ChangeInitialLeverage postChangeInitialLeverage(String symbol, int leverage);
+	@RedirectResponse(path = "maxQty")
+	public long setInitialLeverage(String symbol, Integer leverage);
 
+	//Change Margin Type (TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/marginType",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -324,8 +338,10 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.marginType},
 			mandatory = {true, true}
 	)
-	public ChangeMarginType postChangeMarginType(String symbol, Enum marginType);
+	@RedirectResponse(path = "msg")
+	public String setMarginType(String symbol, MarginTypes marginType);
 
+	//Modify Isolated Position Margin (TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/positionMargin",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,
@@ -334,8 +350,10 @@ public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.positionSide, Parameters.amount, Parameters.type},
 			mandatory = {true, false, true, true}
 	)
-	public ModifyIsolatedPositionMargin postModifyIsolatedPositionMargin(String symbol, Enum positionSide, double amount, int type);
+	@RedirectResponse(path = "msg")
+	public String setIsolatedPositionMargin(String symbol, PositionSides positionSide, Double amount, Integer type);
 
+	//Get Position Margin Change History (TRADE)
 	@ApiEndpoint (
 			endpoint = "/dapi/v1/positionMargin/history",
 			baseEndpoint = BaseEndpoints.FUTURE_COIN,

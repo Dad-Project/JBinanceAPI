@@ -7,9 +7,15 @@ import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmAccountBalance;
 import fr.rowlaxx.binanceapi.core.coinm.trade.CoinmOrder;
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.futures.trade.MarginTypes;
+import fr.rowlaxx.binanceapi.core.futures.trade.PositionSides;
+import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountBalance;
+import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountInformation;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
+import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 
@@ -249,8 +255,14 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {},
 			mandatory = {}
 	)
-	public List<FuturesAccountBalanceV2> getFuturesAccountBalanceV2();
-
+	@MapKey(fieldName = "asset")
+	public Map<String, UsdmAccountBalance> getAccountBalances();
+	
+	default UsdmAccountBalance getAccountBalance(String asset) {
+		return getAccountBalances().get(asset);
+	}
+	
+	//Account Information V2 (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/fapi/v2/account",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -259,8 +271,9 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {},
 			mandatory = {}
 	)
-	public AccountInformationV2 getAccountInformationV2();
+	public UsdmAccountInformation getAccountInformation();
 
+	//Change Initial Leverage (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/leverage",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -269,8 +282,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.leverage},
 			mandatory = {true, true}
 	)
-	public ChangeInitialLeverage postChangeInitialLeverage(String symbol, int leverage);
+	@RedirectResponse(path = "maxNotionalValue")
+	public long setInitialLeverage(String symbol, Integer leverage);
 
+	//Change Margin Type (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/marginType",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -279,8 +294,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.marginType},
 			mandatory = {true, true}
 	)
-	public ChangeMarginType postChangeMarginType(String symbol, Enum marginType);
+	@RedirectResponse(path = "msg")
+	public String setMarginType(String symbol, MarginTypes marginType);
 
+	//Modify Isolated Position Margin (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/positionMargin",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
@@ -289,8 +306,10 @@ public interface UsdmTradeAPI extends Api.Https, Api.Usdm {
 			parameters = {Parameters.symbol, Parameters.positionSide, Parameters.amount, Parameters.type},
 			mandatory = {true, false, true, true}
 	)
-	public ModifyIsolatedPositionMargin postModifyIsolatedPositionMargin(String symbol, Enum positionSide, double amount, int type);
+	@RedirectResponse(path = "msg")
+	public String setIsolatedPositionMargin(String symbol, PositionSides positionSide, Double amount, Integer type);
 
+	//Get Position Margin Change History (TRADE)
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/positionMargin/history",
 			baseEndpoint = BaseEndpoints.FUTURE_USD,
