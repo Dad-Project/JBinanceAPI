@@ -2,10 +2,9 @@ package fr.rowlaxx.binanceapi.client.http;
 
 import java.util.Collection;
 
-import org.json.JSONObject;
-
 public enum Parameters {
 
+	activationPrice(Double.class),
 	address(String.class),
 	addressTag(String.class),
 	algo(String.class),
@@ -14,11 +13,13 @@ public enum Parameters {
 	asset(String.class, String[].class, Collection.class),
 	assetRewards(String.class),
 	baseAsset(String.class),
-	batchOrders(JSONObject.class),
+	batchOrders(BinanceAutoHttpRequest[].class, Collection.class),
 	beginTime(Long.class),
+	callbackRate(Double.class),
 	clientOrderId(Long.class),
 	clientOrderIds(Long[].class, Collection.class),
 	clientTranId(String.class),
+	closePosition(Boolean.class),
 	code(String.class),
 	coin(String.class),
 	collateralAmount(Double.class),
@@ -26,6 +27,7 @@ public enum Parameters {
 	configId(Integer.class),
 	contractType(Enum.class),
 	cost(Double.class),
+	countdownTime(Long.class),
 	currency(String.class),
 	current(Integer.class, Long.class),
 	direction(Enum.class),
@@ -70,11 +72,13 @@ public enum Parameters {
 	operation(Enum.class),
 	operationId(Long.class),
 	orderId(Long.class),
+	orderIdList(Collection.class, Long[].class),
 	orderIds(Long[].class, Collection.class),
 	orderListId(Long.class),
-	orders(Collection.class, Object[].class),
+	orders(Collection.class, BinanceAutoHttpRequest[].class),
 	orderType(Enum.class),
 	origClientOrderId(String.class),
+	origClientOrderIdList(String[].class, Collection.class),
 	page(Integer.class, Long.class),
 	pageIndex(Integer.class),
 	pageSize(Integer.class),
@@ -82,8 +86,10 @@ public enum Parameters {
 	period(Enum.class),
 	poolId(Long.class),
 	positionId(Long.class),
+	positionSide(Enum.class),
 	postOnly(Boolean.class),
 	price(Double.class, String.class),
+	priceProtect(Boolean.class),
 	productId(String.class),
 	projectId(String.class),
 	quantity(Double.class, String.class),
@@ -111,7 +117,7 @@ public enum Parameters {
 	stopClientOrderId(String.class),
 	stopIcebergQty(Double.class),
 	stopLimitPrice(Double.class),
-	stopLimitTimeInForce,
+	stopLimitTimeInForce(Enum.class),
 	stopPrice(Double.class),
 	subAccountApiKey(String.class),
 	subAccountString(String.class),
@@ -140,7 +146,8 @@ public enum Parameters {
 	vipLevel(Integer.class),
 	withdrawOrderId(String.class),
 	workerName(String.class),
-	workerStatus(Integer.class);
+	workerStatus(Integer.class),
+	workingType(Enum.class);
 	
 	//Variables
 	private final Class<?>[] types;
