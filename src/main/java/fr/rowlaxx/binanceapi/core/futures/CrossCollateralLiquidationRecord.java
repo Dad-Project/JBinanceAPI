@@ -1,6 +1,6 @@
 package fr.rowlaxx.binanceapi.core.futures;
 
-import fr.rowlaxx.binanceapi.core.BasicOrderStatus;
+import fr.rowlaxx.binanceapi.core.OrderStatus;
 import fr.rowlaxx.jsavon.JsavonObject;
 
 import org.json.JSONObject;
@@ -15,7 +15,7 @@ public class CrossCollateralLiquidationRecord extends JsavonObject {
 	private long forceLiquidationStartTime;
 	private double restCollateralAmountAfterLiquidation;
 	private double restLoanAmount;
-	private BasicOrderStatus status;
+	private OrderStatus status;
 	
 	//Constructeurs
 	public CrossCollateralLiquidationRecord(JSONObject json) {
@@ -47,7 +47,7 @@ public class CrossCollateralLiquidationRecord extends JsavonObject {
 		return this.restLoanAmount;
 	}
 	
-	public final BasicOrderStatus getStatus() {
+	public final OrderStatus getStatus() {
 		return this.status;
 	}
 }

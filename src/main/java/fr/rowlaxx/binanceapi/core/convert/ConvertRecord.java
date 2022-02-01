@@ -2,7 +2,7 @@ package fr.rowlaxx.binanceapi.core.convert;
 
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.core.BasicOrderStatus;
+import fr.rowlaxx.binanceapi.core.OrderStatus;
 import fr.rowlaxx.jsavon.JsavonObject;
 
 public class ConvertRecord extends JsavonObject {
@@ -10,7 +10,7 @@ public class ConvertRecord extends JsavonObject {
 
 	private String quoteId;
 	private long orderId;
-	private BasicOrderStatus status;
+	private OrderStatus status;
 	private String fromAsset;
 	private String toAsset;
 	private double fromAmount;
@@ -51,7 +51,7 @@ public class ConvertRecord extends JsavonObject {
 		return ratio;
 	}
 	
-	public final BasicOrderStatus getStatus() {
+	public final OrderStatus getStatus() {
 		return status;
 	}
 	
