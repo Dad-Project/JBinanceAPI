@@ -41,7 +41,7 @@ Currently implementing : Usd-M & Coin-M Trades
 
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
-| Version | 2022-01-30 | 2022-01-31 | 2022-01-31 | 2022-01-30 |
+| Version | 2022-01-30 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 
 ## Additional
