@@ -31,13 +31,13 @@ All the ❌ fields will be implemented.
 
 |                    | Spot | Usd-M | Coin-M | Options |
 |:------------------:|:----:|:-----:|:------:|:-------:|
-|       Trades       |  ✔️  |  ❌  |   ❌  |   ✔️    |
+|       Trades       |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     Market Data    |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     User Stream    |  ❌  |  ❌  |   ❌  |   ❌    |
 | Market Data Stream |  ❌  |  ❌  |   ❌  |   ❌    |
 |       Testnet      |      |  ❌  |   ❌  |          |
 
-Currently implementing : Usd-M & Coin-M Trades
+Currently implementing : Market Data Stream
 
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
