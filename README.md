@@ -27,8 +27,6 @@ Meaning of symbols :
 
 All the ❌ fields will be implemented.
 
-## Main
-
 |                    | Spot | Usd-M | Coin-M | Options |
 |:------------------:|:----:|:-----:|:------:|:-------:|
 |       Trades       |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
@@ -42,9 +40,6 @@ Currently implementing : Market Data Stream
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
 | Version | 2022-01-30 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
-
-
-## Additional
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
