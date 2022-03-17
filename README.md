@@ -1,8 +1,8 @@
 ![Alt text](https://upload.wikimedia.org/wikipedia/commons/1/12/Binance_logo.svg)  
 
 # JBinanceAPI
-An easy to maintain java library that will cover all available Binance endpoints & stream
-JBinanceAPI use reflection for sending request (using a proxy) & parsing responses (using JSavON)
+An easy to maintain java library that will cover all available Binance endpoints & stream  
+JBinanceAPI use reflection for sending request (using a proxy) & parsing responses (using JSavON)  
 
 Documentation of each endpoint can be found here :  
 https://binance-docs.github.io/apidocs/#change-log
