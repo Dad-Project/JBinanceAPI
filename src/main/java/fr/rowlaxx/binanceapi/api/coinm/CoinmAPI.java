@@ -1,8 +1,21 @@
 package fr.rowlaxx.binanceapi.api.coinm;
 
-public interface CoinmAPI {
+public final class CoinmAPI {
 
-	public CoinmMarketDataAPI market();
-	public CoinmTradeAPI trade();
+	private final CoinmMarketDataAPI market;
+	private final CoinmTradeAPI trade;
+	
+	public CoinmAPI(CoinmMarketDataAPI market, CoinmTradeAPI trade) {
+		this.trade = trade;
+		this.market = market;
+	}
+	
+	public CoinmMarketDataAPI market() {
+		return market;
+	}
+	
+	public CoinmTradeAPI trade() {
+		return trade;
+	}
 	
 }

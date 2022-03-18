@@ -178,6 +178,8 @@ public enum Parameters {
 	}
 	
 	public boolean canBeAssignedWith(Object object) {
+		if (canBeAssignedWith(Enum.class) && object instanceof String)
+			return true;
 		return canBeAssignedWith(object.getClass());
 	}
 	

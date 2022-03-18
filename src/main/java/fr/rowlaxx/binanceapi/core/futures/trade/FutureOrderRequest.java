@@ -10,7 +10,6 @@ public final class FutureOrderRequest extends Basic2OrderRequest<FutureOrderType
 	}
 	
 	//Builder
-	@SuppressWarnings("unused")
 	public final static class Builder extends Basic2OrderRequest.Builder<FutureOrderTypes, FutureOrderRequest, Builder> {
 
 		//Constructeurs

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.rowlaxx.binanceapi.exceptions.BinanceAutoHttpRequestException;
-import fr.rowlaxx.utils.generic.ReflectionUtils;
+import fr.rowlaxx.utils.ReflectionUtils;
 
 public abstract class BinanceAutoHttpRequest implements Cloneable {
 

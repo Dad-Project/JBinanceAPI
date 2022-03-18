@@ -10,7 +10,6 @@ public final class MarginOCOOrderRequest extends SpotOCOOrderRequest {
 	}
 	
 	//Builder
-	@SuppressWarnings("unused")
 	public final static class Builder extends SpotOCOOrderRequest.Builder2<Builder> {
 		
 		//Constructeurs

@@ -10,7 +10,6 @@ public final class OptionOrderRequest extends BasicOrderRequest<OptionOrderTypes
 	}
 	
 	//Builder
-	@SuppressWarnings("unused")
 	public final static class Builder extends BasicOrderRequest.Builder<OptionOrderTypes, OptionOrderRequest, Builder> {
 
 		//Constructeurs

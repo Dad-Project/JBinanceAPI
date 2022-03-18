@@ -34,7 +34,7 @@ public interface BinanceClient {
 	 */
 	public SpotAPI spot();
 	public WalletAPI wallet();
-	public SubAccountAPI subAccount();
+	public SubAccountAPI subaccount();
 	public MarginAPI margin();
 	public SavingsAPI savings();
 	public MiningAPI mining();
@@ -43,7 +43,7 @@ public interface BinanceClient {
 	public BSwapAPI bswap();
 	public FiatAPI fiat();
 	public C2CAPI c2c();
-	public CryptoLoansAPI cryptoLoans();
+	public CryptoLoansAPI cryptoloans();
 	public PayAPI pay();
 	public ConvertAPI convert();
 	public RebateAPI rebate();
