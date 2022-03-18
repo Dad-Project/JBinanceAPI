@@ -2,7 +2,6 @@ package fr.rowlaxx.binanceapi.client;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Objects;
 
 import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.api.ApiImplementer;
@@ -45,20 +44,6 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 
 public class BinanceClientImpl implements BinanceClient {
 	
-	//Methodes statiques
-	public static BinanceClientImpl createGuest() {
-		return new BinanceClientImpl(null);
-	}
-	
-	public static BinanceClientImpl create(final String apiKey, final String apiSecret) {
-		return new BinanceClientImpl(apiKey, apiSecret);
-	}
-	
-	public static BinanceClientImpl create(final BinanceCredenticals credenticals) {
-		Objects.requireNonNull(credenticals, "credenticals may not be null.");
-		return new BinanceClientImpl(credenticals);
-	}
-	
 	//Variables	
 	private CoinmAPI coinm;
 	private CoinmMarketDataAPI coinmMarket;
@@ -99,12 +84,12 @@ public class BinanceClientImpl implements BinanceClient {
 	private final BinanceHttpClient httpClient;
 			
 	//Constructeurs
-	private BinanceClientImpl(String apiKey, String apiSecret) {
+	BinanceClientImpl(String apiKey, String apiSecret) {
 		this(new BinanceCredenticals(apiKey, apiSecret));
 	}
 	
 	@SuppressWarnings("unchecked")
-	private BinanceClientImpl(BinanceCredenticals credenticals) {
+	BinanceClientImpl(BinanceCredenticals credenticals) {
 		this.credenticals = credenticals;
 		this.httpClient = new BinanceHttpClient(this);
 				

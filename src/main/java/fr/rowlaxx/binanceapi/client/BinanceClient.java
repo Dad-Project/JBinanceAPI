@@ -1,5 +1,7 @@
 package fr.rowlaxx.binanceapi.client;
 
+import java.util.Objects;
+
 import fr.rowlaxx.binanceapi.api.coinm.CoinmAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
@@ -24,10 +26,24 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 
 public interface BinanceClient {
 
+	//Methodes statiques
+	public static BinanceClientImpl createGuest() {
+		return new BinanceClientImpl(null);
+	}
+
+	public static BinanceClientImpl create(final String apiKey, final String apiSecret) {
+		return new BinanceClientImpl(apiKey, apiSecret);
+	}
+
+	public static BinanceClientImpl create(final BinanceCredenticals credenticals) {
+		Objects.requireNonNull(credenticals, "credenticals may not be null.");
+		return new BinanceClientImpl(credenticals);
+	}
+
 	public boolean isLogged();
 	public boolean isGuest();
 	public BinanceHttpClient getHttpClient();
-	
+
 	/*
 	 * SPOT
 	 * https://binance-docs.github.io/apidocs/spot/en/
@@ -49,19 +65,19 @@ public interface BinanceClient {
 	public RebateAPI rebate();
 	public NFTAPI nft();
 	public GiftcardAPI giftcard();
-	
+
 	/*
 	 * OPTIONS 
 	 * https://binance-docs.github.io/apidocs/voptions/en/
 	 */
 	public OptionsAPI options();
-	
+
 	/*
 	 * USD-M
 	 * https://binance-docs.github.io/apidocs/futures/en/
 	 */
 	public UsdmAPI usdm();
-	
+
 	/*
 	 * COIN-M
 	 * https://binance-docs.github.io/apidocs/delivery/en/
