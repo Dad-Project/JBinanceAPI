@@ -111,6 +111,7 @@ public class BinanceClientImpl implements BinanceClient {
 	}
 	
 	//Méthodes
+	@Override
 	public boolean login() throws IOException {
 		if ( isGuest() )
 			throw new BinanceAPIException("You cannot use this method as a guest.");

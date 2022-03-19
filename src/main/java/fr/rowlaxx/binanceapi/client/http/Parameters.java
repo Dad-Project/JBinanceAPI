@@ -172,7 +172,7 @@ public enum Parameters {
 	
 	public boolean canBeAssignedWith(Class<?> clazz) {
 		for (Class<?> c : this.types)
-			if (c == clazz)
+			if (c.isAssignableFrom(clazz))
 				return true;
 		return false;
 	}

@@ -40,10 +40,10 @@ public class ApiImplementer {
 		});
 	}
 
-	private static final Object invokeEndpoint(final BinanceClientImpl client, final Object proxy, final Method method, final Object[] args) throws IOException {
+	private static final Object invokeEndpoint(final BinanceClientImpl client, final Object proxy, final Method method, final Object[] args) throws IOException {		
 		final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
 		Object response = client.getHttpClient().execute(endpoint, args);
-
+		
 		if (method.getReturnType() == void.class)
 			return null;
 
@@ -58,7 +58,7 @@ public class ApiImplementer {
 			if (response instanceof JSONObject) {
 				if (param != null)
 					if (path.contains("PARAMETER_NO"))
-						path = Jsavon.defaultFactory.getConverter().convert(args[param], String.class);
+						path = Jsavon.converter.convert(args[param], String.class);
 					else
 						throw new BinanceHttpClientException("Unknow special path for JSONObject " + path);
 
@@ -74,8 +74,8 @@ public class ApiImplementer {
 						throw new BinanceHttpClientException("Unknow special path for JSONArray " + path);
 			}
 		}
-
+		
 		final Type destination = GenericUtils.resolve(method.getGenericReturnType(), method.getDeclaringClass());
-		return Jsavon.defaultFactory.getConverter().convert(response, destination);
+		return Jsavon.converter.convert(response, destination);
 	}
 }
