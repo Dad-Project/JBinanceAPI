@@ -8,7 +8,7 @@ import java.util.Objects;
 public class BaseEndpoint {
 
 	//Variables
-	private final List<String> baseEndpoints = new ArrayList<>();
+	private final List<String> baseEndpoints = new ArrayList<String>();
 	private int index = 0;
 	
 	//Constructeurs
