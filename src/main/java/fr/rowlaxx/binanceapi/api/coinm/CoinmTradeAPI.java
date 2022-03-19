@@ -29,7 +29,7 @@ import fr.rowlaxx.binanceapi.core.futures.trade.MarginTypes;
 import fr.rowlaxx.binanceapi.core.futures.trade.PositionInformation;
 import fr.rowlaxx.binanceapi.core.futures.trade.PositionSides;
 import fr.rowlaxx.binanceapi.core.futures.trade.UserCommissionRate;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 public interface CoinmTradeAPI extends Api.Coinm, Api.Https {
 

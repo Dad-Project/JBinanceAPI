@@ -1,6 +1,8 @@
 package fr.rowlaxx.binanceapi;
 
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.BasicCandlestick;
+import fr.rowlaxx.binanceapi.core.Intervals;
 
 public class Test {
 
@@ -9,8 +11,8 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		
-		System.out.println(client.savings().getFlexibleProducts(null, null, null, null));
+		for (BasicCandlestick c : client.usdm().market().getCandlesticks("BTCUSDT", Intervals.MINUTE_15, 10))
+				System.out.println(c);
 	}
 
 }

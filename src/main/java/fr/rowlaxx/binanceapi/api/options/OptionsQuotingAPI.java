@@ -14,9 +14,9 @@ import fr.rowlaxx.binanceapi.core.options.quoting.LatestMarkPrice;
 import fr.rowlaxx.binanceapi.core.options.quoting.LatestPrice;
 import fr.rowlaxx.binanceapi.core.options.quoting.OptionExchangeInformation;
 import fr.rowlaxx.binanceapi.core.options.quoting.OptionTradingPair;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.core.options.quoting.OptionCandlestick;
 import fr.rowlaxx.binanceapi.core.options.quoting.OptionTrade;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 

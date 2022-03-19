@@ -24,7 +24,7 @@ import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmAccountTrade;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmForceOrder;
 import fr.rowlaxx.binanceapi.core.usdm.trade.UsdmOrder;
 import fr.rowlaxx.binanceapi.core.wallet.Indicators;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 

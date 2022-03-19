@@ -30,7 +30,7 @@ import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmOpenInterestStatistics;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTakerVolume;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTickerStatistics;
 import fr.rowlaxx.binanceapi.core.usdm.marketdata.UsdmTrade;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 /**
  * @version 2022-01-31

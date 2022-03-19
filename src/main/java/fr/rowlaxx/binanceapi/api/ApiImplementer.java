@@ -13,6 +13,8 @@ import fr.rowlaxx.binanceapi.client.BinanceClientImpl;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
+import fr.rowlaxx.convertutils.MapKey;
+import fr.rowlaxx.convertutils.MapKeyType;
 import fr.rowlaxx.jsavon.Jsavon;
 import fr.rowlaxx.utils.GenericUtils;
 
@@ -75,7 +77,12 @@ public class ApiImplementer {
 			}
 		}
 		
-		final Type destination = GenericUtils.resolve(method.getGenericReturnType(), method.getDeclaringClass());
+		Type destination;
+		if (method.isAnnotationPresent(MapKey.class))
+			destination = MapKeyType.from(method);
+		else
+			destination = GenericUtils.resolveReturnType(method);
+		
 		return Jsavon.converter.convert(response, destination);
 	}
 }

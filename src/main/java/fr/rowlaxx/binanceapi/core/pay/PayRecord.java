@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public class PayRecord extends JsavonObject {
 	private static final long serialVersionUID = -2584275802492516981L;

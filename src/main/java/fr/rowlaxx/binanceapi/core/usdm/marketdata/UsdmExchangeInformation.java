@@ -5,7 +5,7 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.exchangeinfos.ExchangeInformation;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 public class UsdmExchangeInformation extends ExchangeInformation<UsdmSymbol> {
 	private static final long serialVersionUID = -5298506133872695636L;

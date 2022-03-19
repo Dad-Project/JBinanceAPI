@@ -31,9 +31,9 @@ import fr.rowlaxx.binanceapi.core.margin.MarginTrade;
 import fr.rowlaxx.binanceapi.core.margin.MaxBorrow;
 import fr.rowlaxx.binanceapi.core.margin.PriceIndex;
 import fr.rowlaxx.binanceapi.core.margin.RepayRecord;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 /**
  * @version 2022-01-27

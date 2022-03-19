@@ -1,8 +1,8 @@
 package fr.rowlaxx.binanceapi.core.spot.trade;
 
 import fr.rowlaxx.binanceapi.core.Asset;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 import java.util.Map;
 import java.util.Set;

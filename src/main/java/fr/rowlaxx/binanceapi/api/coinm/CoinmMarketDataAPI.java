@@ -27,7 +27,7 @@ import fr.rowlaxx.binanceapi.core.futures.marketdata.FundingRate;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.Period;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.PremiumIndex;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.PremiumIndexCandlestick;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 

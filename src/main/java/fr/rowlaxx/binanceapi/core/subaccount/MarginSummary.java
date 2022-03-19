@@ -1,7 +1,8 @@
 package fr.rowlaxx.binanceapi.core.subaccount;
 
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+
 import java.util.Map;
 
 import org.json.JSONObject;

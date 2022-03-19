@@ -18,9 +18,9 @@ import fr.rowlaxx.binanceapi.core.mining.Profit;
 import fr.rowlaxx.binanceapi.core.mining.ProfitTransferDetail;
 import fr.rowlaxx.binanceapi.core.mining.UserStatistics;
 import fr.rowlaxx.binanceapi.core.mining.WorkerData;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 /**
  * @version 2022-01-30

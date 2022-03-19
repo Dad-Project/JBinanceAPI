@@ -11,12 +11,15 @@ public class IOUtils {
 	
 	public static String readAllAsString(InputStream is) throws IOException {
 		try {
-			final StringBuilder sb = new StringBuilder(50);
+			final StringBuilder sb = new StringBuilder(8_192);
+			
 			final byte[] buffer = new byte[8_192];
 			int readed;
+			
 			while( (readed = is.read(buffer, 0, buffer.length)) > 0 )
 				for (int i = 0 ; i < readed ; i++)
 					sb.append( (char)buffer[i] );
+			
 			return sb.toString();
 		}finally {
 			if (is != null)

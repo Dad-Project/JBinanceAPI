@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public class IsolatedFeeData extends JsavonObject {
 	private static final long serialVersionUID = 1295526319247086528L;

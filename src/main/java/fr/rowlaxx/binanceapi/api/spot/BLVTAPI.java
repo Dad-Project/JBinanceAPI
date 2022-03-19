@@ -15,7 +15,7 @@ import fr.rowlaxx.binanceapi.core.blvt.Redemption;
 import fr.rowlaxx.binanceapi.core.blvt.RedemptionRecord;
 import fr.rowlaxx.binanceapi.core.blvt.Subscribtion;
 import fr.rowlaxx.binanceapi.core.blvt.SubscriptionRecord;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 

@@ -5,8 +5,8 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.Asset;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.annotations.JOValue;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public class SpotAccountSnapshot extends AccountSnapshot {
 	private static final long serialVersionUID = 1634716526563706889L;

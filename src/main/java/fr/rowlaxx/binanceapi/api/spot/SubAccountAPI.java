@@ -27,9 +27,9 @@ import fr.rowlaxx.binanceapi.core.subaccount.SubAccountTransfer;
 import fr.rowlaxx.binanceapi.core.subaccount.SubaccountTransferHistoryRequest;
 import fr.rowlaxx.binanceapi.core.subaccount.UniversalTransfer;
 import fr.rowlaxx.binanceapi.core.wallet.Deposit;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.utils.IterableArray;
 
 /**

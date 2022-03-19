@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public abstract class FutureAccountInformation<A extends FutureAccountAsset, P extends FutureAccountPosition> extends JsavonObject {
 	private static final long serialVersionUID = -5716572066895383023L;

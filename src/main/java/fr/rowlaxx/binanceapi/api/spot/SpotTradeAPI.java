@@ -15,7 +15,7 @@ import fr.rowlaxx.binanceapi.core.spot.trade.SpotOCOOrder;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOrder;
 import fr.rowlaxx.binanceapi.core.spot.trade.SpotOrderRequest;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 
 /**

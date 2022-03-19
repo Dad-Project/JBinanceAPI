@@ -17,7 +17,7 @@ import fr.rowlaxx.binanceapi.core.options.trade.OptionHolding;
 import fr.rowlaxx.binanceapi.core.options.trade.OptionOrder;
 import fr.rowlaxx.binanceapi.core.options.trade.OptionOrderRequest;
 import fr.rowlaxx.binanceapi.core.options.trade.OptionUserTrade;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 /**
  * @version 2022-01-30

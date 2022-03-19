@@ -23,7 +23,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 	}
 	
 	public final <T> T execute(ApiEndpoint endpoint, Object... params) throws IOException {
-		//Verifying
+		//Verifying		
 		Objects.requireNonNull(endpoint, "endpoint may not be null.");
 		ApiEndpointUtils.verify(endpoint);
 
@@ -96,7 +96,7 @@ public class BinanceHttpClient extends SimpleBinanceHttpClient {
 				builder.setParameter(parameter, value);
 			}
 		}
-		
+				
 		//Execution
 		return execute(builder.build());
 	}

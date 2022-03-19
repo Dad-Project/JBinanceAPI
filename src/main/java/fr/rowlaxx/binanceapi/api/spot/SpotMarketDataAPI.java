@@ -20,7 +20,7 @@ import fr.rowlaxx.binanceapi.core.spot.marketdata.CurrentAveragePrice;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotExchangeInformation;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTickerStatistics;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTrade;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 /**
  * @version 2022-01-27

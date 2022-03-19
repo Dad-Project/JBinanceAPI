@@ -9,8 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.exchangeinfos.Filters.Type;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.annotations.ManualValue;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 public abstract class ExchangeInformation<T extends SimpleSymbol> extends SimpleExchangeInformation<T> {
 	private static final long serialVersionUID = 8865485419600969411L;

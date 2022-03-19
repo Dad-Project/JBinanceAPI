@@ -36,7 +36,7 @@ import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferRequest;
 import fr.rowlaxx.binanceapi.core.wallet.UniversalTransferTypes;
 import fr.rowlaxx.binanceapi.core.wallet.Withdraw;
 import fr.rowlaxx.binanceapi.core.wallet.WithdrawRequest;
-import fr.rowlaxx.jsavon.annotations.MapKey;
+import fr.rowlaxx.convertutils.MapKey;
 
 /**
  * @author RowlaxX

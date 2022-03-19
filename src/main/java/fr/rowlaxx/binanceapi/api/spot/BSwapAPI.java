@@ -20,8 +20,8 @@ import fr.rowlaxx.binanceapi.core.bswap.PoolLiquidity;
 import fr.rowlaxx.binanceapi.core.bswap.RequestQuote;
 import fr.rowlaxx.binanceapi.core.bswap.SwapRecord;
 import fr.rowlaxx.binanceapi.core.bswap.UnclaimedRewards;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.core.bswap.SwapPool;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 

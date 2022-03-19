@@ -1,8 +1,8 @@
 package fr.rowlaxx.binanceapi.core.margin;
 
 import fr.rowlaxx.binanceapi.core.UserAsset;
+import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.jsavon.JsavonObject;
-import fr.rowlaxx.jsavon.annotations.MapKey;
 
 import java.util.Map;
 
