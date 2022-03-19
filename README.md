@@ -9,10 +9,10 @@ https://binance-docs.github.io/apidocs/#change-log
 
 
 Requiered libraries :  
-- JSavON https://github.com/RowlaxX/JSavON
+- JSavON https://github.com/Dad-Project/Jsavon
 - JSON-Java https://github.com/stleary/JSON-java
-- Convert-Utils https://github.com/RowlaxX/Convert-Utils
-- Reflection-Utils https://github.com/RowlaxX/Reflection-Utils
+- Convert-Utils https://github.com/Dad-Project/Convert-Utils
+- Reflection-Utils https://github.com/Dad-Project/Reflection-UtilsReflection-Utils
 
 Please note that a lot of endpoints needs to be tested.
 If you find a bug, please report it in the issues section
