@@ -12,6 +12,7 @@ import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.MaxNumIcebergOrdersFilte
 import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.MaxNumOrdersFilter;
 import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.MaxPositionFilter;
 import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.MinNotionalFilter;
+import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.PercentPriceBySideFilter;
 import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.PercentPriceFilter;
 import fr.rowlaxx.binanceapi.core.exchangeinfos.filters.PriceFilter;
 
@@ -19,16 +20,16 @@ public enum Filters {
 
 	/**
 	 * The PRICE_FILTER defines the price rules for a symbol. There are 3 parts:
-	 * 
-	 * minPrice defines the minimum price/stopPrice allowed; disabled on minPrice == 0.
-	 * maxPrice defines the maximum price/stopPrice allowed; disabled on maxPrice == 0.
-	 * tickSize defines the intervals that a price/stopPrice can be increased/decreased by; disabled on tickSize == 0.
-	 * 
-	 * Any of the above variables can be set to 0, which disables that rule in the price filter. In order to pass the price filter, the following must be true for price/stopPrice of the enabled rules:
-	 * 
-	 * price >= minPrice
-	 * price <= maxPrice
-	 * (price-minPrice) % tickSize == 0 
+	 *
+     * minPrice defines the minimum price/stopPrice allowed; disabled on minPrice == 0.
+     * maxPrice defines the maximum price/stopPrice allowed; disabled on maxPrice == 0.
+     * tickSize defines the intervals that a price/stopPrice can be increased/decreased by; disabled on tickSize == 0.
+     *
+     * Any of the above variables can be set to 0, which disables that rule in the price filter. In order to pass the price filter, the following must be true for price/stopPrice of the enabled rules:
+     *
+     * price >= minPrice
+     * price <= maxPrice
+     * price % tickSize == 0
 	 */
 	PRICE_FILTER(Type.SYMBOL, PriceFilter.class),
 
@@ -42,6 +43,21 @@ public enum Filters {
 	 */
 	PERCENT_PRICE(Type.SYMBOL, PercentPriceFilter.class),
 
+	/**
+	 * The PERCENT_PRICE_BY_SIDE filter defines the valid range for the price based on the lastPrice of the symbol. There is a different range depending on whether the order is placed on the BUY side or the SELL side.
+     * 
+     * Buy orders will succeed on this filter if:
+     * 
+     * Order price <= bidMultiplierUp * lastPrice
+     * Order price >= bidMultiplierDown * lastPrice
+     * 
+     * Sell orders will succeed on this filter if:
+     * 
+     * Order Price <= askMultiplierUp * lastPrice
+     * Order Price >= askMultiplierDown * lastPrice
+	 */
+	PERCENT_PRICE_BY_SIDE(Type.SYMBOL, PercentPriceBySideFilter.class),
+	
 	/**
 	 * The LOT_SIZE filter defines the quantity (aka "lots" in auction terms) rules for a symbol. There are 3 parts:
 	 * 

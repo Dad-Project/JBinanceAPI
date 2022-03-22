@@ -17,6 +17,7 @@ import fr.rowlaxx.binanceapi.core.wallet.AccountSnapshot;
 import fr.rowlaxx.binanceapi.core.wallet.AccountSnapshotTypes;
 import fr.rowlaxx.binanceapi.core.wallet.AssetDetail;
 import fr.rowlaxx.binanceapi.core.wallet.AssetDividend;
+import fr.rowlaxx.binanceapi.core.wallet.BNBConvertableAsset;
 import fr.rowlaxx.binanceapi.core.wallet.CoinInformation;
 import fr.rowlaxx.binanceapi.core.wallet.Deposit;
 import fr.rowlaxx.binanceapi.core.wallet.DustTransfer;
@@ -40,7 +41,7 @@ import fr.rowlaxx.convertutils.MapKey;
 
 /**
  * @author RowlaxX
- * @version 2022-01-26
+ * @version 2022-03-19
  * @see https://binance-docs.github.io/apidocs/spot/en/#wallet-endpoints
  */
 public interface WalletAPI extends Api.Spot, Api.Https {
@@ -511,5 +512,18 @@ public interface WalletAPI extends Api.Spot, Api.Https {
 			mandatory = {}
 	)
 	public APIKeyPermission getAPIKeyPermission();
+	
+	//Get Assets That Can Be Converted Into BNB
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/asset/dust-btc",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.POST,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@RedirectResponse(path = "details")
+	@MapKey(fieldName = "asset")
+	public Map<String, BNBConvertableAsset> getBNBConvertableAssets();
 	
 }

@@ -1,8 +1,10 @@
 package fr.rowlaxx.binanceapi;
 
+import java.util.List;
+
 import fr.rowlaxx.binanceapi.client.BinanceClient;
-import fr.rowlaxx.binanceapi.core.BasicCandlestick;
-import fr.rowlaxx.binanceapi.core.Intervals;
+import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotExchangeInformation;
+import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTrade;
 
 public class Test {
 
@@ -11,8 +13,10 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		for (BasicCandlestick c : client.usdm().market().getCandlesticks("BTCUSDT", Intervals.MINUTE_15, 10))
-				System.out.println(c);
+		List<SpotTrade> t = client.spot().market().getRecentTrades("BTCUSDT", 100);
+		for (SpotTrade trade : t)
+			System.out.println(trade);
+		
 	}
 
 }

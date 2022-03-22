@@ -23,7 +23,7 @@ import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTrade;
 import fr.rowlaxx.convertutils.MapKey;
 
 /**
- * @version 2022-01-27
+ * @version 2022-03-19
  * @author Théo
  * @see https://binance-docs.github.io/apidocs/spot/en/#market-data-endpoints
  */

@@ -33,7 +33,7 @@ import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.utils.IterableArray;
 
 /**
- * @version 2022-01-27
+ * @version 2022-03-19
  * @author Théo
  * @see https://binance-docs.github.io/apidocs/spot/en/#sub-account-endpoints
  */

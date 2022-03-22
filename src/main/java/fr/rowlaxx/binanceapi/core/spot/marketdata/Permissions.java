@@ -5,6 +5,6 @@ public enum Permissions {
 	SPOT,
 	MARGIN,
 	LEVERAGED,
-	TRD_GRP_002
+	TRD_GRP_003
 	
 }

@@ -1,7 +1,5 @@
 package fr.rowlaxx.binanceapi.core.subaccount;
 
-import org.json.JSONObject;
-
 import fr.rowlaxx.jsavon.JsavonObject;
 
 public class SubAccount extends JsavonObject {
@@ -11,11 +9,8 @@ public class SubAccount extends JsavonObject {
 	private long createTime;
 	private String email;
 	private boolean isFreeze;
-	
-	//Constructeurs
-	public SubAccount(JSONObject json) {
-		super(json);
-	}
+	private boolean isManagedSubAccount;
+	private boolean isAssetManagementSubAccount;
 	
 	//Getters
 	public final long getCreateTime() {
@@ -28,5 +23,13 @@ public class SubAccount extends JsavonObject {
 	
 	public final boolean isFreeze() {
 		return this.isFreeze;
+	}
+	
+	public final boolean isAssetManagementSubAccount() {
+		return isAssetManagementSubAccount;
+	}
+	
+	public final boolean isManagedSubAccount() {
+		return isManagedSubAccount;
 	}
 }

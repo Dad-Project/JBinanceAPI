@@ -1,6 +1,5 @@
 package fr.rowlaxx.binanceapi.core.exchangeinfos;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,15 +26,14 @@ public abstract class ExchangeInformation<T extends SimpleSymbol> extends Simple
 	public ExchangeInformation(JSONObject response) {
 		super(response);
 		
-		final HashMap<Filters, Filter> filters = new HashMap<>();
+		this.exchangeFilters = new HashMap<>();
 		final JSONArray array = response.getJSONArray("exchangeFilters");
 		Filter filter;
+		
 		for (int i = 0 ; i < array.length() ; i++) {
 			filter = Filter.fromJson( array.getJSONObject(i) );
-			filters.put(filter.getFilterType(), filter);
+			exchangeFilters.put(filter.getFilterType(), filter);
 		}
-		
-		this.exchangeFilters = Collections.unmodifiableMap(filters);
 	}
 	
 	//Getters
