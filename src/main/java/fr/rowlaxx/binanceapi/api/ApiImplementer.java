@@ -46,6 +46,8 @@ public class ApiImplementer {
 		final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
 		Object response = client.getHttpClient().execute(endpoint, args);
 		
+		System.out.println(response);
+		
 		if (method.getReturnType() == void.class)
 			return null;
 
