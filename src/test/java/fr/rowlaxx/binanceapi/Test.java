@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import fr.rowlaxx.binanceapi.api.ApiImplementer;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.savings.FixedProduct;
+import fr.rowlaxx.binanceapi.core.savings.FixedTypes;
 import fr.rowlaxx.binanceapi.core.savings.FlexibleProduct;
 import fr.rowlaxx.binanceapi.core.savings.SavingsStatus;
 
@@ -16,7 +18,7 @@ public class Test {
 		client.login();
 		ApiImplementer.DEBUG = true;
 		
-		for (FlexibleProduct a : client.savings().getFlexibleProducts(SavingsStatus.ALL, "ALL", 1l, 100l)) {
+		for (FixedProduct a : client.savings().getFixedProducts(FixedTypes.ACTIVITY, 1, 100)) {
 			System.out.println(a);
 		}
 	}
