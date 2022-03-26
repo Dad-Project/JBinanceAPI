@@ -1,8 +1,11 @@
 package fr.rowlaxx.binanceapi.core.savings;
 
+import java.util.Map;
+
 import org.json.JSONObject;
 
 import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public class FlexibleProduct extends JsavonObject {
 	private static final long serialVersionUID = 8342258680470277251L;
@@ -12,7 +15,6 @@ public class FlexibleProduct extends JsavonObject {
 	private double avgAnnualInterestRate;
 	private boolean canPurchase;
 	private boolean canRedeem;
-	private double dailyInterestPerThousand;
 	private boolean featured;
 	private double minPurchaseAmount;
 	private String productId;
@@ -20,6 +22,9 @@ public class FlexibleProduct extends JsavonObject {
 	private String status;
 	private double upLimit;
 	private double upLimitPerUser;
+	
+	@JOValue(mandatory = false)
+	private Map<String, Double> tierAnnualInterestRate;
 	
 	//Constructeurs
 	public FlexibleProduct(JSONObject json) {
@@ -41,10 +46,6 @@ public class FlexibleProduct extends JsavonObject {
 	
 	public final boolean isCanRedeem() {
 		return this.canRedeem;
-	}
-	
-	public final double getDailyInterestPerThousand() {
-		return this.dailyInterestPerThousand;
 	}
 	
 	public final boolean isFeatured() {

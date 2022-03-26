@@ -20,6 +20,8 @@ import fr.rowlaxx.utils.GenericUtils;
 
 public class ApiImplementer {
 
+	public static boolean DEBUG = false;
+	
 	public static final Api implementz(Class<? extends Api> clazz, final BinanceClientImpl client) {
 		if (!clazz.isInterface())
 			throw new IllegalArgumentException("The provided class is not an interface.");
@@ -46,7 +48,12 @@ public class ApiImplementer {
 		final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
 		Object response = client.getHttpClient().execute(endpoint, args);
 		
-		System.out.println(response);
+		if (DEBUG)
+			if (response instanceof JSONArray)
+				System.out.println( ((JSONArray)response).toString(2));
+			else if (response instanceof JSONObject)
+				System.out.println( ((JSONObject)response).toString(2));
+			
 		
 		if (method.getReturnType() == void.class)
 			return null;
