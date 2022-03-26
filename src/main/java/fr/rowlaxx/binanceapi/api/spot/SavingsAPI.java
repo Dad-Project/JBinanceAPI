@@ -42,8 +42,12 @@ public interface SavingsAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.status, Parameters.featured, Parameters.current, Parameters.size},
 			mandatory = {false, false, false, false}
 	)
-	public List<FlexibleProduct> getFlexibleProducts(SavingsStatus status, String featured, Long current, Long size);
+	public List<FlexibleProduct> getFlexibleProducts(SavingsStatus status, String featured, Integer current, Integer size);
 
+	default List<FlexibleProduct> getFlexibleProducts(Integer current, Integer size){
+		return getFlexibleProducts(null, null, current, size);
+	}
+	
 	//Get Left Daily Purchase Quota of Flexible Product (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/daily/userLeftQuota",
@@ -109,8 +113,12 @@ public interface SavingsAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.asset, Parameters.type, Parameters.status, Parameters.isSortAsc, Parameters.sortBy, Parameters.current, Parameters.size},
 			mandatory = {false, true, false, false, false, false, false}
 	)
-	public List<FixedProduct> getFixedProducts(String asset, FixedTypes type, SavingsStatus status, Boolean isSortAsc, SavingsSortBy sortBy, Long current, Long size);
+	public List<FixedProduct> getFixedProducts(String asset, FixedTypes type, SavingsStatus status, Boolean isSortAsc, SavingsSortBy sortBy, Integer current, Integer size);
 
+	default List<FixedProduct> getFixedProducts(FixedTypes type, Integer current, Integer size){
+		return getFixedProducts(null, type, null, null, null, current, size);
+	}
+	
 	//Purchase Fixed/Activity Project (USER_DATA)
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/lending/customizedFixed/purchase",
