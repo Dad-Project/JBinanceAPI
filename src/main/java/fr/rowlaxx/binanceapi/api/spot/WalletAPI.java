@@ -92,10 +92,6 @@ public interface WalletAPI extends Api.Spot, Api.Https {
 		return getDailySpotAccountSnapshots(null, null, limit);
 	}
 	
-	default SpotAccountSnapshot getDailySpotAccountSnapshot() {
-		return getDailySpotAccountSnapshots(null, null, 1).get(0);
-	}
-	
 	@ApiEndpoint (
 			endpoint = "/sapi/v1/accountSnapshot",
 			baseEndpoint = BaseEndpoints.SPOT,

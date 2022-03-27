@@ -23,6 +23,7 @@ public class Network extends JsavonObject {
 	@JOValue(mandatory = false)
 	private String specialTips;
 	private int unLockConfirm;
+	@JOValue(mandatory = false)
 	private String withdrawDesc;
 	private boolean withdrawEnable;
 	private double withdrawFee;
