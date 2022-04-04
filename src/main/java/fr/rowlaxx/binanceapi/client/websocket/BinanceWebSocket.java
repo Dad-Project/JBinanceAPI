@@ -34,6 +34,7 @@ public class BinanceWebSocket implements Closeable {
 	private final String name;
 	private final WebSocketListener listener;
 	private final BinanceWebSocketPool pool;
+	private long lastReceived = 0;
 	private WebSocket websocket;
 	
 	private final Set<String> subsriptions = new HashSet<>(MAX_SUBSCRIPTION);
@@ -143,6 +144,10 @@ public class BinanceWebSocket implements Closeable {
 		send(buildRequest("SUBSCRIBE", list));
 	}
 	
+	void updateLastReceived() {
+		this.lastReceived = System.currentTimeMillis();
+	}
+	
 	public void unsubscribeAll() {
 		unsubscribe(new ArrayList<>(this.subsriptions));
 	}
@@ -234,6 +239,8 @@ public class BinanceWebSocket implements Closeable {
 		if (websocket == null)
 			return reconnect();
 		else if (websocket.isInputClosed() || websocket.isOutputClosed())
+			return reconnect();
+		else if (subsriptions.size() > 0 && lastReceived + 300000 < System.currentTimeMillis())
 			return reconnect();
 		return false;
 	}

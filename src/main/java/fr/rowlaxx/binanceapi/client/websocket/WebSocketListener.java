@@ -41,6 +41,7 @@ public class WebSocketListener implements WebSocket.Listener {
 			}
 		}
 		
+		this.webSocket.updateLastReceived();
 		final char first = data.charAt(0);
 		final char last = data.charAt(data.length() - 1);
 		
