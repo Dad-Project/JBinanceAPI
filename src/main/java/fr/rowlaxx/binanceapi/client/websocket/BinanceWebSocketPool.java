@@ -86,6 +86,14 @@ public class BinanceWebSocketPool implements Closeable {
 			socket.unsubscribe(params);
 	}
 	
+	public synchronized void unsubscribeAll() {
+		if (sockets.size() > 0)
+			sockets.get(0).unsubscribeAll();
+		
+		while (sockets.size() > 1)
+			sockets.remove(1).close();
+	}
+	
 	public void unsubscribe(String param) {
 		for (BinanceWebSocket socket : sockets)
 			socket.unsubscribe(param);

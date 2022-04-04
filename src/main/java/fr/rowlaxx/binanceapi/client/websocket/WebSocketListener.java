@@ -6,11 +6,13 @@ import java.util.Objects;
 import java.util.concurrent.CompletionStage;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WebSocketListener implements WebSocket.Listener {
 
 	//Variables
+	private StringBuilder sb = new StringBuilder();
 	private BinanceWebSocket webSocket;
 	
 	//Constructeurs
@@ -25,23 +27,37 @@ public class WebSocketListener implements WebSocket.Listener {
 		Listener.super.onError(webSocket, error);
 	}
 	
+	
+	
 	@Override
-	public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean lastChar) {
-		if (!lastChar)
-			throw new IllegalArgumentException("not the last char " + data);
-			
+	public synchronized CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean lastChar) {
+		if (sb.length() > 0 || !lastChar) {
+			sb.append(data);
+			if (!lastChar)
+				return WebSocket.Listener.super.onText(webSocket, data, lastChar);
+			else {
+				data = sb.toString();
+				sb = new StringBuilder();
+			}
+		}
+		
 		final char first = data.charAt(0);
 		final char last = data.charAt(data.length() - 1);
 		
-		if (first == '{' && last == '}') {
-			final JSONObject json = new JSONObject(data.toString());
-			if (json.has("id"))
-				this.webSocket.complete(json);
-			else
-				this.webSocket.getPool().add(json);
+		try {
+			if (first == '{' && last == '}') {
+				final JSONObject json = new JSONObject(data.toString());
+				if (json.has("id"))
+					this.webSocket.complete(json);
+				else
+					this.webSocket.getPool().add(json);
+			}
+			else if (first == '[' && last == ']')
+				this.webSocket.getPool().add(new JSONArray(data.toString()));
+			
+		}catch(JSONException e) {
+			e.printStackTrace();
 		}
-		else if (first == '[' && last == ']')
-			this.webSocket.getPool().add(new JSONArray(data.toString()));
 		
 		return WebSocket.Listener.super.onText(webSocket, data, lastChar);
 	}

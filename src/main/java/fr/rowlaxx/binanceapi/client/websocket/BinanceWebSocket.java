@@ -68,12 +68,21 @@ public class BinanceWebSocket implements Closeable {
 
 	//Methodes
 	private final JSONObject buildRequest(String method, Collection<String> params) {
+		int index;
+		String str;
 		final JSONObject request = new JSONObject();
 		request.put("method", method);
 		if (params != null) {
 			final JSONArray array = new JSONArray(params.size());
-			for (String param : params)
-				array.put(param.toLowerCase());
+			for (String param : params) {
+				if ( (index = param.indexOf('@')) != -1) {
+					str = param.substring(0, index);
+					if (str.charAt(0) != '!')
+						param = param.replace(str, str.toLowerCase());
+				}
+				
+				array.put(param);
+			}
 			request.put("params", array);
 		}
 		request.put("id", id++);
@@ -132,6 +141,10 @@ public class BinanceWebSocket implements Closeable {
 			return;
 		
 		send(buildRequest("SUBSCRIBE", list));
+	}
+	
+	public void unsubscribeAll() {
+		unsubscribe(new ArrayList<>(this.subsriptions));
 	}
 	
 	public synchronized boolean subscribe(List<String> params) {
@@ -233,7 +246,7 @@ public class BinanceWebSocket implements Closeable {
 	public boolean isSubscribed(String param) {
 		if (param == null)
 			return false;
-		return subsriptions.contains(param.toLowerCase());
+		return subsriptions.contains(param);
 	}
 	
 	public BinanceWebSocketPool getPool() {
