@@ -5,23 +5,36 @@ import org.json.JSONObject;
 import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.JOValue;
 
-public class OrderBookTicker extends JsavonObject {
+public class BookTicker extends JsavonObject {
 	private static final long serialVersionUID = 6781128770211592070L;
 	
 	//Variables
+	@JOValue(key = {"askPrice","a"})
 	private double askPrice;
+	@JOValue(key = {"askQty","A"})
 	private double askQty;
+	@JOValue(key = {"bidPrice","b"})
 	private double bidPrice;
+	@JOValue(key = {"bidQty","B"})
 	private double bidQty;
+	@JOValue(key = {"symbol","s"})
 	private String symbol;
-	@JOValue(mandatory = false) private Long time;
+	
+	@JOValue(mandatory = false) 
+	private Long time;
+	@JOValue(mandatory = false, key = "u")
+	private Long updateId;
 	
 	//Constructeurs
-	public OrderBookTicker(JSONObject json) {
+	public BookTicker(JSONObject json) {
 		super(json);
 	}
 	
 	//Getters
+	public Long getUpdateId() {
+		return updateId;
+	}
+	
 	public final Long getTime() {
 		return time;
 	}
