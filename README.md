@@ -32,7 +32,7 @@ All the ❌ fields will be implemented.
 |       Trades       |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     Market Data    |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     User Stream    |  ❌  |  ❌  |   ❌  |   ❌    |
-| Market Data Stream |  ❌  |  ❌  |   ❌  |   ❌    |
+| Market Data Stream |  ✔️  |  ❌  |   ❌  |   ❌    |
 |       Testnet      |      |  ❌  |   ❌  |          |
 
 Currently implementing : Market Data Stream
@@ -116,6 +116,28 @@ BinanceHttpRequest request = BinanceHttpRequest.newBuilder()
 //T can be JSONObject or a JSONArray
 T response = client.getHttpClient().execute(request);
 ```
+## Connecting to a web socket
+Let's suppose we want to print each BTCUSDT trades using websockets.  
+
+With interface implementation : 
+```java
+client.spot().stream().addOnTradeEvent(new OnTrade() {
+	@Override
+	public void onTrade(String symbol, SpotStreamTrade trade) {
+		System.out.println(trade);
+	}
+});
+```
+Or, with lamba expressions :
+```java		
+client.spot().stream().addOnTradeEvent( (String symbol, SpotStreamTrade trade) -> System.out.println(trade) );
+```
+
+Then use
+```java
+client.spot().stream().subscribeTrade("btcusdt");
+```
+
 # Donation
 As a student, any help will be appreciated
 
