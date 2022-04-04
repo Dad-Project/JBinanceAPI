@@ -4,6 +4,7 @@ public final class SpotAPI {
 
 	private final SpotMarketDataAPI market;
 	private final SpotTradeAPI trade;
+	private SpotMarketDataStreamAPI stream;
 	
 	public SpotAPI(SpotMarketDataAPI market, SpotTradeAPI trade) {
 		this.trade = trade;
@@ -16,5 +17,11 @@ public final class SpotAPI {
 	
 	public SpotTradeAPI trade() {
 		return trade;
+	}
+	
+	public SpotMarketDataStreamAPI stream() {
+		if (stream == null)
+			stream = new SpotMarketDataStreamAPI();
+		return stream;
 	}
 }
