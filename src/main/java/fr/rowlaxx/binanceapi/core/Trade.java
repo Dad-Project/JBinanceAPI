@@ -9,7 +9,7 @@ public class Trade extends JsavonObject {
 	private static final long serialVersionUID = 3119645480784672286L;
 	
 	//Variables
-	@JOValue(key = {"id", "a"})
+	@JOValue(key = {"id", "t", "a"})
 	private long id;
 	@JOValue(key = {"isBestMatch", "M"}, mandatory = false)
 	private Boolean isBestMatch;
