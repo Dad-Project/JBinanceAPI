@@ -8,7 +8,7 @@ import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.CompressedTrade;
-import fr.rowlaxx.binanceapi.core.FinalOrderBook;
+import fr.rowlaxx.binanceapi.core.OrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.Basis;
 import fr.rowlaxx.binanceapi.core.coinm.marketdata.CoinmCandlestick;
@@ -81,7 +81,7 @@ public interface CoinmMarketDataAPI extends Api.Https, Api.Coinm {
 			parameters = {Parameters.symbol, Parameters.limit},
 			mandatory = {true, false}
 	)
-	public FinalOrderBook getOrderBook(String symbol, Integer limit);
+	public OrderBook getOrderBook(String symbol, Integer limit);
 
 	//Recent Trades List
 	@ApiEndpoint (

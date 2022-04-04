@@ -12,9 +12,9 @@ import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.BasicCandlestick;
 import fr.rowlaxx.binanceapi.core.CompressedTrade;
-import fr.rowlaxx.binanceapi.core.FinalOrderBook;
+import fr.rowlaxx.binanceapi.core.OrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
-import fr.rowlaxx.binanceapi.core.OrderBookTicker;
+import fr.rowlaxx.binanceapi.core.BookTicker;
 import fr.rowlaxx.binanceapi.core.SymbolPriceTicker;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.CurrentAveragePrice;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotExchangeInformation;
@@ -102,7 +102,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.symbol, Parameters.limit},
 			mandatory = {true, false}
 	)
-	public FinalOrderBook getOrderBook(String symbol, Integer limit);
+	public OrderBook getOrderBook(String symbol, Integer limit);
 	
 	//Recent Trades List
 	@ApiEndpoint (
@@ -229,7 +229,7 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public OrderBookTicker getOrderBookTicker(String symbol);
+	public BookTicker getOrderBookTicker(String symbol);
 	
 	@ApiEndpoint (
 			endpoint = "/api/v3/ticker/bookTicker",
@@ -240,5 +240,5 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			mandatory = {}
 	)
 	@MapKey(fieldName = "symbol")
-	public Map<String, OrderBookTicker> getOrderBookTickers();
+	public Map<String, BookTicker> getOrderBookTickers();
 }

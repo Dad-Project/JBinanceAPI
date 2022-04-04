@@ -7,7 +7,7 @@ import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
-import fr.rowlaxx.binanceapi.core.FinalOrderBook;
+import fr.rowlaxx.binanceapi.core.OrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.options.quoting.ExerciceRecord;
 import fr.rowlaxx.binanceapi.core.options.quoting.LatestMarkPrice;
@@ -146,7 +146,7 @@ public interface OptionsQuotingAPI extends Api.Options, Api.Https {
 			mandatory = {true, false}
 	)
 	@RedirectResponse(path = "data")
-	public FinalOrderBook getOrderbook(String symbol, Integer limit);
+	public OrderBook getOrderbook(String symbol, Integer limit);
 
 	//Candle data
 	@ApiEndpoint (

@@ -11,9 +11,9 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.BasicCandlestick;
 import fr.rowlaxx.binanceapi.core.CompressedTrade;
-import fr.rowlaxx.binanceapi.core.FinalOrderBook;
+import fr.rowlaxx.binanceapi.core.OrderBook;
 import fr.rowlaxx.binanceapi.core.Intervals;
-import fr.rowlaxx.binanceapi.core.OrderBookTicker;
+import fr.rowlaxx.binanceapi.core.BookTicker;
 import fr.rowlaxx.binanceapi.core.SymbolPriceTicker;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.ContractTypes;
 import fr.rowlaxx.binanceapi.core.futures.marketdata.FundingRate;
@@ -82,7 +82,7 @@ public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 			parameters = {Parameters.symbol, Parameters.limit},
 			mandatory = {true, false}
 	)
-	public FinalOrderBook getOrderBook(String symbol, Integer limit);
+	public OrderBook getOrderBook(String symbol, Integer limit);
 
 	//Recent Trades List
 	@ApiEndpoint (
@@ -271,7 +271,7 @@ public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 			parameters = {Parameters.symbol},
 			mandatory = {true}
 	)
-	public OrderBookTicker getOrderBookTicker(String symbol);
+	public BookTicker getOrderBookTicker(String symbol);
 
 	@ApiEndpoint (
 			endpoint = "/fapi/v1/ticker/bookTicker",
@@ -282,7 +282,7 @@ public interface UsdmMarketDataAPI extends Api.Usdm, Api.Https {
 			mandatory = {}
 	)
 	@MapKey(fieldName = "symbol")
-	public Map<String, OrderBookTicker> getOrderBookTickers();
+	public Map<String, BookTicker> getOrderBookTickers();
 
 	//Open Interest
 	@ApiEndpoint (
