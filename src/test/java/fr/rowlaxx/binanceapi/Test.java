@@ -4,16 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 
-import fr.rowlaxx.binanceapi.api.spot.SpotMarketDataStreamAPI.OnAggTrade;
-import fr.rowlaxx.binanceapi.api.spot.SpotMarketDataStreamAPI.OnDiffBook;
-import fr.rowlaxx.binanceapi.api.spot.SpotMarketDataStreamAPI.OnMiniTicker;
-import fr.rowlaxx.binanceapi.api.spot.SpotMarketDataStreamAPI.OnTrade;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
-import fr.rowlaxx.binanceapi.core.CompressedTrade;
-import fr.rowlaxx.binanceapi.core.Intervals;
-import fr.rowlaxx.binanceapi.core.MiniTicker;
-import fr.rowlaxx.binanceapi.core.OrderBook;
-import fr.rowlaxx.binanceapi.core.TickerStatistics;
 import fr.rowlaxx.binanceapi.core.spot.stream.SpotStreamTrade;
 
 public class Test {	
@@ -29,10 +20,6 @@ public class Test {
 		
 		client.spot().stream().subscribeTrade("btcusdt");
 		
-		Thread.sleep(20000);
-		client.spot().stream().close();
-		
-	
 	}
 
 
