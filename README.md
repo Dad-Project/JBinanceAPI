@@ -4,15 +4,26 @@
 An easy to maintain java library that will cover all available Binance endpoints & stream  
 JBinanceAPI use reflection for sending request (using a proxy) & parsing responses (using JSavON)  
 
+Add this to your POM to add JBinanceAPI in your project :  
+```xml
+<repositories>
+	<repository>
+		<id>central</id>
+		<name>Artifactory-releases</name>
+		<url>http://box.dad-project.com:8081/artifactory/libs-release-local</url>
+	</repository>
+</repositories>
+<dependencies>
+	<dependency>
+		<groupId>fr.rowlaxx</groupId>
+		<artifactId>binanceapi</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+</dependencies>
+```
+
 Documentation of each endpoint can be found here :  
 https://binance-docs.github.io/apidocs/#change-log
-
-
-Requiered libraries :  
-- JSavON https://github.com/Dad-Project/Jsavon
-- JSON-Java https://github.com/stleary/JSON-java
-- Convert-Utils https://github.com/Dad-Project/Convert-Utils
-- Reflection-Utils https://github.com/Dad-Project/Reflection-UtilsReflection-Utils
 
 Please note that a lot of endpoints needs to be tested.
 If you find a bug, please report it in the issues section
