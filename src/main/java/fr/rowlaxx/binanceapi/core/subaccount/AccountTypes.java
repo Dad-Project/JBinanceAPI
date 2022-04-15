@@ -4,6 +4,8 @@ public enum AccountTypes {
 
 	SPOT,
 	USDT_FUTURES,
-	COIN_FUTURES
+	COIN_FUTURES,
+	MARGIN,
+	ISOLATED_MARGIN;
 	
 }

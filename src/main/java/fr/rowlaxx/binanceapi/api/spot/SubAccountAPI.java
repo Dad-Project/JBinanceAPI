@@ -27,13 +27,16 @@ import fr.rowlaxx.binanceapi.core.subaccount.SubAccountTransfer;
 import fr.rowlaxx.binanceapi.core.subaccount.SubaccountTransferHistoryRequest;
 import fr.rowlaxx.binanceapi.core.subaccount.UniversalTransfer;
 import fr.rowlaxx.binanceapi.core.wallet.Deposit;
+import fr.rowlaxx.binanceapi.core.wallet.FuturesAccountSnapshot;
+import fr.rowlaxx.binanceapi.core.wallet.MarginAccountSnapshot;
+import fr.rowlaxx.binanceapi.core.wallet.SpotAccountSnapshot;
 import fr.rowlaxx.convertutils.MapKey;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.utils.IterableArray;
 
 /**
- * @version 2022-03-19
+ * @version 2022-03-29
  * @author Théo
  * @see https://binance-docs.github.io/apidocs/spot/en/#sub-account-endpoints
  */
@@ -597,4 +600,65 @@ public interface SubAccountAPI extends Api.Https, Api.Spot {
 	)
 	@RedirectResponse(path = "tranId")
 	public long withdrawAssetsFromManager(String fromEmail, String asset, double amount, Long transferDate);
+	
+	//Query Managed Sub-account Snapshot（For Investor Master Account）
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/managed-subaccount/accountSnapshot",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.email, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
+			mandatory = {true, true, false, false, false},
+			defaultValues = {"", "SPOT", "", "", ""}
+	)
+	@RedirectResponse(path = "snapshotVos")
+	public List<SpotAccountSnapshot> getDailySpotAccountSnapshots(String email, Long startTime, Long endTime, Integer limit);
+	
+	default List<SpotAccountSnapshot> getDailySpotAccountSnapshots(String email, Integer limit) {
+		return getDailySpotAccountSnapshots(email, null, null, limit);
+	}
+	
+	default SpotAccountSnapshot getDailySpotAccountSnapshot(String email) {
+		return getDailySpotAccountSnapshots(email, null, null, 1).get(0);
+	}
+	
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/managed-subaccount/accountSnapshot",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.email, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
+			mandatory = {true, true, false, false, false},
+			defaultValues = {"", "MARGIN", "", "", ""}
+	)
+	@RedirectResponse(path = "snapshotVos")
+	public List<MarginAccountSnapshot> getDailyMarginAccountSnapshots(String email, Long startTime, Long endTime, Integer limit);
+
+	default List<MarginAccountSnapshot> getDailyMarginAccountSnapshots(String email, Integer limit){
+		return getDailyMarginAccountSnapshots(email, null, null, limit);
+	}
+	
+	default MarginAccountSnapshot getDailyMarginAccountSnapshot(String email) {
+		return getDailyMarginAccountSnapshots(email, null, null, 1).get(0);
+	}
+	
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/managed-subaccount/accountSnapshot",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.email, Parameters.type, Parameters.startTime, Parameters.endTime, Parameters.limit},
+			mandatory = {true, true, false, false, false},
+			defaultValues = {"", "FUTURES", "", "", ""}
+	)
+	@RedirectResponse(path = "snapshotVos")
+	public List<FuturesAccountSnapshot> getDailyFuturesAccountSnapshots(String email, Long startTime, Long endTime, Integer limit);
+
+	default List<FuturesAccountSnapshot> getDailyFuturesAccountSnapshots(String email, Integer limit){
+		return getDailyFuturesAccountSnapshots(email, null, null, limit);
+	}
+	
+	default FuturesAccountSnapshot getDailyFuturesAccountSnapshot(String email) {
+		return getDailyFuturesAccountSnapshots(email, null, null, 1).get(0);
+	}
 }

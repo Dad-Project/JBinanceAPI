@@ -39,7 +39,7 @@ Currently implementing : Market Data Stream
 
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
-| Version | 2022-03-19 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
+| Version | 2022-03-29 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
@@ -57,7 +57,7 @@ Currently implementing : Market Data Stream
 |     Pay     |     ✔️     | 2022-01-30 |
 |    Rebate   |     ✔️     | 2022-01-30 |
 |   Savings   |     ✔️     | 2022-01-28 |
-| Sub-Account |     ✔️     | 2022-03-19 |
+| Sub-Account |     ✔️     | 2022-03-29 |
 |    Wallet   |     ✔️     | 2022-03-19 |
 
 # Usage

@@ -19,6 +19,7 @@ public class SpotSymbol extends Symbol<SpotOrderTypes> {
 	private boolean ocoAllowed;
 	private boolean isSpotTradingAllowed;
 	private boolean quoteOrderQtyMarketAllowed;
+	private boolean allowTrailingStop;
 	private int quoteAssetPrecision;
 	private int quoteCommissionPrecision;
 	
@@ -34,6 +35,10 @@ public class SpotSymbol extends Symbol<SpotOrderTypes> {
 
 	public int getBaseCommissionPrecision() {
 		return baseCommissionPrecision;
+	}
+	
+	public boolean allowTrailingStop() {
+		return allowTrailingStop;
 	}
 	
 	public int getQuoteAssetPrecision() {

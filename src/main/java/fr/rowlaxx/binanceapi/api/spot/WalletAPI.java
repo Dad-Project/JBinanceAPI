@@ -85,11 +85,13 @@ public interface WalletAPI extends Api.Spot, Api.Https {
 	)
 	@RedirectResponse(path = "snapshotVos")
 	public List<SpotAccountSnapshot> getDailySpotAccountSnapshots(Long startTime, Long endTime, Integer limit);
-
-	
 	
 	default List<SpotAccountSnapshot> getDailySpotAccountSnapshots(Integer limit) {
 		return getDailySpotAccountSnapshots(null, null, limit);
+	}
+	
+	default SpotAccountSnapshot getDailySpotAccountSnapshot() {
+		return getDailySpotAccountSnapshots(null, null, 1).get(0);
 	}
 	
 	@ApiEndpoint (
