@@ -30,7 +30,7 @@ If you find a bug, please report it in the issues section
 
 # Features
 
-The version refer to the last date the API has been modified.  
+The version refers to the last date the API has been modified.  
 
 Meaning of symbols :  
 ✔️ - Implemented  
