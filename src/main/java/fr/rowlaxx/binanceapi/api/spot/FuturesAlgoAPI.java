@@ -11,6 +11,7 @@ import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.OrderSides;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrder;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrderRequest;
+import fr.rowlaxx.binanceapi.core.futuresalgo.VPSubOrder;
 
 /**
  * @version 2022-04-13
@@ -69,4 +70,17 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	default List<VPOrder> getOrders(String symbol, OrderSides side, Integer page, Integer pageSize){
 		return getOrders(symbol, side, null, null, page, pageSize);
 	}
+	
+	//Query Sub Orders (USER_DATA)
+	@ApiEndpoint(
+			needSignature = true,
+			baseEndpoint = BaseEndpoints.SPOT,
+			endpoint = " sapi/v1/algo/futures/subOrders",
+			method = Method.GET,
+			parameters = {Parameters.algoId, Parameters.page, Parameters.pageSize},
+			mandatory = {true, false, false}
+	)
+	@RedirectResponse(path = "orders")
+	public List<VPSubOrder> getSubOrders(String algoId, Integer page, Integer pageSize);
+	
 }
