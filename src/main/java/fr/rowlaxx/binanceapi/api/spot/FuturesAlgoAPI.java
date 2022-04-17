@@ -20,11 +20,22 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
 			endpoint = "sapi/v1/algo/futures/newOrderVp",
-			method = Method.GET,
+			method = Method.POST,
 			parameters = {Parameters.symbol, Parameters.side, Parameters.positionSide, Parameters.quantity, Parameters.urgency, Parameters.clientAlgoId, Parameters.reduceOnly, Parameters.limitPrice},
 			mandatory = {true, true, false, true, true, false, false, false}			
 	)
 	@RedirectResponse(path = "clientAlgoId")
-	public String postVPOrder(VPOrderRequest request);
+	public String postOrder(VPOrderRequest request);
+	
+	//Cancel Algo Order (TRADE)
+	@ApiEndpoint(
+			needSignature = true,
+			baseEndpoint = BaseEndpoints.SPOT,
+			endpoint = "sapi/v1/algo/futures/order",
+			method = Method.DELETE,
+			parameters = {Parameters.algoId},
+			mandatory = {true}
+	)
+	public String cancelOrder(String algoId);
 	
 }

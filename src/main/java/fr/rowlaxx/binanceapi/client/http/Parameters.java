@@ -8,6 +8,7 @@ public enum Parameters {
 	address(String.class),
 	addressTag(String.class),
 	algo(String.class),
+	algoId(String.class),
 	amount(Double.class),
 	archived(Boolean.class),
 	autoCloseType(Enum.class),
