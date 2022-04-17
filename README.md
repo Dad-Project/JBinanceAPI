@@ -2,7 +2,7 @@
 
 # JBinanceAPI
 An easy to maintain java library that will cover all available Binance endpoints & stream  
-JBinanceAPI uses reflection for sending request (using a proxy) & parsing responses (using JSavON)  
+JBinanceAPI uses reflection for sending requests (using a proxy) & parsing responses (using JSavON)  
 
 Add this to your POM to add JBinanceAPI in your project :  
 ```xml
