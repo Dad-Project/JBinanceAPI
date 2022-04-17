@@ -8,6 +8,7 @@ import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.core.OrderSides;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrder;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrderRequest;
 
@@ -52,4 +53,20 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	)
 	@RedirectResponse(path = "orders")
 	public List<VPOrder> getOpenOrders();
+	
+	//Query Historical Algo Orders (USER_DATA)
+	@ApiEndpoint(
+			needSignature = true,
+			baseEndpoint = BaseEndpoints.SPOT,
+			endpoint = "sapi/v1/algo/futures/historicalOrders",
+			method = Method.GET,
+			parameters = {Parameters.symbol, Parameters.side, Parameters.startTime, Parameters.endTime, Parameters.page, Parameters.pageSize},
+			mandatory = {false, false, false, false, false, false}
+	)
+	@RedirectResponse(path = "orders")
+	public List<VPOrder> getOrders(String symbol, OrderSides side, Long startTime, Long endTime, Integer page, Integer pageSize);
+	
+	default List<VPOrder> getOrders(String symbol, OrderSides side, Integer page, Integer pageSize){
+		return getOrders(symbol, side, null, null, page, pageSize);
+	}
 }
