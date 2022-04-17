@@ -22,14 +22,15 @@ public class ApiImplementer {
 
 	public static boolean DEBUG = false;
 	
-	public static final Api implementz(Class<? extends Api> clazz, final BinanceClientImpl client) {
+	@SuppressWarnings("unchecked")
+	public static final <T extends Api> T implementz(Class<T> clazz, final BinanceClientImpl client) {
 		if (!clazz.isInterface())
 			throw new IllegalArgumentException("The provided class is not an interface.");
 
 		final ClassLoader cl = ApiImplementer.class.getClassLoader();
 		final Class<?>[] interfaces = new Class[] {clazz};
 
-		return (Api) Proxy.newProxyInstance(cl, interfaces, new InvocationHandler() {
+		return (T) Proxy.newProxyInstance(cl, interfaces, new InvocationHandler() {
 
 			@Override
 			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {				
