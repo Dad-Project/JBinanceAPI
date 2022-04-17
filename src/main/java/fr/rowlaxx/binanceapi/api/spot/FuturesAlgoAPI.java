@@ -1,11 +1,14 @@
 package fr.rowlaxx.binanceapi.api.spot;
 
+import java.util.List;
+
 import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
+import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrder;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrderRequest;
 
 /**
@@ -38,4 +41,15 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	)
 	public String cancelOrder(String algoId);
 	
+	//Query Current Algo Open Orders (USER_DATA)
+	@ApiEndpoint(
+			needSignature = true,
+			baseEndpoint = BaseEndpoints.SPOT,
+			endpoint = "sapi/v1/algo/futures/openOrders",
+			method = Method.GET,
+			parameters = {},
+			mandatory = {}
+	)
+	@RedirectResponse(path = "orders")
+	public List<VPOrder> getOpenOrders();
 }
