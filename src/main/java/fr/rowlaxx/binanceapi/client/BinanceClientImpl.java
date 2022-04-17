@@ -19,6 +19,7 @@ import fr.rowlaxx.binanceapi.api.spot.ConvertAPI;
 import fr.rowlaxx.binanceapi.api.spot.CryptoLoansAPI;
 import fr.rowlaxx.binanceapi.api.spot.FiatAPI;
 import fr.rowlaxx.binanceapi.api.spot.FuturesAPI;
+import fr.rowlaxx.binanceapi.api.spot.FuturesAlgoAPI;
 import fr.rowlaxx.binanceapi.api.spot.GiftcardAPI;
 import fr.rowlaxx.binanceapi.api.spot.MarginAPI;
 import fr.rowlaxx.binanceapi.api.spot.MiningAPI;
@@ -71,6 +72,7 @@ public class BinanceClientImpl implements BinanceClient {
 	private CryptoLoansAPI cryptoloans;
 	private FiatAPI fiat;
 	private FuturesAPI futures;
+	private FuturesAlgoAPI futuresalgo;
 	private GiftcardAPI giftcard;
 	private MarginAPI margin;
 	private MiningAPI mining;
@@ -261,6 +263,11 @@ public class BinanceClientImpl implements BinanceClient {
 	@Override
 	public SubAccountAPI subaccount() {
 		return subaccount;
+	}
+	
+	@Override
+	public FuturesAlgoAPI futuresalgo() {
+		return futuresalgo;
 	}
 	
 	@Override

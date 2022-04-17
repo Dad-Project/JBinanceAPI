@@ -13,6 +13,7 @@ import fr.rowlaxx.binanceapi.api.spot.ConvertAPI;
 import fr.rowlaxx.binanceapi.api.spot.CryptoLoansAPI;
 import fr.rowlaxx.binanceapi.api.spot.FiatAPI;
 import fr.rowlaxx.binanceapi.api.spot.FuturesAPI;
+import fr.rowlaxx.binanceapi.api.spot.FuturesAlgoAPI;
 import fr.rowlaxx.binanceapi.api.spot.MarginAPI;
 import fr.rowlaxx.binanceapi.api.spot.MiningAPI;
 import fr.rowlaxx.binanceapi.api.spot.NFTAPI;
@@ -57,6 +58,7 @@ public interface BinanceClient {
 	public SavingsAPI savings();
 	public MiningAPI mining();
 	public FuturesAPI futures();
+	public FuturesAlgoAPI futuresalgo();
 	public BLVTAPI blvt();
 	public BSwapAPI bswap();
 	public FiatAPI fiat();
