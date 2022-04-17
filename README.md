@@ -1,8 +1,8 @@
 ![Alt text](https://upload.wikimedia.org/wikipedia/commons/1/12/Binance_logo.svg)  
 
 # JBinanceAPI
-An easy to maintain java library that will cover all available Binance endpoints & stream  
-JBinanceAPI use reflection for sending request (using a proxy) & parsing responses (using JSavON)  
+An easy to maintain java library that will cover all available Binance endpoints & streams  
+JBinanceAPI uses reflection for sending requests (using a proxy) & parsing responses (using JSavON)  
 
 Add this to your POM to add JBinanceAPI in your project :  
 ```xml
@@ -30,9 +30,9 @@ If you find a bug, please report it in the issues section
 
 # Features
 
-The version refer to the last date the API has been modified.  
+The version refers to the last date the API has been modified.  
 
-Meaning of symbols :  
+Legend :  
 ✔️ - Implemented  
 ❌ - Not implemented  
 
