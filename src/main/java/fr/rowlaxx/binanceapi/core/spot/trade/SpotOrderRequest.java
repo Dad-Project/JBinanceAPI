@@ -33,11 +33,16 @@ public class SpotOrderRequest extends Basic2OrderRequest<SpotOrderTypes> {
 			return (B) this;
 		}
 		
+		public final B setTrailingDelta(Long trailingDelta) {
+			request().trailingDelta = trailingDelta;
+			return (B) this;
+		}	
 	}
 	
 	public final static class Builder extends Builder2<Builder> {}
 	
 	//Variables
+	private Long trailingDelta; 
 	private Double quoteOrderQty;
 	private Double icebergQty;
 	
@@ -47,6 +52,10 @@ public class SpotOrderRequest extends Basic2OrderRequest<SpotOrderTypes> {
 	//Getters
 	public final Double getIcebergQty() {
 		return icebergQty;
+	}
+	
+	public final Long getTrailingDelta() {
+		return trailingDelta;
 	}
 	
 	public final Double getQuoteOrderQty() {

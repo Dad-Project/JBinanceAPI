@@ -74,6 +74,11 @@ public class SpotOCOOrderRequest extends OrderRequest {
 			request().stopLimitTimeInForce = stopLimitTimeInForce;
 			return (B) this;
 		}
+		
+		public final B setTrailingDelta(Long trailingDelta) {
+			request().trailingDelta = trailingDelta;
+			return (B) this;
+		}
 	}
 	
 	public static final class Builder extends Builder2<Builder> {}
@@ -82,6 +87,7 @@ public class SpotOCOOrderRequest extends OrderRequest {
 	protected SpotOCOOrderRequest() {}
 	
 	//Variables
+	private Long trailingDelta;
 	private Double stopPrice;
 	private String listClientOrderId;
 	private String limitClientOrderId;
@@ -94,6 +100,10 @@ public class SpotOCOOrderRequest extends OrderRequest {
 	//Getters
 	public final String getLimitClientOrderId() {
 		return limitClientOrderId;
+	}
+	
+	public final Long getTrailingDelta() {
+		return trailingDelta;
 	}
 	
 	public final Double getLimitIcebergQty() {

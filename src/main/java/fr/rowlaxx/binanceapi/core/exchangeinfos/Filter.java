@@ -26,15 +26,15 @@ public abstract class Filter extends JsavonObject {
 	}
 
 	//Getters
-	public Filters getFilterType() {
+	public final Filters getFilterType() {
 		return filterType;
 	}
 
-	public boolean isSymbolFilter() {
+	public final boolean isSymbolFilter() {
 		return filterType.getType() == Type.SYMBOL;
 	}
 
-	public boolean isExchangeFilter() {
+	public final boolean isExchangeFilter() {
 		return filterType.getType() == Type.EXCHANGE;
 	}
 }
