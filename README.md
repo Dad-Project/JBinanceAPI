@@ -32,7 +32,7 @@ If you find a bug, please report it in the issues section
 
 The version refers to the last date the API has been modified.  
 
-Meaning of symbols :  
+Legend :  
 ✔️ - Implemented  
 ❌ - Not implemented  
 
