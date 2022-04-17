@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import fr.rowlaxx.jsavon.JsavonObject;
 
-public class BLVTInfo extends JsavonObject {
+public class BlvtInfo extends JsavonObject {
 	private static final long serialVersionUID = -1469211921135121615L;
 	
 	//Variables
@@ -27,7 +27,7 @@ public class BLVTInfo extends JsavonObject {
 	private String underlying;
 	
 	//Constructeurs
-	public BLVTInfo(JSONObject json) {
+	public BlvtInfo(JSONObject json) {
 		super(json);
 	}
 	

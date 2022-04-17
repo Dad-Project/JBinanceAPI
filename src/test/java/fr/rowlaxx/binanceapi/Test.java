@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 
+import fr.rowlaxx.binanceapi.api.spot.BLVTStreamAPI.OnInfo;
 import fr.rowlaxx.binanceapi.client.BinanceClient;
+import fr.rowlaxx.binanceapi.core.Intervals;
+import fr.rowlaxx.binanceapi.core.blvt.BlvtCandlestick;
+import fr.rowlaxx.binanceapi.core.blvt.BlvtInfoStream;
 import fr.rowlaxx.binanceapi.core.spot.stream.SpotStreamTrade;
 
 public class Test {	
@@ -16,10 +20,16 @@ public class Test {
 		client.login();
 		
 		
-		client.spot().stream().addOnTradeEvent( (String symbol, SpotStreamTrade trade) -> System.out.println(trade) );
-		
-		client.spot().stream().subscribeTrade("btcusdt");
-		
+		client.blvt().stream().subscribeInfo("btcup");
+		client.blvt().stream().addOnInfoEvent(new OnInfo() {
+			
+			@Override
+			public void onInfo(String symbol, BlvtInfoStream info) {
+				System.out.println(info);
+			}
+		});
+		Thread.sleep(10000);
+		client.blvt().stream().close();
 	}
 
 

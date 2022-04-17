@@ -69,21 +69,12 @@ public class BinanceWebSocket implements Closeable {
 
 	//Methodes
 	private final JSONObject buildRequest(String method, Collection<String> params) {
-		int index;
-		String str;
 		final JSONObject request = new JSONObject();
 		request.put("method", method);
 		if (params != null) {
 			final JSONArray array = new JSONArray(params.size());
-			for (String param : params) {
-				if ( (index = param.indexOf('@')) != -1) {
-					str = param.substring(0, index);
-					if (str.charAt(0) != '!')
-						param = param.replace(str, str.toLowerCase());
-				}
-				
+			for (String param : params)
 				array.put(param);
-			}
 			request.put("params", array);
 		}
 		request.put("id", id++);

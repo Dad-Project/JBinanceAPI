@@ -12,6 +12,7 @@ import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsQuotingAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsTradeAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
+import fr.rowlaxx.binanceapi.api.spot.BLVTHttpAPI;
 import fr.rowlaxx.binanceapi.api.spot.BSwapAPI;
 import fr.rowlaxx.binanceapi.api.spot.C2CAPI;
 import fr.rowlaxx.binanceapi.api.spot.ConvertAPI;
@@ -62,6 +63,8 @@ public class BinanceClientImpl implements BinanceClient {
 	private OptionsTradeAPI optionsTrade;
 	
 	private BLVTAPI blvt;
+	private BLVTHttpAPI blvtHttp;
+	
 	private BSwapAPI bswap;
 	private C2CAPI c2c;
 	private ConvertAPI convert;
@@ -108,6 +111,7 @@ public class BinanceClientImpl implements BinanceClient {
 		this.coinm = new CoinmAPI(coinmMarket, coinmTrade);
 		this.options = new OptionsAPI(optionsQuoting, optionsTrade);
 		this.spot = new SpotAPI(spotMarket, spotTrade);
+		this.blvt = new BLVTAPI(blvtHttp);
 	}
 	
 	//Méthodes

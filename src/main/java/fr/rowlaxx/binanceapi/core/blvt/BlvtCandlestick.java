@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.core.blvt;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.core.Candlestick;
 import fr.rowlaxx.jsavon.JsavonArray;
@@ -28,6 +29,21 @@ public class BlvtCandlestick extends JsavonArray implements Candlestick {
 		super(array);
 	}
 
+	public BlvtCandlestick(JSONObject json) {
+		this.open = json.getDouble("o");
+		this.close = json.getDouble("c");
+		this.high = json.getDouble("h");
+		this.low = json.getDouble("l");
+		this.realLeverage = json.getDouble("v");
+		this.numberOfNAVUpdate = json.getInt("n");
+		this.openTime = json.getLong("t");
+		this.closeTime = json.getLong("T");
+		this.ignore2 = json.getDouble("V");
+		this.ignore1 = json.getDouble("q");
+		this.ignore3 = json.getDouble("Q");
+		this.ignore4 = json.getDouble("B");
+	}
+	
 	//Getters
 	@Override
 	public final long getOpenTime() {

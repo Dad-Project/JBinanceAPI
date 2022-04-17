@@ -13,10 +13,17 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 	//Variables
 	protected final BinanceWebSocketPool pool;
 	
-	protected static final List<String> append(List<String> list, String suffix){
+	protected static enum AppendMode {LOWER_CASE, UPPER_CASE, KEEP; }
+	
+	protected static final List<String> append(List<String> list, String suffix, AppendMode mode){
 		final ArrayList<String> bak = new ArrayList<>(list.size());
 		for(String s : list)
-			bak.add(s + suffix);
+			if (mode == AppendMode.KEEP)
+				bak.add(s + suffix);
+			else if (mode == AppendMode.LOWER_CASE)
+				bak.add(s.toLowerCase() + suffix);
+			else
+				bak.add(s.toUpperCase() + suffix);
 		return bak;
 	}
 	

@@ -17,7 +17,7 @@ Add this to your POM to add JBinanceAPI in your project :
 	<dependency>
 		<groupId>fr.rowlaxx</groupId>
 		<artifactId>binanceapi</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</dependency>
 </dependencies>
 ```
@@ -50,11 +50,11 @@ Currently implementing : Market Data Stream
 
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
-| Version | 2022-03-29 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
+| Version | 2022-04-08 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
-|     BLVT    |     ✔️     | 2022-01-30 |
+|     BLVT    |     ✔️     | 2022-04-08 |
 |    BSwap    |     ✔️     | 2022-01-30 |
 |     C2C     |     ✔️     | 2022-01-30 |
 |   Convert   |     ✔️     | 2022-01-30 |
