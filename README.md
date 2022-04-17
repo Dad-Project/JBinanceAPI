@@ -46,8 +46,6 @@ All the ❌ fields will be implemented.
 | Market Data Stream |  ✔️  |  ❌  |   ❌  |   ❌    |
 |       Testnet      |      |  ❌  |   ❌  |          |
 
-Currently implementing : Futures Algo
-
 |         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
 |:-------:|:----------:|:----------:|:----------:|:----------:|
 | Version | 2022-04-13 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
@@ -61,7 +59,7 @@ Currently implementing : Futures Algo
 | CryptoLoans |     ✔️     | 2022-01-30 |
 |     Fiat    |     ✔️     | 2022-01-30 |
 |   Futures   |     ✔️     | 2022-01-30 |
-| Futures Algo|     ❌     | 2022-04-13 |
+| Futures Algo|     ✔️     | 2022-04-13 |
 |   Giftcard  |     ✔️     | 2022-01-30 |
 |    Margin   |     ✔️     | 2022-01-27 |
 |    Mining   |     ✔️     | 2022-01-30 |
