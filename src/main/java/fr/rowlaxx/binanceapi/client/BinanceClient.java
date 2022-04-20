@@ -18,6 +18,7 @@ import fr.rowlaxx.binanceapi.api.spot.MarginAPI;
 import fr.rowlaxx.binanceapi.api.spot.MiningAPI;
 import fr.rowlaxx.binanceapi.api.spot.NFTAPI;
 import fr.rowlaxx.binanceapi.api.spot.PayAPI;
+import fr.rowlaxx.binanceapi.api.spot.PortfolioMarginApi;
 import fr.rowlaxx.binanceapi.api.spot.RebateAPI;
 import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
@@ -55,6 +56,7 @@ public interface BinanceClient {
 	public WalletAPI wallet();
 	public SubAccountAPI subaccount();
 	public MarginAPI margin();
+	public PortfolioMarginApi portfoliomargin();
 	public SavingsAPI savings();
 	public MiningAPI mining();
 	public FuturesAPI futures();

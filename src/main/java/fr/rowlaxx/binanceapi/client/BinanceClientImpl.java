@@ -25,6 +25,7 @@ import fr.rowlaxx.binanceapi.api.spot.MarginAPI;
 import fr.rowlaxx.binanceapi.api.spot.MiningAPI;
 import fr.rowlaxx.binanceapi.api.spot.NFTAPI;
 import fr.rowlaxx.binanceapi.api.spot.PayAPI;
+import fr.rowlaxx.binanceapi.api.spot.PortfolioMarginApi;
 import fr.rowlaxx.binanceapi.api.spot.RebateAPI;
 import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
@@ -82,7 +83,7 @@ public class BinanceClientImpl implements BinanceClient {
 	private SavingsAPI savings;
 	private SubAccountAPI subaccount;
 	private WalletAPI wallet;
-	
+	private PortfolioMarginApi portfoliomargin;
 	
 	private Boolean logged = null;
 	private final BinanceCredenticals credenticals;
@@ -243,6 +244,11 @@ public class BinanceClientImpl implements BinanceClient {
 	@Override
 	public PayAPI pay() {
 		return pay;
+	}
+	
+	@Override
+	public PortfolioMarginApi portfoliomargin() {
+		return portfoliomargin;
 	}
 
 	@Override
