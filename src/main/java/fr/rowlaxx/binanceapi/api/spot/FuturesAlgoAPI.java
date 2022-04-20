@@ -16,7 +16,7 @@ import fr.rowlaxx.binanceapi.core.futuresalgo.VPSubOrder;
 /**
  * @version 2022-04-13
  * @author Théo
- * @see https://binance-docs.github.io/apidocs/spot/en/#futures
+ * @see https://binance-docs.github.io/apidocs/spot/en/#futures-algo-endpoints
  */
 public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 
