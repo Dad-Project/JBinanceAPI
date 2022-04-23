@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import fr.rowlaxx.binanceapi.client.BinanceClientImpl;
+import fr.rowlaxx.binanceapi.client.BinanceClient;
 import fr.rowlaxx.binanceapi.client.http.ApiEndpoint;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
@@ -23,7 +23,7 @@ public class ApiImplementer {
 	public static boolean DEBUG = false;
 	
 	@SuppressWarnings("unchecked")
-	public static final <T extends Api> T implementz(Class<T> clazz, final BinanceClientImpl client) {
+	public static final <T extends Api> T implementz(Class<T> clazz, final BinanceClient client) {
 		if (!clazz.isInterface())
 			throw new IllegalArgumentException("The provided class is not an interface.");
 
@@ -45,7 +45,7 @@ public class ApiImplementer {
 		});
 	}
 
-	private static final Object invokeEndpoint(final BinanceClientImpl client, final Object proxy, final Method method, final Object[] args) throws IOException {		
+	private static final Object invokeEndpoint(final BinanceClient client, final Object proxy, final Method method, final Object[] args) throws IOException {		
 		final ApiEndpoint endpoint = method.getAnnotation(ApiEndpoint.class);
 		Object response = client.getHttpClient().execute(endpoint, args);
 		
