@@ -34,35 +34,35 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 
 	//Methodes
 	public void subscribeInfo(List<String> symbols) {
-		pool.subscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
+		subscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
 	public void unsubscribeInfo(List<String> symbols) {
-		pool.unsubscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
+		unsubscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
 	public void subscribeInfo(String symbol) {
-		pool.subscribe(symbol.toUpperCase() + "@tokenNav");
+		subscribe(symbol.toUpperCase() + "@tokenNav");
 	}
 	
 	public void unsubscribeInfo(String symbol) {
-		pool.unsubscribe(symbol.toUpperCase() + "@tokenNav");
+		unsubscribe(symbol.toUpperCase() + "@tokenNav");
 	}
 	
 	public void subscribeCandlestick(List<String> symbols, Intervals interval) {
-		pool.subscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
+		subscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
 	public void subscribeCandlestick(String symbol, Intervals interval) {
-		pool.subscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
+		subscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
 	}
 	
 	public void unsubscribeCandlestick(List<String> symbols, Intervals interval) {
-		pool.unsubscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
+		unsubscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
 	public void unsubscribeCandlestick(String symbol, Intervals interval) {
-		pool.unsubscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
+		unsubscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
 	}
 	
 	
