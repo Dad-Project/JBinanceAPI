@@ -1,4 +1,4 @@
-package fr.rowlaxx.binanceapi.core.spot.stream;
+package fr.rowlaxx.binanceapi.core.spot.marketstream;
 
 import fr.rowlaxx.binanceapi.core.Candlestick;
 import fr.rowlaxx.jsavon.JsavonObject;

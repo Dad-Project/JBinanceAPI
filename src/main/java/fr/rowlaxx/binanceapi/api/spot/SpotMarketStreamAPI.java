@@ -13,11 +13,11 @@ import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.MiniTicker;
 import fr.rowlaxx.binanceapi.core.OrderBook;
 import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTickerStatistics;
-import fr.rowlaxx.binanceapi.core.spot.stream.SpotStreamCandlestick;
-import fr.rowlaxx.binanceapi.core.spot.stream.SpotStreamTrade;
+import fr.rowlaxx.binanceapi.core.spot.marketstream.SpotStreamCandlestick;
+import fr.rowlaxx.binanceapi.core.spot.marketstream.SpotStreamTrade;
 import fr.rowlaxx.jsavon.Jsavon;
 
-public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
+public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 
 	//Events
 	public static interface OnTrade{
@@ -63,7 +63,7 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 	private List<OnDiffBook> onDiffBooks = new ArrayList<>();
 	
 	//Constructeurs
-	public SpotMarketDataStreamAPI() {
+	public SpotMarketStreamAPI() {
 		super("wss://stream.binance.com:9443");
 	}
 	
@@ -117,123 +117,123 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 	
 	//Methodes
 	public void subscribeTrade(List<String> symbols) {
-		pool.subscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeTrade(String symbol) {
-		pool.subscribe(symbol.toLowerCase() + "@trade");
+		subscribe(symbol.toLowerCase() + "@trade");
 	}
 	
 	public void unsubscribeTrade(List<String> symbols) {
-		pool.unsubscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeTrade(String symbol) {
-		pool.unsubscribe(symbol.toLowerCase() + "@trade");
+		unsubscribe(symbol.toLowerCase() + "@trade");
 	}
 	
 	public void subscribeAggTrade(List<String> symbols) {
-		pool.subscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeAggTrade(List<String> symbols) {
-		pool.unsubscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeAggTrade(String symbol) {
-		pool.subscribe(symbol.toLowerCase() + "@aggTrade");
+		subscribe(symbol.toLowerCase() + "@aggTrade");
 	}
 	
 	public void unsubscribeAggTrade(String symbol) {
-		pool.unsubscribe(symbol.toLowerCase() + "@aggTrade");
+		unsubscribe(symbol.toLowerCase() + "@aggTrade");
 	}
 	
 	public void subscribeCandlestick(List<String> symbols, Intervals interval) {
-		pool.subscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeCandlestick(String symbol, Intervals interval) {
-		pool.subscribe(symbol.toLowerCase() + "@kline_" + interval);
+		subscribe(symbol.toLowerCase() + "@kline_" + interval);
 	}
 	
 	public void unsubscribeCandlestick(List<String> symbols, Intervals interval) {
-		pool.unsubscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeCandlestick(String symbol, Intervals interval) {
-		pool.unsubscribe(symbol.toLowerCase() + "@kline_" + interval);
+		unsubscribe(symbol.toLowerCase() + "@kline_" + interval);
 	}
 	
 	public void subscribeMiniTicker(List<String> symbols) {
-		pool.subscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeMiniTicker(String symbol) {
-		pool.subscribe(symbol.toLowerCase() + "@miniTicker");
+		subscribe(symbol.toLowerCase() + "@miniTicker");
 	}
 	
 	public void unsubscribeMiniTicker(List<String> symbols) {
-		pool.unsubscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeMiniTicker(String symbol) {
-		pool.unsubscribe(symbol.toLowerCase() + "@miniTicker");
+		unsubscribe(symbol.toLowerCase() + "@miniTicker");
 	}
 	
 	public void subscribeMiniTickers() {
-		pool.subscribe("!miniTicker@arr");
+		subscribe("!miniTicker@arr");
 	}
 	
 	public void unsubscribeMiniTickers() {
-		pool.unsubscribe("!miniTicker@arr");
+		unsubscribe("!miniTicker@arr");
 	}
 	
 	public void subscribeTicker(List<String> symbols) {
-		pool.subscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeTicker(List<String> symbols) {
-		pool.unsubscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeTicker(String symbol) {
-		pool.subscribe(symbol.toLowerCase() + "@ticker");
+		subscribe(symbol.toLowerCase() + "@ticker");
 	}
 	
 	public void unsubscribeTicker(String symbol) {
-		pool.unsubscribe(symbol.toLowerCase() + "@ticker");
+		unsubscribe(symbol.toLowerCase() + "@ticker");
 	}
 	
 	public void subscribeTickers() {
-		pool.subscribe("!ticker@arr");
+		subscribe("!ticker@arr");
 	}
 	
 	public void unsubscribeTickers() {
-		pool.unsubscribe("!ticker@arr");
+		unsubscribe("!ticker@arr");
 	}
 	
 	public void subscribeBookTicker(List<String> symbol) {
-		pool.subscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
+		subscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeBookTicker(List<String> symbol) {
-		pool.unsubscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
+		unsubscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeBookTicker(String symbol) {
-		pool.subscribe(symbol.toLowerCase() + "@bookTicker");
+		subscribe(symbol.toLowerCase() + "@bookTicker");
 	}
 	
 	public void unsubscribeBookTicker(String symbol) {
-		pool.unsubscribe(symbol.toLowerCase() + "@bookTicker");
+		unsubscribe(symbol.toLowerCase() + "@bookTicker");
 	}
 	
 	public void subscribeBookTickers() {
-		pool.subscribe("!bookTicker");
+		subscribe("!bookTicker");
 	}
 	
 	public void unsubscribeBookTickers() {
-		pool.unsubscribe("!bookTicker");
+		unsubscribe("!bookTicker");
 	}
 	
 	public void subscribePartialDiffBookDepth(List<String> symbols, int level, long updatePeriod) {
@@ -241,7 +241,7 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.subscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribePartialDiffBookDepth(List<String> symbols, int level, long updatePeriod) {
@@ -249,7 +249,7 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.unsubscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribePartialDiffBookDepth(String symbol, int level, long updatePeriod) {
@@ -257,7 +257,7 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.subscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
+		subscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
 	}
 	
 	public void unsubscribePartialDiffBookDepth(String symbol, int level, long updatePeriod) {
@@ -265,31 +265,31 @@ public class SpotMarketDataStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.unsubscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
+		unsubscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
 	}
 	
 	public void subscribeDiffBookDepth(List<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.subscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		subscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeDiffBookDepth(List<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.unsubscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		unsubscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeDiffBookDepth(String symbol, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.subscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
+		subscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
 	}
 	
 	public void unsubscribeDiffBookDepth(String symbol, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		pool.unsubscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
+		unsubscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
 	}
 	
 	
