@@ -14,7 +14,7 @@ public class Test {
 		client = BinanceClient.create(args[0], args[1]);
 		client.login();
 		
-		client.spot().market().getExchangeInformation();
+		
 	}
 
 
