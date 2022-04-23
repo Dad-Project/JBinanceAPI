@@ -6,14 +6,14 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -31,11 +31,13 @@ public class BinanceWebSocket implements Closeable {
 	public static final int BATCH_SIZE = 200;
 	
 	//Variables
-	private final String name;
-	private final WebSocketListener listener;
-	private final BinanceWebSocketPool pool;
-	private long lastReceived = 0;
+	private final String baseUrl;
+	private final String listenKey;
+	private final URI uri;
+	
+	private final List<OnJson> onJson = new LinkedList<>();
 	private WebSocket websocket;
+	
 	
 	private final Set<String> subsriptions = new HashSet<>(MAX_SUBSCRIPTION);
 	private final HashMap<Integer, CompletableFuture<JSONObject>> pendingResponse = new HashMap<>();
@@ -44,27 +46,50 @@ public class BinanceWebSocket implements Closeable {
 	private volatile int id = 0;
 		
 	//Constructeurs
-	public BinanceWebSocket(BinanceWebSocketPool pool) {
-		this.pool = Objects.requireNonNull(pool, "pool may not be null.");
-		this.name = UUID.randomUUID().toString().replaceAll("-", "");
-		this.listener = new WebSocketListener(this);
+	public BinanceWebSocket(String baseUrl, String listenKey) {
+		this.baseUrl = Objects.requireNonNull(baseUrl, "baseUrl may not be null.");
+		this.listenKey = listenKey;
+		
+		try {
+			if (listenKey == null)
+				this.uri = new URI(baseUrl);
+			else
+				this.uri = new URI(baseUrl + "/ws/" + listenKey);
+		}catch(URISyntaxException e) {
+			throw new BinanceWebSocketException(e.getMessage());
+		}
+		
 		initWebSocket();
+	}
+	
+	public BinanceWebSocket(String baseUrl) {
+		this(baseUrl, (String)null);
+	}
+	
+	public BinanceWebSocket(String baseUrl, String listenKey, OnJson onJson) {
+		this(baseUrl, listenKey);
+		addOnJsonEvent(onJson);
+	}
+	
+	public BinanceWebSocket(String baseUrl, OnJson onJson) {
+		this(baseUrl, (String)null);
+		addOnJsonEvent(onJson);
 	}
 	
 	private synchronized void initWebSocket() {
 		if (websocket != null)
 			throw new IllegalStateException("A websocket already exists.");
 		
-		try {
-			final URI uri = new URI(pool.getBaseUrl() + "/ws/" + name);
-			this.websocket = HttpClient.newHttpClient().newWebSocketBuilder().buildAsync(uri, listener).get();
-		} catch (URISyntaxException e) {
-			throw new BinanceWebSocketException("Illegal baseUrl");
-		} catch (InterruptedException e) {
-			return;
-		} catch (ExecutionException e) {
-			throw new BinanceWebSocketException(e.getCause().getMessage());
-		}
+		final CompletableFuture<WebSocket> cf = HttpClient.newHttpClient().newWebSocketBuilder().buildAsync(uri, new WebSocketListener(this));
+		new Thread(() -> {
+			try {
+				this.websocket = cf.get();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}, "WebSocketBuilder" ).start();
 	}
 
 	//Methodes
@@ -81,12 +106,16 @@ public class BinanceWebSocket implements Closeable {
 		return request;
 	}
 	
-	public Object send(JSONObject json) {
+	
+	private Object send(JSONObject json) {
 		final int id = json.getInt("id");
 		final CompletableFuture<JSONObject> future = new CompletableFuture<>();
 		
 		try{
-			pendingResponse.put(id, future);
+			synchronized (pendingResponse) {
+				pendingResponse.put(id, future);
+			}
+			
 			try{
 				websocket.sendText(json.toString(), true).get();
 			}catch(ExecutionException e) {
@@ -94,7 +123,7 @@ public class BinanceWebSocket implements Closeable {
 			}
 			
 			try {
-				final JSONObject response =  future.get(10_000, TimeUnit.MILLISECONDS);
+				final JSONObject response =  future.get(timeout, TimeUnit.MILLISECONDS);
 				if (response.has("error")) {
 					final JSONObject error = response.getJSONObject("error");
 					throw new BinanceWebSocketException("code " + error.getInt("code") + " : " + error.getString("msg"));
@@ -108,101 +137,110 @@ public class BinanceWebSocket implements Closeable {
 		}catch(InterruptedException e) {
 			return null;
 		}finally {
-			pendingResponse.remove(id);
+			synchronized (pendingResponse) {
+				pendingResponse.remove(id);
+			}
 		}
 	}
+	
 	
 	void complete(JSONObject json) {
-		final int id = json.getInt("id");
-		final CompletableFuture<JSONObject> completableFuture = pendingResponse.get(id);
-		completableFuture.complete(json);
+		pendingResponse.get(json.getInt("id")).complete(json);
 	}
 	
-	private synchronized void forceSubscribe() {
-		final List<String> list = new ArrayList<>(BATCH_SIZE);
-		
-		for (String s : subsriptions) {
-			list.add(s);
-			if (list.size() == BATCH_SIZE || list.size() + subsriptions.size() == MAX_SUBSCRIPTION) {
-				send(buildRequest("SUBSCRIBE", list));
-				list.clear();
-			}
-		}
-		
-		if (list.size() == 0)
-			return;
-		
-		send(buildRequest("SUBSCRIBE", list));
+	void onJson(JSONObject json) {
+		for (OnJson event : onJson)
+			event.onJson(json);
 	}
 	
-	void updateLastReceived() {
-		this.lastReceived = System.currentTimeMillis();
-	}
-	
-	public void unsubscribeAll() {
-		unsubscribe(new ArrayList<>(this.subsriptions));
-	}
-	
-	public synchronized boolean subscribe(List<String> params) {
-		if (params == null )
-			return true;
+	public synchronized Iterable<String> subscribe(Iterable<String> params) {
+		if (params == null)
+			return null;
 		
-		if (subsriptions.size() >= MAX_SUBSCRIPTION)
-			return params.isEmpty();
+		final List<String> batch = new ArrayList<>(BATCH_SIZE);
+		final List<String> remaining = new LinkedList<>();
 		
-		final List<String> list = new ArrayList<>(BATCH_SIZE);
-		
-		for (int i = params.size() - 1 ; i >= 0; i--) {
-			if (isSubscribed(params.get(i))) {
-				params.remove(i);
+		for (String s : params)
+			if (isSubscribed(s))
 				continue;
-			}
-			
-			if (subsriptions.size() + list.size() < MAX_SUBSCRIPTION) {
-				list.add(params.remove(i));
-				if (list.size() == BATCH_SIZE || list.size() + subsriptions.size() == MAX_SUBSCRIPTION) {
-					send(buildRequest("SUBSCRIBE", list));
-					subsriptions.addAll(list);
-					list.clear();
+			else if (this.subsriptions.size() >= MAX_SUBSCRIPTION)
+				remaining.add(s);
+			else {
+				batch.add(s);
+				if (batch.size() == BATCH_SIZE || this.subsriptions.size() + batch.size() >= MAX_SUBSCRIPTION) {
+					send(buildRequest("SUBSCRIBE", batch));
+					this.subsriptions.addAll(batch);
+					batch.clear();
 				}
 			}
+		
+		if (batch.size() > 0) {
+			send(buildRequest("SUBSCRIBE", batch));
+			this.subsriptions.addAll(batch);
 		}
 		
-		if (list.size() == 0)
-			return params.isEmpty();
+		if (remaining.size() == 0)
+			return null;
 		
-		send(buildRequest("SUBSCRIBE", list));
-		this.subsriptions.addAll(list);
-		
-		return params.isEmpty();
+		return remaining;
 	}
 	
-	public synchronized void unsubscribe(List<String> params) {
+	private void forceResubscribe() {
+		synchronized (subsriptions) {
+			final List<String> backup = new LinkedList<>(this.subsriptions);
+			try {
+				this.subsriptions.clear();
+				subscribe(backup);
+			}catch(Exception e) {
+				this.subsriptions.addAll(backup);
+				throw e;
+			}
+		}
+	}
+	
+	public void subscribe(String[] channels) {
+		subscribe(Arrays.asList(channels));
+	}
+	
+	public void subscribe(String channel) {
+		subscribe(Arrays.asList(channel));
+	}
+		
+	public void unsubscribeAll() {
+		unsubscribe(this.subsriptions);
+	}
+	
+	public synchronized void unsubscribe(Iterable<String> params) {
 		if (params == null)
 			return;
 		
-		final ArrayList<String> list = new ArrayList<>(BATCH_SIZE);
-		for (int i = params.size() - 1 ; i >= 0 ; i--)
-			if (isSubscribed(params.get(i))) {
-				list.add(params.remove(i));
-				
-				if (list.size() == BATCH_SIZE) {
-					send(buildRequest("UNSUBSCRIBE", list));
-					list.clear();
-				}
+		final ArrayList<String> batch = new ArrayList<>(BATCH_SIZE);
+		for (String param : params) {
+			if (isSubscribed(param))
+				batch.add(param);
+			
+			if (batch.size() == BATCH_SIZE) {
+				send(buildRequest("UNSUBSCRIBE", batch));
+				this.subsriptions.removeAll(batch);
+				batch.clear();
 			}
+		}
 		
-		if (list.size() == 0)
-			return;
-		
-		send(buildRequest("UNSUBSCRIBE", list));
-		this.subsriptions.removeAll(list);
+		if (batch.size() > 0) {
+			send(buildRequest("UNSUBSCRIBE", batch));
+			this.subsriptions.removeAll(batch);
+		}
+	}
+	
+	public void unsubscribe(String[] params) {
+		unsubscribe(Arrays.asList(params));
 	}
 	
 	public void unsubscribe(String param) {
-		unsubscribe(Collections.singletonList(param));
+		unsubscribe(Arrays.asList(param));
 	}
 
+	//Methodes reecrites
 	@Override
 	public synchronized void close() {
 		if (this.websocket == null)
@@ -217,21 +255,21 @@ public class BinanceWebSocket implements Closeable {
 		try {
 			close();
 			initWebSocket();
-			forceSubscribe();
+			forceResubscribe();
 			return true;
 		}catch(BinanceWebSocketException e) {
 			close();
 			return false;
 		}
-		
 	}
 	
 	public synchronized boolean reconnectIfNeeded() {
+		if (subsriptions.size() == 0)
+			return true;
+		
 		if (websocket == null)
 			return reconnect();
 		else if (websocket.isInputClosed() || websocket.isOutputClosed())
-			return reconnect();
-		else if (subsriptions.size() > 0 && lastReceived + 300000 < System.currentTimeMillis())
 			return reconnect();
 		return false;
 	}
@@ -247,20 +285,26 @@ public class BinanceWebSocket implements Closeable {
 		return subsriptions.contains(param);
 	}
 	
-	public BinanceWebSocketPool getPool() {
-		return pool;
-	}
-	
 	public int getSubscribtionCount() {
 		return subsriptions.size();
 	}
 	
-	public String getName() {
-		return name;
+	public String getBaseUrl() {
+		return baseUrl;
+	}
+	
+	public String getListenKey() {
+		return listenKey;
 	}
 	
 	//Setters
 	public void setTimeout(long timeout) {
 		this.timeout = timeout;
 	}	
+	
+	public void addOnJsonEvent(OnJson onJson) {
+		if (onJson == null)
+			return;
+		this.onJson.add(onJson);
+	}
 }
