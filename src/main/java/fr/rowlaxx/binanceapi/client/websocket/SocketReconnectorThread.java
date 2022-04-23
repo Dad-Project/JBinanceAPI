@@ -2,14 +2,14 @@ package fr.rowlaxx.binanceapi.client.websocket;
 
 import java.util.Objects;
 
-public class PoolThread extends Thread {
+public class SocketReconnectorThread extends Thread {
 
 	//Variables
 	private final BinanceWebSocketPool pool;
 	private boolean running;
 	
 	//Constructeurs
-	public PoolThread(BinanceWebSocketPool pool) {
+	public SocketReconnectorThread(BinanceWebSocketPool pool) {
 		this.pool = Objects.requireNonNull(pool, "pool may not be null.");
 	}
 	
