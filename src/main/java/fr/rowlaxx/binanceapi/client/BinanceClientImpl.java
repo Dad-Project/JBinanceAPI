@@ -12,7 +12,6 @@ import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsQuotingAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsTradeAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
-import fr.rowlaxx.binanceapi.api.spot.BLVTHttpAPI;
 import fr.rowlaxx.binanceapi.api.spot.BSwapAPI;
 import fr.rowlaxx.binanceapi.api.spot.C2CAPI;
 import fr.rowlaxx.binanceapi.api.spot.ConvertAPI;
@@ -25,12 +24,9 @@ import fr.rowlaxx.binanceapi.api.spot.MarginAPI;
 import fr.rowlaxx.binanceapi.api.spot.MiningAPI;
 import fr.rowlaxx.binanceapi.api.spot.NFTAPI;
 import fr.rowlaxx.binanceapi.api.spot.PayAPI;
-import fr.rowlaxx.binanceapi.api.spot.PortfolioMarginApi;
 import fr.rowlaxx.binanceapi.api.spot.RebateAPI;
 import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
-import fr.rowlaxx.binanceapi.api.spot.SpotMarketDataAPI;
-import fr.rowlaxx.binanceapi.api.spot.SpotTradeAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
 import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
@@ -48,6 +44,10 @@ import fr.rowlaxx.binanceapi.client.http.Parameters;
 public class BinanceClientImpl implements BinanceClient {
 	
 	//Variables	
+	private SpotAPI spot = null;
+	private BLVTAPI blvt = null;
+	private MarginAPI margin = null;
+
 	private CoinmAPI coinm;
 	private CoinmMarketDataAPI coinmMarket;
 	private CoinmTradeAPI coinmTrade;
@@ -56,16 +56,10 @@ public class BinanceClientImpl implements BinanceClient {
 	private UsdmTradeAPI usdmTrade;
 	private UsdmMarketDataAPI usdmMarket;
 	
-	private SpotAPI spot;
-	private SpotMarketDataAPI spotMarket;
-	private SpotTradeAPI spotTrade;
-	
 	private OptionsAPI options;
 	private OptionsQuotingAPI optionsQuoting;
 	private OptionsTradeAPI optionsTrade;
 	
-	private BLVTAPI blvt;
-	private BLVTHttpAPI blvtHttp;
 	
 	private BSwapAPI bswap;
 	private C2CAPI c2c;
@@ -75,7 +69,6 @@ public class BinanceClientImpl implements BinanceClient {
 	private FuturesAPI futures;
 	private FuturesAlgoAPI futuresalgo;
 	private GiftcardAPI giftcard;
-	private MarginAPI margin;
 	private MiningAPI mining;
 	private NFTAPI nft;
 	private PayAPI pay;
@@ -83,7 +76,6 @@ public class BinanceClientImpl implements BinanceClient {
 	private SavingsAPI savings;
 	private SubAccountAPI subaccount;
 	private WalletAPI wallet;
-	private PortfolioMarginApi portfoliomargin;
 	
 	private Boolean logged = null;
 	private final BinanceCredenticals credenticals;
@@ -113,8 +105,6 @@ public class BinanceClientImpl implements BinanceClient {
 		this.usdm = new UsdmAPI(usdmMarket, usdmTrade);
 		this.coinm = new CoinmAPI(coinmMarket, coinmTrade);
 		this.options = new OptionsAPI(optionsQuoting, optionsTrade);
-		this.spot = new SpotAPI(spotMarket, spotTrade);
-		this.blvt = new BLVTAPI(blvtHttp);
 	}
 	
 	//Méthodes
@@ -178,6 +168,8 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public BLVTAPI blvt() {
+		if (blvt == null)
+			blvt = new BLVTAPI(this);
 		return blvt;
 	}
 
@@ -223,6 +215,8 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public MarginAPI margin() {
+		if (margin == null)
+			margin = new MarginAPI(this);
 		return margin;
 	}
 
@@ -245,11 +239,6 @@ public class BinanceClientImpl implements BinanceClient {
 	public PayAPI pay() {
 		return pay;
 	}
-	
-	@Override
-	public PortfolioMarginApi portfoliomargin() {
-		return portfoliomargin;
-	}
 
 	@Override
 	public RebateAPI rebate() {
@@ -263,6 +252,8 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public SpotAPI spot() {
+		if (spot == null)
+			spot = new SpotAPI(this);
 		return spot;
 	}
 
