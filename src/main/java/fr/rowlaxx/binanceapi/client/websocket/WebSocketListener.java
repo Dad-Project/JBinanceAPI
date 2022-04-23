@@ -27,8 +27,6 @@ public class WebSocketListener implements WebSocket.Listener {
 		Listener.super.onError(webSocket, error);
 	}
 	
-	
-	
 	@Override
 	public synchronized CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean lastChar) {
 		if (sb.length() > 0 || !lastChar) {
@@ -41,7 +39,6 @@ public class WebSocketListener implements WebSocket.Listener {
 			}
 		}
 		
-		this.webSocket.updateLastReceived();
 		final char first = data.charAt(0);
 		final char last = data.charAt(data.length() - 1);
 		
@@ -51,10 +48,11 @@ public class WebSocketListener implements WebSocket.Listener {
 				if (json.has("id"))
 					this.webSocket.complete(json);
 				else
-					this.webSocket.getPool().add(json);
+					this.webSocket.onJson(json);
 			}
 			else if (first == '[' && last == ']')
-				this.webSocket.getPool().add(new JSONArray(data.toString()));
+				for (Object object : new JSONArray(data.toString()))
+					this.webSocket.onJson((JSONObject)object);
 			
 		}catch(JSONException e) {
 			e.printStackTrace();
