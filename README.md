@@ -38,17 +38,17 @@ Legend :
 
 All the ❌ fields will be implemented.
 
-|                    | Spot | Usd-M | Coin-M | Options |
-|:------------------:|:----:|:-----:|:------:|:-------:|
-|       Trades       |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
-|     Market Data    |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
-|     User Stream    |  ❌  |  ❌  |   ❌  |   ❌    |
-| Market Data Stream |  ✔️  |  ❌  |   ❌  |   ❌    |
-|       Testnet      |      |  ❌  |   ❌  |          |
+|                    | Spot | Margin | Usd-M | Coin-M | Options |
+|:------------------:|:----:|:------:|:-----:|:------:|:-------:|
+|       Trades       |  ✔️  |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
+|     Market Data    |  ✔️  |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
+|     User Stream    |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
+| Market Data Stream |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
+|       Testnet      |      |      | ❌  |   ❌  |          |
 
-|         |    Spot    |    Usd-M   |   Coin-M   |   Options  |
-|:-------:|:----------:|:----------:|:----------:|:----------:|
-| Version | 2022-04-20 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
+|         |    Spot    |   Margin   |    Usd-M   |   Coin-M   |   Options  |
+|:-------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| Version | 2022-04-20 | 2022-04-23 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
@@ -61,8 +61,6 @@ All the ❌ fields will be implemented.
 |   Futures   |     ✔️     | 2022-01-30 |
 | Futures Algo|     ✔️     | 2022-04-13 |
 |   Giftcard  |     ✔️     | 2022-01-30 |
-|    Margin   |     ✔️     | 2022-01-27 |
-| Port. Margin|     ✔️     | 2022-04-20 |
 |    Mining   |     ✔️     | 2022-01-30 |
 |     NFT     |     ✔️     | 2022-01-30 |
 |     Pay     |     ✔️     | 2022-01-30 |
