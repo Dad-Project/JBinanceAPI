@@ -13,14 +13,16 @@ public class Test {
 	private static BinanceClient client;
 
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, URISyntaxException {
-		client = BinanceClient.create(args[0], args[1]);
+		client = BinanceClient.createGuest();
 		
 		client.spot().marketstream().subscribeTrade("btcusdt");
+		client.spot().marketstream().subscribeTrade("ethusdt");
+		
 		client.spot().marketstream().addOnTradeEvent(new OnTrade() {
 			
 			@Override
 			public void onTrade(String symbol, SpotStreamTrade trade) {
-				//System.out.println(trade);
+				System.out.println(trade);
 			}
 		});
 	}

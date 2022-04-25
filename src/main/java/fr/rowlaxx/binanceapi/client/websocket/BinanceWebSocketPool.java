@@ -34,7 +34,7 @@ public class BinanceWebSocketPool implements Closeable {
 	};
 	
 	private ResponseProcessorThread processorThread;
-	private SocketReconnectorThread reconnectorThread;
+	private SocketCheckerThread reconnectorThread;
 	
 	//Constructeurs
 	public BinanceWebSocketPool(String baseUrl, String listenKey, OnJson onJson) {
@@ -62,7 +62,7 @@ public class BinanceWebSocketPool implements Closeable {
 			this.processorThread.start();
 		}
 		if (reconnectorThread == null) {
-			this.reconnectorThread = new SocketReconnectorThread(this);
+			this.reconnectorThread = new SocketCheckerThread(this);
 			this.reconnectorThread.start();	
 		}
 	}
@@ -143,10 +143,12 @@ public class BinanceWebSocketPool implements Closeable {
 			socket.unsubscribeAll();
 	}
 	
-	public synchronized void reconnectIfNeeded() {
+	synchronized void checkSockets() {
 		initThreads();
-		for (BinanceWebSocket socket : sockets)
-			socket.reconnectIfNeeded();
+		for (BinanceWebSocket socket : sockets) {
+			socket.ping();
+			socket.verify();
+		}
 	}
 	
 	public int getSubscribtionCount() {

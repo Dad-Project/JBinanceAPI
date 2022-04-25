@@ -55,7 +55,7 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 	}
 	
 	public void reconnect() {
-		pool.reconnectIfNeeded();
+		pool.checkSockets();
 	}
 	
 	protected void unsubscribeAll() {

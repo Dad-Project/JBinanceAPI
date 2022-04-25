@@ -2,6 +2,7 @@ package fr.rowlaxx.binanceapi.client.websocket;
 
 import java.net.http.WebSocket;
 import java.net.http.WebSocket.Listener;
+import java.nio.ByteBuffer;
 import java.util.Objects;
 import java.util.concurrent.CompletionStage;
 
@@ -23,8 +24,14 @@ public class WebSocketListener implements WebSocket.Listener {
 	//Methodes
 	@Override
 	public void onError(WebSocket webSocket, Throwable error) {
-		this.webSocket.reconnectIfNeeded();
+		this.webSocket.verify();
 		Listener.super.onError(webSocket, error);
+	}
+	
+	@Override
+	public CompletionStage<?> onPong(WebSocket webSocket, ByteBuffer message) {
+		this.webSocket.onPong();
+		return Listener.super.onPong(webSocket, message);
 	}
 	
 	@Override
