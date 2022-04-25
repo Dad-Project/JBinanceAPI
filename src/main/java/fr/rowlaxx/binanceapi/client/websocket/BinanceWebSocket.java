@@ -16,8 +16,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,9 +40,8 @@ public class BinanceWebSocket implements Closeable {
 	
 	
 	private final Set<String> subsriptions = new HashSet<>(MAX_SUBSCRIPTION);
-	private final HashMap<Integer, CompletableFuture<JSONObject>> pendingResponse = new HashMap<>();
+	private final HashMap<Integer, CompletableFuture<Object>> responses = new HashMap<>();
 	
-	private long timeout = 10000;
 	private volatile int id = 0;
 		
 	//Constructeurs
@@ -102,39 +99,31 @@ public class BinanceWebSocket implements Closeable {
 	
 	private CompletableFuture<Object> send(JSONObject json) {
 		final int id = json.getInt("id");
-		final CompletableFuture<JSONObject> future = new CompletableFuture<>();
+		final CompletableFuture<Object> future = new CompletableFuture<>();
 		
-		try{
-			synchronized (pendingResponse) {
-				pendingResponse.put(id, future);
-			}
-			
-			websocket().sendText(json.toString(), true);
-			
-			try {
-				final JSONObject response =  future.get(timeout, TimeUnit.MILLISECONDS);
-				if (response.has("error")) {
-					final JSONObject error = response.getJSONObject("error");
-					throw new BinanceWebSocketException("code " + error.getInt("code") + " : " + error.getString("msg"));
-				}
-				return response.get("result");
-			}catch (ExecutionException e) {
-				throw new BinanceWebSocketException(e.getCause().getMessage());
-			}catch (TimeoutException e) {
-				throw new BinanceWebSocketException("Timed out.");
-			} 
-		}catch(InterruptedException e) {
-			return null;
-		}finally {
-			synchronized (pendingResponse) {
-				pendingResponse.remove(id);
-			}
+		synchronized (responses) {
+			responses.put(id, future);
 		}
+			
+		websocket().sendText(json.toString(), true);
+		return future;
 	}
 	
 	
 	void complete(JSONObject json) {
-		pendingResponse.get(json.getInt("id")).complete(json);
+		final int id = json.getInt("id");
+		CompletableFuture<Object> response;
+		
+		synchronized (responses) {
+			response = responses.remove(id);
+		}
+
+		if (json.has("error")) {
+			final JSONObject error = json.getJSONObject("error");
+			response.completeExceptionally(new BinanceWebSocketException("code " + error.getInt("code") + " : " + error.getString("msg")));
+		}
+		
+		response.complete(json.get("result"));
 	}
 	
 	void onJson(JSONObject json) {
@@ -247,6 +236,11 @@ public class BinanceWebSocket implements Closeable {
 		
 		websocket().sendClose(WebSocket.NORMAL_CLOSURE, "ok");
 		websocket().abort();
+		
+		for (CompletableFuture<Object> responseFuture : responses.values())
+			responseFuture.completeExceptionally(new BinanceWebSocketException("Socket has been closed."));
+		responses.clear();
+		
 		this.websocket = null;
 	}
 	
@@ -274,10 +268,6 @@ public class BinanceWebSocket implements Closeable {
 	}
 	
 	//Getters
-	public long getTimeout() {
-		return timeout;
-	}
-	
 	public boolean isSubscribed(String param) {
 		if (param == null)
 			return false;
@@ -289,9 +279,16 @@ public class BinanceWebSocket implements Closeable {
 	}
 	
 	public List<String> listSubscriptions() {
-		final JSONObject request = buildRequest("LIST_SUBSCRIPTIONS", null);
-		final JSONArray response = (JSONArray) send(request).get();
-		return Jsavon.converter.convert(response, ParameterizedClass.from(List.class, String.class));
+		try {
+			final JSONObject request = buildRequest("LIST_SUBSCRIPTIONS", null);
+			final JSONArray response = (JSONArray) send(request).get();
+			return Jsavon.converter.convert(response, ParameterizedClass.from(List.class, String.class));
+		} catch (InterruptedException e) {
+			return null;
+		} catch (ExecutionException e) {
+			throw new BinanceWebSocketException(e.getMessage());
+		}
+		
 	}
 	
 	public String getBaseUrl() {
@@ -303,10 +300,6 @@ public class BinanceWebSocket implements Closeable {
 	}
 	
 	//Setters
-	public void setTimeout(long timeout) {
-		this.timeout = timeout;
-	}	
-	
 	public void addOnJsonEvent(OnJson onJson) {
 		if (onJson == null)
 			return;

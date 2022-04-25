@@ -113,7 +113,6 @@ public class BinanceWebSocketPool implements Closeable {
 		while (this.sockets.size() < socketCount)
 			this.sockets.add(new BinanceWebSocket(baseUrl, listenKey, socketOnJson));
 		
-		BinanceWebSocket socket;
 		for (int index = 0; params != null; index++)
 			params = sockets.get(index).subscribe(params);
 	}
