@@ -35,11 +35,11 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 
 	//Methodes
 	public void subscribeInfo(Iterable<String> symbols) {
-		subscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
+		pool.subscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
 	public void unsubscribeInfo(Iterable<String> symbols) {
-		unsubscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
+		pool.unsubscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
 	public void subscribeInfo(String... symbols) {
@@ -51,7 +51,7 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 	}
 	
 	public void subscribeCandlestick(Iterable<String> symbols, Intervals interval) {
-		subscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
+		pool.subscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
 	public void subscribeCandlestick(Intervals interval, String... symbols) {
@@ -59,7 +59,7 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 	}
 	
 	public void unsubscribeCandlestick(Iterable<String> symbols, Intervals interval) {
-		unsubscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
+		pool.unsubscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
 	public void unsubscribeCandlestick(Intervals interval, String... symbols) {

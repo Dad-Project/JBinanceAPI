@@ -118,7 +118,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	
 	//Methodes
 	public void subscribeTrade(Iterable<String> symbols) {
-		subscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeTrade(String... symbols) {
@@ -126,7 +126,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void unsubscribeTrade(Iterable<String> symbols) {
-		unsubscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeTrade(String... symbols) {
@@ -134,11 +134,11 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeAggTrade(Iterable<String> symbols) {
-		subscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeAggTrade(Iterable<String> symbols) {
-		unsubscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeAggTrade(String... symbols) {
@@ -150,7 +150,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeCandlestick(Iterable<String> symbols, Intervals interval) {
-		subscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeCandlestick(Intervals interval, String... symbols) {
@@ -158,7 +158,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void unsubscribeCandlestick(Iterable<String> symbols, Intervals interval) {
-		unsubscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeCandlestick(Intervals interval, String... symbols) {
@@ -166,7 +166,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeMiniTicker(Iterable<String> symbols) {
-		subscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeMiniTicker(String... symbols) {
@@ -174,7 +174,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void unsubscribeMiniTicker(Iterable<String> symbols) {
-		unsubscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeMiniTicker(String... symbols) {
@@ -182,19 +182,19 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeMiniTickers() {
-		unsubscribe("!miniTicker@arr");
+		pool.unsubscribe("!miniTicker@arr");
 	}
 	
 	public void unsubscribeMiniTickers() {
-		subscribe("!miniTicker@arr");
+		pool.subscribe("!miniTicker@arr");
 	}
 	
 	public void subscribeTicker(Iterable<String> symbols) {
-		subscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeTicker(Iterable<String> symbols) {
-		unsubscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeTicker(String... symbols) {
@@ -206,19 +206,19 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeTickers() {
-		subscribe("!ticker@arr");
+		pool.subscribe("!ticker@arr");
 	}
 	
 	public void unsubscribeTickers() {
-		unsubscribe("!ticker@arr");
+		pool.unsubscribe("!ticker@arr");
 	}
 	
 	public void subscribeBookTicker(Iterable<String> symbol) {
-		subscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeBookTicker(Iterable<String> symbol) {
-		unsubscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeBookTicker(String... symbols) {
@@ -230,11 +230,11 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	public void subscribeBookTickers() {
-		subscribe("!bookTicker");
+		pool.subscribe("!bookTicker");
 	}
 	
 	public void unsubscribeBookTickers() {
-		unsubscribe("!bookTicker");
+		pool.unsubscribe("!bookTicker");
 	}
 	
 	public void subscribePartialDiffBookDepth(Iterable<String> symbols, int level, long updatePeriod) {
@@ -242,7 +242,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		subscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribePartialDiffBookDepth(Iterable<String> symbols, int level, long updatePeriod) {
@@ -250,7 +250,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		unsubscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribePartialDiffBookDepth(int level, long updatePeriod, String... symbols) {
@@ -268,13 +268,13 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	public void subscribeDiffBookDepth(Iterable<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		subscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		pool.subscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void unsubscribeDiffBookDepth(Iterable<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		unsubscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
+		pool.unsubscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
 	public void subscribeDiffBookDepth(long updatePeriod, String... symbols) {
