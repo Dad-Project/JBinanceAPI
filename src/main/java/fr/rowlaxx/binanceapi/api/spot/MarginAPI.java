@@ -23,13 +23,13 @@ public class MarginAPI {
 	//Methodes
 	public SpotUserStreamAPI crossuserstream() {
 		if (userstream == null)
-			userstream = new SpotUserStreamAPI(client.getHttpClient(), "/sapi/v1/userDataStream");
+			userstream = new SpotUserStreamAPI(client, "/sapi/v1/userDataStream");
 		return userstream;
 	}
 	
 	public SpotUserStreamAPI isolateduserstream() {
 		if (isolateduserstream == null)
-			isolateduserstream = new SpotUserStreamAPI(client.getHttpClient(), "/sapi/v1/userDataStream/isolated");
+			isolateduserstream = new SpotUserStreamAPI(client, "/sapi/v1/userDataStream/isolated");
 		return isolateduserstream;
 	}
 	

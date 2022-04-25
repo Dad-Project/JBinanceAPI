@@ -41,7 +41,7 @@ public final class SpotAPI {
 	
 	public SpotUserStreamAPI userstream() {
 		if (userstream == null)
-			userstream = new SpotUserStreamAPI(client.getHttpClient(), "/api/v3/userDataStream");
+			userstream = new SpotUserStreamAPI(client, "/api/v3/userDataStream");
 		return userstream;
 	}
 }
