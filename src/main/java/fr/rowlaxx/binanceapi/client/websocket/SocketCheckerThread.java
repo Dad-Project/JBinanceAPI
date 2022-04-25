@@ -19,7 +19,7 @@ public class SocketCheckerThread extends Thread {
 		try {
 			while (running) {
 				pool.checkSockets();
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			}
 		}catch(InterruptedException e) {
 			return;

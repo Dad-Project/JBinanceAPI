@@ -201,8 +201,9 @@ public class BinanceWebSocket implements Closeable {
 		subscribe(Arrays.asList(channel));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void unsubscribeAll() {
-		unsubscribe(this.subsriptions);
+		unsubscribe( (Iterable<String>) ((HashSet<String>)this.subsriptions).clone() ) ;
 	}
 
 	public synchronized void unsubscribe(Iterable<String> params) {
