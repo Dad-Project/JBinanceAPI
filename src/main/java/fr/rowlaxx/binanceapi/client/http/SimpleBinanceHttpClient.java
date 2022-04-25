@@ -157,8 +157,6 @@ class SimpleBinanceHttpClient {
 		if (request.addSignature() )
 			if (api.isGuest())
 				throw new BinanceHttpRequestException("Cannot sign this request as a guest.");
-			else if (!api.isLogged())
-				throw new BinanceHttpRequestException("Cannot sign this request. The client has not been logged. (invalid apikey or apisecret).");
 
 		final StringBuilder queryBuilder = new StringBuilder(256);
 

@@ -1,7 +1,5 @@
 package fr.rowlaxx.binanceapi.client;
 
-import java.io.IOException;
-
 import fr.rowlaxx.binanceapi.api.ApiImplementer;
 import fr.rowlaxx.binanceapi.api.coinm.CoinmAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
@@ -24,13 +22,7 @@ import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
 import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
-import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
-import fr.rowlaxx.binanceapi.exceptions.BinanceAPIException;
-import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
-import fr.rowlaxx.binanceapi.client.http.Parameters;
 
 public class BinanceClientImpl implements BinanceClient {
 	
@@ -57,7 +49,6 @@ public class BinanceClientImpl implements BinanceClient {
 	private SubAccountAPI subaccount = null;
 	private WalletAPI wallet = null;
 	
-	private Boolean logged = null;
 	private final BinanceCredenticals credenticals;
 	private final BinanceHttpClient httpClient;
 			
@@ -69,36 +60,6 @@ public class BinanceClientImpl implements BinanceClient {
 	BinanceClientImpl(BinanceCredenticals credenticals) {
 		this.credenticals = credenticals;
 		this.httpClient = new BinanceHttpClient(this);
-	}
-	
-	//Méthodes
-	@Override
-	public boolean login() throws IOException {
-		if ( isGuest() )
-			throw new BinanceAPIException("You cannot use this method as a guest.");
-		if (logged != null)
-			return logged;
-		
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/sapi/v1/capital/deposit/address", Method.GET)
-				.setParameter(Parameters.coin, "BTC")
-				.setBaseEndpoint(BaseEndpoints.SPOT.getUrls().get(0))
-				.setRecvWindow(60000l)
-				.build();
-		
-		synchronized (this) {
-			try{
-				this.logged = true;
-				httpClient.execute(request);
-				return true;
-			}catch(BinanceHttpClientException e) {
-				if (e.getCode() == -2008 || e.getCode() == -1022) {
-					this.logged = false;
-					return false;
-				}
-				this.logged = null;
-				throw e;
-			}
-		}
 	}
 	
 	//Getter
@@ -114,15 +75,6 @@ public class BinanceClientImpl implements BinanceClient {
 	@Override
 	public boolean isGuest() {
 		return credenticals == null;
-	}
-	
-	@Override
-	public boolean isLogged() {
-		if (isGuest())
-			throw new BinanceAPIException("You cannot use this method on a guest client.");
-		if (logged == null)
-			throw new BinanceAPIException("Please use the method BinanceClient.login() before calling this method.");
-		return logged;
 	}
 	
 	//Methodes

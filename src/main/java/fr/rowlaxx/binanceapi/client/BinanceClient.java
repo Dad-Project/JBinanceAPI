@@ -1,6 +1,5 @@
 package fr.rowlaxx.binanceapi.client;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import fr.rowlaxx.binanceapi.api.coinm.CoinmAPI;
@@ -42,8 +41,6 @@ public interface BinanceClient {
 		return new BinanceClientImpl(credenticals);
 	}
 
-	public boolean login() throws IOException;
-	public boolean isLogged();
 	public boolean isGuest();
 	public BinanceHttpClient getHttpClient();
 

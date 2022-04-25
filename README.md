@@ -89,11 +89,7 @@ or
 ```java
 BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 ```
-### Login
- 
-```java
-client.login(); //For testing your credenticals
-```
+
 ## Placing an order
 
 ```java
@@ -144,7 +140,7 @@ client.spot().marketstream().addOnTradeEvent( (String symbol, SpotStreamTrade tr
 
 Then use
 ```java
-client.spot().stream().subscribeTrade("btcusdt");
+client.spot().marketstream().subscribeTrade("btcusdt");
 ```
 
 # Donation
