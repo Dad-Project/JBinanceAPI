@@ -16,6 +16,7 @@ import fr.rowlaxx.binanceapi.core.spot.marketdata.SpotTickerStatistics;
 import fr.rowlaxx.binanceapi.core.spot.marketstream.SpotStreamCandlestick;
 import fr.rowlaxx.binanceapi.core.spot.marketstream.SpotStreamTrade;
 import fr.rowlaxx.jsavon.Jsavon;
+import fr.rowlaxx.utils.IterableArray;
 
 public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 
@@ -116,92 +117,92 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	//Methodes
-	public void subscribeTrade(List<String> symbols) {
+	public void subscribeTrade(Iterable<String> symbols) {
 		subscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeTrade(String symbol) {
-		subscribe(symbol.toLowerCase() + "@trade");
+	public void subscribeTrade(String... symbols) {
+		subscribeTrade(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeTrade(List<String> symbols) {
+	public void unsubscribeTrade(Iterable<String> symbols) {
 		unsubscribe(append(symbols, "@trade", AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeTrade(String symbol) {
-		unsubscribe(symbol.toLowerCase() + "@trade");
+	public void unsubscribeTrade(String... symbols) {
+		unsubscribeTrade(new IterableArray<>(symbols));
 	}
 	
-	public void subscribeAggTrade(List<String> symbols) {
+	public void subscribeAggTrade(Iterable<String> symbols) {
 		subscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeAggTrade(List<String> symbols) {
+	public void unsubscribeAggTrade(Iterable<String> symbols) {
 		unsubscribe(append(symbols, "@aggTrade", AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeAggTrade(String symbol) {
-		subscribe(symbol.toLowerCase() + "@aggTrade");
+	public void subscribeAggTrade(String... symbols) {
+		subscribeAggTrade(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeAggTrade(String symbol) {
-		unsubscribe(symbol.toLowerCase() + "@aggTrade");
+	public void unsubscribeAggTrade(String... symbols) {
+		subscribeAggTrade(new IterableArray<>(symbols));
 	}
 	
-	public void subscribeCandlestick(List<String> symbols, Intervals interval) {
+	public void subscribeCandlestick(Iterable<String> symbols, Intervals interval) {
 		subscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeCandlestick(String symbol, Intervals interval) {
-		subscribe(symbol.toLowerCase() + "@kline_" + interval);
+	public void subscribeCandlestick(Intervals interval, String... symbols) {
+		subscribeCandlestick(new IterableArray<>(symbols), interval);
 	}
 	
-	public void unsubscribeCandlestick(List<String> symbols, Intervals interval) {
+	public void unsubscribeCandlestick(Iterable<String> symbols, Intervals interval) {
 		unsubscribe(append(symbols, "@kline_" + interval, AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeCandlestick(String symbol, Intervals interval) {
-		unsubscribe(symbol.toLowerCase() + "@kline_" + interval);
+	public void unsubscribeCandlestick(Intervals interval, String... symbols) {
+		unsubscribeCandlestick(new IterableArray<>(symbols), interval);
 	}
 	
-	public void subscribeMiniTicker(List<String> symbols) {
+	public void subscribeMiniTicker(Iterable<String> symbols) {
 		subscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeMiniTicker(String symbol) {
-		subscribe(symbol.toLowerCase() + "@miniTicker");
+	public void subscribeMiniTicker(String... symbols) {
+		subscribeMiniTicker(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeMiniTicker(List<String> symbols) {
+	public void unsubscribeMiniTicker(Iterable<String> symbols) {
 		unsubscribe(append(symbols, "@miniTicker", AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeMiniTicker(String symbol) {
-		unsubscribe(symbol.toLowerCase() + "@miniTicker");
+	public void unsubscribeMiniTicker(String... symbols) {
+		unsubscribeMiniTicker(new IterableArray<>(symbols));
 	}
 	
 	public void subscribeMiniTickers() {
-		subscribe("!miniTicker@arr");
-	}
-	
-	public void unsubscribeMiniTickers() {
 		unsubscribe("!miniTicker@arr");
 	}
 	
-	public void subscribeTicker(List<String> symbols) {
+	public void unsubscribeMiniTickers() {
+		subscribe("!miniTicker@arr");
+	}
+	
+	public void subscribeTicker(Iterable<String> symbols) {
 		subscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeTicker(List<String> symbols) {
+	public void unsubscribeTicker(Iterable<String> symbols) {
 		unsubscribe(append(symbols, "@ticker", AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeTicker(String symbol) {
-		subscribe(symbol.toLowerCase() + "@ticker");
+	public void subscribeTicker(String... symbols) {
+		subscribeTicker(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeTicker(String symbol) {
-		unsubscribe(symbol.toLowerCase() + "@ticker");
+	public void unsubscribeTicker(String... symbols) {
+		unsubscribeTicker(new IterableArray<>(symbols));
 	}
 	
 	public void subscribeTickers() {
@@ -212,20 +213,20 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 		unsubscribe("!ticker@arr");
 	}
 	
-	public void subscribeBookTicker(List<String> symbol) {
+	public void subscribeBookTicker(Iterable<String> symbol) {
 		subscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeBookTicker(List<String> symbol) {
+	public void unsubscribeBookTicker(Iterable<String> symbol) {
 		unsubscribe(append(symbol, "@bookTicker", AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeBookTicker(String symbol) {
-		subscribe(symbol.toLowerCase() + "@bookTicker");
+	public void subscribeBookTicker(String... symbols) {
+		subscribeBookTicker(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeBookTicker(String symbol) {
-		unsubscribe(symbol.toLowerCase() + "@bookTicker");
+	public void unsubscribeBookTicker(String... symbols) {
+		unsubscribeBookTicker(new IterableArray<>(symbols));
 	}
 	
 	public void subscribeBookTickers() {
@@ -236,7 +237,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 		unsubscribe("!bookTicker");
 	}
 	
-	public void subscribePartialDiffBookDepth(List<String> symbols, int level, long updatePeriod) {
+	public void subscribePartialDiffBookDepth(Iterable<String> symbols, int level, long updatePeriod) {
 		if (level != 5 && level != 10 && level != 20)
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
@@ -244,7 +245,7 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 		subscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribePartialDiffBookDepth(List<String> symbols, int level, long updatePeriod) {
+	public void unsubscribePartialDiffBookDepth(Iterable<String> symbols, int level, long updatePeriod) {
 		if (level != 5 && level != 10 && level != 20)
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
@@ -252,44 +253,36 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 		unsubscribe(append(symbols, "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribePartialDiffBookDepth(String symbol, int level, long updatePeriod) {
+	public void subscribePartialDiffBookDepth(int level, long updatePeriod, String... symbols) {
+		subscribePartialDiffBookDepth(new IterableArray<>(symbols), level, updatePeriod);
+	}
+	
+	public void unsubscribePartialDiffBookDepth(int level, long updatePeriod, String... symbols) {
 		if (level != 5 && level != 10 && level != 20)
 			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		subscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
+		unsubscribePartialDiffBookDepth(new IterableArray<>(symbols), level, updatePeriod);
 	}
 	
-	public void unsubscribePartialDiffBookDepth(String symbol, int level, long updatePeriod) {
-		if (level != 5 && level != 10 && level != 20)
-			throw new IllegalArgumentException("level must be either 5, 10 or 20.");
-		if (updatePeriod != 1000 && updatePeriod != 100)
-			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		unsubscribe(symbol.toLowerCase() + "@depth" + level + (updatePeriod == 100 ? "@100ms" : ""));
-	}
-	
-	public void subscribeDiffBookDepth(List<String> symbols, long updatePeriod) {
+	public void subscribeDiffBookDepth(Iterable<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
 		subscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
-	public void unsubscribeDiffBookDepth(List<String> symbols, long updatePeriod) {
+	public void unsubscribeDiffBookDepth(Iterable<String> symbols, long updatePeriod) {
 		if (updatePeriod != 1000 && updatePeriod != 100)
 			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
 		unsubscribe(append(symbols, "@depth" + (updatePeriod == 100 ? "@100ms" : ""), AppendMode.LOWER_CASE));
 	}
 	
-	public void subscribeDiffBookDepth(String symbol, long updatePeriod) {
-		if (updatePeriod != 1000 && updatePeriod != 100)
-			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		subscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
+	public void subscribeDiffBookDepth(long updatePeriod, String... symbols) {
+		subscribeDiffBookDepth(new IterableArray<>(symbols), updatePeriod);
 	}
 	
-	public void unsubscribeDiffBookDepth(String symbol, long updatePeriod) {
-		if (updatePeriod != 1000 && updatePeriod != 100)
-			throw new IllegalArgumentException("updatePeriod must be 100 or 1000.");
-		unsubscribe(symbol.toLowerCase() + "@depth" + (updatePeriod == 100 ? "@100ms" : ""));
+	public void unsubscribeDiffBookDepth(long updatePeriod, String... symbols) {
+		unsubscribeDiffBookDepth(new IterableArray<>(symbols), updatePeriod);
 	}
 	
 	
