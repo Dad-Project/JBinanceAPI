@@ -348,9 +348,7 @@ public class BinanceWebSocket implements Closeable {
 	}
 
 	public void setListenKey(String listenKey) {
-		Objects.requireNonNull(listenKey, "listenKey may not be null.");
-		
-		if (this.listenKey.equals(listenKey))
+		if (Objects.equals(listenKey, this.listenKey))
 			return;
 		
 		this.listenKey = listenKey;

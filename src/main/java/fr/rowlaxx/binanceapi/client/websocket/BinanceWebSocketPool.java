@@ -178,6 +178,11 @@ public class BinanceWebSocketPool implements Closeable {
 		return onJson;
 	}
 	
+	void addSocket(int count) {
+		for (int i = 0 ; i < count ; i++)
+			sockets.add(new BinanceWebSocket(baseUrl, listenKey, socketOnJson));
+	}
+	
 	//Setters
 	public void addOnJsonEvent(OnJson onJson) {
 		if (onJson == null)
@@ -186,7 +191,7 @@ public class BinanceWebSocketPool implements Closeable {
 	}
 	
 	public synchronized boolean setListenKey(String listenKey) {
-		if (this.listenKey.equals(listenKey))
+		if (Objects.equals(listenKey, this.listenKey))
 			return false;
 		this.listenKey = listenKey;
 		for (BinanceWebSocket socket : sockets)

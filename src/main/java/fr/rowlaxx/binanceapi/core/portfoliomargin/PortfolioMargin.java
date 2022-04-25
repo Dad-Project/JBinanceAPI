@@ -1,6 +1,5 @@
 package fr.rowlaxx.binanceapi.core.portfoliomargin;
 
-import fr.rowlaxx.jsavon.Jsavon;
 import fr.rowlaxx.jsavon.JsavonObject;
 
 public class PortfolioMargin extends JsavonObject {

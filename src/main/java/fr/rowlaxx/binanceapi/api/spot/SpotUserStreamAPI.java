@@ -7,7 +7,7 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.api.Api;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
+import fr.rowlaxx.binanceapi.client.BinanceClient;
 import fr.rowlaxx.binanceapi.client.websocket.UserStreamAPI;
 import fr.rowlaxx.binanceapi.core.Asset;
 import fr.rowlaxx.binanceapi.core.spot.userstream.BalanceUpdate;
@@ -20,7 +20,7 @@ public class SpotUserStreamAPI extends UserStreamAPI implements Api.Spot {
 	
 	//Interfaces
 	public static interface OnAccountUpdate {
-		public void onAccountUpdate(long lastUpdate, Map<String, Asset> account);
+		public void onAccountUpdate(long lastUpdate, Map<String, Asset> newBalance);
 	}
 	
 	public static interface OnBalanceUpdate {
@@ -37,8 +37,8 @@ public class SpotUserStreamAPI extends UserStreamAPI implements Api.Spot {
 	private final List<OnOrderUpdate> onOrderUpdate = new LinkedList<>();
 	
 	//Constructeurs
-	public SpotUserStreamAPI(BinanceHttpClient httpClient, String endpoint) {
-		super("wss://stream.binance.com:9443", httpClient, endpoint);
+	public SpotUserStreamAPI(BinanceClient client, String endpoint) {
+		super("wss://stream.binance.com:9443", client, endpoint);
 	}
 
 	@Override
