@@ -334,7 +334,11 @@ public class BinanceWebSocket implements Closeable {
 			return true;
 		try{
 			this.websocket.join();
-			return lastPing - lastPong > timeout;
+			if (websocket().isInputClosed() || websocket().isOutputClosed())
+				return true;
+			if (lastPing - lastPong > timeout)
+				return true;
+			return false;
 		}catch(CompletionException e) {
 			return true;
 		}
