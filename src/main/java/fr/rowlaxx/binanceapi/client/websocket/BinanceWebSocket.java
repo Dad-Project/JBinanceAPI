@@ -43,9 +43,9 @@ public class BinanceWebSocket implements Closeable {
 
 	//Variables
 	private final String baseUrl;
-	private final String listenKey;
-	private final URI uri;
-
+	private URI uri;
+	private String listenKey;
+	
 	private final List<OnJson> onJson = new LinkedList<>();
 	private CompletableFuture<WebSocket> websocket;
 
@@ -61,15 +61,7 @@ public class BinanceWebSocket implements Closeable {
 	//Constructeurs
 	public BinanceWebSocket(String baseUrl, String listenKey) {
 		this.baseUrl = Objects.requireNonNull(baseUrl, "baseUrl may not be null.");
-		this.listenKey = listenKey;
-
-		try {
-			this.uri = new URI(baseUrl + "/ws/" + (listenKey == null ? UUID.randomUUID().toString().replaceAll("-", "") : listenKey));
-		}catch(URISyntaxException e) {
-			throw new BinanceWebSocketException(e.getMessage());
-		}
-
-		buildWebSocketAsync();
+		setListenKey(listenKey);
 	}
 
 	public BinanceWebSocket(String baseUrl) {
@@ -355,6 +347,21 @@ public class BinanceWebSocket implements Closeable {
 		this.timeout = timeout;
 	}
 
+	public void setListenKey(String listenKey) {
+		Objects.requireNonNull(listenKey, "listenKey may not be null.");
+		
+		if (this.listenKey.equals(listenKey))
+			return;
+		
+		this.listenKey = listenKey;
+		try {
+			this.uri = new URI(baseUrl + "/ws/" + (listenKey == null ? UUID.randomUUID().toString().replaceAll("-", "") : listenKey));
+		}catch(URISyntaxException e) {
+			throw new BinanceWebSocketException(e.getMessage());
+		}
+		reconnect();
+	}
+	
 	void onPong() {
 		this.lastPong = System.currentTimeMillis();
 	}

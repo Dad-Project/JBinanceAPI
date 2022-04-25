@@ -1,8 +1,7 @@
 package fr.rowlaxx.binanceapi.client.websocket;
 
 import java.io.Closeable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Objects;
 
 import org.json.JSONObject;
@@ -12,12 +11,12 @@ import fr.rowlaxx.binanceapi.api.Api;
 public abstract class StreamAPI implements Api.WebSocket, Closeable {
 
 	//Variables
-	private BinanceWebSocketPool pool;
+	private final BinanceWebSocketPool pool;
 	
 	protected static enum AppendMode {LOWER_CASE, UPPER_CASE, KEEP; }
 	
-	protected static final List<String> append(List<String> list, String suffix, AppendMode mode){
-		final ArrayList<String> bak = new ArrayList<>(list.size());
+	protected static final Iterable<String> append(Iterable<String> list, String suffix, AppendMode mode){
+		final LinkedList<String> bak = new LinkedList<>();
 		for(String s : list)
 			if (mode == AppendMode.KEEP)
 				bak.add(s + suffix);
@@ -26,6 +25,18 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 			else
 				bak.add(s.toUpperCase() + suffix);
 		return bak;
+	}
+	
+	protected static final String[] append(String[] params, String suffix, AppendMode mode) {
+		String[] tab = new String[params.length];
+		for (int i = 0 ; i < params.length ; i++)
+			if (mode == AppendMode.KEEP)
+				tab[i] = params[i] + suffix;
+			else if (mode == AppendMode.LOWER_CASE)
+				tab[i] = params[i].toLowerCase() + suffix;
+			else
+				tab[i] = params[i].toUpperCase() + suffix;
+		return tab;
 	}
 	
 	//Constructeurs
@@ -44,18 +55,14 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 	
 	public abstract void clearEvents();
 	protected abstract void onJson(JSONObject json);
-
-	protected void setNewWebSocketPool(BinanceWebSocketPool pool) {
-		this.pool = Objects.requireNonNull(pool, "pool may not be null.");
-	}
 	
 	@Override
 	public void close() {
 		pool.close();
 	}
 	
-	public void reconnect() {
-		pool.checkSockets();
+	protected void setListenKey(String listenKey) {
+		pool.setListenKey(listenKey);
 	}
 	
 	protected void unsubscribeAll() {
@@ -66,19 +73,11 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 		pool.subscribe(channels);
 	}
 	
-	protected void subscribe(String[] channels) {
-		pool.subscribe(channels);
-	}
-	
 	protected void subscribe(String channel) {
 		pool.subscribe(channel);
 	}
 	
 	protected void unsubscribe(Iterable<String> channels) {
-		pool.unsubscribe(channels);
-	}
-	
-	protected void unsubscribe(String[] channels) {
 		pool.unsubscribe(channels);
 	}
 	

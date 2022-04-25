@@ -15,7 +15,7 @@ public class BinanceWebSocketPool implements Closeable {
 
 	//Variables
 	private final String baseUrl;
-	private final String listenKey;
+	private String listenKey;
 	
 	private final List<BinanceWebSocket> sockets = new ArrayList<>();
 	private final LinkedList<JSONObject> responses = new LinkedList<>();
@@ -125,16 +125,16 @@ public class BinanceWebSocketPool implements Closeable {
 		subscribe(Arrays.asList(param));
 	}
 	
-	public void unsubscribe(Iterable<String> params) {
+	public synchronized void unsubscribe(Iterable<String> params) {
 		for (BinanceWebSocket socket : sockets)
 			socket.unsubscribe(params);
 	}
 	
-	public void unsubscribe(String[] params) {
+	public synchronized void unsubscribe(String[] params) {
 		unsubscribe(Arrays.asList(params));
 	}
 	
-	public void unsubscribe(String param) {
+	public synchronized void unsubscribe(String param) {
 		unsubscribe(Arrays.asList(param));
 	}
 	
@@ -178,10 +178,20 @@ public class BinanceWebSocketPool implements Closeable {
 		return onJson;
 	}
 	
+	//Setters
 	public void addOnJsonEvent(OnJson onJson) {
 		if (onJson == null)
 			return;
 		this.onJson.add(onJson);
+	}
+	
+	public synchronized boolean setListenKey(String listenKey) {
+		if (this.listenKey.equals(listenKey))
+			return false;
+		this.listenKey = listenKey;
+		for (BinanceWebSocket socket : sockets)
+			socket.setListenKey(listenKey);
+		return true;
 	}
 	
 }

@@ -1,6 +1,5 @@
 package fr.rowlaxx.binanceapi.api.spot;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -8,63 +7,16 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.api.Api;
-import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
-import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
-import fr.rowlaxx.binanceapi.client.http.Parameters;
-import fr.rowlaxx.binanceapi.client.websocket.StreamAPI;
+import fr.rowlaxx.binanceapi.client.websocket.UserStreamAPI;
 import fr.rowlaxx.binanceapi.core.Asset;
 import fr.rowlaxx.binanceapi.core.spot.userstream.BalanceUpdate;
 import fr.rowlaxx.binanceapi.core.spot.userstream.OrderUpdate;
-import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
 import fr.rowlaxx.convertutils.MapKeyType;
 import fr.rowlaxx.jsavon.Jsavon;
 import fr.rowlaxx.utils.ParameterizedClass;
 
-public class SpotUserStreamAPI extends StreamAPI implements Api.Spot {
-
-	//Methodes
-	private static String getListenKey(BinanceHttpClient httpClient, String endpoint) {
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder(endpoint, Method.GET)
-				.addSignature(true)
-				.setBaseEndpoint(BaseEndpoints.SPOT)
-				.build();
-		
-		try {
-			return ((JSONObject)httpClient.execute(request)).getString("listenKey");
-		} catch (IOException e) {
-			throw new BinanceHttpClientException(e.getMessage());
-		}
-	}
-	
-	private static void putListenKey(BinanceHttpClient httpClient, String endpoint, String listenKey) {
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder(endpoint, Method.PUT)
-				.addSignature(true)
-				.setBaseEndpoint(BaseEndpoints.SPOT)
-				.addParameter(Parameters.listenKey, listenKey)
-				.build();
-		
-		try {
-			httpClient.execute(request);
-		} catch (IOException e) {
-			throw new BinanceHttpClientException(e.getMessage());
-		}
-	}
-	
-	private static void deleteListenKey(BinanceHttpClient httpClient, String endpoint, String listenKey) {
-		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder(endpoint, Method.DELETE)
-				.addSignature(true)
-				.setBaseEndpoint(BaseEndpoints.SPOT)
-				.addParameter(Parameters.listenKey, listenKey)
-				.build();
-		
-		try {
-			httpClient.execute(request);
-		} catch (IOException e) {
-			throw new BinanceHttpClientException(e.getMessage());
-		}
-	}
+public class SpotUserStreamAPI extends UserStreamAPI implements Api.Spot {
 	
 	//Interfaces
 	public static interface OnAccountUpdate {
@@ -80,18 +32,13 @@ public class SpotUserStreamAPI extends StreamAPI implements Api.Spot {
 	}
 	
 	//Variables
-	private final BinanceHttpClient httpClient;
-	private final String endpoint;
-	
 	private final List<OnAccountUpdate> onAccountUpdate = new LinkedList<>();
 	private final List<OnBalanceUpdate> onBalanceUpdate = new LinkedList<>();
 	private final List<OnOrderUpdate> onOrderUpdate = new LinkedList<>();
 	
 	//Constructeurs
 	public SpotUserStreamAPI(BinanceHttpClient httpClient, String endpoint) {
-		super("wss://stream.binance.com:9443", getListenKey(httpClient, endpoint));
-		this.endpoint = endpoint;
-		this.httpClient = httpClient;
+		super("wss://stream.binance.com:9443", httpClient, endpoint);
 	}
 
 	@Override
@@ -123,12 +70,7 @@ public class SpotUserStreamAPI extends StreamAPI implements Api.Spot {
 		}
 	}
 	
-	@Override
-	public void close() {
-		deleteListenKey(httpClient, endpoint, getListenKey());
-		super.close();
-	}
-	
+	//Methodes events
 	public void addOnAccountUpdateEvent(OnAccountUpdate event) {
 		if (event == null)
 			return;
