@@ -11,6 +11,7 @@ import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.binanceapi.core.blvt.BlvtCandlestick;
 import fr.rowlaxx.binanceapi.core.blvt.BlvtInfoStream;
 import fr.rowlaxx.jsavon.Jsavon;
+import fr.rowlaxx.utils.IterableArray;
 
 public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 
@@ -33,36 +34,36 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 	}
 
 	//Methodes
-	public void subscribeInfo(List<String> symbols) {
+	public void subscribeInfo(Iterable<String> symbols) {
 		subscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
-	public void unsubscribeInfo(List<String> symbols) {
+	public void unsubscribeInfo(Iterable<String> symbols) {
 		unsubscribe(append(symbols, "@tokenNav", AppendMode.UPPER_CASE));
 	}
 	
-	public void subscribeInfo(String symbol) {
-		subscribe(symbol.toUpperCase() + "@tokenNav");
+	public void subscribeInfo(String... symbols) {
+		subscribeInfo(new IterableArray<>(symbols));
 	}
 	
-	public void unsubscribeInfo(String symbol) {
-		unsubscribe(symbol.toUpperCase() + "@tokenNav");
+	public void unsubscribeInfo(String... symbols) {
+		unsubscribeInfo(new IterableArray<>(symbols));
 	}
 	
-	public void subscribeCandlestick(List<String> symbols, Intervals interval) {
+	public void subscribeCandlestick(Iterable<String> symbols, Intervals interval) {
 		subscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
-	public void subscribeCandlestick(String symbol, Intervals interval) {
-		subscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
+	public void subscribeCandlestick(Intervals interval, String... symbols) {
+		subscribeCandlestick(new IterableArray<>(symbols), interval);
 	}
 	
-	public void unsubscribeCandlestick(List<String> symbols, Intervals interval) {
+	public void unsubscribeCandlestick(Iterable<String> symbols, Intervals interval) {
 		unsubscribe(append(symbols, "@nav_kline_" + interval, AppendMode.UPPER_CASE));
 	}
 	
-	public void unsubscribeCandlestick(String symbol, Intervals interval) {
-		unsubscribe(symbol.toUpperCase() + "@nav_kline_" + interval);
+	public void unsubscribeCandlestick(Intervals interval, String... symbols) {
+		unsubscribeCandlestick(new IterableArray<>(symbols), interval);
 	}
 	
 	
