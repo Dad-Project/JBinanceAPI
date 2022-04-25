@@ -11,7 +11,7 @@ import fr.rowlaxx.binanceapi.api.Api;
 public abstract class StreamAPI implements Api.WebSocket, Closeable {
 
 	//Variables
-	private final BinanceWebSocketPool pool;
+	protected final BinanceWebSocketPool pool;
 	
 	protected static enum AppendMode {LOWER_CASE, UPPER_CASE, KEEP; }
 	
@@ -61,28 +61,8 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 		pool.close();
 	}
 	
-	protected void setListenKey(String listenKey) {
-		pool.setListenKey(listenKey);
-	}
-	
-	protected void unsubscribeAll() {
-		pool.unsubscribeAll();
-	}
-	
-	protected void subscribe(Iterable<String> channels) {
-		pool.subscribe(channels);
-	}
-	
-	protected void subscribe(String channel) {
-		pool.subscribe(channel);
-	}
-	
-	protected void unsubscribe(Iterable<String> channels) {
-		pool.unsubscribe(channels);
-	}
-	
-	protected void unsubscribe(String channel) {
-		pool.unsubscribe(channel);
+	protected boolean setListenKey(String listenKey) {
+		return pool.setListenKey(listenKey);
 	}
 	
 	public String getBaseUrl() {
