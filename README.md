@@ -130,7 +130,7 @@ Let's suppose we want to print each BTCUSDT trades using websockets.
 
 With interface implementation : 
 ```java
-client.spot().stream().addOnTradeEvent(new OnTrade() {
+client.spot().marketstream().addOnTradeEvent(new OnTrade() {
 	@Override
 	public void onTrade(String symbol, SpotStreamTrade trade) {
 		System.out.println(trade);
@@ -139,7 +139,7 @@ client.spot().stream().addOnTradeEvent(new OnTrade() {
 ```
 Or, with lamba expressions :
 ```java		
-client.spot().stream().addOnTradeEvent( (String symbol, SpotStreamTrade trade) -> System.out.println(trade) );
+client.spot().marketstream().addOnTradeEvent( (String symbol, SpotStreamTrade trade) -> System.out.println(trade) );
 ```
 
 Then use

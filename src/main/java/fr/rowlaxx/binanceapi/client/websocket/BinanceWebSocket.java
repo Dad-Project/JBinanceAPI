@@ -23,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.rowlaxx.binanceapi.exceptions.BinanceWebSocketException;
+import fr.rowlaxx.jsavon.Jsavon;
+import fr.rowlaxx.utils.ParameterizedClass;
 
 public class BinanceWebSocket implements Closeable {
 
@@ -36,7 +38,7 @@ public class BinanceWebSocket implements Closeable {
 	private final URI uri;
 	
 	private final List<OnJson> onJson = new LinkedList<>();
-	private WebSocket websocket;
+	private CompletableFuture<WebSocket> websocket;
 	
 	
 	private final Set<String> subsriptions = new HashSet<>(MAX_SUBSCRIPTION);
@@ -59,7 +61,7 @@ public class BinanceWebSocket implements Closeable {
 			throw new BinanceWebSocketException(e.getMessage());
 		}
 		
-		initWebSocket();
+		buildWebSocketAsync();
 	}
 	
 	public BinanceWebSocket(String baseUrl) {
@@ -76,20 +78,11 @@ public class BinanceWebSocket implements Closeable {
 		addOnJsonEvent(onJson);
 	}
 	
-	private synchronized void initWebSocket() {
+	private synchronized void buildWebSocketAsync() {
 		if (websocket != null)
 			throw new IllegalStateException("A websocket already exists.");
 		
-		final CompletableFuture<WebSocket> cf = HttpClient.newHttpClient().newWebSocketBuilder().buildAsync(uri, new WebSocketListener(this));
-		new Thread(() -> {
-			try {
-				this.websocket = cf.get();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			}
-		}, "WebSocketBuilder" ).start();
+		this.websocket = HttpClient.newHttpClient().newWebSocketBuilder().buildAsync(uri, new WebSocketListener(this));
 	}
 
 	//Methodes
@@ -107,7 +100,7 @@ public class BinanceWebSocket implements Closeable {
 	}
 	
 	
-	private Object send(JSONObject json) {
+	private CompletableFuture<Object> send(JSONObject json) {
 		final int id = json.getInt("id");
 		final CompletableFuture<JSONObject> future = new CompletableFuture<>();
 		
@@ -116,11 +109,7 @@ public class BinanceWebSocket implements Closeable {
 				pendingResponse.put(id, future);
 			}
 			
-			try{
-				websocket.sendText(json.toString(), true).get();
-			}catch(ExecutionException e) {
-				throw new BinanceWebSocketException("Unable to send the JSON : " + e.getCause().getMessage());
-			}
+			websocket().sendText(json.toString(), true);
 			
 			try {
 				final JSONObject response =  future.get(timeout, TimeUnit.MILLISECONDS);
@@ -239,6 +228,16 @@ public class BinanceWebSocket implements Closeable {
 	public void unsubscribe(String param) {
 		unsubscribe(Arrays.asList(param));
 	}
+	
+	private WebSocket websocket() {
+		try {
+			return this.websocket.get();
+		} catch (InterruptedException e) {
+			return null;
+		} catch(ExecutionException e) {
+			throw new BinanceWebSocketException("The websocket could not be created : " + e);
+		}
+	}
 
 	//Methodes reecrites
 	@Override
@@ -246,15 +245,15 @@ public class BinanceWebSocket implements Closeable {
 		if (this.websocket == null)
 			return;
 		
-		this.websocket.sendClose(WebSocket.NORMAL_CLOSURE, "ok");
-		this.websocket.abort();
+		websocket().sendClose(WebSocket.NORMAL_CLOSURE, "ok");
+		websocket().abort();
 		this.websocket = null;
 	}
 	
 	private synchronized boolean reconnect() {
 		try {
 			close();
-			initWebSocket();
+			buildWebSocketAsync();
 			forceResubscribe();
 			return true;
 		}catch(BinanceWebSocketException e) {
@@ -269,7 +268,7 @@ public class BinanceWebSocket implements Closeable {
 		
 		if (websocket == null)
 			return reconnect();
-		else if (websocket.isInputClosed() || websocket.isOutputClosed())
+		else if (websocket().isInputClosed() || websocket().isOutputClosed())
 			return reconnect();
 		return false;
 	}
@@ -287,6 +286,12 @@ public class BinanceWebSocket implements Closeable {
 	
 	public int getSubscribtionCount() {
 		return subsriptions.size();
+	}
+	
+	public List<String> listSubscriptions() {
+		final JSONObject request = buildRequest("LIST_SUBSCRIPTIONS", null);
+		final JSONArray response = (JSONArray) send(request).get();
+		return Jsavon.converter.convert(response, ParameterizedClass.from(List.class, String.class));
 	}
 	
 	public String getBaseUrl() {

@@ -102,19 +102,20 @@ public class BinanceWebSocketPool implements Closeable {
 	}
 	
 	public synchronized void subscribe(Iterable<String> params) {
-		int index = 0;
-		BinanceWebSocket socket;
+		int new_ = 0;
+		for (String param : params)
+			if (!isSubscribed(param))
+				new_++;
 		
-		while (params != null) {
-			try {
-				socket = sockets.get(index++);
-			}catch(IndexOutOfBoundsException e){
-				socket = new BinanceWebSocket(baseUrl, listenKey, socketOnJson);
-				sockets.add(socket);
-			}
-			
-			params = socket.subscribe(params);
-		}
+		final int total = new_ + getSubscribtionCount();
+		final int socketCount = total / BinanceWebSocket.MAX_SUBSCRIPTION + (total % BinanceWebSocket.MAX_SUBSCRIPTION == 0 ? 0 : 1);
+		
+		while (this.sockets.size() < socketCount)
+			this.sockets.add(new BinanceWebSocket(baseUrl, listenKey, socketOnJson));
+		
+		BinanceWebSocket socket;
+		for (int index = 0; params != null; index++)
+			params = sockets.get(index).subscribe(params);
 	}
 	
 	public synchronized void subscribe(String[] params) {
