@@ -1,16 +1,10 @@
 package fr.rowlaxx.binanceapi.client;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
-import fr.rowlaxx.binanceapi.api.Api;
 import fr.rowlaxx.binanceapi.api.ApiImplementer;
 import fr.rowlaxx.binanceapi.api.coinm.CoinmAPI;
-import fr.rowlaxx.binanceapi.api.coinm.CoinmMarketDataAPI;
-import fr.rowlaxx.binanceapi.api.coinm.CoinmTradeAPI;
 import fr.rowlaxx.binanceapi.api.options.OptionsAPI;
-import fr.rowlaxx.binanceapi.api.options.OptionsQuotingAPI;
-import fr.rowlaxx.binanceapi.api.options.OptionsTradeAPI;
 import fr.rowlaxx.binanceapi.api.spot.BLVTAPI;
 import fr.rowlaxx.binanceapi.api.spot.BSwapAPI;
 import fr.rowlaxx.binanceapi.api.spot.C2CAPI;
@@ -30,15 +24,12 @@ import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
 import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
-import fr.rowlaxx.binanceapi.api.usdm.UsdmMarketDataAPI;
-import fr.rowlaxx.binanceapi.api.usdm.UsdmTradeAPI;
 import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpClient;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.exceptions.BinanceAPIException;
 import fr.rowlaxx.binanceapi.exceptions.BinanceHttpClientException;
-import fr.rowlaxx.utils.ReflectionUtils;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 
 public class BinanceClientImpl implements BinanceClient {
@@ -47,35 +38,24 @@ public class BinanceClientImpl implements BinanceClient {
 	private SpotAPI spot = null;
 	private BLVTAPI blvt = null;
 	private MarginAPI margin = null;
-
-	private CoinmAPI coinm;
-	private CoinmMarketDataAPI coinmMarket;
-	private CoinmTradeAPI coinmTrade;
-	
-	private UsdmAPI usdm;
-	private UsdmTradeAPI usdmTrade;
-	private UsdmMarketDataAPI usdmMarket;
-	
-	private OptionsAPI options;
-	private OptionsQuotingAPI optionsQuoting;
-	private OptionsTradeAPI optionsTrade;
-	
-	
-	private BSwapAPI bswap;
-	private C2CAPI c2c;
-	private ConvertAPI convert;
-	private CryptoLoansAPI cryptoloans;
-	private FiatAPI fiat;
-	private FuturesAPI futures;
-	private FuturesAlgoAPI futuresalgo;
-	private GiftcardAPI giftcard;
-	private MiningAPI mining;
-	private NFTAPI nft;
-	private PayAPI pay;
-	private RebateAPI rebate;
-	private SavingsAPI savings;
-	private SubAccountAPI subaccount;
-	private WalletAPI wallet;
+	private UsdmAPI usdm = null;
+	private CoinmAPI coinm = null;
+	private OptionsAPI options = null;
+	private BSwapAPI bswap = null;
+	private C2CAPI c2c = null;
+	private ConvertAPI convert = null;
+	private CryptoLoansAPI cryptoloans = null;
+	private FiatAPI fiat = null;
+	private FuturesAPI futures = null;
+	private FuturesAlgoAPI futuresalgo = null;
+	private GiftcardAPI giftcard = null;
+	private MiningAPI mining = null;
+	private NFTAPI nft = null;
+	private PayAPI pay = null;
+	private RebateAPI rebate = null;
+	private SavingsAPI savings = null;
+	private SubAccountAPI subaccount = null;
+	private WalletAPI wallet = null;
 	
 	private Boolean logged = null;
 	private final BinanceCredenticals credenticals;
@@ -86,25 +66,9 @@ public class BinanceClientImpl implements BinanceClient {
 		this(new BinanceCredenticals(apiKey, apiSecret));
 	}
 	
-	@SuppressWarnings("unchecked")
 	BinanceClientImpl(BinanceCredenticals credenticals) {
 		this.credenticals = credenticals;
 		this.httpClient = new BinanceHttpClient(this);
-				
-		Api api;
-		Class<? extends Api> clazz;
-		for (Field field : BinanceClientImpl.class.getDeclaredFields()) {
-			if (!Api.class.isAssignableFrom(field.getType()))
-				continue;
-			
-			clazz = (Class<? extends Api>) field.getType();
-			api = ApiImplementer.implementz(clazz, this);
-			ReflectionUtils.trySet(field, this, api);
-		}
-		
-		this.usdm = new UsdmAPI(usdmMarket, usdmTrade);
-		this.coinm = new CoinmAPI(coinmMarket, coinmTrade);
-		this.options = new OptionsAPI(optionsQuoting, optionsTrade);
 	}
 	
 	//Méthodes
@@ -118,6 +82,7 @@ public class BinanceClientImpl implements BinanceClient {
 		final BinanceHttpRequest request = BinanceHttpRequest.newBuilder("/sapi/v1/capital/deposit/address", Method.GET)
 				.setParameter(Parameters.coin, "BTC")
 				.setBaseEndpoint(BaseEndpoints.SPOT.getUrls().get(0))
+				.setRecvWindow(60000l)
 				.build();
 		
 		synchronized (this) {
@@ -163,6 +128,8 @@ public class BinanceClientImpl implements BinanceClient {
 	//Methodes
 	@Override
 	public WalletAPI wallet() {
+		if (wallet == null)
+			wallet = ApiImplementer.implementz(WalletAPI.class, this);
 		return this.wallet;
 	}
 
@@ -175,41 +142,57 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public BSwapAPI bswap() {
+		if (bswap == null)
+			bswap = ApiImplementer.implementz(BSwapAPI.class, this);
 		return bswap;
 	}
 
 	@Override
 	public C2CAPI c2c() {
+		if (c2c == null)
+			c2c = ApiImplementer.implementz(C2CAPI.class, this);
 		return c2c;
 	}
 
 	@Override
 	public CoinmAPI coinm() {
+		if (coinm == null)
+			coinm = new CoinmAPI(this);
 		return coinm;
 	}
 
 	@Override
 	public ConvertAPI convert() {
+		if (convert == null)
+			convert = ApiImplementer.implementz(ConvertAPI.class, this);
 		return convert;
 	}
 
 	@Override
 	public CryptoLoansAPI cryptoloans() {
+		if (cryptoloans == null)
+			cryptoloans = ApiImplementer.implementz(CryptoLoansAPI.class, this);
 		return cryptoloans;
 	}
 
 	@Override
 	public FiatAPI fiat() {
+		if (fiat == null)
+			fiat = ApiImplementer.implementz(FiatAPI.class, this);
 		return fiat;
 	}
 
 	@Override
 	public FuturesAPI futures() {
+		if (futures == null)
+			futures = ApiImplementer.implementz(FuturesAPI.class, this);
 		return futures;
 	}
 
 	@Override
 	public GiftcardAPI giftcard() {
+		if (giftcard == null)
+			giftcard = ApiImplementer.implementz(GiftcardAPI.class, this);
 		return giftcard;
 	}
 
@@ -222,31 +205,43 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public MiningAPI mining() {
+		if (mining == null)
+			mining = ApiImplementer.implementz(MiningAPI.class, this);
 		return mining;
 	}
 
 	@Override
 	public NFTAPI nft() {
+		if (nft == null)
+			nft = ApiImplementer.implementz(NFTAPI.class, this);
 		return nft;
 	}
 
 	@Override
 	public OptionsAPI options() {
+		if (options == null)
+			options = new OptionsAPI(this);
 		return options;
 	}
 
 	@Override
 	public PayAPI pay() {
+		if (pay == null)
+			pay = ApiImplementer.implementz(PayAPI.class, this);
 		return pay;
 	}
 
 	@Override
 	public RebateAPI rebate() {
+		if (rebate == null)
+			rebate = ApiImplementer.implementz(RebateAPI.class, this);
 		return rebate;
 	}
 
 	@Override
 	public SavingsAPI savings() {
+		if (savings == null)
+			savings = ApiImplementer.implementz(SavingsAPI.class, this);
 		return savings;
 	}
 
@@ -259,16 +254,22 @@ public class BinanceClientImpl implements BinanceClient {
 
 	@Override
 	public SubAccountAPI subaccount() {
+		if (subaccount == null)
+			subaccount = ApiImplementer.implementz(SubAccountAPI.class, this);
 		return subaccount;
 	}
 	
 	@Override
 	public FuturesAlgoAPI futuresalgo() {
+		if (futuresalgo == null)
+			futuresalgo = ApiImplementer.implementz(FuturesAlgoAPI.class, this);
 		return futuresalgo;
 	}
 	
 	@Override
 	public UsdmAPI usdm() {
+		if (usdm == null)
+			usdm = new UsdmAPI(this);
 		return usdm;
 	}
 }
