@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.core;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import fr.rowlaxx.jsavon.JsavonArray;
 import fr.rowlaxx.jsavon.annotations.JAValue;
@@ -25,6 +26,21 @@ public class BasicCandlestick extends JsavonArray implements Candlestick.Volume 
 	//Constructeurs
 	public BasicCandlestick(JSONArray array) {
 		super(array);
+	}
+	
+	public BasicCandlestick(JSONObject json) {
+		this.openTime = json.getLong("t");
+		this.closeTime = json.getLong("T");
+		this.open = json.getDouble("o");
+		this.close = json.getDouble("c");
+		this.high = json.getDouble("h");
+		this.low = json.getDouble("l");
+		this.volume = json.getDouble("v");
+		this.numberOfTrades = json.getInt("n");
+		this.quoteAssetVolume = json.getDouble("q");
+		this.takerBuyBaseAssetVolume = json.getDouble("V");
+		this.takerBuyQuoteAssetVolume = json.getDouble("Q");
+		this.ignore = json.getDouble("B");
 	}
 	
 	//Geters

@@ -12,6 +12,7 @@ public final class UsdmAPI {
 	
 	private UsdmMarketDataAPI market;
 	private UsdmTradeAPI trade;
+	private UsdmMarketStreamAPI marketstream;
 	
 	//Constructeurs
 	public UsdmAPI(BinanceClient client) {
@@ -30,4 +31,10 @@ public final class UsdmAPI {
 			trade = ApiImplementer.implementz(UsdmTradeAPI.class, client);
 		return trade;
 	}	
+	
+	public UsdmMarketStreamAPI marketstream() {
+		if (marketstream == null)
+			marketstream = new UsdmMarketStreamAPI();
+		return marketstream;
+	}
 }
