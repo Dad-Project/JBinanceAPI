@@ -17,7 +17,7 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 
 	//Events
 	public static interface OnCandle{
-		public void onCandle(String symbol, BlvtCandlestick candle);
+		public void onCandle(String symbol, Intervals interval, BlvtCandlestick candle);
 	}
 	
 	public static interface OnInfo{
@@ -80,8 +80,9 @@ public class BLVTStreamAPI extends StreamAPI implements Api.WebSocket, Api.Spot{
 		
 		if ("kline".equals(eventType)) {
 			final BlvtCandlestick candle = new BlvtCandlestick(json.getJSONObject("k"));
+			final Intervals interval = Jsavon.converter.convert(json.getJSONObject("k").get("i"), Intervals.class);
 			for(OnCandle event : onCandles)
-				event.onCandle(symbol, candle);
+				event.onCandle(symbol, interval, candle);
 		}
 		else if ("nav".equals(eventType)) {
 			final BlvtInfoStream info = Jsavon.converter.convert(json, BlvtInfoStream.class);

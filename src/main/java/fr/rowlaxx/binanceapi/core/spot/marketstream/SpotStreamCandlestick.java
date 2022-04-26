@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.core.spot.marketstream;
 
 import fr.rowlaxx.binanceapi.core.Candlestick;
+import fr.rowlaxx.binanceapi.core.Intervals;
 import fr.rowlaxx.jsavon.JsavonObject;
 import fr.rowlaxx.jsavon.annotations.JOValue;
 
@@ -38,6 +39,8 @@ public class SpotStreamCandlestick extends JsavonObject implements Candlestick.V
 	private double takerBuyQuoteAssetVolume;
 	@JOValue(key = "B")
 	private double ignore;
+	@JOValue(key = "i")
+	private Intervals interval;
 	
 	//Methodes
 	@Override
@@ -95,5 +98,9 @@ public class SpotStreamCandlestick extends JsavonObject implements Candlestick.V
 	
 	public double getQuoteAssetVolume() {
 		return quoteAssetVolume;
+	}
+	
+	public Intervals getInterval() {
+		return interval;
 	}
 }
