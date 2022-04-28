@@ -20,6 +20,7 @@ import fr.rowlaxx.binanceapi.api.spot.PayAPI;
 import fr.rowlaxx.binanceapi.api.spot.RebateAPI;
 import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
+import fr.rowlaxx.binanceapi.api.spot.StakingAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
 import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
@@ -66,6 +67,7 @@ public interface BinanceClient {
 	public RebateAPI rebate();
 	public NFTAPI nft();
 	public GiftcardAPI giftcard();
+	public StakingAPI staking();
 
 	/*
 	 * OPTIONS 

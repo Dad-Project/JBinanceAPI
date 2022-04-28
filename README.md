@@ -65,6 +65,7 @@ All the ❌ fields will be implemented.
 |     Pay     |     ✔️     | 2022-01-30 |
 |    Rebate   |     ✔️     | 2022-01-30 |
 |   Savings   |     ✔️     | 2022-01-28 |
+|   Staking   |     ✔️     | 2022-04-28 |
 | Sub-Account |     ✔️     | 2022-03-29 |
 |    Wallet   |     ✔️     | 2022-03-19 |
 

@@ -19,6 +19,7 @@ import fr.rowlaxx.binanceapi.api.spot.PayAPI;
 import fr.rowlaxx.binanceapi.api.spot.RebateAPI;
 import fr.rowlaxx.binanceapi.api.spot.SavingsAPI;
 import fr.rowlaxx.binanceapi.api.spot.SpotAPI;
+import fr.rowlaxx.binanceapi.api.spot.StakingAPI;
 import fr.rowlaxx.binanceapi.api.spot.SubAccountAPI;
 import fr.rowlaxx.binanceapi.api.spot.WalletAPI;
 import fr.rowlaxx.binanceapi.api.usdm.UsdmAPI;
@@ -46,6 +47,7 @@ public class BinanceClientImpl implements BinanceClient {
 	private PayAPI pay = null;
 	private RebateAPI rebate = null;
 	private SavingsAPI savings = null;
+	private StakingAPI staking = null;
 	private SubAccountAPI subaccount = null;
 	private WalletAPI wallet = null;
 	
@@ -202,6 +204,13 @@ public class BinanceClientImpl implements BinanceClient {
 		if (spot == null)
 			spot = new SpotAPI(this);
 		return spot;
+	}
+	
+	@Override
+	public StakingAPI staking() {
+		if (staking == null)
+			staking = ApiImplementer.implementz(StakingAPI.class, this);
+		return staking;
 	}
 
 	@Override
