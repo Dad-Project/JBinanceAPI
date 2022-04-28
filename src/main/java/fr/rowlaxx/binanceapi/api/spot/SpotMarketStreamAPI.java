@@ -287,34 +287,50 @@ public class SpotMarketStreamAPI extends StreamAPI implements Api.Spot {
 	
 	
 	public void addOnTradeEvent(OnTrade onTrade) {
+		if (onTrade == null)
+			return;
 		this.onTrades.add(onTrade);
 	}
 	
 	public void addOnAggTradeEvent(OnAggTrade onAggTrade) {
+		if (onAggTrade == null)
+			return;
 		this.onAggTrades.add(onAggTrade);
 	}
 	
 	public void addOnCandleEvent(OnCandle onCandle) {
+		if (onCandle == null)
+			return;
 		this.onCandles.add(onCandle);
 	}
 	
 	public void addOnTickerEvent(OnTicker onTicker) {
+		if (onTicker == null)
+			return;
 		this.onTickers.add(onTicker);
 	}
 	
 	public void addOnMiniTickerEvent(OnMiniTicker onMiniTicker) {
+		if (onMiniTicker == null)
+			return;
 		this.onMiniTickers.add(onMiniTicker);
 	}
 	
 	public void addOnBookTickerEvent(OnBookTicker onBookTicker) {
+		if (onBookTicker == null)
+			return;
 		this.onBookTickers.add(onBookTicker);
 	}
 	
 	public void addOnPartialDiffBook(OnPartialDiffBook onPartialDiffBook) {
+		if (onPartialDiffBook == null)
+			return;
 		this.onPartialDiffBooks.add(onPartialDiffBook);
 	}
 	
 	public void addOnDiffBook(OnDiffBook onDiffBook) {
+		if (onDiffBook == null)
+			return;
 		this.onDiffBooks.add(onDiffBook);
 	}
 	
