@@ -151,6 +151,7 @@ public enum Parameters {
 	transFrom(String.class),
 	transTo(String.class),
 	txId(Long.class),
+	txnType(Enum.class),
 	type(Integer.class, Enum.class),
 	underlying(String.class),
 	urgency(Enum.class),

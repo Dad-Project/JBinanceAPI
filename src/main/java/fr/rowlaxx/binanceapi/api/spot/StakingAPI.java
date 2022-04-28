@@ -12,6 +12,8 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.core.staking.StakingPosition;
 import fr.rowlaxx.binanceapi.core.staking.StakingProduct;
 import fr.rowlaxx.binanceapi.core.staking.StakingProducts;
+import fr.rowlaxx.binanceapi.core.staking.StakingRecord;
+import fr.rowlaxx.binanceapi.core.staking.TxnTypes;
 import fr.rowlaxx.convertutils.MapKey;
 
 public interface StakingAPI extends Api.Https, Api.Spot {
@@ -47,7 +49,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			method = Method.POST,
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.positionId, Parameters.productId, Parameters.amount},
-			mandatory = {true, true, true, false}
+			mandatory = {true, false, true, false}
 			)
 	@RedirectResponse(path = "success")
 	public int redeem(StakingProducts product, String positionId, String productId, Double amount);
@@ -59,8 +61,19 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			method = Method.GET,
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.productId, Parameters.asset, Parameters.current, Parameters.size},
-			mandatory = {true, true, true, false}
+			mandatory = {true, false, false, false, false}
 			)
 	public List<StakingPosition> getStakingPositions(StakingProducts product, String productId, String asset, Integer current, Integer size);
+
+	//Get Staking History(USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/staking/stakingRecord",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.product, Parameters.txnType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
+			mandatory = {true, true, false, false, false, false, false}
+			)
+	public List<StakingRecord> getStakingHistory(StakingProducts product, TxnTypes txnType , String asset, Long startTime, Long endTime, Integer current, Integer size);
 
 }
