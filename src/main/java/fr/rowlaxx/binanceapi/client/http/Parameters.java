@@ -110,6 +110,7 @@ public enum Parameters {
 	recordId(Long.class),
 	recvWindow(Integer.class),
 	reduceOnly(Boolean.class),
+	renewable(Boolean.class),
 	rows(Integer.class),
 	shareAmount(Double.class),
 	side(Enum.class),
