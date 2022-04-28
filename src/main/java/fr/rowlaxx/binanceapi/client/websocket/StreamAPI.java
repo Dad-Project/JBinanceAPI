@@ -45,7 +45,7 @@ public abstract class StreamAPI implements Api.WebSocket, Closeable {
 	}
 	
 	public StreamAPI(String baseUrl) {
-		this(baseUrl, null);
+		this.pool = new BinanceWebSocketPool(baseUrl, (JSONObject json) -> StreamAPI.this.onJson(json));
 	}
 	
 	public StreamAPI(BinanceWebSocketPool pool) {

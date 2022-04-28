@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.json.JSONObject;
 
@@ -39,13 +40,13 @@ public class BinanceWebSocketPool implements Closeable {
 	//Constructeurs
 	public BinanceWebSocketPool(String baseUrl, String listenKey, OnJson onJson) {
 		this.baseUrl = Objects.requireNonNull(baseUrl, "baseUrl may not be null.");
-		this.listenKey = listenKey;
+		this.listenKey = Objects.requireNonNull(listenKey, "listenKey may not be null.");
 		addOnJsonEvent(onJson);
 		initThreads();
 	}
 	
 	public BinanceWebSocketPool(String baseUrl) {
-		this(baseUrl, null, null);
+		this(baseUrl, UUID.randomUUID().toString().replaceAll("-", ""), null);
 	}
 	
 	public BinanceWebSocketPool(String baseUrl, String listenKey) {
@@ -53,7 +54,7 @@ public class BinanceWebSocketPool implements Closeable {
 	}
 	
 	public BinanceWebSocketPool(String baseUrl, OnJson onJson) {
-		this(baseUrl, null, onJson);
+		this(baseUrl, UUID.randomUUID().toString().replaceAll("-", ""), onJson);
 	}
 	
 	private void initThreads() {
@@ -191,11 +192,14 @@ public class BinanceWebSocketPool implements Closeable {
 	}
 	
 	public synchronized boolean setListenKey(String listenKey) {
-		if (Objects.equals(listenKey, this.listenKey))
+		Objects.requireNonNull(listenKey, "listenKey may not be null.");
+		if (listenKey.equals(this.listenKey))
 			return false;
+
 		this.listenKey = listenKey;
 		for (BinanceWebSocket socket : sockets)
 			socket.setListenKey(listenKey);
+		
 		return true;
 	}
 	

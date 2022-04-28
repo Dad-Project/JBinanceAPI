@@ -65,7 +65,7 @@ public class BinanceWebSocket implements Closeable {
 	}
 
 	public BinanceWebSocket(String baseUrl) {
-		this(baseUrl, (String)null);
+		this(baseUrl, UUID.randomUUID().toString().replaceAll("-", ""));
 	}
 
 	public BinanceWebSocket(String baseUrl, String listenKey, OnJson onJson) {
@@ -74,7 +74,7 @@ public class BinanceWebSocket implements Closeable {
 	}
 
 	public BinanceWebSocket(String baseUrl, OnJson onJson) {
-		this(baseUrl, (String)null);
+		this(baseUrl, UUID.randomUUID().toString().replaceAll("-", ""));
 		addOnJsonEvent(onJson);
 	}
 
@@ -348,12 +348,14 @@ public class BinanceWebSocket implements Closeable {
 	}
 
 	public void setListenKey(String listenKey) {
-		if (Objects.equals(listenKey, this.listenKey))
+		if (listenKey == null)
+			throw new NullPointerException("listenKey may not be null.");
+		if (listenKey.equals(this.listenKey))
 			return;
 		
 		this.listenKey = listenKey;
 		try {
-			this.uri = new URI(baseUrl + "/ws/" + (listenKey == null ? UUID.randomUUID().toString().replaceAll("-", "") : listenKey));
+			this.uri = new URI(baseUrl + "/ws/" + listenKey);
 		}catch(URISyntaxException e) {
 			throw new BinanceWebSocketException(e.getMessage());
 		}
