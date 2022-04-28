@@ -9,6 +9,7 @@ import fr.rowlaxx.binanceapi.client.http.BaseEndpoints;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
+import fr.rowlaxx.binanceapi.core.staking.StakingLeftQuota;
 import fr.rowlaxx.binanceapi.core.staking.StakingPosition;
 import fr.rowlaxx.binanceapi.core.staking.StakingProduct;
 import fr.rowlaxx.binanceapi.core.staking.StakingProducts;
@@ -85,6 +86,19 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			parameters = {Parameters.product, Parameters.positionId, Parameters.renewable},
 			mandatory = {true, true, true}
 	)
-	public void setAutoStaking(StakingProducts product, String positionId, boolean renewable);
+	@RedirectResponse(path = "success")
+	public boolean setAutoStaking(StakingProducts product, String positionId, boolean renewable);
+
+	
+	//Get Personal Left Quota of Staking Product(USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/staking/personalLeftQuota",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.product, Parameters.productId},
+			mandatory = {true, true}
+	)
+	public List<StakingLeftQuota> getPersonalLeftQuote(StakingProducts product, String productId);
 
 }
