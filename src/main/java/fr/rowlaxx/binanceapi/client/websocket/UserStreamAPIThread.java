@@ -17,13 +17,11 @@ public class UserStreamAPIThread extends Thread {
 	@Override
 	public void run() {
 		running = true;
-		while (running) {			
+		while (running)			
 			try {
 				Thread.sleep(5*60*1000);
-			} catch (InterruptedException e) {}
-			
-			stream.updateListenKey();
-		}
+				stream.updateListenKey();
+			} catch (InterruptedException e) {}	
 	}
 	
 	@Override
