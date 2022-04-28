@@ -17,7 +17,7 @@ Add this to your POM to add JBinanceAPI in your project :
 	<dependency>
 		<groupId>fr.rowlaxx</groupId>
 		<artifactId>binanceapi</artifactId>
-		<version>1.0.3</version>
+		<version>1.0.4</version>
 	</dependency>
 </dependencies>
 ```
