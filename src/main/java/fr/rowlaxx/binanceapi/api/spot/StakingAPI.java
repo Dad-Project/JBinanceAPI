@@ -22,7 +22,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.asset, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false}
-	)
+			)
 	@MapKey(fieldName = "projectId")
 	public Map<String, StakingProduct> getStakingProducts(StakingProducts product, String asset, Integer current, Integer size);
 
@@ -34,8 +34,20 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.productId, Parameters.amount, Parameters.renewable},
 			mandatory = {true, true, true, false}
-	)
+			)
 	@RedirectResponse(path = "positionId")
 	public int purchase(StakingProducts product, String productId, Double amount, Boolean renewable);
+
+	//Redeem Staking Product(USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/staking/purchase",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.product, Parameters.positionId, Parameters.productId, Parameters.amount},
+			mandatory = {true, true, true, false}
+			)
+	@RedirectResponse(path = "success")
+	public int redeem(StakingProducts product, String positionId, String productId, Double amount);
 
 }
