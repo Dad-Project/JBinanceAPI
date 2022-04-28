@@ -42,6 +42,7 @@ public interface BinanceClient {
 		return new BinanceClientImpl(credenticals);
 	}
 
+	public void close();
 	public boolean isGuest();
 	public BinanceHttpClient getHttpClient();
 

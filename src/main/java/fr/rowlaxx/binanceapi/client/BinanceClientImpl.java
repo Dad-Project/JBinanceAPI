@@ -233,4 +233,9 @@ public class BinanceClientImpl implements BinanceClient {
 			usdm = new UsdmAPI(this);
 		return usdm;
 	}
+	
+	@Override
+	public void close() {
+		//TODO
+	}
 }
