@@ -45,7 +45,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 
 	//Redeem Staking Product(USER_DATA)
 	@ApiEndpoint (
-			endpoint = "/sapi/v1/staking/purchase",
+			endpoint = "/sapi/v1/staking/redeem",
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.POST,
 			needSignature = true,
