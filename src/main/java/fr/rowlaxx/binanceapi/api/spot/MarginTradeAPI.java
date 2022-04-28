@@ -25,6 +25,7 @@ import fr.rowlaxx.binanceapi.core.margin.MarginInterestRate;
 import fr.rowlaxx.binanceapi.core.margin.MarginOCOOrder;
 import fr.rowlaxx.binanceapi.core.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOrder;
+import fr.rowlaxx.binanceapi.core.margin.MarginOrderCountUsage;
 import fr.rowlaxx.binanceapi.core.margin.MarginOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginPair;
 import fr.rowlaxx.binanceapi.core.margin.MarginTrade;
@@ -530,4 +531,15 @@ public interface MarginTradeAPI extends Api.Https, Api.Spot {
 			mandatory = {true, false}
 	)
 	public List<IsolatedTier> getIsolatedTierHistory(String asset, Integer vipLevel, Long startTime, Long endTime, Integer limit);
+
+	//Query Current Margin Order Count Usage (TRADE)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/margin/rateLimit/order",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {Parameters.isIsolated, Parameters.symbol},
+			mandatory = {true, false}
+	)
+	public List<MarginOrderCountUsage> getMarginOrderCountUsage(Boolean isIsolated, String symbol);
 }
