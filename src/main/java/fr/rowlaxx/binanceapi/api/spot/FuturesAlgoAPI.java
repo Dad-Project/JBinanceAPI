@@ -9,6 +9,7 @@ import fr.rowlaxx.binanceapi.client.http.BinanceHttpRequest.Method;
 import fr.rowlaxx.binanceapi.client.http.Parameters;
 import fr.rowlaxx.binanceapi.client.http.RedirectResponse;
 import fr.rowlaxx.binanceapi.core.OrderSides;
+import fr.rowlaxx.binanceapi.core.futuresalgo.TwapOrderRequest;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrder;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrderRequest;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPSubOrder;
@@ -24,7 +25,7 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@ApiEndpoint(
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
-			endpoint = "sapi/v1/algo/futures/newOrderVp",
+			endpoint = "/sapi/v1/algo/futures/newOrderVp",
 			method = Method.POST,
 			parameters = {Parameters.symbol, Parameters.side, Parameters.positionSide, Parameters.quantity, Parameters.urgency, Parameters.clientAlgoId, Parameters.reduceOnly, Parameters.limitPrice},
 			mandatory = {true, true, false, true, true, false, false, false}			
@@ -36,7 +37,7 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@ApiEndpoint(
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
-			endpoint = "sapi/v1/algo/futures/order",
+			endpoint = "/sapi/v1/algo/futures/order",
 			method = Method.DELETE,
 			parameters = {Parameters.algoId},
 			mandatory = {true}
@@ -47,7 +48,7 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@ApiEndpoint(
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
-			endpoint = "sapi/v1/algo/futures/openOrders",
+			endpoint = "/sapi/v1/algo/futures/openOrders",
 			method = Method.GET,
 			parameters = {},
 			mandatory = {}
@@ -59,7 +60,7 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@ApiEndpoint(
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
-			endpoint = "sapi/v1/algo/futures/historicalOrders",
+			endpoint = "/sapi/v1/algo/futures/historicalOrders",
 			method = Method.GET,
 			parameters = {Parameters.symbol, Parameters.side, Parameters.startTime, Parameters.endTime, Parameters.page, Parameters.pageSize},
 			mandatory = {false, false, false, false, false, false}
@@ -75,7 +76,7 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@ApiEndpoint(
 			needSignature = true,
 			baseEndpoint = BaseEndpoints.SPOT,
-			endpoint = " sapi/v1/algo/futures/subOrders",
+			endpoint = "/sapi/v1/algo/futures/subOrders",
 			method = Method.GET,
 			parameters = {Parameters.algoId, Parameters.page, Parameters.pageSize},
 			mandatory = {true, false, false}
@@ -83,4 +84,15 @@ public interface FuturesAlgoAPI extends Api.Https, Api.Spot {
 	@RedirectResponse(path = "orders")
 	public List<VPSubOrder> getSubOrders(String algoId, Integer page, Integer pageSize);
 	
+	//Time-Weighted Average Price(Twap) New Order (TRADE)
+	@ApiEndpoint(
+			needSignature = true,
+			baseEndpoint = BaseEndpoints.SPOT,
+			endpoint = "/sapi/v1/algo/futures/newOrderTwap",
+			method = Method.POST,
+			parameters = {Parameters.symbol, Parameters.side, Parameters.positionSide, Parameters.quantity, Parameters.duration, Parameters.clientAlgoId, Parameters.reduceOnly, Parameters.limitPrice},
+			mandatory = {true, true, false, true, true, false, false, false}			
+	)
+	@RedirectResponse(path = "clientAlgoId")
+	public String postOrder(TwapOrderRequest request);
 }

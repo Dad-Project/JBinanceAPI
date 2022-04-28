@@ -35,6 +35,7 @@ public enum Parameters {
 	current(Integer.class, Long.class),
 	direction(Enum.class),
 	dualSidePosition(Boolean.class),
+	duration(Long.class),
 	email(String.class),
 	enableBlvt(Boolean.class),
 	endDate(Long.class),

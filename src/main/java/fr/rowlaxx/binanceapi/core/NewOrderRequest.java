@@ -1,6 +1,7 @@
 package fr.rowlaxx.binanceapi.core;
 
 import fr.rowlaxx.binanceapi.core.futures.trade.FutureOrderRequest;
+import fr.rowlaxx.binanceapi.core.futuresalgo.TwapOrderRequest;
 import fr.rowlaxx.binanceapi.core.futuresalgo.VPOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOCOOrderRequest;
 import fr.rowlaxx.binanceapi.core.margin.MarginOrderRequest;
@@ -38,7 +39,11 @@ public final class NewOrderRequest {
 		return OptionOrderRequest.newBuilder();
 	}	
 	
-	public static VPOrderRequest.Builder futuresvp(){
+	public static VPOrderRequest.Builder futuresAlgoVP(){
 		return VPOrderRequest.newBuilder();
+	}
+	
+	public static TwapOrderRequest.Builder futuresAlgoTWAP(){
+		return TwapOrderRequest.newBuilder();
 	}
 }

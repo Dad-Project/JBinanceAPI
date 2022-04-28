@@ -58,7 +58,7 @@ All the ❌ fields will be implemented.
 | CryptoLoans |     ✔️     | 2022-01-30 |
 |     Fiat    |     ✔️     | 2022-01-30 |
 |   Futures   |     ✔️     | 2022-01-30 |
-| Futures Algo|     ✔️     | 2022-04-13 |
+| Futures Algo|     ✔️     | 2022-04-27 |
 |   Giftcard  |     ✔️     | 2022-01-30 |
 |    Mining   |     ✔️     | 2022-01-30 |
 |     NFT     |     ✔️     | 2022-01-30 |
