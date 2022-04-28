@@ -99,6 +99,7 @@ public enum Parameters {
 	postOnly(Boolean.class),
 	price(Double.class, String.class),
 	priceProtect(Boolean.class),
+	product(Enum.class),
 	productId(String.class),
 	projectId(String.class),
 	quantity(Double.class, String.class),
