@@ -23,7 +23,11 @@ public class ResponseProcessorThread extends Thread {
 			while(running) {
 				json = pool.nextResponse();
 				for (OnJson event : pool.getOnJsonEvents())
-					event.onJson(json);
+					try{
+						event.onJson(json);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 			}
 		}catch(InterruptedException e) {
 			return;
