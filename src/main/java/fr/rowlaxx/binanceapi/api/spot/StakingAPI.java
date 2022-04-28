@@ -26,7 +26,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.asset, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false}
-			)
+	)
 	@MapKey(fieldName = "projectId")
 	public Map<String, StakingProduct> getStakingProducts(StakingProducts product, String asset, Integer current, Integer size);
 
@@ -38,7 +38,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.productId, Parameters.amount, Parameters.renewable},
 			mandatory = {true, true, true, false}
-			)
+	)
 	@RedirectResponse(path = "positionId")
 	public int purchase(StakingProducts product, String productId, Double amount, Boolean renewable);
 
@@ -50,7 +50,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.positionId, Parameters.productId, Parameters.amount},
 			mandatory = {true, false, true, false}
-			)
+	)
 	@RedirectResponse(path = "success")
 	public int redeem(StakingProducts product, String positionId, String productId, Double amount);
 
@@ -62,7 +62,7 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.productId, Parameters.asset, Parameters.current, Parameters.size},
 			mandatory = {true, false, false, false, false}
-			)
+	)
 	public List<StakingPosition> getStakingPositions(StakingProducts product, String productId, String asset, Integer current, Integer size);
 
 	//Get Staking History(USER_DATA)
@@ -73,7 +73,18 @@ public interface StakingAPI extends Api.Https, Api.Spot {
 			needSignature = true,
 			parameters = {Parameters.product, Parameters.txnType, Parameters.asset, Parameters.startTime, Parameters.endTime, Parameters.current, Parameters.size},
 			mandatory = {true, true, false, false, false, false, false}
-			)
+	)
 	public List<StakingRecord> getStakingHistory(StakingProducts product, TxnTypes txnType , String asset, Long startTime, Long endTime, Integer current, Integer size);
+
+	//Set Auto Staking(USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/staking/setAutoStaking",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.POST,
+			needSignature = true,
+			parameters = {Parameters.product, Parameters.positionId, Parameters.renewable},
+			mandatory = {true, true, true}
+	)
+	public void setAutoStaking(StakingProducts product, String positionId, boolean renewable);
 
 }
