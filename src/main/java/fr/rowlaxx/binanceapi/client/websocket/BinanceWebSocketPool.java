@@ -108,6 +108,9 @@ public class BinanceWebSocketPool implements Closeable {
 			if (!isSubscribed(param))
 				new_++;
 		
+		if (new_ == 0)
+			return;
+		
 		final int total = new_ + getSubscribtionCount();
 		final int socketCount = total / BinanceWebSocket.MAX_SUBSCRIPTION + (total % BinanceWebSocket.MAX_SUBSCRIPTION == 0 ? 0 : 1);
 		
