@@ -20,7 +20,7 @@ public class StakingPosition extends JsavonObject {
 	@JOValue(mandatory = false) private String extraRewardAsset;
 	@JOValue(mandatory = false) private Double extraRewardAPY;
 	@JOValue(mandatory = false) private Double estExtraRewardAmt;
-	private double nextInterestPay;
+	@JOValue(mandatory = false) private Double nextInterestPay;
 	@JOValue(mandatory = false) private Long nextInterestPayDate;
 	private int payInterestPeriod;
 	private double redeemAmountEarly;
@@ -75,7 +75,7 @@ public class StakingPosition extends JsavonObject {
 		return interestEndDate;
 	}
 	
-	public double getNextInterestPay() {
+	public Double getNextInterestPay() {
 		return nextInterestPay;
 	}
 	
