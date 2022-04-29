@@ -30,7 +30,7 @@ public class StakingPosition extends JsavonObject {
 	@JOValue(mandatory = false) private Double redeemingAmt;
 	@JOValue(mandatory = false) private Long partialAmtDeliverDate;
 	private boolean canRedeemEarly;
-	private boolean renewable;
+	@JOValue(mandatory = false) private Boolean renewable;
 	private String type;
 	private String status;
 	
@@ -135,7 +135,7 @@ public class StakingPosition extends JsavonObject {
 		return canRedeemEarly;
 	}
 	
-	public boolean isRenewable() {
+	public Boolean isRenewable() {
 		return renewable;
 	}
 }
