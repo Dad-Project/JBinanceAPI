@@ -1,33 +1,34 @@
 package fr.rowlaxx.binanceapi.core.staking;
 
 import fr.rowlaxx.jsavon.JsavonObject;
+import fr.rowlaxx.jsavon.annotations.JOValue;
 
 public class StakingPosition extends JsavonObject {
 	private static final long serialVersionUID = -5268023992965764730L;
 
 	//Variables
 	private long positionId;
-	private String projectId;
+	@JOValue(mandatory = false) private String projectId;
 	private String asset;
 	private double amount;
 	private long purchaseTime;
 	private int duration;
 	private int accrualDays;
 	private String rewardAsset;
-	private double APY;
+	private double apy;
 	private double rewardAmt;
-	private String extraRewardAsset;
-	private double extraRewardAPY;
-	private double estExtraRewardAmt;
+	@JOValue(mandatory = false) private String extraRewardAsset;
+	@JOValue(mandatory = false) private Double extraRewardAPY;
+	@JOValue(mandatory = false) private Double estExtraRewardAmt;
 	private double nextInterestPay;
-	private long nextInterestPayDate;
+	@JOValue(mandatory = false) private Long nextInterestPayDate;
 	private int payInterestPeriod;
 	private double redeemAmountEarly;
 	private long interestEndDate;
 	private long deliverDate;
 	private int redeemPeriod;
-	private double redeemingAmt;
-	private long partialAmtDeliverDate;
+	@JOValue(mandatory = false) private Double redeemingAmt;
+	@JOValue(mandatory = false) private Long partialAmtDeliverDate;
 	private boolean canRedeemEarly;
 	private boolean renewable;
 	private String type;
@@ -42,8 +43,8 @@ public class StakingPosition extends JsavonObject {
 		return amount;
 	}
 	
-	public double getAPY() {
-		return APY;
+	public double getApy() {
+		return apy;
 	}
 	
 	public String getAsset() {
@@ -58,11 +59,11 @@ public class StakingPosition extends JsavonObject {
 		return duration;
 	}
 	
-	public double getEstExtraRewardAmt() {
+	public Double getEstExtraRewardAmt() {
 		return estExtraRewardAmt;
 	}
 	
-	public double getExtraRewardAPY() {
+	public Double getExtraRewardAPY() {
 		return extraRewardAPY;
 	}
 	
@@ -78,11 +79,11 @@ public class StakingPosition extends JsavonObject {
 		return nextInterestPay;
 	}
 	
-	public long getNextInterestPayDate() {
+	public Long getNextInterestPayDate() {
 		return nextInterestPayDate;
 	}
 	
-	public long getPartialAmtDeliverDate() {
+	public Long getPartialAmtDeliverDate() {
 		return partialAmtDeliverDate;
 	}
 	
@@ -106,7 +107,7 @@ public class StakingPosition extends JsavonObject {
 		return redeemAmountEarly;
 	}
 	
-	public double getRedeemingAmt() {
+	public Double getRedeemingAmt() {
 		return redeemingAmt;
 	}
 	
