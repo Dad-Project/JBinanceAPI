@@ -87,6 +87,21 @@ or
 BinanceClient client = BinanceCLient.create(apiKey, apiSecret);
 ```
 
+## Getting Candlesticks
+
+```java
+List<BasicCandlestick> candlesticks = client.spot().market().getCandlesticks("BTCUSDT", Intervals.HOUR_1, 1000);
+```
+For the last 1 000 hourly candlesticks
+
+## Obtaining coin address
+
+```java
+String coin = "BTC";
+String network = null;
+DepositAddress address = client.wallet().getDepositAddress(coin, network);
+```
+
 ## Placing an order
 
 ```java
@@ -99,13 +114,6 @@ SpotOrderRequest order = NewOrderRequest.spot()
 
 SpotOrder response = client.spot().trade().postOrder(order);
 ```
-
-## Getting Candlesticks
-
-```java
-List<BasicCandlestick> candlesticks = client.spot().market().getCandlesticks("BTCUSDT", Intervals.HOUR_1, 1000);
-```
-For the last 1 000 hourly candlesticks
 
 ## Sending a custom request
 ```java
