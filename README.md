@@ -17,6 +17,7 @@ Add this to your POM to add JBinanceAPI in your project :
 	<dependency>
 		<groupId>fr.rowlaxx</groupId>
 		<artifactId>binanceapi</artifactId>
+		<!-- Last unstable version is 1.0.5-dev -->
 		<version>1.0.4</version>
 	</dependency>
 </dependencies>
@@ -56,7 +57,7 @@ All the ❌ fields will be implemented.
 |     Fiat    |     ✔️     | 2022-01-30 |
 |   Futures   |     ✔️     | 2022-01-30 |
 | Futures Algo|     ✔️     | 2022-04-27 |
-|   Giftcard  |     ✔️     | 2022-01-30 |
+|   Giftcard  |     ✔️     | 2022-05-05 |
 |    Mining   |     ✔️     | 2022-01-30 |
 |     NFT     |     ✔️     | 2022-01-30 |
 |     Pay     |     ✔️     | 2022-01-30 |
