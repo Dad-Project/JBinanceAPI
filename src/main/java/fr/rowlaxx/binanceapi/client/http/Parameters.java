@@ -41,6 +41,7 @@ public enum Parameters {
 	endDate(Long.class),
 	endTime(Long.class),
 	endTimestamp(Long.class),
+	externalUid(String.class),
 	featured(String.class),
 	fromAccountType(String.class),
 	fromEmail(String.class),

@@ -35,11 +35,11 @@ public interface GiftcardAPI extends Api.Https, Api.Spot {
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.POST,
 			needSignature = true,
-			parameters = {Parameters.code},
-			mandatory = {true}
+			parameters = {Parameters.code, Parameters.externalUid},
+			mandatory = {true, false}
 	)
 	@RedirectResponse(path = "data")
-	public GiftcardRedemption redeem(String code);
+	public GiftcardRedemption redeem(String code, String externalUud);
 	
 	//Verify a Binance Code (USER_DATA)
 	@ApiEndpoint (
