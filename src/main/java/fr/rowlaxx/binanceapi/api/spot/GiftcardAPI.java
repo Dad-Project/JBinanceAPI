@@ -52,4 +52,16 @@ public interface GiftcardAPI extends Api.Https, Api.Spot {
 	)
 	@RedirectResponse(path = "data")
 	public GiftcardVerification verify(String code);
+
+	//Fetch RSA Public Key (USER_DATA)
+	@ApiEndpoint (
+			endpoint = "/sapi/v1/giftcard/cryptography/rsa-public-key",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = true,
+			parameters = {},
+			mandatory = {}
+	)
+	@RedirectResponse(path = "data")
+	public String fetchRsaPublicKey();
 }
