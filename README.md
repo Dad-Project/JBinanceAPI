@@ -45,7 +45,7 @@ All the ❌ fields will be implemented.
 |     Market Data    |  ✔️  |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     User Stream    |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
 | Market Data Stream |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
-|       Version      | 2022-04-20 | 2022-04-26 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
+|       Version      | 2022-05-17 | 2022-04-26 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|

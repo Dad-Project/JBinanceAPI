@@ -186,7 +186,28 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 	)
 	public SpotTickerStatistics get24hrStatistics(String symbol);
 
-	//Symbol Price Ticker
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/24hr",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, SpotTickerStatistics> get24hrStatistics(String... symbols);		
+	
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/24hr",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, SpotTickerStatistics> get24hrStatistics(Collection<String> symbols);		
+	
 	@ApiEndpoint (
 			endpoint = "/api/v3/ticker/24hr",
 			baseEndpoint = BaseEndpoints.SPOT,
@@ -214,6 +235,28 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.GET,
 			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, SymbolPriceTicker> getPriceTickers(String... symbols);
+	
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/price",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, SymbolPriceTicker> getPriceTickers(Collection<String> symbols);
+	
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/price",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
 			parameters = {},
 			mandatory = {}
 	)
@@ -230,6 +273,28 @@ public interface SpotMarketDataAPI extends Api.Https, Api.Spot {
 			mandatory = {true}
 	)
 	public BookTicker getOrderBookTicker(String symbol);
+	
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/bookTicker",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, BookTicker> getOrderBookTickers(Collection<String> symbols);
+	
+	@ApiEndpoint (
+			endpoint = "/api/v3/ticker/bookTicker",
+			baseEndpoint = BaseEndpoints.SPOT,
+			method = Method.GET,
+			needSignature = false,
+			parameters = {Parameters.symbols},
+			mandatory = {true}
+	)
+	@MapKey(fieldName = "symbol")
+	public Map<String, BookTicker> getOrderBookTickers(String... symbols);
 	
 	@ApiEndpoint (
 			endpoint = "/api/v3/ticker/bookTicker",
