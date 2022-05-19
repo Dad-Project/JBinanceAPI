@@ -58,7 +58,7 @@ All the ❌ fields will be implemented.
 |   Futures   |     ✔️     | 2022-01-30 |
 | Futures Algo|     ✔️     | 2022-04-27 |
 |   Giftcard  |     ✔️     | 2022-05-05 |
-|    Mining   |     ✔️     | 2022-01-30 |
+|    Mining   |     ✔️     | 2022-05-19 |
 |     NFT     |     ✔️     | 2022-01-30 |
 |     Pay     |     ✔️     | 2022-01-30 |
 |    Rebate   |     ✔️     | 2022-01-30 |
