@@ -23,7 +23,7 @@ public interface PayAPI extends Api.Https, Api.Spot {
 			baseEndpoint = BaseEndpoints.SPOT,
 			method = Method.GET,
 			needSignature = true,
-			parameters = {Parameters.startTimestamp, Parameters.endTimestamp, Parameters.limit},
+			parameters = {Parameters.startTime, Parameters.endTime, Parameters.limit},
 			mandatory = {false, false, false}
 	)
 	@RedirectResponse(path = "data")
