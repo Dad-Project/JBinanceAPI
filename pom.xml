@@ -5,7 +5,7 @@
 
 	<groupId>fr.rowlaxx</groupId>
 	<artifactId>binanceapi</artifactId>
-	<version>1.0.5-dev</version>
+	<version>1.0.5</version>
 	<packaging>jar</packaging>
 
 	<name>binanceapi</name>
@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>fr.rowlaxx</groupId>
 			<artifactId>jsavon</artifactId>
-			<version>1.3.2</version>
+			<version>1.3.5</version>
 		</dependency>
 	</dependencies>
 

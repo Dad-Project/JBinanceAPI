@@ -17,8 +17,7 @@ Add this to your POM to add JBinanceAPI in your project :
 	<dependency>
 		<groupId>fr.rowlaxx</groupId>
 		<artifactId>binanceapi</artifactId>
-		<!-- Last unstable version is 1.0.5-dev -->
-		<version>1.0.4</version>
+		<version>1.0.5</version>
 	</dependency>
 </dependencies>
 ```
@@ -45,7 +44,7 @@ All the ❌ fields will be implemented.
 |     Market Data    |  ✔️  |  ✔️  |  ✔️  |   ✔️  |   ✔️    |
 |     User Stream    |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
 | Market Data Stream |  ✔️  |  ✔️  |  ❌  |   ❌  |   ❌    |
-|       Version      | 2022-05-17 | 2022-04-26 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
+|       Version      | 2022-05-23 | 2022-05-26 | 2022-02-01 | 2022-02-01 | 2022-01-30 |
 
 |             | Implemented |   Version  |
 |:-----------:|:-----------:|:----------:|
@@ -54,13 +53,13 @@ All the ❌ fields will be implemented.
 |     C2C     |     ✔️     | 2022-01-30 |
 |   Convert   |     ✔️     | 2022-01-30 |
 | CryptoLoans |     ✔️     | 2022-01-30 |
-|     Fiat    |     ✔️     | 2022-01-30 |
+|     Fiat    |     ✔️     | 2022-05-31 |
 |   Futures   |     ✔️     | 2022-01-30 |
 | Futures Algo|     ✔️     | 2022-04-27 |
 |   Giftcard  |     ✔️     | 2022-05-05 |
 |    Mining   |     ✔️     | 2022-05-19 |
 |     NFT     |     ✔️     | 2022-01-30 |
-|     Pay     |     ✔️     | 2022-01-30 |
+|     Pay     |     ✔️     | 2022-05-31 |
 |    Rebate   |     ✔️     | 2022-01-30 |
 |   Savings   |     ✔️     | 2022-01-28 |
 |   Staking   |     ✔️     | 2022-04-28 |
